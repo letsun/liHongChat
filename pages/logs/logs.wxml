@@ -16,12 +16,15 @@
     <view class="shop">
       <image class="shop-img" src="../image/1_70.png"></image>
       <view class="text">
+        <!-- 商品标题 -->
         <view class="title">五丰黎红花椒油400ml</view>
         <view class="integral">
+          <!-- 商品需要的积分 -->
           <view class="need">
             <view class="number">20</view>
             <view class="small">积分</view>
           </view>
+          <!-- 商品兑换 -->
           <view class="exchange">兑换</view>
         </view>
       </view>
@@ -29,12 +32,15 @@
     <view class="shop">
       <image class="shop-img" src="../image/1_70.png"></image>
       <view class="text">
+        <!-- 商品标题 -->
         <view class="title">五丰黎红花椒油400ml</view>
         <view class="integral">
+          <!-- 商品需要的积分 -->
           <view class="need">
             <view class="number">20</view>
             <view class="small">积分</view>
           </view>
+          <!-- 商品兑换 -->
           <view class="exchange">兑换</view>
         </view>
       </view>
@@ -42,12 +48,15 @@
     <view class="shop">
       <image class="shop-img" src="../image/1_70.png"></image>
       <view class="text">
+        <!-- 商品标题 -->
         <view class="title">五丰黎红花椒油400ml</view>
         <view class="integral">
+          <!-- 商品需要的积分 -->
           <view class="need">
             <view class="number">20</view>
             <view class="small">积分</view>
           </view>
+          <!-- 商品兑换 -->
           <view class="exchange">兑换</view>
         </view>
       </view>
@@ -55,12 +64,15 @@
     <view class="shop">
       <image class="shop-img" src="../image/1_70.png"></image>
       <view class="text">
+        <!-- 商品标题 -->
         <view class="title">五丰黎红花椒油400ml</view>
         <view class="integral">
+          <!-- 商品需要的积分 -->
           <view class="need">
             <view class="number">20</view>
             <view class="small">积分</view>
           </view>
+          <!-- 商品兑换 -->
           <view class="exchange">兑换</view>
         </view>
       </view>

@@ -31,6 +31,7 @@
   margin: 32rpx 0 18rpx 25rpx;
 }
 
+/* 点赞留言浏览 */
 .like {
   display: flex;
 }
@@ -62,6 +63,7 @@
   margin-right: 10rpx;
 }
 
+/* 说明 */
 .main {
   width: 638rpx;
   font-size: 22rpx;
@@ -70,6 +72,7 @@
   margin: 22rpx 0 0 25rpx;
 }
 
+/* 标签 */
 .btn {
   display: flex;
   margin: 8rpx 0 0 26rpx;
@@ -122,6 +125,7 @@
   margin-left: 113rpx;
 }
 
+/* 底部按钮 */
 .footer {
   position: fixed;
   right: 20rpx;

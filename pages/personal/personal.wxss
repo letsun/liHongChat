@@ -41,6 +41,7 @@
   font-weight: 600;
 }
 
+/* 中奖纪录 */
 .main {
   display: flex;
   padding-top: 106rpx;
@@ -66,12 +67,14 @@
   border-bottom: 1px solid #f5f5f5;
 }
 
+/* 图片 */
 .packet {
   width: 50rpx;
   height: 50rpx;
   margin: 30rpx 0 0 33rpx;
 }
 
+/* 获得物品 */
 .get {
   width: 300rpx;
   font-size: 28rpx;
@@ -80,6 +83,7 @@
   margin-left: 17rpx;
 }
 
+/* 获取时间 */
 .day {
   font-size: 22rpx;
   line-height: 107rpx;

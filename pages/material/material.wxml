@@ -8,21 +8,27 @@
   <view class="details">
     <!--商品名称-->
     <view class="title">凉拌手擀面</view>
+    <!-- 点赞留言浏览 -->
     <view class="like">
+      <!-- 点赞 -->
       <view class="active love">
         <image class="love-img" src="../image/1_72.png"></image>
         <view class="love-text">897</view>
       </view>
+      <!-- 留言 -->
       <view class="active text">
         <image class="text-img" src="../image/1_73.png"></image>
         <view class="text-text">125</view>
       </view>
+      <!-- 浏览 -->
       <view class="active browse">
         <image class="browse-img" src="../image/1_74.png"></image>
         <view class="browse-text">1.2万浏览</view>
       </view>
     </view>
+    <!-- 说明 -->
     <view class="main">凉拌菜是一道菜品,制作原料主要有手擀面、掐菜、花椒油、香醋等。凉拌菜是一道菜品,制作原料主要有手擀面、掐菜、花椒油、香醋等。</view>
+    <!-- 标签 -->
     <view class="btn">
       <view class="food">面食</view>
       <view class="food">凉拌</view>
@@ -47,5 +53,6 @@
       </view>
     </view>
   </view>
+  <!-- 底部按钮 -->
   <view class="footer">海报</view>
 </view>

@@ -82,6 +82,7 @@
   margin-top: 16rpx;
 }
 
+/* 商品标题 */
 .title {
   margin-left: 21rpx;
 }
@@ -92,6 +93,7 @@
   margin: 25rpx 0 0 21rpx;
 }
 
+/* 商品需要的积分 */
 .need {
   color: #f63200;
   display: flex;
@@ -102,6 +104,7 @@
   padding-top: 5rpx;
 }
 
+/* 商品兑换 */
 .exchange {
   width: 78rpx;
   height: 37rpx;
