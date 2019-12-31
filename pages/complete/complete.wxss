@@ -1,1 +1,51 @@
 /* pages/complete/complete.wxss */
+
+/* 填写内容 */
+.write {
+  margin-top: 21rpx;
+}
+
+/* 填写内容的标题 */
+.title {
+  height: 24rpx;
+  display: flex;
+  margin-bottom: 24rpx;
+}
+
+/* 必填项 */
+.asterisk {
+  font-size: 18rpx;
+  line-height: 24rpx;
+  color: #f00202;
+  margin: 0 11rpx 0 43rpx;
+}
+
+.specific {
+  font-size: 24rpx;
+  line-height: 24rpx;
+}
+
+/* 输入框 */
+.text {
+  width: 571rpx;
+  height: 68rpx;
+  font-size: 23rpx;
+  line-height: 68rpx;
+  border: 1rpx solid #e2e2e2;
+  border-radius: 10rpx;
+  margin-left: 111rpx;
+  padding-left: 20rpx;
+}
+
+/* 提交按钮 */
+.commit {
+  width: 489rpx;
+  height: 78rpx;
+  font-size: 30rpx;
+  line-height: 78rpx;
+  text-align: center;
+  color: #fff;
+  border-radius: 10rpx;
+  background-image: linear-gradient(to right, #f63200 , #fbba0a);
+  margin: 63rpx 0 0 131rpx;
+}

@@ -1,8 +1,60 @@
 <!--pages/complete/complete.wxml-->
- <view>
-  <view>
-    <view>*</view>
-    <view>1、您的姓名是</view>
-    <input></input>
+<view class="container">
+  <!--填写内容-->
+  <view class="write">
+    <!--填写内容的标题-->
+    <view class="title">
+      <!--必填项-->
+      <view class="asterisk">*</view>
+      <view class="specific">1、您的姓名是</view>
+    </view>
+    <!--输入框-->
+    <input class="text" placeholder="请输入" maxlength="15"></input>
   </view>
- </view>
+  <!--填写内容-->
+  <view class="write">
+    <!--填写内容的标题-->
+    <view class="title">
+      <!--必填项-->
+      <view class="asterisk">*</view>
+      <view class="specific">1、您的姓名是</view>
+    </view>
+    <!--输入框-->
+    <input class="text" placeholder="请输入" maxlength="15"></input>
+  </view>
+  <!--填写内容-->
+  <view class="write">
+    <!--填写内容的标题-->
+    <view class="title">
+      <!--必填项-->
+      <view class="asterisk">*</view>
+      <view class="specific">1、您的姓名是</view>
+    </view>
+    <!--输入框-->
+    <input class="text" placeholder="请输入" maxlength="15"></input>
+  </view>
+  <!--填写内容-->
+  <view class="write">
+    <!--填写内容的标题-->
+    <view class="title">
+      <!--必填项-->
+      <view class="asterisk">*</view>
+      <view class="specific">1、您的姓名是</view>
+    </view>
+    <!--输入框-->
+    <input class="text" placeholder="请输入" maxlength="15"></input>
+  </view>
+  <!--填写内容-->
+  <view class="write">
+    <!--填写内容的标题-->
+    <view class="title">
+      <!--必填项-->
+      <view class="asterisk">*</view>
+      <view class="specific">1、您的姓名是</view>
+    </view>
+    <!--输入框-->
+    <input class="text" placeholder="请输入" maxlength="15"></input>
+  </view>
+  <!--提交按钮-->
+  <view class="commit">确认提交</view>
+</view>

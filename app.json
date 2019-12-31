@@ -18,6 +18,7 @@
     "pages/reviews/reviews",
     "pages/delicious/delicious",
     "pages/material/material",
+    "pages/release/release",
     "pages/successful/successful",
     "pages/like/like"
   ],
@@ -46,8 +47,8 @@
         "text": "商品详情"
       },
       {
-        "pagePath": "pages/address/address",
-        "text": "地址"
+        "pagePath": "pages/release/release",
+        "text": "发布菜谱"
       }
     ]
   },

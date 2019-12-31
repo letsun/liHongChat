@@ -1,0 +1,42 @@
+<!--pages/release/release.wxml-->
+<view class="container">
+	<view class="header">
+    <view class="cover">
+		  <image class="increase" src="../image/1_78.png"></image>
+      <view class="upload">上传菜谱封面</view>
+    </view>
+		<input class="text" placeholder="请输入菜谱名称" maxlength="15"></input>
+		<textarea class="say" placeholder="说点什么"></textarea>
+	</view>
+  <view class="main">
+    <view class="label">
+      <image class="label-img" src="../image/1_77.png"></image>
+      <view class="label-text">选择标签</view>
+    </view>
+    <view class="select">
+      <view class="active" wx:for="{{12}}" wx:key="{{index}}">健康</view>
+      <view class="add">+</view>
+    </view>
+    <view class="food">
+      <input class="name" placeholder="食材名称" maxlength="15"></input>
+      <input class="name" placeholder="食材用量" maxlength="15"></input>
+      <view class="tag">
+        <view class="ned">+</view>
+        <view class="need">添加食材</view>
+      </view>
+    </view>
+  </view>
+  <view class="content">
+    <view class="steps">步骤1</view>
+    <view class="cover">
+		  <image class="increase" src="../image/1_78.png"></image>
+      <view class="upload">上传菜谱步骤图</view>
+    </view>
+    <input class="text" placeholder="请输入步骤说明"></input>
+    <view class="tag">
+      <view class="ned">+</view>
+      <view class="need">添加步骤</view>
+    </view>
+  </view>
+  <view class="release">发布</view>
+</view>
