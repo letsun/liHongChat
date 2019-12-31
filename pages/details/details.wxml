@@ -1,0 +1,58 @@
+<!--pages/details/details.wxml-->
+<view class="container">
+  <!--头部图片-->
+  <image class="img" src="../image/1_1.png"></image>
+  <view class="header">
+    <!--商品名称-->
+    <view class="title">五丰黎红花椒油400ml</view>
+    <!--积分兑换、库存、兑换数量-->
+    <view class="details">
+      <view class="integral">20积分</view>
+      <view class="inventory">库存：897</view>
+      <view class="change">兑换数量</view>
+      <!--减少-->
+      <image class="minus" src="../image/1_46.png"></image>
+      <!--兑换的数量-->
+      <view class="number">1</view>
+      <!--增加-->
+      <image class="add" src="../image/1_45.png"></image>
+    </view>
+  </view>
+  <!--规格参数-->
+  <view class="content">
+    <view class="parameter">规格参数</view>
+    <view class="main">
+      <!--商品图片-->
+      <image class="shop" src="../image/1_1.png"></image>
+      <!--商品具体内容-->
+      <view class="product-infor">
+        <view class="product-item">
+          <view class="product-key">产品名称：</view>
+          <view class="product-val">五丰黎红花椒油</view>
+        </view>
+        <view class="product-item">
+          <view class="product-key">产品名称：</view>
+          <view class="product-val">五丰黎红花椒油</view>
+        </view>
+        <view class="product-item">
+          <view class="product-key">产品名称：</view>
+          <view class="product-val">五丰黎红花椒油</view>
+        </view>
+        <view class="product-item">
+          <view class="product-key">产品名称：</view>
+          <view class="product-val">五丰黎红花椒油</view>
+        </view>
+        <view class="product-item">
+          <view class="product-key">产品配方：</view>
+          <view class="product-val">花椒、菜籽油</view>
+        </view>
+        <view class="product-item">
+          <view class="product-key">净含量：</view>
+          <view class="product-val">400ml</view>
+        </view>
+        <!--注意事项-->
+        <view class="notice">注：瓶内若有沉淀物为自然析出物,属于正常情况</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,42 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!--顶部背景图片-->
+  <image class="bg" src="../image/1_17.png"></image>
+  <!--个人信息-->
+  <view class="header">
+    <image class="small-bg" src="../image/1_57.png"></image>
+    <view class="main">
+      <view class="old">
+        <!--头像-->
+        <image class="icon" src="../image/1_54.png"></image>
+        <!--点击登录/注册-->
+        <view class="login">点击登录/注册</view>
+      </view>
+      <view class="new">
+        <!--头像-->
+        <image class="icon" src="../image/1_54.png"></image>
+        <!--昵称和积分-->
+        <view class="name">我是昵称</view>
+        <view class="integral">当前积分：200</view>
+      </view>
+      <!--会员规则-->
+      <view class="member">
+        <image class="vip" src="../image/1_55.png"></image>
+        <view class="rules">会员规则</view>
+      </view>
+      <!--个人资料-->
+      <view class="personal">
+        <image class="about" src="../image/1_56.png"></image>
+        <view class="data">个人资料</view>
+      </view>
+    </view>
+  </view>
+  <!--中间内容-->
+  <view class="content">
+    <view class="active" wx:for="{{arr}}" wx:key="{{index}}">
+      <image class="left" src="{{item.img}}"></image>
+      <view class="record">{{item.name}}</view>
+      <image class="right" src="../image/1_52.png"></image>
+    </view>
+  </view>
+</view>

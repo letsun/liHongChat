@@ -1,0 +1,15 @@
+<!--pages/integral/integral.wxml-->
+<view class="container">
+  <!--赠送积分内容-->
+  <view class="integral" wx:for="{{arr}}" wx:key="{{index}}">
+    <!--赠送积分-->
+    <view class="sign">
+      <view class="give">{{item}}</view>
+      <view class="number">+10积分</view>
+    </view>
+    <!--变更时间-->
+    <view class="time change">变更时间：2019-11-27 18:32:30</view>
+    <!--过期时间-->
+    <view class="time past">过期时间：2019-11-27 18:32:30</view>
+  </view>
+</view>

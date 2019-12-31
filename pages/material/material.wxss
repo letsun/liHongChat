@@ -1,0 +1,137 @@
+/* pages/material/material.wxss */
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 520rpx;
+}
+
+/*头部图片*/
+.controls-bg {
+  width: 100%;
+  height: 520rpx;
+}
+
+.details {
+  position: absolute;
+  left: 30rpx;
+  top: 459rpx;
+  width: 690rpx;
+  height: 290rpx;
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 10rpx;
+  box-shadow: 0px 5px 10px #ebebeb;
+}
+
+.title {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  font-weight: 600;
+  margin: 32rpx 0 18rpx 25rpx;
+}
+
+.like {
+  display: flex;
+}
+
+.active {
+  width: 33%;
+  display: flex;
+  font-size: 17rpx;
+  line-height: 24rpx;
+  color: #ccc;
+  padding-left: 28rpx;
+}
+
+.love-img {
+  width: 24rpx;
+  height: 22rpx;
+  margin-right: 10rpx;
+}
+
+.text-img {
+  width: 26rpx;
+  height: 25rpx;
+  margin-right: 10rpx;
+}
+
+.browse-img {
+  width: 37rpx;
+  height: 23rpx;
+  margin-right: 10rpx;
+}
+
+.main {
+  width: 638rpx;
+  font-size: 22rpx;
+  line-height: 32rpx;
+  color: #666;
+  margin: 22rpx 0 0 25rpx;
+}
+
+.btn {
+  display: flex;
+  margin: 8rpx 0 0 26rpx;
+}
+
+.food {
+  width: 61rpx;
+  height: 30rpx;
+  font-size: 19rpx;
+  line-height: 30rpx;
+  text-align: center;
+  color: #fff;
+  border-radius: 10rpx;
+  background-image: linear-gradient(to right, #f64301 , #fa9f0a);
+  margin-right: 16rpx;
+}
+
+.content {
+  padding-top: 280rpx;
+}
+
+.parameter {
+  font-size: 35rpx;
+  line-height: 35rpx;
+  font-weight: 500;
+  margin-left: 54rpx;
+}
+
+.all {
+  margin-top: 56rpx;
+}
+
+.character {
+  width: 643rpx;
+  height: 94rpx;
+  font-size: 29rpx;
+  line-height: 94rpx;
+  display: flex;
+  border-top: 3px solid #e4e4e4;
+  margin-left: 48rpx;
+}
+
+.material {
+  flex: 1;
+  margin-left: 6rpx;
+}
+
+.usage {
+  flex: 1;
+  margin-left: 113rpx;
+}
+
+.footer {
+  position: fixed;
+  right: 20rpx;
+  bottom: 80rpx;
+  width: 86rpx;
+  height: 86rpx;
+  font-size: 25rpx;
+  line-height: 86rpx;
+  text-align: center;
+  color: #fff;
+  background-color: #7f7f7f;
+  border-radius: 50%;
+}

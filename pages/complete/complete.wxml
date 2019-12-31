@@ -1,0 +1,8 @@
+<!--pages/complete/complete.wxml-->
+ <view>
+  <view>
+    <view>*</view>
+    <view>1、您的姓名是</view>
+    <input></input>
+  </view>
+ </view>

@@ -1,0 +1,156 @@
+/* pages/index/index.wxss */
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.bg {
+  width: 100%;
+  height: 381rpx;
+}
+
+.main,
+.small-bg {
+  position: absolute;
+  left: 15rpx;
+  top: 201rpx;
+  width: 726rpx;
+  height: 254rpx;
+}
+
+.old {
+  display: none;
+}
+
+.new {
+  display: flex;
+}
+
+/*头像*/
+.icon {
+  position: absolute;
+  left: 48rpx;
+  top: -15rpx;
+  width: 121rpx;
+  height: 121rpx;
+  border: 4rpx solid #fefefe;
+  border-radius: 50%;
+}
+
+/*点击登录/注册*/
+.login {
+  position: absolute;
+  left: 270rpx;
+  top: 72rpx;
+  width: 186rpx;
+  height: 54rpx;
+  font-size: 21rpx;
+  line-height: 54rpx;
+  text-align: center;
+  color: #f63001;
+  border: 1rpx solid #f43b0c;
+  border-radius: 30rpx;
+}
+
+.name {
+  position: absolute;
+  left: 184rpx;
+  top: 41rpx;
+  font-size: 33rpx;
+  line-height: 33rpx;
+}
+
+.integral {
+  position: absolute;
+  left: 473rpx;
+  top: 30rpx;
+  width: 188rpx;
+  height: 56rpx;
+  font-size: 20rpx;
+  line-height: 56rpx;
+  text-align: center;
+  color: #fff;
+  background-image: linear-gradient(to right, #f64904 , #f99408);
+  border-radius: 30rpx;
+}
+
+/*会员规则*/
+.member {
+  position: absolute;
+  left: 113rpx;
+  top: 176rpx;
+  width: 162rpx;
+  height: 32rpx;
+  display: flex;
+}
+
+.vip {
+  width: 38rpx;
+  height: 32rpx;
+}
+
+.rules {
+  flex: 1;
+  font-size: 26rpx;
+  line-height: 32rpx;
+  margin-left: 15rpx;
+}
+
+/*个人资料*/
+.personal {
+  position: absolute;
+  left: 460rpx;
+  top: 175rpx;
+  width: 160rpx;
+  height: 35rpx;
+  display: flex;
+}
+
+.about {
+  width: 35rpx;
+  height: 35rpx;
+}
+
+.data {
+  flex: 1;
+  font-size: 26rpx;
+  line-height: 35rpx;
+  margin-left: 15rpx;
+}
+
+/*中间内容*/
+.content {
+  width: 100%;
+  height: 100%;
+  margin-top: 72rpx;
+  padding-bottom: 10rpx;
+}
+
+.active {
+  width: 690rpx;
+  height: 97rpx;
+  display: flex;
+  margin: 0 30rpx;
+  border-bottom: 1rpx solid #ebebeb;
+}
+
+.left {
+  width: 28rpx;
+  height: 30rpx;
+  margin: 35rpx 0 0 9rpx;
+}
+
+.record {
+  flex: 1;
+  width: 632rpx;
+  font-size: 25rpx;
+  line-height: 97rpx;
+  margin-left: 15rpx;
+}
+
+.right {
+  width: 15rpx;
+  height: 30rpx;
+  margin: 35rpx 6rpx 0 0;
+}

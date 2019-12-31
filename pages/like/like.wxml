@@ -1,0 +1,54 @@
+<!--pages/like/like.wxml-->
+<view class="container">
+  <view class="record">
+    <!--点赞-->
+    <view class="like">
+      <image class="love" src="../image/1_26.png"></image>
+      <view class="give">点赞</view>
+      <view class="like-time">2019-12-06 16:26:45</view>
+    </view>
+    <view class="content">
+      <!--点赞内容-->
+      <view class="text">
+        <view class="noodles">凉拌手擀面</view>
+        <view class="noodles-time">2019-12-06 16:26:45</view>
+      </view>
+      <!--商品图片-->
+      <image class="img" src="../image/1_1.png"></image>
+    </view>
+  </view>
+  <view class="record">
+    <!--点赞-->
+    <view class="like">
+      <image class="love" src="../image/1_26.png"></image>
+      <view class="give">点赞</view>
+      <view class="like-time">2019-12-06 16:26:45</view>
+    </view>
+    <view class="content">
+      <!--点赞内容-->
+      <view class="text">
+        <view class="noodles">凉拌手擀面</view>
+        <view class="noodles-time">2019-12-06 16:26:45</view>
+      </view>
+      <!--商品图片-->
+      <image class="img" src="../image/1_1.png"></image>
+    </view>
+  </view>
+  <view class="record">
+    <!--点赞-->
+    <view class="like">
+      <image class="love" src="../image/1_26.png"></image>
+      <view class="give">点赞</view>
+      <view class="like-time">2019-12-06 16:26:45</view>
+    </view>
+    <view class="content">
+      <!--点赞内容-->
+      <view class="text">
+        <view class="noodles">凉拌手擀面</view>
+        <view class="noodles-time">2019-12-06 16:26:45</view>
+      </view>
+      <!--商品图片-->
+      <image class="img" src="../image/1_1.png"></image>
+    </view>
+  </view>
+</view>

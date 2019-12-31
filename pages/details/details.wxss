@@ -1,0 +1,137 @@
+/* pages/details/details.wxss */
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+/*头部图片*/
+.img {
+  width: 100%;
+  height: 520rpx;
+}
+
+.header {
+  position: absolute;
+  left: 30rpx;
+  top: 497rpx;
+  width: 690rpx;
+  height: 140rpx;
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 10rpx;
+  box-shadow: 0px 5px 10px #ebebeb;
+}
+
+/*商品名称*/
+.title {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  font-weight: 600;
+  margin: 32rpx 0 20rpx 30rpx;
+}
+
+/*积分兑换、库存、兑换数量*/
+.details {
+  display: flex;
+  padding-left: 30rpx;
+}
+
+.integral {
+  color: #f83000;
+  font-weight: 600;
+  line-height: 19rpx;
+}
+
+.inventory {
+  font-size: 19rpx;
+  color: #9a9a9a;
+  line-height: 19rpx;
+  margin: 0 90rpx;
+}
+
+.change {
+  font-size: 19rpx;
+  color: #9a9a9a;
+  line-height: 19rpx;
+}
+
+.minus {
+  width: 31rpx;
+  height: 31rpx;
+  margin-left: 26rpx;
+}
+
+.number {
+  width: 68rpx;
+  font-size: 23rpx;
+  line-height: 23rpx;
+  color: #343434;
+  text-align: center;
+}
+
+.add {
+  width: 31rpx;
+  height: 31rpx;
+}
+
+/*规格参数*/
+.content {
+  padding-top: 147rpx;
+}
+
+.parameter {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  margin-left: 58rpx;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.shop {
+  width: 284rpx;
+  height: 400rpx;
+  margin-left: 68rpx;
+}
+
+/*商品具体内容*/
+.product-infor {
+  position: absolute;
+  right: 68rpx;
+  top: 34rpx;
+  font-size: 21rpx;
+}
+
+.product-item {
+  width: 355rpx;
+  height: 40rpx;
+  font-size: 20rpx;
+  line-height: 40rpx;
+  display: flex;
+  border-bottom: 2rpx dashed #857951;
+}
+
+.product-key {
+  width: 100rpx;
+  color: #614c1f;
+}
+
+.product-val {
+  flex: 1;
+  color: #e72d38;
+  word-break: break-all;
+}
+
+/*注意事项*/
+.notice {
+  width: 304rpx;
+  font-size: 16rpx;
+  line-height: 16rpx;
+  color: #f12e3c;
+  margin-left: 45rpx;
+  margin-top: 35rpx;
+}

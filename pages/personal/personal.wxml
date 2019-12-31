@@ -1,0 +1,34 @@
+<!--pages/personal/personal.wxml-->
+
+<view class="container">
+  <!--顶部背景图片-->
+  <image class="bg" src="../image/1_17.png"></image>
+  <!--个人信息-->
+  <view class="header">
+    <!--头像-->
+    <image class="icon" src="../image/1_75.png"></image>
+    <view class="name">我是昵称</view>
+  </view>
+  <view class="main">
+    <image class="img" src="../image/1_76.png"></image>
+    <view class="winning">中奖纪录</view>
+  </view>
+  <view class="content">
+    <view class="record">
+      <image class="packet" src="../image/1_15.png"></image>
+      <view class="get">获得5元现金红包</view>
+      <view class="day">2019-11-27 18:32:30</view>
+    </view>
+    <view class="record">
+      <image class="packet" src="../image/1_15.png"></image>
+      <view class="get">获得5元现金红包</view>
+      <view class="day">2019-11-27 18:32:30</view>
+    </view>
+    <view class="record">
+      <image class="packet" src="../image/1_15.png"></image>
+      <view class="get">获得5元现金红包</view>
+      <view class="day">2019-11-27 18:32:30</view>
+    </view>
+  </view>
+</view>
+

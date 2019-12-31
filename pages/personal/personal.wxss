@@ -1,0 +1,88 @@
+/* pages/personal/personal.wxss */
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.bg {
+  width: 100%;
+}
+
+.header {
+  position: absolute;
+  left: 40rpx;
+  top: 312rpx;
+  width: 670rpx;
+  height: 241rpx;
+  background-color: #fff;
+  border: 1px solid #f1f1f1;
+  border-radius: 10rpx;
+  box-shadow: 0px 0px 20px #f1f1f1;
+}
+
+/*头像*/
+.icon {
+  position: absolute;
+  left: 244rpx;
+  top: -53rpx;
+  width: 166rpx;
+  height: 166rpx;
+  border: 8rpx solid #fefefe;
+  border-radius: 50%;
+}
+
+.name {
+  position: absolute;
+  left: 263rpx;
+  top: 160rpx;
+  font-size: 34rpx;
+  line-height: 34rpx;
+  font-weight: 600;
+}
+
+.main {
+  display: flex;
+  padding-top: 106rpx;
+}
+
+.img {
+  width: 6rpx;
+  height: 30rpx;
+  margin: 0 31rpx;
+}
+
+.winning {
+  font-size: 32rpx;
+  line-height: 32rpx;
+  font-weight: 500;
+}
+
+.record {
+  width: 720rpx;
+  height: 107rpx;
+  display: flex;
+  margin: 14rpx 0 0 25rpx;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.packet {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 30rpx 0 0 33rpx;
+}
+
+.get {
+  width: 300rpx;
+  font-size: 28rpx;
+  line-height: 107rpx;
+  font-weight: 500; 
+  margin-left: 17rpx;
+}
+
+.day {
+  font-size: 22rpx;
+  line-height: 107rpx;
+  margin-left: 31rpx;
+  color: #989898;
+}

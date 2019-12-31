@@ -1,0 +1,41 @@
+/* pages/integral/integral.wxss */
+
+/*赠送积分内容*/
+.integral {
+  width: 660rpx;
+  height: 140rpx;
+  margin: 30rpx 0 20rpx 30rpx; 
+  padding-left: 30rpx;
+  border: 1px solid #f1f1f1;
+  border-radius: 10rpx;
+  box-shadow: 0px 0px 20px #f1f1f1;
+}
+
+/*赠送积分*/
+.sign {
+  display: flex;
+  font-size: 26rpx;
+  line-height: 26rpx;
+  padding-top: 22rpx;
+}
+
+.give {
+  width: 309rpx;
+}
+
+.number {
+  color: #f52e04;
+  margin-left: 207rpx; 
+}
+
+/*变更、过期时间*/
+.time {
+  font-size: 20rpx;
+  line-height: 20rpx;
+  color: #999;
+}
+
+/*变更时间*/
+.change {
+  margin: 22rpx 0 11rpx;
+}

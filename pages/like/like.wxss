@@ -1,0 +1,65 @@
+/* pages/like/like.wxss */
+
+.record {
+  width: 659rpx;
+  height: 251rpx;
+  margin: 30rpx 0 30rpx 30rpx; 
+  padding-left: 30rpx;
+  border: 1px solid #f1f1f1;
+  border-radius: 10rpx;
+  box-shadow: 0px 0px 20px #f1f1f1;
+}
+
+/*点赞*/
+.like {
+  margin: 29rpx 0 33rpx;
+  display: flex;
+}
+
+.love {
+  width: 32rpx;
+  height: 30rpx;
+}
+
+.give {
+  font-size: 25rpx;
+  line-height: 25rpx;
+  margin: 5rpx 320rpx 0 8rpx;
+}
+
+.like-time {
+  font-size: 20rpx;
+  color: #9b9b9b;
+  margin-top: 10rpx;
+}
+
+.content {
+  width: 613rpx;
+  height: 130rpx;
+  background-color: #f9f9f9;
+  display: flex;
+}
+
+/*点赞内容*/
+.text {
+  margin: 20rpx 0 0 32rpx;
+}
+
+.noodles {
+  font-size: 22rpx;
+  line-height: 22rpx;
+  margin-bottom: 31rpx;
+}
+
+.noodles-time {
+  font-size: 20rpx;
+  line-height: 20rpx;
+  color: #9a9a9a;
+}
+
+/*商品图片*/
+.img {
+  width: 195rpx;
+  height: 109rpx;
+  margin: 11rpx 0 0 175rpx;
+}

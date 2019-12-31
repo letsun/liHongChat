@@ -1,0 +1,45 @@
+/* pages/winning/winning.wxss */
+
+.integral {
+  margin-top: 21rpx;
+}
+
+.record {
+  width: 690rpx;
+  height: 120rpx;
+  display: flex;
+  margin: 0 0 21rpx 30rpx;
+  border: 1px solid #f1f1f1;
+  border-radius: 10rpx;
+  box-shadow: 0px 0px 20px #f1f1f1;
+}
+
+.packet {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 35rpx 0 0 29rpx;
+}
+
+.win {
+  width: 230rpx;
+  margin: 32rpx 0 0 17rpx;
+}
+
+.get {
+  font-size: 27rpx;
+  line-height: 27rpx;
+}
+
+.day {
+  font-size: 20rpx;
+  line-height: 20rpx;
+  color: #9a9a9a;
+  margin-top: 15rpx;
+}
+
+.activity {
+  font-size: 21rpx;
+  line-height: 21rpx;
+  color: #f52f02;
+  margin: 52rpx 0 0 220rpx;
+}

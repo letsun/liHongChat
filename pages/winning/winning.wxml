@@ -1,0 +1,27 @@
+<!--pages/winning/winning.wxml-->
+<view class="integral">
+  <view class="record">
+    <image class="packet" src="../image/1_15.png"></image>
+    <view class="win">
+      <view class="get">获得5元现金红包</view>
+      <view class="day">2019-11-27 18:32:30</view>
+    </view>
+    <view class="activity">一物一码活动</view>
+  </view>
+  <view class="record">
+    <image class="packet" src="../image/1_15.png"></image>
+    <view class="win">
+      <view class="get">获得5元现金红包</view>
+      <view class="day">2019-11-27 18:32:30</view>
+    </view>
+    <view class="activity">一物一码活动</view>
+  </view>
+  <view class="record">
+    <image class="packet" src="../image/1_15.png"></image>
+    <view class="win">
+      <view class="get">获得5元现金红包</view>
+      <view class="day">2019-11-27 18:32:30</view>
+    </view>
+    <view class="activity">一物一码活动</view>
+  </view>
+</view>

@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/complete/complete",
+    "pages/lottery/lottery",
+    "pages/integral/integral",
+    "pages/winning/winning",
+    "pages/comment/comment",
+    "pages/share/share",
+    "pages/address/address",
+    "pages/write/write",
+    "pages/submit/submit",
+    "pages/orders/orders",
+    "pages/login/login",
+    "pages/details/details",
+    "pages/personal/personal",
+    "pages/reviews/reviews",
+    "pages/delicious/delicious",
+    "pages/material/material",
+    "pages/successful/successful",
+    "pages/like/like"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/delicious/delicious",
+        "text": "美味"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "个人中心"
+      },
+      {
+        "pagePath": "pages/complete/complete",
+        "text": "完善个人资料"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "商品详情"
+      },
+      {
+        "pagePath": "pages/address/address",
+        "text": "地址"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,81 @@
+/* pages/login/login.wxss */
+
+/* 图片 */
+.img {
+  width: 223rpx;
+  padding: 76rpx 0 0 264rpx;
+}
+
+/* 成功激活 */
+.success {
+  font-size: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 57rpx;
+}
+
+.become {
+  font-size: 24rpx;
+  line-height: 24rpx;
+  text-align: center;
+  color: #989898;
+  margin-top: 27rpx;
+}
+
+/* 完善资料 */
+.perfect {
+  width: 670rpx;
+  height: 400rpx;
+  background-color: #f8f8f8;
+  margin: 88rpx 0 0 40rpx;
+}
+
+.text {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  font-weight: 600;
+  padding-top: 56rpx;
+}
+
+.gain {
+  margin-top: 10rpx;
+}
+
+.immediately {
+  width: 450rpx;
+  height: 70rpx;
+  font-size: 27rpx;
+  line-height: 70rpx;
+  text-align: center;
+  color: #fff;
+  border-radius: 10rpx;
+  background-image: linear-gradient(to right, #f63200 , #fbba0a);
+  margin: 44rpx 0 0 110rpx;
+}
+
+.later {
+  width: 448rpx;
+  height: 68rpx;
+  font-size: 27rpx;
+  line-height: 70rpx;
+  text-align: center;
+  color: #f62f05;
+  border-radius: 10rpx;
+  border: 1rpx solid #f62f05;
+  margin: 19rpx 0 0 110rpx;
+}
+
+/* 提示 */
+.prompt {
+  font-size: 23rpx;
+  line-height: 21rpx;
+  color: #a9a9a9;
+  display: flex;
+  margin: 31rpx 0 0 69rpx;
+}
+
+.small {
+  color: #f42f05;
+}

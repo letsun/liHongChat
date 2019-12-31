@@ -1,0 +1,26 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <!--图片-->
+  <image class="img" mode="widthFix" src="../image/1_70.png"></image>
+  <!--成功激活-->
+  <view class="success">恭喜您，已成功激活</view>
+  <view class="become">您已是星厨俱乐部会员,20积分将在3天内同步</view>
+  <!--内容-->
+  <view class="content">
+    <!--完善资料-->
+    <view class="perfect">
+      <view class="text">
+        <view class="continue">您可以选择继续完善个人资料</view>
+        <view class="gain">来获得更多积分和会员权益</view>
+      </view>
+      <view class="immediately">立即完善我的个人资料</view>
+      <view class="later">稍后完善</view>
+    </view>
+  </view>
+  <!--提示-->
+  <view class="prompt">
+    <view class="available">提示：成功完善个人资料可得</view>
+    <view class="small">20积分</view>
+    <view class="brackets">（积分可兑换丰富礼品哦）</view>
+  </view>
+</view>

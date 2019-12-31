@@ -1,0 +1,51 @@
+<!--pages/comment/comment.wxml-->
+<view class="container">
+  <!--评论-->
+  <view class="record">
+    <!--评论内容-->
+    <view class="give">评论：做法简单美味,感谢分享！</view>
+    <!--商品内容-->
+    <view class="content">
+      <view class="text">
+        <!--商品-->
+        <view class="noodles">凉拌手擀面</view>
+        <!--商品图片-->
+        <image class="img" src="../image/1_1.png"></image>
+      </view>
+      <!--评论时间-->
+      <view class="time">2019-12-06 16:26:45</view>
+    </view>
+  </view>
+  <!--评论-->
+  <view class="record">
+    <!--评论内容-->
+    <view class="give">评论：做法简单美味,感谢分享！</view>
+    <!--商品内容-->
+    <view class="content">
+      <view class="text">
+        <!--商品-->
+        <view class="noodles">凉拌手擀面</view>
+        <!--商品图片-->
+        <image class="img" src="../image/1_1.png"></image>
+      </view>
+      <!--评论时间-->
+      <view class="time">2019-12-06 16:26:45</view>
+    </view>
+  </view>
+  <!--评论-->
+  <view class="record">
+    <!--评论内容-->
+    <view class="give">评论：做法简单美味,感谢分享！</view>
+    <!--商品内容-->
+    <view class="content">
+      <view class="text">
+        <!--商品-->
+        <view class="noodles">凉拌手擀面</view>
+        <!--商品图片-->
+        <image class="img" src="../image/1_1.png"></image>
+      </view>
+      <!--评论时间-->
+      <view class="time">2019-12-06 16:26:45</view>
+    </view>
+  </view>
+</view>

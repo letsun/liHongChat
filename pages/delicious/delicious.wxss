@@ -1,0 +1,212 @@
+/* pages/delicious/delicious.wxss */
+
+/*头部背景*/
+.bg {
+  width: 100%;
+  height: 381rpx;
+}
+
+/*头部图片*/
+.main,
+.dishes {
+  position: absolute;
+  left: 30rpx;
+  top: 179rpx;
+  z-index: 11;
+  width: 690rpx;
+  height: 300rpx;
+  border-radius: 10rpx;
+}
+
+/*头部视频播放按钮*/
+.start {
+  position: absolute;
+  left: 308rpx;
+  top: 113rpx;
+  z-index: 111;
+  width: 74rpx;
+  height: 74rpx;
+}
+
+/*点赞次数和浏览次数*/
+.like {
+  position: absolute;
+  bottom: 20rpx;
+  display: flex;
+}
+
+/*点赞次数、浏览次数*/
+.active {
+  display: flex;
+  font-size: 17rpx;
+  line-height: 24rpx;
+  color: #fff;
+  padding-left: 28rpx;
+}
+
+.love-img {
+  width: 24rpx;
+  height: 22rpx;
+  margin-right: 10rpx;
+}
+
+.browse {
+  margin-left: 450rpx;
+}
+
+.browse-img {
+  width: 37rpx;
+  height: 23rpx;
+  margin-right: 10rpx;
+}
+
+/*导航栏*/
+.nav {
+  height: 55rpx;
+  display: flex;
+  padding-top: 120rpx;
+  margin-left: 32rpx;
+}
+
+.delicious {
+  position: relative;
+  height: 55rpx;
+}
+
+.shopping {
+  font-size: 25rpx;
+  line-height: 25rpx;
+  color: #989898;
+  margin-right: 51rpx;
+}
+
+.shop {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #343434;
+}
+
+.scoll {
+  position: absolute;
+  left: 39rpx;
+  bottom: 0;
+  width: 36rpx;
+  height: 7rpx;
+}
+
+.img {
+  display: none;
+}
+
+/*美味菜圃、美味视频*/
+.all {
+  width: 100%;
+  height: 100%;
+  margin-top: 31rpx;
+}
+
+/*商品*/
+.recipe {
+  position: relative;
+  width: 690rpx;
+  height: 420rpx;
+  margin: 0 auto 33rpx;
+  border-radius: 10rpx;
+  border: 1px solid #f3f3f3;
+  box-shadow: 0px 0px 10px #f3f3f3;
+}
+
+/*商品图片*/
+.controls-bg {
+  width: 690rpx;
+  height: 313rpx;
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+/*商品商品播放按钮*/
+.play {
+  position: absolute;
+  left: 308rpx;
+  top: 132rpx;
+  z-index: 111;
+  width: 74rpx;
+  height: 74rpx;
+}
+
+.btn-img {
+  width: 74rpx;
+  height: 74rpx;
+}
+
+/*商品视频*/
+.video {
+  z-index: 99;
+  width: 100%;
+  height: 520rpx;
+}
+
+/*商品名称*/
+.details {
+  width: 690rpx;
+  height: 107rpx;
+  background-color: #fff;
+  border-radius: 0 0 10rpx 10rpx;
+}
+
+.title {
+  font-size: 25rpx;
+  line-height: 25rpx;
+  font-weight: 600;
+  padding: 20rpx 0 19rpx 30rpx;
+}
+
+.thumbs {
+  display: flex;
+}
+
+/*商品点赞次数、留言次数、浏览次数*/
+.tags {
+  width: 33%;
+  display: flex;
+  font-size: 17rpx;
+  line-height: 24rpx;
+  color: #999;
+  padding-left: 35rpx;
+}
+
+/*点赞图片*/
+.love {
+  width: 24rpx;
+  height: 22rpx;
+}
+
+/*留言图片*/
+.text {
+  width: 26rpx;
+  height: 25rpx;
+}
+
+/*浏览图片*/
+.eyes {
+  width: 37rpx;
+  height: 23rpx;
+}
+
+/*商品点赞、留言、浏览文字*/
+.tags-text {
+  margin-left: 10rpx;
+}
+
+/*底部固定按钮*/
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 25rpx;
+  z-index: 111;
+}
+
+/*按钮图片*/
+.sign {
+  width: 144rpx;
+  height: 158rpx;
+}
