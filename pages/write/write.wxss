@@ -20,7 +20,7 @@
 }
 
 /*保存地址*/
-.footer {
+.modify {
   position: relative;
 }
 
@@ -28,14 +28,33 @@
   content: "";
   position: absolute;
   left: 60rpx;
-  top: 26rpx;
-  width: 24rpx;
-  height: 24rpx;
+  top: 24rpx;
+  width: 28rpx;
+  height: 28rpx;
   border: 1rpx solid #9d9d9d;
   border-radius: 50%;
 }
 
 .set{
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: #999;
+  padding: 26rpx 0 0 100rpx;
+}
+
+.new {
+  display: flex;
+}
+
+.img {
+  position: absolute;
+  left: 60rpx;
+  top: 24rpx;
+  width: 34rpx;
+  height: 34rpx;
+}
+
+.new-set {
   font-size: 24rpx;
   line-height: 24rpx;
   color: #999;

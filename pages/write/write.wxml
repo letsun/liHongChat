@@ -32,7 +32,15 @@
   </view>
   <!--保存地址-->
   <view class="footer">
-    <view class="set">设为默认地址</view>
+    <view class="modify">
+      <view class="old" wx:if="{{!is}}" catchtap="tapFunc"> 
+        <view class="set">设为默认地址</view>
+      </view>
+      <view class="new" wx:if="{{is}}">
+        <image class="img" src="../image/1_48.png"></image>
+        <view class="new-set">设为默认地址</view>
+      </view>
+    </view>
     <view class="save">保存地址</view>
   </view>
 </view>

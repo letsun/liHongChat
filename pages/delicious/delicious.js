@@ -1,4 +1,7 @@
 // pages/delicious/delicious.js
+
+var api = require("../../utils/api.js");
+
 Page({
 
   /**
@@ -8,6 +11,13 @@ Page({
     arr: ['美味菜谱','美味视频'],
     flag: 0,
     isPlay: false,
+    is: false,
+  },
+
+  tapFunb() {
+    this.setData({
+      is: true,
+    })
   },
 
   tabFunc(e) {

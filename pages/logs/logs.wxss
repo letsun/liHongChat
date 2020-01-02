@@ -25,7 +25,7 @@
   height: 55rpx;
   display: flex;
   padding-top: 120rpx;
-  margin-left: 39rpx;
+  margin-left: 14rpx;
 }
 
 .goods {
@@ -37,12 +37,13 @@
   font-size: 25rpx;
   line-height: 28rpx;
   color: #999;
-  margin-right: 51rpx;
+  margin: 0 25rpx;
 }
 
 .active {
   font-size: 28rpx;
   line-height: 28rpx;
+  font-weight: 600;
   color: #333;
 }
 
