@@ -12,6 +12,13 @@ Page({
     flag: 0,
     isPlay: false,
     is: false,
+    dianzan: false,
+  },
+
+  tapFuna() {
+    this.setData({
+      dianzan: true,
+    })
   },
 
   tapFunb() {
