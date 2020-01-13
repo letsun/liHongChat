@@ -1,0 +1,42 @@
+<!--pages/details/details.wxml-->
+<view class="container">
+  <!--头部图片-->
+  <image class="img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_1.png"></image>
+  <view class="header">
+    <!--商品名称-->
+    <view class="title">五丰黎红花椒油400ml</view>
+    <!--积分兑换、库存、兑换数量-->
+    <view class="details">
+      <view class="integral">20积分</view>
+      <view class="inventory">库存：897</view>
+      <view class="change">兑换数量</view>
+      <!--减少-->
+      <image class="minus" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_46.png"></image>
+      <!--兑换的数量-->
+      <view class="number">1</view>
+      <!--增加-->
+      <image class="add" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_45.png"></image>
+    </view>
+  </view>
+  <!--规格参数-->
+  <view class="content">
+    <view class="parameter">规格参数</view>
+    <view class="main">
+      <!--商品图片-->
+      <image  src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_1.png"></image>
+    </view>
+  </view>
+
+
+
+  <view class="tfooter"></view>
+  <view class="footer">
+    <view class="footer-item">
+      <view>合计积分:<span> 20 </span> </view>
+      <view>(可使用积分:200)</view>  
+    </view>
+    <view class="footer-item" bindtap="shoppingOrder">
+      立即兑换
+    </view>
+  </view>
+</view>

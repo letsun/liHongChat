@@ -1,0 +1,130 @@
+/* pages/details/details.wxss */
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+/*头部图片*/
+
+.img {
+  width: 100%;
+  height: 520rpx;
+}
+
+.header {
+  position: absolute;
+  left: 30rpx;
+  top: 497rpx;
+  width: 690rpx;
+  height: 140rpx;
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 10rpx;
+  box-shadow: 0px 5px 10px #ebebeb;
+}
+
+/*商品名称*/
+
+.title {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  font-weight: 600;
+  margin: 32rpx 0 20rpx 30rpx;
+}
+
+/*积分兑换、库存、兑换数量*/
+
+.details {
+  display: flex;
+  padding-left: 30rpx;
+}
+
+.integral {
+  color: #f83000;
+  font-weight: 600;
+}
+
+.inventory {
+  font-size: 22rpx;
+  color: #9a9a9a;
+  margin: 0 90rpx;
+}
+
+.change {
+  font-size: 22rpx;
+  color: #9a9a9a;
+}
+
+.minus {
+  width: 31rpx;
+  height: 31rpx;
+  margin-left: 26rpx;
+}
+
+.number {
+  width: 68rpx;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #343434;
+  text-align: center;
+}
+
+.add {
+  width: 31rpx;
+  height: 31rpx;
+}
+
+/*规格参数*/
+
+.content {
+  padding-top: 147rpx;
+}
+
+.parameter {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  margin-left: 58rpx;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.tfooter {
+  height: 100rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  display: flex;
+  box-shadow: 0rpx 0rpx 10rpx 5rpx #f4f4f4;
+}
+
+.footer-item {
+  width: 50%;
+  text-align: center;
+}
+
+.footer-item span{
+  color: #f52f20;
+}
+
+.footer-item:first-child {
+  background: #fff;
+  padding: 10rpx 0rpx;
+}
+
+.footer-item:last-child {
+  background: #f52f20;
+  color: #fefffe;
+  line-height: 100rpx;
+  font-size: 30rpx;
+}

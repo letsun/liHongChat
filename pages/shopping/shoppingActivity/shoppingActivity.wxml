@@ -1,0 +1,49 @@
+<!--pages/shopping/shoppingActivity/shoppingActivity.wxml-->
+<view class="container">
+  <image class="bg-image" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_84.png"></image>
+
+  <view class="header">
+    <view class="header-logo">
+      <image class="logo-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_80.png"></image>
+    </view>
+    <view class="header-text">
+      <view class="text-con">
+        你有
+        <span>3</span> 次抽奖机会
+      </view>
+    </view>
+
+    <view class="header-hd">
+      <image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_82.png"></image>
+    </view>
+
+  </view>
+
+  <view class="center">
+    <image class="center-bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_90.png"></image>
+    <view class="con">
+      <view bindtap="cj" class="list {{cjChange > 0 ? 'grey' : ''}}"><image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_88.png"></image> </view>
+      <block wx:for="{{prizeList}}" wx:key="">
+        <view class="list ">
+          <image class="list-bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_87.png"></image>
+          <view class="list_all {{cjChange == item.index ? 'change_in' : ''}}">
+
+            <view class="list-item">
+              <view class="list_t">
+                <image src="{{item.imgsrc}}"></image>
+              </view>
+              <view class="list_b">{{item.prizeName}}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="con-btn">
+    
+      <image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_83.png"></image>
+    </view>
+  </view>
+  <button wx:if="{{showAgain}}" style="margin: 50rpx;" bindtap="againBtn">再抽一次</button>
+
+</view>

@@ -1,26 +1,37 @@
 {
   "pages": [
-    "pages/address/address",
-    "pages/comment/comment",
-    "pages/complete/complete",
-    "pages/delicious/delicious",
-    "pages/details/details",
-    "pages/index/index",
-    "pages/integral/integral",
-    "pages/like/like",
-    "pages/login/login",
-    "pages/logs/logs",
-    "pages/lottery/lottery",
-    "pages/material/material",
-    "pages/orders/orders",
-    "pages/personal/personal",
-    "pages/release/release",
-    "pages/reviews/reviews",
-    "pages/share/share",
-    "pages/submit/submit",
-    "pages/successful/successful",
-    "pages/winning/winning",
-    "pages/write/write"
+    "pages/index/index/index",
+
+    "pages/activityHome/act/act",
+    "pages/activityHome/index/index",
+    "pages/activityHome/home/home",
+    "pages/delicious/deliciousList/deliciousList",
+    "pages/delicious/deliciousDetail/deliciousDetail",
+    "pages/delicious/deliciousComment/deliciousComment",
+    "pages/delicious/signIn/signIn",
+    "pages/delicious/reviews/reviews",
+    "pages/shopping/shoppingList/shoppingList",
+    "pages/shopping/shoppingDetails/shoppingDetails",
+    "pages/shopping/shoppingOrder/shoppingOrder",
+    "pages/shopping/shoppingPayment/shoppingPayment",
+
+    "pages/shopping/shoppingActivity/shoppingActivity",
+
+
+    "pages/personalCenter/personal/personal",
+    "pages/personalCenter/orders/orders",
+    "pages/personalCenter/myaddress/myaddress",
+    "pages/personalCenter/integralList/integralList",
+    "pages/personalCenter/lotteryList/lotteryList",
+    "pages/personalCenter/praiseList/praiseList",
+    "pages/personalCenter/commentList/commentList",
+    "pages/personalCenter/shareList/shareList",
+    "pages/personalCenter/winning/winning",
+    "pages/personalCenter/personalData/personalData",
+    "pages/personalCenter/signInList/signInList",
+    "pages/personalCenter/addAddress/addAddress",
+    "pages/personalCenter/personals/personals",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -31,27 +42,34 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/delicious/delicious",
-        "text": "美味"
+        "pagePath": "pages/activityHome/index/index",
+        "text": "活动主页",
+        "iconPath": "pages/image/1_32.png",
+        "selectedIconPath": "pages/image/1_32_1.png"
       },
       {
-        "pagePath": "pages/address/address",
-        "text": "个人中心"
+        "pagePath": "pages/delicious/deliciousList/deliciousList",
+        "iconPath": "pages/image/1_34.png",
+        "text": "美味课堂",
+        "selectedIconPath": "pages/image/1_33.png"
       },
       {
-        "pagePath": "pages/complete/complete",
-        "text": "完善个人资料"
+        "pagePath": "pages/shopping/shoppingList/shoppingList",
+        "iconPath": "pages/image/1_35.png",
+        "text": "积分商城",
+        "selectedIconPath": "pages/image/1_36.png"
       },
       {
-        "pagePath": "pages/material/material",
-        "text": "订单"
-      },
-      {
-        "pagePath": "pages/logs/logs",
-        "text": "发布菜谱"
+        "pagePath": "pages/personalCenter/personal/personal",
+        "iconPath": "pages/image/1_37.png",
+        "text": "个人中心",
+        "selectedIconPath": "pages/image/1_38.png"
       }
     ]
   },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {
+    "calendar": "pages/components/calendar/index",
+    "handwriting": "pages/components/handwriting/index"
+  },
+  "sitemapLocation": "sitemap77.json"
 }

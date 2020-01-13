@@ -1,0 +1,125 @@
+<!-- pages/delicious/delicious.wxml -->
+<view class="container">
+  <!-- 头部背景 -->
+  <view class="header">
+    <image class="bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_17.png"></image>
+  </view>
+
+  <view class="main">
+    <!-- 头部视频播放按钮 -->
+    <swiper autoplay="{{true}}" interval="3000" circular="{{true}}">
+      <swiper-item wx:for="{{mwktLista}}" wx:key="">
+        <image class="dishes" src="{{item.objPic}}" bindtap="video" wx:if="{{!isPlay}}"></image>
+        <video id="video1" class="dishes" src="{{item.objVideo}}" wx:if="{{isPlay}}" controls></video>
+        <!-- <image class="start" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_24.png"></image> -->
+        <!-- 点赞次数和浏览次数 -->
+        <view class="like" wx:if="{{!isPlay}}">
+          <!-- 点赞次数 -->
+          <view class="active">
+            <image class="love-img" wx:if="{{item.isDianz!='true'}}" catchtap="dianz" data-objId="{{item.objId}}" data-objType="{{0}}" data-index="{{index}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_25.png"></image>
+
+            <image class="love-img" wx:if="{{item.isDianz=='true'}}" catchtap="dianz" data-objId="{{item.objId}}" data-objType="{{0}}" data-index="{{index}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
+
+            <view class="love-text">{{item.dianzNum}}</view>
+          </view>
+          <!-- 浏览次数 -->
+          <view class="active browse">
+            <image class="browse-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_29.png"></image>
+            <view class="browse-text">{{item.viewNum}}</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 导航栏 -->
+  <view class="nav">
+    <view class="delicious" wx:for="{{arr}}" wx:key="{{index}}" data-index="{{index}}" bindtap="tabFunc">
+      <view class="shopping {{indexa == index ? 'shop' : ''}}">
+        {{item}}
+      </view>
+      <image wx:if="{{indexa == index}}" class="scoll" data-index="{{index}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_30.png"></image>
+    </view>
+  </view>
+  <!-- 美味菜圃 -->
+  <view class="all" wx:if="{{indexa == 0}}">
+    <!-- 商品 -->
+    <view class="recipe" bindtap="deliciousDetail" data-objId="{{item.objId}}"  data-="" wx:for="{{mwktListb}}" wx:key="">
+      <image class="controls-bg" src="{{item.objPic}}"></image>
+      <!-- 商品名称 -->
+      <view class="details">
+        <view class="title">{{item.objName}}</view>
+        <view class="thumbs">
+          <!-- 商品点赞次数 -->
+          <view class="tags">
+            <view class="old" wx:if="{{item.isDianz!='true'}}" catchtap="dianz" data-objId="{{item.objId}}" data-objType="{{2}}" data-index="{{index}}">
+              <image class="love" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
+              <view class="tags-text">{{item.dianzNum}}</view>
+            </view>
+            <view class="new" wx:if="{{item.isDianz =='true'}}" catchtap="dianz" data-objId="{{item.objId}}" data-objType="{{2}}" data-index="{{index}}">
+              <image class="love" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
+              <view class="tags-text">{{item.dianzNum}}</view>
+            </view>
+          </view>
+          <!-- 商品留言 -->
+          <view class="tags" catchtap="deliciousComment">
+            <image class="text" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_73.png"></image>
+            <view class="tags-text">{{item.pinglNum}}</view>
+          </view>
+          <!-- 商品浏览次数 -->
+          <view class="tags">
+            <image class="eyes" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_74.png"></image>
+            <view class="tags-text">{{item.viewNum}}浏览</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <!-- 美味视频 -->
+  <view class="all" wx:if="{{indexa == 1}}">
+    <view class="recipe" bindtap="deliciousDetail" wx:for="{{mwktListc}}" wx:key="">
+      <!-- 商品 -->
+      <view class="photo">
+
+        <image class="controls-bg" bindtap="videos" data-index="{{index}}" wx:if="{{!item.isPlays}}" src="{{item.objPic}}"></image>
+
+        <!-- <view class="play" catchtap="playTap" wx:if="{{!isPlays}}">
+          <image class="btn-img" src="https://qiniu.wnw108.com/20191225/con/6.png"></image>
+        </view> -->
+
+        <video style="height:320rpx;width:690rpx;" wx:if="{{item.isPlays}}" class="video" id="videos{{index}}" src="{{item.objVideo}}" show-center-play-btn="{{btnShow}}" bindfullscreenchange="fullscreenTap" custom-cache="{{false}}" controls></video>
+      </view>
+      <!-- 商品名称 -->
+      <view class="details">
+        <view class="title">{{item.objName}}</view>
+        <view class="thumbs">
+          <!-- 商品点赞次数 -->
+          <view class="tags">
+            <view class="old">
+              <image class="love" wx:if="{{item.isDianz!='true'}}"   catchtap="dianz" data-objId="{{item.objId}}" data-objType="{{1}}" data-index="{{index}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
+              <image class="love" wx:if="{{item.isDianz=='true'}}" catchtap="dianz" data-objId="{{item.objId}}" data-objType="{{1}}" data-index="{{index}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
+
+              <view class="tags-text">{{item.dianzNum}}</view>
+            </view>
+
+          </view>
+          <!-- 商品留言 -->
+          <view class="tags">
+            <image class="text" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_73.png"></image>
+            <view class="tags-text">{{item.pinglNum}}</view>
+          </view>
+          <!-- 商品浏览次数 -->
+          <view class="tags">
+            <image class="eyes" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_74.png"></image>
+            <view class="tags-text">{{item.viewNum}}浏览</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 底部固定按钮 -->
+  <view class="footer" bindtap="signIn">
+    <!-- 按钮图片 -->
+    <image class="sign" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_31.png"></image>
+  </view>
+</view>

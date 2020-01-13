@@ -4,18 +4,28 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
+		"enhance": false,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
+		"coverView": true,
 		"autoAudits": false,
-		"coverView": true
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"bundle": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
-	"appid": "wxce1646994c33346c",
-	"projectname": "xjhhr",
+	"appid": "wxf82569d50cf9e36c",
+	"projectname": "liHongChat",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -31,13 +41,70 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
-		"miniprogram": {
+		"gamePlugin": {
 			"current": -1,
 			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "首页",
+					"pathName": "pages/activityHome/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "评论记录",
+					"pathName": "pages/personalCenter/commentList/commentList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "美味课堂首页",
+					"pathName": "pages/delicious/deliciousList/deliciousList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "美味课堂签到",
+					"pathName": "pages/delicious/signIn/signIn",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/delicious/deliciousList/deliciousList",
+					"pathName": "pages/delicious/deliciousList/deliciousList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/delicious/deliciousDetail/deliciousDetail",
+					"pathName": "pages/delicious/deliciousDetail/deliciousDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/delicious/deliciousComment/deliciousComment",
+					"pathName": "pages/delicious/deliciousComment/deliciousComment",
+					"scene": null
+				}
+			]
 		}
 	}
 }

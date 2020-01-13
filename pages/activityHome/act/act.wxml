@@ -1,0 +1,35 @@
+<view class="container">
+    <view class="content">
+        <image class="bg" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_5.png"></image>
+        <image class="effect" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_4.png"></image>
+        <image class="title" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_1.png"></image>
+        <image class="rule-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_2.png"></image>
+        <image class="open-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_3.png"></image>
+    </view>
+
+    <!--中奖弹窗-->
+    <view class="result-win">
+        <view class="result-content">
+            <image style="display: none;" class="result-title result-title1" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_9.png"></image>
+            <image style="display: none;" class="result-title result-title2" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_10.png"></image>
+            <image class="result-title result-title3" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_11.png"></image>
+
+            <view class="result-dec">
+                <view class="result-amount"><text>8.88</text>元</view>
+                <view class="result-tip">现金红包</view>
+            </view>
+
+            <view style="display: none;" class="btn-wra btn-wra1">
+                <image class="result-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_6.png"></image>
+            </view>
+
+            <view class="btn-wra btn-wra2">
+                <image class="result-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_13.png"></image>
+                <image class="result-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_14.png"></image>
+            </view>
+        </view>
+
+        <image class="result-bg" mode="widthFix"></image>
+    </view>
+</view>
+
