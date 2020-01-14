@@ -86,22 +86,30 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/delicious/deliciousList/deliciousList",
-					"pathName": "pages/delicious/deliciousList/deliciousList",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/delicious/deliciousDetail/deliciousDetail",
+					"name": "美味菜谱详情",
 					"pathName": "pages/delicious/deliciousDetail/deliciousDetail",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/delicious/deliciousComment/deliciousComment",
+					"name": "美味评论",
 					"pathName": "pages/delicious/deliciousComment/deliciousComment",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商城首页",
+					"pathName": "pages/shopping/shoppingList/shoppingList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商品详情",
+					"pathName": "pages/shopping/shoppingDetails/shoppingDetails",
+					"query": "",
 					"scene": null
 				}
 			]

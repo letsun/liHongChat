@@ -6,6 +6,10 @@
   height: 520rpx;
 }
 
+.header video{
+    width: 750rpx;
+}
+
 /*头部图片*/
 .controls-bg {
   width: 100%;
@@ -17,11 +21,15 @@
   left: 30rpx;
   top: 459rpx;
   width: 690rpx;
-  height: 290rpx;
+  
+  padding-bottom: 20rpx;
+
   background-color: #fff;
   border: 1px solid #ebebeb;
   border-radius: 10rpx;
   box-shadow: 0px 5px 10px #ebebeb;
+
+
 }
 
 .title {
@@ -43,6 +51,10 @@
   line-height: 24rpx;
   color: #ccc;
   padding-left: 28rpx;
+}
+
+.dianzan {
+  display: flex;
 }
 
 .love-img {
@@ -94,6 +106,10 @@
   padding-top: 280rpx;
 }
 
+.contenta {
+  padding-top: 50rpx;
+}
+
 .parameter {
   font-size: 35rpx;
   line-height: 35rpx;
@@ -111,7 +127,7 @@
   font-size: 29rpx;
   line-height: 94rpx;
   display: flex;
-  border-top: 3px solid #e4e4e4;
+  border-top: 1px solid #e4e4e4;
   margin-left: 48rpx;
 }
 
@@ -126,10 +142,10 @@
 }
 
 /* 底部按钮 */
-.footer {
+.poster {
   position: fixed;
   right: 20rpx;
-  bottom: 80rpx;
+  bottom: 120rpx;
   width: 86rpx;
   height: 86rpx;
   font-size: 25rpx;
@@ -138,4 +154,111 @@
   color: #fff;
   background-color: #7f7f7f;
   border-radius: 50%;
+}
+
+
+/* 所有评论 */
+.contentc {
+  padding: 50rpx 0 98rpx;
+}
+
+.contentc .parameter {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  margin-left: 59rpx;
+}
+
+.contentc .lis {
+  width: 640rpx;
+  display: flex;
+  margin-top: 29rpx;
+  margin-left: 57rpx;
+  border-bottom: 1rpx solid #e1e1e1;
+}
+
+.contentc .icon {
+  width: 75rpx;
+  height: 75rpx;
+  margin-right: 19rpx;
+}
+
+.contentc .characterc {
+  flex: 1;
+}
+
+/* 昵称 */
+.contentc .name {
+  font-size: 25rpx;
+  line-height: 25rpx;
+  font-weight: 500;
+  margin-top: 14rpx;
+}
+
+.contentc .data {
+  display: flex;
+  margin: 22rpx 0 22rpx 4rpx;
+}
+
+/* 时间 */
+.contentc .time {
+  font-size: 20rpx;
+  line-height: 28rpx;
+  color: #9a9a9a;
+}
+
+.contentc .thumb {
+  display: flex;
+}
+
+/* 点赞 */
+.contentc .nice {
+  width: 28rpx;
+  height: 28rpx;
+  margin: 0 6rpx 0 36rpx;
+}
+
+.contentc .thumb-text {
+  font-size: 18rpx;
+  line-height: 28rpx;
+}
+
+/* 留言 */
+.contentc .specific {
+  font-size: 22rpx;
+  line-height: 31rpx;
+  margin-bottom: 30rpx;
+}
+
+/* 底部发布评论 */
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 750rpx;
+  height: 98rpx;
+  display: flex;
+  background-color: #fff;
+  border-top: 1px solid #ebebeb;
+  box-shadow: 0px 5px 10px #ebebeb;
+}
+
+.input {
+  width: 545rpx;
+  height: 58rpx;
+  border: 1px solid #ccc;
+  border-radius: 10rpx;
+  margin: 19rpx 0 0 30rpx;
+  padding-left: 25rpx;
+}
+
+.release {
+  width: 98rpx;
+  height: 60rpx;
+  font-size: 23rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #fff;
+  border-radius: 10rpx;
+  background-image: linear-gradient(to right, #f64301 , #fa9f0a);
+  margin: 19rpx 0 0 20rpx;
 }

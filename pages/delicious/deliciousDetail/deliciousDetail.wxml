@@ -2,57 +2,120 @@
 
 <view class="container">
   <!--头部图片-->
-  <view class="header">
-    <image class="controls-bg" src="https://qiniu.wnw108.com/20191225/con/7.png"></image>
+  <view class="header" wx:if="{{objType == 1}}">
+    <image class="controls-bg" src="{{deliciousDetail.recipesPic}}"></image>
   </view>
+
+  <view class="header" wx:else>
+    <image class="controls-bg" src="{{deliciousDetail.videoPic}}" wx:if="{{!isPlay}}" bindtap="videoPlay"></image>
+    <video id="{{video}}" src="{{deliciousDetail.videoFile}}" controls wx:else></video>
+  </view>
+
   <view class="details">
     <!--商品名称-->
-    <view class="title">凉拌手擀面</view>
+    <view class="title" wx:if="{{objType == 1}}">{{deliciousDetail.recipesName}}</view>
+    <view class="title" wx:else>{{deliciousDetail.videoName}}</view>
     <!-- 点赞留言浏览 -->
     <view class="like">
       <!-- 点赞 -->
       <view class="active love">
-        <image class="love-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
-        <view class="love-text">897</view>
+        <!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}"> -->
+        <!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 2}}" data-objtype="{{1}}" > -->
+        <view class="dianzan" bindtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}" data-objid = "{{deliciousDetail.objId}}">
+          <image class="love-img" wx:if="{{deliciousDetail.isDianz=='flase'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
+
+          <image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
+          <view class="love-text">{{deliciousDetail.dianzNum}}</view>
+
+        </view>
+
+        <view class="dianzan" bindtap="dianz" wx:if="{{objType == 0}}" data-objtype="{{1}}" data-objid = "{{deliciousDetail.objId}}">
+          <image class="love-img" wx:if="{{deliciousDetail.isDianz=='flase'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
+
+          <image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
+          <view class="love-text">{{deliciousDetail.dianzNum}}</view>
+
+        </view>
+
       </view>
       <!-- 留言 -->
       <view class="active text">
         <image class="text-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_73.png"></image>
-        <view class="text-text">125</view>
+        <view class="text-text">{{deliciousDetail.pinglNum}}</view>
       </view>
       <!-- 浏览 -->
       <view class="active browse">
         <image class="browse-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_74.png"></image>
-        <view class="browse-text">1.2万浏览</view>
+        <view class="browse-text">{{deliciousDetail.viewNum}}浏览</view>
       </view>
     </view>
     <!-- 说明 -->
-    <view class="main">凉拌菜是一道菜品,制作原料主要有手擀面、掐菜、花椒油、香醋等。凉拌菜是一道菜品,制作原料主要有手擀面、掐菜、花椒油、香醋等。</view>
+    <view class="main">{{deliciousDetail.recipesDesc}}</view>
     <!-- 标签 -->
     <view class="btn">
-      <view class="food">面食</view>
-      <view class="food">凉拌</view>
-      <view class="food">蔬菜</view>
+      <view class="food" wx:for="{{labels}}" wx:key="">{{item}}</view>
     </view>
   </view>
-  <!--用料-->
-  <view class="content">
-    <view class="parameter">用料</view>
+
+
+  <block wx:if="{{objType == 1}}">
+    <!--用料-->
+    <view class="content">
+      <view class="parameter">用料</view>
+      <view class="all">
+        <view class="character" wx:for="{{ingredients}}" wx:for-item="obj" wx:key="">
+          <view class="material" wx:for="{{obj}}" wx:for-index="key" wx:key="">{{key}}</view>
+          <view class="usage" wx:for="{{obj}}" wx:for-item="value" wx:key="">{{value}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 调料 -->
+    <view class="contenta">
+      <view class="parameter">调料</view>
+      <view class="all">
+        <view class="character" wx:for="{{seasoning}}" wx:key="" wx:for-item="obj">
+          <view class="material" wx:for="{{obj}}" wx:for-index="key" wx:for-item="value" wx:key="">{{key}}</view>
+          <view class="usage" wx:for="{{obj}}" wx:for-item="value" wx:key="">{{value}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!--所有评论-->
+
+
+  <view class="contentc" style="{{objType == 1 ?'':'padding-top:120rpx;' }}">
+    <view class="parameter">所有评论</view>
     <view class="all">
-      <view class="character">
-        <view class="material">面条</view>
-        <view class="usage">1份</view>
+      <view class="lis" wx:for="{{commentList}}" wx:key="">
+        <image class="icon" src="{{item.headImg}}"></image>
+        <view class="characterc">
+          <!-- 昵称 -->
+          <view class="name">{{item.nickName}}</view>
+          <view class="data">
+            <!-- 时间 -->
+            <view class="time">{{item.timeStr}}</view>
+            <view class="thumb" bindtap="dianz" data-objtype = "{{3}}" data-objid = "{{item.commentId}}" data-index="{{index}}">
+              <!-- 点赞 -->
+              <image class="nice" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_71.png"></image>
+              <view class="thumb-text">{{item.dianzNum}}</view>
+            </view>
+          </view>
+          <!-- 留言 -->
+          <view class="specific">{{item.commentDesc}}</view>
+        </view>
       </view>
-      <view class="character">
-        <view class="material">花生酱</view>
-        <view class="usage">1勺</view>
-      </view>
-      <view class="character">
-        <view class="material">花生酱</view>
-        <view class="usage">1勺</view>
-      </view>
+
     </view>
   </view>
+  <!-- 底部发布评论 -->
+  <view class="footer">
+    <input class="input" placeholder="请输入评论" value='{{commentDesc}}' maxlength="500" bindinput="inputchang" ></input>
+    <view class="release" bindtap="comment" >发布</view>
+  </view>
+
+
   <!-- 底部按钮 -->
-  <view class="footer">海报</view>
+  <view class="poster" wx:if="{{objType == 1}}">海报</view>
 </view>

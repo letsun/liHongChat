@@ -12,6 +12,15 @@
   height: 520rpx;
 }
 
+.img image {
+  width: 100%;
+  height: 520rpx;
+}
+
+swiper {
+  height: 520rpx;
+}
+
 .header {
   position: absolute;
   left: 30rpx;
@@ -78,20 +87,49 @@
 /*规格参数*/
 
 .content {
-  padding-top: 147rpx;
+  padding-top: 180rpx;
+}
+
+.contenta {
+  padding: 50rpx 0rpx;
 }
 
 .parameter {
-  font-size: 28rpx;
+  font-size: 32rpx;
   line-height: 28rpx;
-  margin-left: 58rpx;
+  margin-left: 60rpx;
+  padding-bottom: 20rpx;
+  font-weight: bold;
 }
 
 .main {
   position: relative;
-  width: 100%;
-  height: 100%;
+
   text-align: center;
+  padding: 0 60rpx;
+}
+
+rich-text {
+  padding: 0 60rpx;
+  max-width: 630rpx;
+
+  
+}
+
+
+
+
+.item {
+  display: flex;
+  padding: 0rpx 60rpx;
+}
+
+.item-key {
+  width: 40%;
+}
+
+.item-value {
+  width: 60%;
 }
 
 .tfooter {
@@ -113,7 +151,7 @@
   text-align: center;
 }
 
-.footer-item span{
+.footer-item span {
   color: #f52f20;
 }
 

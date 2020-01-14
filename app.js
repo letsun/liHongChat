@@ -47,8 +47,12 @@ App({
       token:'',
       sessionKey:'',
       unionid: "",
-    }
 
-    
+      
+    },
+
+    goodsId:'',//商品id
+
+   
   }
 })

@@ -43,7 +43,7 @@
   <!-- 美味菜圃 -->
   <view class="all" wx:if="{{indexa == 0}}">
     <!-- 商品 -->
-    <view class="recipe" bindtap="deliciousDetail" data-objId="{{item.objId}}"  data-="" wx:for="{{mwktListb}}" wx:key="">
+    <view class="recipe" bindtap="deliciousDetail" data-objId="{{item.objId}}" data-objType="{{1}}"   wx:for="{{mwktListb}}" wx:key="">
       <image class="controls-bg" src="{{item.objPic}}"></image>
       <!-- 商品名称 -->
       <view class="details">
@@ -61,7 +61,8 @@
             </view>
           </view>
           <!-- 商品留言 -->
-          <view class="tags" catchtap="deliciousComment">
+          <!-- <view class="tags" catchtap="deliciousComment"> -->
+          <view class="tags" >
             <image class="text" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_73.png"></image>
             <view class="tags-text">{{item.pinglNum}}</view>
           </view>
@@ -77,11 +78,11 @@
   </view>
   <!-- 美味视频 -->
   <view class="all" wx:if="{{indexa == 1}}">
-    <view class="recipe" bindtap="deliciousDetail" wx:for="{{mwktListc}}" wx:key="">
+    <view class="recipe" bindtap="deliciousDetail" data-objId="{{item.objId}}" data-objType="{{0}}" wx:for="{{mwktListc}}" wx:key="">
       <!-- 商品 -->
       <view class="photo">
 
-        <image class="controls-bg" bindtap="videos" data-index="{{index}}" wx:if="{{!item.isPlays}}" src="{{item.objPic}}"></image>
+        <image class="controls-bg" catchtap="videos" data-index="{{index}}" wx:if="{{!item.isPlays}}" src="{{item.objPic}}"></image>
 
         <!-- <view class="play" catchtap="playTap" wx:if="{{!isPlays}}">
           <image class="btn-img" src="https://qiniu.wnw108.com/20191225/con/6.png"></image>

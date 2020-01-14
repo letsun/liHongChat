@@ -1,39 +1,59 @@
 <!--pages/details/details.wxml-->
 <view class="container">
   <!--头部图片-->
-  <image class="img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_1.png"></image>
+  <view class="img">
+    <swiper interval="{{3000}}" circular="{{true}}" autoplay="{{true}}">
+      <swiper-item wx:for="{{goodsInfo.goodsImgs}}" wx:key="">
+        <image src="{{item.picUrl}}"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+
+
   <view class="header">
     <!--商品名称-->
-    <view class="title">五丰黎红花椒油400ml</view>
+    <view class="title">{{goodsInfo.goodsName}}</view>
     <!--积分兑换、库存、兑换数量-->
     <view class="details">
-      <view class="integral">20积分</view>
-      <view class="inventory">库存：897</view>
+      <view class="integral">{{goodsInfo.goodsScore}}积分</view>
+      <view class="inventory">库存：{{goodsInfo.goodsStock}}</view>
       <view class="change">兑换数量</view>
       <!--减少-->
-      <image class="minus" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_46.png"></image>
+      <image class="minus"  bindtap="minus" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_46.png"></image>
       <!--兑换的数量-->
-      <view class="number">1</view>
+      <view class="number">{{num}}</view>
       <!--增加-->
-      <image class="add" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_45.png"></image>
-    </view>
-  </view>
-  <!--规格参数-->
-  <view class="content">
-    <view class="parameter">规格参数</view>
-    <view class="main">
-      <!--商品图片-->
-      <image  src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_1.png"></image>
+      <image class="add" bindtap="add" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_45.png"></image>
     </view>
   </view>
 
+  <!--规格参数-->
+  <view class="content">
+    <view class="parameter">规格参数</view>
+    <view class="item" wx:for="{{jsonProp}}" wx:for-item="obj" wx:key=''>
+      <view class="item-key" wx:for="{{obj}}" wx:for-index="key" wx:key="">{{key}}</view>
+      <view class="item-value" wx:for="{{obj}}" wx:for-item="value" wx:key="">{{value}}</view>
+    </view>
+  </view>
+
+
+  <!--产品详情-->
+  <view class="contenta">
+    <view class="parameter">产品详情</view>
+    <view class="main">
+      <!--商品图片-->
+      <rich-text class="rtext" nodes="{{goodsDesc}}"></rich-text>
+    </view>
+  </view>
 
 
   <view class="tfooter"></view>
   <view class="footer">
     <view class="footer-item">
-      <view>合计积分:<span> 20 </span> </view>
-      <view>(可使用积分:200)</view>  
+      <view>合计积分:
+        <span> {{integral}} </span>
+      </view>
+      <view>(可使用积分:200)</view>
     </view>
     <view class="footer-item" bindtap="shoppingOrder">
       立即兑换

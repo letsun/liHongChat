@@ -27,11 +27,20 @@
   display: flex;
   padding-top: 120rpx;
   margin-left: 14rpx;
+  width: 710rpx;
+  white-space:nowrap;
+
+  /* overflow: hidden; */
+  /* overflow-y: auto; */
+/* overflow-x: scroll; */
 }
 
 .goods {
   position: relative;
   height: 55rpx;
+  display: inline-block;
+  margin:0 10rpx;
+  
 }
 
 .shopping {
@@ -50,10 +59,12 @@
 
 .scoll {
   position: absolute;
-  left: 39rpx;
-  bottom: 0;
+  left: 0rpx;
+  right: 0rpx;
+  bottom: 10rpx;
   width: 36rpx;
   height: 7rpx;
+  margin: auto;
 }
 
 .img {
@@ -78,14 +89,15 @@
 }
 
 .shop-img {
-  width: 328rpx;
-  height: 222rpx;
+  max-width: 310rpx;
+  max-height: 222rpx;
 }
 
 .text {
   width: 328rpx;
   height: 119rpx;
   margin-top: 16rpx;
+  position: relative;
 }
 
 /* 商品标题 */
@@ -112,6 +124,10 @@
 
 /* 商品兑换 */
 .exchange {
+  position: absolute;
+  right: 20rpx;
+  bottom:20rpx;
+
   width: 78rpx;
   height: 37rpx;
   font-size: 21rpx;
@@ -120,5 +136,5 @@
   color: #fff;
   border-radius: 10rpx;
   background-image: linear-gradient(to right, #f63200 , #fbba0a);
-  margin-left: 133rpx;
+  /* margin-left: 133rpx; */
 }

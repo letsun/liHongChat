@@ -53,24 +53,7 @@
           <view class="specific">学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了</view>
         </view>
       </view>
-      <view class="lis">
-        <image class="icon" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_54.png"></image>
-        <view class="character">
-          <!-- 昵称 -->
-          <view class="name">皮卡丘</view>
-          <view class="data">
-            <!-- 时间 -->
-            <view class="time">一小时前</view>
-            <view class="thumb">
-              <!-- 点赞 -->
-              <image class="nice" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_71.png"></image>
-              <view class="thumb-text">109</view>
-            </view>
-          </view>
-          <!-- 留言 -->
-          <view class="specific">学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了学到了</view>
-        </view>
-      </view>
+
     </view>
   </view>
   <!-- 底部发布评论 -->
