@@ -25,9 +25,11 @@ var api = {
   address: ip + '/api/shop/getDefault/' + app.globalData.memberId, //默认收货地址
  
   addressList: ip + '/api/shop/receiveAddr/list/' + app.globalData.memberId, //收货地址列表
-  addressAdd: ip + '/api/shop/receiveAddr/add/' + app.globalData.memberId, //添加地址列表
-  addressUpd: ip + '/api/shop/receiveAddr/upd/' + app.globalData.memberId, //修改地址列表
-  addressDel: ip + ' /api/shop/receiveAddr/del/' + app.globalData.memberId, //收货地址列表
+  addressAdd: ip + '/api/shop/receiveAddr/add/' + app.globalData.memberId, //添加地址
+  addressUpd: ip + '/api/shop/receiveAddr/upd/' + app.globalData.memberId, //修改地址
+  addressDel: ip + '/api/shop/receiveAddr/del/' + app.globalData.memberId, //删除地址
+  addressDef: ip + '/api/shop/setDefault/', //设置默认收货地址
+   
 
 
    
