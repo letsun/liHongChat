@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/index/index/index",
-
     "pages/activityHome/act/act",
+    "pages/author/author",
+    "pages/index/index/index",
     "pages/activityHome/index/index",
     "pages/activityHome/home/home",
     "pages/delicious/deliciousList/deliciousList",
@@ -14,10 +14,7 @@
     "pages/shopping/shoppingDetails/shoppingDetails",
     "pages/shopping/shoppingOrder/shoppingOrder",
     "pages/shopping/shoppingPayment/shoppingPayment",
-
     "pages/shopping/shoppingActivity/shoppingActivity",
-
-
     "pages/personalCenter/personal/personal",
     "pages/personalCenter/orders/orders",
     "pages/personalCenter/myaddress/myaddress",

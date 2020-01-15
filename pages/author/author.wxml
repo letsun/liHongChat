@@ -1,0 +1,9 @@
+
+<view class='container'>
+    <!--<view class='tips' style="color:#68BD48">亲,请选择授权登录即可购买商品,不想登录可以点击取消登录查看首页商品</view>-->
+    <view style="display: flex;width:90%;margin:auto;padding-top: 48%;">
+        <button class='buttonType'style="background:black;">暂不登录</button>
+        <button class='buttonType' open-type="getUserInfo" bindgetuserinfo='bindgetuserinfo'>授权登录</button>
+    </view>
+
+</view>

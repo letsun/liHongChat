@@ -32,6 +32,9 @@ var api = {
    
 
 
+  register: ip + '/api/member/register/info',    // 注册
+
+
    
 
    
