@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index/index",
-
     "pages/activityHome/act/act",
     "pages/activityHome/index/index",
     "pages/activityHome/home/home",

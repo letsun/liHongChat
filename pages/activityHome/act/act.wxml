@@ -7,6 +7,12 @@
         <image class="open-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_3.png"></image>
     </view>
 
+    <view style="position: absolute;z-index: 1000000000;color: #fff;font-size: 36rpx;left: 0;top: 0;">
+        <view>x:{{x}}</view>
+        <view>y:{{y}}</view>
+        <view>z:{{z}}</view>
+    </view>
+
     <!--中奖弹窗-->
     <view class="result-win">
         <view class="result-content">
