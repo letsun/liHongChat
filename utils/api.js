@@ -22,6 +22,19 @@ var api = {
   shoppingcategory: ip + '/api/shop/category/getAll', //商城分类
   shoppingList: ip + '/api/shop/goods/list', //商城列表
   shoppingDetail: ip + '/api/shop/goods/detail/', //商品详情
+  address: ip + '/api/shop/getDefault/' + app.globalData.memberId, //默认收货地址
+ 
+  addressList: ip + '/api/shop/receiveAddr/list/' + app.globalData.memberId, //收货地址列表
+  addressAdd: ip + '/api/shop/receiveAddr/add/' + app.globalData.memberId, //添加地址列表
+  addressUpd: ip + '/api/shop/receiveAddr/upd/' + app.globalData.memberId, //修改地址列表
+  addressDel: ip + ' /api/shop/receiveAddr/del/' + app.globalData.memberId, //收货地址列表
+
+
+   
+
+   
+
+
    
        
   commentList: ip + '/api/member/comment/list/' + app.globalData.memberId, // 评论记录

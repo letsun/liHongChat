@@ -1,46 +1,56 @@
 <!--pages/write/write.wxml-->
 <view class="container">
-  <!--个人信息-->
-  <view class="content">
-    <!--姓名-->
-    <view class="specific name">
-      <view class="active">姓名</view>
-      <input class="input" id="name" type="text" placeholder="输入收货人姓名" maxlength="15"></input>
-    </view>
-    <!--手机号码-->
-    <view class="specific tel">
-      <view class="active">手机号码</view>
-      <input class="input" id="tel" type="text" placeholder="输入手机号" maxlength="11"></input>
-    </view>
-    <view class="specific tel">
-      <view class="active">省份</view>
-      <input class="input" id="tel" type="text" placeholder="输入手机号" maxlength="11"></input>
-    </view>
-    <view class="specific tel">
-      <view class="active">城市</view>
-      <input class="input" id="tel" type="text" placeholder="输入手机号" maxlength="11"></input>
-    </view>
-    <view class="specific tel">
-      <view class="active">地区</view>
-      <input class="input" id="tel" type="text" placeholder="输入手机号" maxlength="11"></input>
-    </view>
-    <!--详细地址-->
-    <view class="specific address">
-      <view class="active">详细地址</view>
-      <input class="input" id="text" maxlength="20" placeholder="街道、楼牌号等详细地址"></input>
-    </view>
-  </view>
-  <!--保存地址-->
-  <view class="footer">
-    <view class="modify">
-      <view class="old" wx:if="{{!is}}" catchtap="tapFunc"> 
-        <view class="set">设为默认地址</view>
+
+  <form bindsubmit="addressAdd">
+    <!--个人信息-->
+    <view class="content">
+      <!--姓名-->
+      <view class="specific name">
+        <view class="active">姓名</view>
+        <input class="input" name="receiveName" type="text" placeholder="输入收货人姓名" maxlength="15"></input>
       </view>
-      <view class="new" wx:if="{{is}}">
-        <image class="img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_48.png"></image>
-        <view class="new-set">设为默认地址</view>
+      <!--手机号码-->
+      <view class="specific tel">
+        <view class="active">手机号码</view>
+        <input class="input" name="receivePhone" type="text" placeholder="输入手机号" maxlength="11"></input>
+      </view>
+      <view class="specific tel">
+        <view class="active">省份</view>
+        <input class="input" name="receiveProvince" type="text" placeholder="输入省份" maxlength="11"></input>
+      </view>
+      <view class="specific tel">
+        <view class="active">城市</view>
+        <input class="input" name="receiveCity" type="text" placeholder="输入城市" maxlength="11"></input>
+      </view>
+      <view class="specific tel">
+        <view class="active">地区</view>
+        <input class="input" name="receiveArea" type="text" placeholder="输入地区" maxlength="11"></input>
+      </view>
+      <!--详细地址-->
+      <view class="specific address">
+        <view class="active">详细地址</view>
+        <input class="input" name="receiveAddress" maxlength="20" placeholder="街道、楼牌号等详细地址"></input>
       </view>
     </view>
-    <view class="save">保存地址</view>
-  </view>
+    <!--保存地址-->
+    <view class="footer">
+
+
+      <view class="radio" bindtap="isDefault">
+
+
+
+          <view class="radio-border" wx:if="{{!isDefault}}"></view>
+
+          <image class="img" wx:if="{{isDefault}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_48.png"></image>
+    
+
+         <view class="radio-text"> 设置为默认收货地址</view>  
+      </view>
+
+
+      <button class="save" form-type="submit">保存地址</button>
+    </view>
+
+  </form>
 </view>

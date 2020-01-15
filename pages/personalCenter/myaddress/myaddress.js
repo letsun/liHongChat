@@ -1,4 +1,8 @@
 // pages/address/address.js
+const app = getApp();
+const common = require("../../../utils/common.js")
+const api = require("../../../utils/api.js")
+
 Page({
 
   /**
@@ -14,61 +18,30 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let that = this;
 
+    that.addressList()
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  //收货地址列表
+  addressList() {
+    let that = this;
+    common.requestPost(api.addressList, {}, res => {
+      that.setData({
+        list:res.data.data
+      })
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+  
 
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
+  //跳转到添加收货人
   addAddress() {
     wx.navigateTo({
       url: '../../personalCenter/addAddress/addAddress',

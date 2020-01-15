@@ -43,6 +43,7 @@
 /*订单清单内容*/
 
 .details {
+  position: relative;
   width: 620rpx;
   display: flex;
   margin: 30rpx 0 0 69rpx;
@@ -72,7 +73,9 @@
 }
 
 .number {
-  margin-top: 23rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 40rpx;
 }
 
 /*订单清单合计*/

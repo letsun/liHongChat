@@ -84,12 +84,7 @@ function showLoading() {
  * res:回调
  */
 
-
-
-
 function requestPost(url, data, success) {
-
-
   wx.request({
     url: url,
     method: "POST",
@@ -170,6 +165,7 @@ function requestPosts(url, data, success) {
         success(res)
         wx.hideLoading()
       } else {
+        wx.hideLoading()
         showToast(res.data.msg, 'none')
       }
     },
@@ -281,6 +277,7 @@ function requestGets(url, data, res) {
         success(res)
         wx.hideLoading()
       } else {
+        wx.hideLoading()
         showToast(res.data.msg, 'none')
       }
     },
@@ -335,5 +332,6 @@ module.exports = {
   requestPost: requestPost,
   requestPosts: requestPosts,
   requestGet: requestGet,
+  requestGets: requestGets,
   getopenid: getopenid,
 }
