@@ -10,7 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    num: 0
+    num: 0,
+    integral:0,
   },
 
   /**
@@ -33,6 +34,10 @@ Page({
   onShow: function() {
     let that = this;
     that.shoppingDetail()
+    let memberId = app.globalData.memberId;
+    that.setData({
+      memberId: memberId
+    })
   },
 
 
@@ -41,13 +46,15 @@ Page({
   shoppingDetail() {
     let that = this;
     //app.globalData.goodsId
-    common.requestPost(api.shoppingDetail + 1, {}, res => {
+    common.requestPost(api.shoppingDetail + app.globalData.goodsId, {
+      memberId: app.globalData.memberId
+    }, res => {
       var jsonProp = JSON.parse(res.data.data.jsonProp);
       var goodsDesc = res.data.data.goodsDesc
 
       goodsDesc = goodsDesc
         .replace(/<p([\s\w"=\/\.:;]+)((?:(style="[^"]+")))/ig, '<p')
-        .replace(/<p>/ig, '<p style="font-size: 15Px; line-height: 25Px;">')
+        .replace(/<p>/ig, '<p style="font-size: 14px; line-height: 20px; color:#666;">')
         .replace(/<img([\s\w"-=\/\.:;]+)((?:(height="[^"]+")))/ig, '<img$1')
         .replace(/<img([\s\w"-=\/\.:;]+)((?:(width="[^"]+")))/ig, '<img$1')
         .replace(/<img([\s\w"-=\/\.:;]+)((?:(style="[^"]+")))/ig, '<img$1')
@@ -58,20 +65,28 @@ Page({
         goodsInfo: res.data.data,
         jsonProp: jsonProp,
         goodsDesc: goodsDesc,
-        integral: res.data.data.goodsScore
+       
       })
     })
   },
 
+
+  //跳转到提交订单页面
   shoppingOrder() {
+    let that = this;
 
-
-    var carinfo = []
-
-
-    // wx.navigateTo({
-    //   url: "../../shopping/shoppingOrder/shoppingOrder"
-    // })
+    var carinfo = {
+      integral: that.data.integral, //合计积分
+      num: that.data.num, //商品数量
+      goodsImgs: that.data.goodsInfo.goodsImgs[0].picUrl, //商品图片
+      goodsName: that.data.goodsInfo.goodsName,  //商品名称 
+      goodsScore: that.data.goodsInfo.goodsScore, // 商品积分
+      memScore: that.data.goodsInfo.memScore  //可使用积分
+    }
+    carinfo = JSON.stringify(carinfo);
+    wx.navigateTo({
+      url: "../../shopping/shoppingOrder/shoppingOrder?carinfo=" + carinfo
+    })
   },
 
 
@@ -83,9 +98,7 @@ Page({
     let goodsScore = that.data.goodsInfo.goodsScore;
 
     let integral = that.data.integral-0;
-
     num--;
-
     integral = goodsScore * num;
 
     if (num >= 0) {
@@ -103,7 +116,6 @@ Page({
     let goodsScore = that.data.goodsInfo.goodsScore;
     let num = that.data.num;
     let integral = that.data.integral-0;
-
     num++;
     integral = goodsScore * num;
     

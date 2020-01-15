@@ -24,42 +24,48 @@
   position: relative;
 }
 
-.set:before {
-  content: "";
-  position: absolute;
-  left: 60rpx;
-  top: 24rpx;
-  width: 28rpx;
-  height: 28rpx;
-  border: 1rpx solid #9d9d9d;
-  border-radius: 50%;
-}
 
-.set{
-  font-size: 24rpx;
-  line-height: 24rpx;
-  color: #999;
-  padding: 26rpx 0 0 100rpx;
-}
 
-.new {
+.radio {
+  position: relative;
   display: flex;
+  align-items: center;
+  padding: 20rpx 50rpx;
 }
 
 .img {
   position: absolute;
-  left: 60rpx;
-  top: 24rpx;
+  left: 45rpx;
+  top: 30rpx;
+
+  vertical-align: middle;
   width: 34rpx;
   height: 34rpx;
 }
 
-.new-set {
-  font-size: 24rpx;
-  line-height: 24rpx;
-  color: #999;
-  padding: 26rpx 0 0 100rpx;
+.radio-border {
+  position: absolute;
+  left: 45rpx;
+  top: 30rpx;
+
+  content: "";
+  width: 26rpx;
+  height: 26rpx;
+  border: 1rpx solid #9d9d9d;
+  border-radius: 50%;
+  vertical-align: middle;
+  line-height: 38rpx;
 }
+
+.radio-text {
+  position: absolute;
+  left: 90rpx;
+  top: 25rpx;
+
+}
+
+
+
 
 .save {
   width: 629rpx;

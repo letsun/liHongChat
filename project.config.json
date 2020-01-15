@@ -111,6 +111,26 @@
 					"pathName": "pages/shopping/shoppingDetails/shoppingDetails",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "提交订单",
+					"pathName": "pages/shopping/shoppingOrder/shoppingOrder",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "收货地址列表",
+					"pathName": "pages/personalCenter/myaddress/myaddress",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加收货地址",
+					"pathName": "pages/personalCenter/addAddress/addAddress",
+					"scene": null
 				}
 			]
 		}

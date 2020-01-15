@@ -1,7 +1,7 @@
 <!--pages/submit/submit.wxml-->
 <view class="container">
   <!--选择收货地址-->
-  <view class="header">
+  <view class="header" bindtap="myaddress">
     <image class="map" mode="widthFix" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_47.png"></image>
     <view class="choose">请选择一个收货地址</view>
     <image class="img" mode="widthFix" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_52.png"></image>
@@ -15,19 +15,19 @@
     <view class="details">
       <image class="shop" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_1.png"></image>
       <view class="shopping">
-        <view class="good">五丰黎红花椒油400ml</view>
-        <view class="integral">20积分</view>
+        <view class="good">{{carinfo.goodsName}}</view>
+        <view class="integral">{{carinfo.goodsScore}}积分</view>
       </view>
-      <view class="number">x1</view>
+      <view class="number">x{{carinfo.num}}</view>
     </view>
     <!--订单清单合计-->
     <view class="total">
       <view class="together">小计：</view>
-      <view class="total-integral">20积分</view>
+      <view class="total-integral">{{carinfo.integral}}积分</view>
     </view>
     <view class="total">
       <view class="together">商品合计：</view>
-      <view class="total-integral">20积分</view>
+      <view class="total-integral">{{carinfo.integral}}积分</view>
     </view>
   </view>
   <!--弹出框-->
@@ -55,9 +55,9 @@
   <view class="footer">
     <view class="footer-item">
       <view>实兑积分:
-        <span> 20 </span>
+        <span> {{carinfo.integral}} </span>
       </view>
-      <view>(可使用积分:200)</view>
+      <view>(可使用积分:{{carinfo.memScore}})</view>
     </view>
     <view class="footer-item" bindtap="shoppingPayment">
       提交订单

@@ -1,72 +1,71 @@
 // pages/write/write.js
+const app = getApp();
+const common = require("../../../utils/common.js")
+const api = require("../../../utils/api.js")
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    is: false,
+    isDefault: false,
   },
 
-  tapFunc(e) {
-    this.setData({
-      is: true,
+
+  //保存地址
+  addressAdd(e) {
+    let that = this;
+
+
+    let isDefault = that.data.isDefault,
+      receiveAddress = e.detail.value.receiveAddress,
+      receiveArea = e.detail.value.receiveArea,
+      receiveCity = e.detail.value.receiveCity,
+      receiveName = e.detail.value.receiveName,
+      receiveProvince = e.detail.value.receiveProvince,
+      receivePhone = e.detail.value.receivePhone;
+
+    if (isDefault == false) {
+      isDefault = 0
+    } else {
+      isDefault = 1
+    }
+
+    common.requestPosts(api.addressAdd, {
+      isDefault: isDefault,
+      receiveAddress: receiveAddress,
+      receiveArea: receiveArea,
+      receiveCity: receiveCity,
+      receiveName: receiveName,
+      receiveProvince: receiveProvince,
+      receivePhone: receivePhone,
+    }, res => {
+      wx.navigateBack({
+        delta: 1
+      })
     })
   },
-  
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
 
-  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
-  },
+  //是否为默认地址
+  isDefault() {
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+    let that = this;
+    let isDefault = that.data.isDefault
 
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    if (isDefault == false) {
+      isDefault = true
+    } else {
+      isDefault = false
+    }
+    that.setData({
+      isDefault: isDefault,
+    })
   }
+
+
+
+
 })
