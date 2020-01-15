@@ -30,6 +30,9 @@ var api = {
   addressDel: ip + ' /api/shop/receiveAddr/del/' + app.globalData.memberId, //收货地址列表
 
 
+  register: ip + '/api/member/register/info',    // 注册
+
+
    
 
    

@@ -18,10 +18,8 @@ Page({
 
   onShow() {
     var that = this;
-
     wx.login({
       success: res => {
-
         //获取openid
         common.requestPost(api.getOpenidByCode, {
           code: res.code
@@ -29,21 +27,21 @@ Page({
           app.globalData.idData = reg.data.result;
           var sessionKey = reg.data.result.sessionKey;
 
-          wx.getUserInfo({
-            success: res2 => {
-              var appId = 'wx92ddcbce04fc34b6'
-              var encryptedData = res2.encryptedData;
-              var iv = res2.iv;
-              var pc = new RdWXBizDataCrypt(appId, sessionKey)
-              var data = pc.decryptData(encryptedData, iv);
-              console.log('data', data);
+          // wx.getUserInfo({
+          //   success: res2 => {
+          //     var appId = 'wx92ddcbce04fc34b6'
+          //     var encryptedData = res2.encryptedData;
+          //     var iv = res2.iv;
+          //     var pc = new RdWXBizDataCrypt(appId, sessionKey)
+          //     var data = pc.decryptData(encryptedData, iv);
+          //     console.log('data', data);
 
 
-              wx.switchTab({
-                url: '../../activityHome/index/index',
-              })
-            }
-          })
+          //     wx.switchTab({
+          //       url: '../../activityHome/index/index',
+          //     })
+          //   }
+          // })
 
         })
 
