@@ -1,10 +1,9 @@
 {
   "pages": [
+    "pages/activityHome/act/act",
     "pages/activityHome/index/index",
-    "pages/shopping/shoppingActivity/shoppingActivity",
     "pages/delicious/deliciousDetail/deliciousDetail",
     "pages/delicious/createPic/createPic",
-    "pages/activityHome/act/act",
     "pages/author/author",
     "pages/index/index/index",
     "pages/activityHome/home/home",
