@@ -22,6 +22,7 @@ var api = {
   shoppingcategory: ip + '/api/shop/category/getAll', //商城分类
   shoppingList: ip + '/api/shop/goods/list', //商城列表
   shoppingDetail: ip + '/api/shop/goods/detail/', //商品详情
+<<<<<<< HEAD
   address: ip + '/api/shop/getDefault/', //默认收货地址
   submitOrder: ip + '/api/shop/submit/order/', //提交订单
   
@@ -29,6 +30,16 @@ var api = {
   addressAdd: ip + '/api/shop/receiveAddr/add/', //添加地址
   addressUpd: ip + '/api/shop/receiveAddr/upd/', //修改地址
   addressDel: ip + '/api/shop/receiveAddr/del/', //删除地址
+=======
+  address: ip + '/api/shop/getDefault/' + app.globalData.memberId, //默认收货地址
+  activity: ip + '/api/game/point/activity', // 九宫格获取奖项信息
+  lottery: ip + '/api/game/point/lottery/' + app.globalData.memberId, // 九宫格抽奖
+
+  addressList: ip + '/api/shop/receiveAddr/list/' + app.globalData.memberId, //收货地址列表
+  addressAdd: ip + '/api/shop/receiveAddr/add/' + app.globalData.memberId, //添加地址
+  addressUpd: ip + '/api/shop/receiveAddr/upd/' + app.globalData.memberId, //修改地址
+  addressDel: ip + '/api/shop/receiveAddr/del/' + app.globalData.memberId, //删除地址
+>>>>>>> bd9ccd18970b2b6642b0bd39d93a38827bcc55a4
   addressDef: ip + '/api/shop/setDefault/', //设置默认收货地址
 
   register: ip + '/api/member/register/info',    // 注册

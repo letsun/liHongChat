@@ -2,7 +2,6 @@
 
 page {
   box-sizing: border-box;
-  padding-top: 25rpx;
 }
 
 .bg-image {
@@ -215,4 +214,108 @@ page {
 .con-btn image{
   width: 480rpx;
   height: 100rpx;
+}
+
+
+.result-win {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 99999;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0,0,0,.7);
+}
+
+.result-win .result-content {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 1;
+
+  width: 750rpx;
+  height: 811rpx;
+  margin-top: -406rpx;
+  padding-top: 254rpx;
+
+  background: url('https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_84.png') no-repeat;
+  background-size: 100% 100%;
+
+  box-sizing: border-box;
+}
+
+.result-title {
+  display: block;
+
+  margin: 0 auto;
+}
+
+.result-title1 {
+  width: 308rpx;
+}
+
+.result-title2 {
+  width: 188rpx;
+}
+
+.result-dec {
+  margin-top: 116rpx;
+}
+
+.result-amount {
+  color: #f84548;
+  font-size: 36rpx;
+  font-weight: bold;
+  text-align: center;
+  line-height: 60rpx;
+}
+
+.result-amount text {
+  font-size: 60rpx;
+}
+
+.result-tip {
+  margin-top: 20rpx;
+
+  color: #676566;
+  font-size: 30rpx;
+  text-align: center;
+  line-height: 30rpx;
+}
+
+.btn-wra {
+  position: absolute;
+  left: 0;
+  bottom: 110rpx;
+  z-index: 1;
+
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+.result-btn {
+    display: block;
+    margin: 0 auto;
+    width: 330rpx;
+}
+
+.smiley {
+    display: block;
+
+    width: 97rpx;
+    margin: 0 auto;
+}
+
+.close-result {
+    position: absolute;
+    left: 50%;
+    bottom: -60rpx;
+    z-index: 10;
+
+  width: 64rpx;
+  margin-left: -32rpx;
 }

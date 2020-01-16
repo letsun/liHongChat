@@ -7,7 +7,7 @@
 
   <view class="main">
     <!-- 头部视频播放按钮 -->
-    <swiper autoplay="{{true}}" interval="3000" circular="{{true}}">
+    <swiper autoplay="{{true}}" interval="3000" circular="{{true}}" bindchange="bindchange">
       <swiper-item wx:for="{{mwktLista}}" wx:key="">
         <image class="dishes" src="{{item.objPic}}" bindtap="video" wx:if="{{!isPlay}}"></image>
         <video id="video1" class="dishes" src="{{item.objVideo}}" wx:if="{{isPlay}}" controls></video>

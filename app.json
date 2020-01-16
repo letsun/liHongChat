@@ -1,12 +1,14 @@
 {
   "pages": [
+    "pages/activityHome/index/index",
+    "pages/shopping/shoppingActivity/shoppingActivity",
+    "pages/delicious/deliciousDetail/deliciousDetail",
+    "pages/delicious/createPic/createPic",
     "pages/activityHome/act/act",
     "pages/author/author",
     "pages/index/index/index",
-    "pages/activityHome/index/index",
     "pages/activityHome/home/home",
     "pages/delicious/deliciousList/deliciousList",
-    "pages/delicious/deliciousDetail/deliciousDetail",
     "pages/delicious/deliciousComment/deliciousComment",
     "pages/delicious/signIn/signIn",
     "pages/delicious/reviews/reviews",
@@ -14,8 +16,11 @@
     "pages/shopping/shoppingDetails/shoppingDetails",
     "pages/shopping/shoppingOrder/shoppingOrder",
     "pages/shopping/shoppingPayment/shoppingPayment",
+<<<<<<< HEAD
     "pages/shopping/shoppingActivity/shoppingActivity",
 
+=======
+>>>>>>> bd9ccd18970b2b6642b0bd39d93a38827bcc55a4
     "pages/personalCenter/personal/personal",
     "pages/personalCenter/orders/orders",
     "pages/personalCenter/myaddress/myaddress",
@@ -69,6 +74,11 @@
   "usingComponents": {
     "calendar": "pages/components/calendar/index",
     "handwriting": "pages/components/handwriting/index"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于参与活动"
+    }
   },
   "sitemapLocation": "sitemap77.json"
 }

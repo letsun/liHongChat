@@ -23,7 +23,7 @@
 		"bundle": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.9.0",
 	"appid": "wxf82569d50cf9e36c",
 	"projectname": "liHongChat",
 	"debugOptions": {

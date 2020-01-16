@@ -47,7 +47,6 @@ function showToast(title, icon, success) {
     duration: 2000,
     mask: true,
     success: function(res) {
-
       success(res)
     },
     fail: function(res) {},

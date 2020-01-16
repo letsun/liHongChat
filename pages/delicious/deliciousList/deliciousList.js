@@ -1,7 +1,7 @@
 // pages/delicious/delicious.js
 const app = getApp();
-const common = require("../../../utils/common.js")
-const api = require("../../../utils/api.js")
+const common = require("../../../utils/common.js");
+const api = require("../../../utils/api.js");
 Page({
 
   data: {
@@ -39,6 +39,16 @@ Page({
     that.deliciousList(2);
     that.deliciousList(1);
   },
+
+    // 监听轮播图
+    bindchange (e) {
+        let index = e.detail.current;
+        this.setData({
+            videoid: this.data.mwktLista[index].objId,
+            objName: this.data.mwktLista[index].objName,
+            objPic: this.data.mwktLista[index].objPic,
+        })
+    },
 
 
 
@@ -279,6 +289,27 @@ Page({
       common.login()
     }
   },
+
+    sharePage () {
+        let that = this;
+        common.requestPost(api.relay, {
+            memberId: app.globalData.memberId,
+            objId: that.data.videoid,
+            objType: 0,
+        }, red => {
+
+        });
+        return {
+            title: that.data.objName,
+            path: 'pages/delicious/deliciousList/deliciousList',
+            imageUrl: that.data.objPic,
+        }
+    },
+
+
+    onShareAppMessage: function() {
+        return this.sharePage();
+    },
 
 
 })
