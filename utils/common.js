@@ -46,7 +46,6 @@ function showToast(title, icon, success) {
     duration: 2000,
     mask: true,
     success: function(res) {
-
       success(res)
     },
     fail: function(res) {},
@@ -166,7 +165,9 @@ function requestPosts(url, data, success) {
         wx.hideLoading()
       } else {
         wx.hideLoading()
-        showToast(res.data.msg, 'none')
+        showToast(res.data.msg, 'none',res=>{}
+
+        )
       }
     },
 
@@ -223,7 +224,7 @@ function requestGet(url, data, res) {
       if (res.data.code == 200) {
         success(res)
       } else {
-        showToast(res.data.msg, 'none')
+        showToast(res.data.msg, 'none',res=>{})
       }
     },
 
@@ -278,7 +279,7 @@ function requestGets(url, data, res) {
         wx.hideLoading()
       } else {
         wx.hideLoading()
-        showToast(res.data.msg, 'none')
+        showToast(res.data.msg, 'none',res=>{})
       }
     },
 

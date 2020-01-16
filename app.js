@@ -68,13 +68,20 @@ App({
     })
   },
   globalData: {
-    memberId: '',
+    memberId: '2',
     idData: {
-      openid: '',
+      openid: 'ofjyq5X3IvRpUGmOtXY0CMCE5odI',
       apipwd:'',
       token:'',
       sessionKey:'',
       unionId: "",
+    },
+    addressComponent: {
+      province: '',
+      city: '',
+      district: '',
+      street: '',
+      town: '',
     },
     baseURL: 'http://192.168.1.105:18001/',
     baseURL2: 'http://192.168.1.105:8085/',

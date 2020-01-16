@@ -1,0 +1,29 @@
+<!--pages/createPic/index.wxml-->
+<view class='container'>
+    <view class='slider-code'>
+        <!-- <view class='title'>选择图片</view> -->
+        <!-- <scroll-view  scroll-x='true' style="width: 100%">
+            <view class="codes">
+              <view class='code-item '>
+              </view>
+              <view class='code-item '>
+              </view>
+              <view class='code-item'>
+              </view>
+              <view class='code-item'>
+              </view>
+              <view class='code-item'>
+              </view>
+              <view class='code-item'>
+              </view>
+            </view>
+      </scroll-view> -->
+    </view>
+    <view class='picture'>
+        <canvas
+                style="width:300px; height: 430px;"
+                canvas-id="firstCanvas"></canvas>
+    </view>
+    <button class='btn' bindtap='saveImageToPhotosAlbum'>保存</button>
+</view>
+

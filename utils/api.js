@@ -23,7 +23,9 @@ var api = {
   shoppingList: ip + '/api/shop/goods/list', //商城列表
   shoppingDetail: ip + '/api/shop/goods/detail/', //商品详情
   address: ip + '/api/shop/getDefault/' + app.globalData.memberId, //默认收货地址
- 
+  activity: ip + '/api/game/point/activity', // 九宫格获取奖项信息
+  lottery: ip + '/api/game/point/lottery/' + app.globalData.memberId, // 九宫格抽奖
+
   addressList: ip + '/api/shop/receiveAddr/list/' + app.globalData.memberId, //收货地址列表
   addressAdd: ip + '/api/shop/receiveAddr/add/' + app.globalData.memberId, //添加地址列表
   addressUpd: ip + '/api/shop/receiveAddr/upd/' + app.globalData.memberId, //修改地址列表

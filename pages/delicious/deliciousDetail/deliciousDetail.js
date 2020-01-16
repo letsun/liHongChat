@@ -1,6 +1,6 @@
 const app = getApp();
-const common = require("../../../utils/common.js")
-const api = require("../../../utils/api.js")
+const common = require("../../../utils/common.js");
+const api = require("../../../utils/api.js");
 
 Page({
 
@@ -32,7 +32,7 @@ Page({
     that.setData({
       objid: options.objid,
       objType: options.objtype
-    })
+    });
 
     if (options.objtype == 0) {
       that.browse(1)
@@ -51,7 +51,7 @@ Page({
     let that = this;
     that.setData({
       pageNum: that.data.pageNum + 1
-    })
+    });
 
     that.deliciousDetail(0);
   },
@@ -67,8 +67,6 @@ Page({
    */
 
   deliciousDetail(type) {
-    
-
     let that = this;
     common.requestPosts(api.deliciousDetail, {
       memberId: app.globalData.memberId,
@@ -212,6 +210,7 @@ Page({
    * 浏览记录
    */
   browse(objType) {
+    console.log(app.globalData.memberId);
     let that = this;
     common.requestPost(api.browse, {
       memberId: app.globalData.memberId,
@@ -234,5 +233,45 @@ Page({
     })
   },
 
+
+    sharePage () {
+        let that = this;
+        let title = '';
+        let pic = '';
+        if (that.data.objType == 1) {
+            title = that.data.deliciousDetail.recipesName;
+            pic = that.data.deliciousDetail.recipesPic;
+        } else {
+            title = that.data.deliciousDetail.videoName;
+            pic = that.data.deliciousDetail.videoPic;
+        }
+
+        common.requestPost(api.relay, {
+            memberId: app.globalData.memberId,
+            objId: that.data.objid,
+            objType: that.data.objType,
+        }, red => {
+
+        });
+        return {
+            title: title,
+            path: 'pages/delicious/deliciousDetail/deliciousDetail' + '?objid=' + that.data.objid + '&objtype=' + that.data.objType,
+            imageUrl: pic,
+        }
+    },
+
+
+    onShareAppMessage: function() {
+        return this.sharePage();
+    },
+
+
+    // 跳转到生成海报
+    toPic () {
+        let that = this;
+        wx.navigateTo({
+            url: '../createPic/createPic?objid=' + that.data.objid + '&objtype=' + that.data.objType
+        })
+    },
 
 })
