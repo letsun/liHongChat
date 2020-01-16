@@ -16,11 +16,8 @@
     "pages/shopping/shoppingDetails/shoppingDetails",
     "pages/shopping/shoppingOrder/shoppingOrder",
     "pages/shopping/shoppingPayment/shoppingPayment",
-<<<<<<< HEAD
     "pages/shopping/shoppingActivity/shoppingActivity",
 
-=======
->>>>>>> bd9ccd18970b2b6642b0bd39d93a38827bcc55a4
     "pages/personalCenter/personal/personal",
     "pages/personalCenter/orders/orders",
     "pages/personalCenter/myaddress/myaddress",
