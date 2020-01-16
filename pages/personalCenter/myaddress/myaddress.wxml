@@ -1,6 +1,6 @@
 <!--pages/address/address.wxml-->
 <view class="container">
-  <view class="address" data-id="{{item.id}}" data-index="{{index}}" wx:for="{{list}}" wx:key="">
+  <view class="address" bindtap="addinfo"  data-index="{{index}}" wx:for="{{list}}" wx:key="">
     <!--个人信息-->
     <view class="personal">
       <!--昵称电话-->
@@ -9,7 +9,7 @@
         <view class="name">{{item.recName}}</view>
         <!--电话-->
         <view class="tel">{{item.recPhone}}</view>
-        <view class="default" wx:if="{{is}}">默认</view>
+        <view class="default" wx:if="{{item.isDefault==1}}">默认</view>
       </view>
       <!--地址-->
       <view class="ssqx">{{item.recProvince}}{{item.recCity}}{{item.recArea}}{{item.recAddr}}</view>
@@ -17,13 +17,15 @@
     <!--编辑删除-->
     <view class="main">
       <!--设为默认-->
-      <view class="modify">
-        <view class="old" wx:if="{{!is}}" catchtap="tapFunc">
-          <view class="set">设为默认</view>
-        </view>
-        <view class="new" wx:if="{{is}}">
-          <image class="img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_48.png"></image>
-          <view class="active">设为默认</view>
+      <view class="modify" >
+        <view catchtap="isDefault" data-id="{{item.id}}">
+          <view class="new" wx:if="{{item.isDefault==1}}">
+            <image class="img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_48.png"></image>
+            <view class="active">设为默认</view>
+          </view>
+          <view class="old" wx:else>
+            <view class="set">设为默认</view>
+          </view>
         </view>
       </view>
       <!--编辑-->

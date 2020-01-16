@@ -51,7 +51,6 @@ Page({
 
 
   nav() {
-
     wx.switchTab({
       url: '../../activityHome/home/home',
     })

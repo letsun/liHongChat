@@ -34,37 +34,47 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    let that = this;
+    that.address()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let that = this;
-    that.address()
+
   },
 
 
   //收货地址
   address() {
+    let that = this;
     common.requestPost(api.address,{},res=>{
-
+      that.setData({
+        addressInfo:res.data.data
+      })
     })
   },
 
 
   //跳转到支付成功页面
   shoppingPayment() {
-    wx.navigateTo({
-      url: "../../shopping/shoppingPayment/shoppingPayment"
-    })
+    let that= this;
+    common.showModal('提示', '此次兑换将花费'+ that.data.carinfo.integral +'积分,是否确认兑换？', confirm=>{
+
+      // common.
+
+    },cancel=>{})
+
+    // wx.navigateTo({
+    //   url: "../../shopping/shoppingPayment/shoppingPayment"
+    // })
   },
 
   //跳转到收货地址
   myaddress() {
     wx.navigateTo({
-      url: '../../personalCenter/myaddress/myaddress',
+      url: '../../personalCenter/myaddress/myaddress?types='+1,
     })
   }
 

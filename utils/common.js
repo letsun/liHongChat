@@ -18,7 +18,7 @@ function showModal(title, content, confirm, cancel) {
     title: title,
     content: content,
     showCancel: true,
-    confirmColor: '#fd7d00',
+    confirmColor: '#F52F20',
     success(res) {
       if (res.confirm) {
         confirm(confirm)

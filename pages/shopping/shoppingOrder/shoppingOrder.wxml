@@ -2,10 +2,24 @@
 <view class="container">
   <!--选择收货地址-->
   <view class="header" bindtap="myaddress">
-    <image class="map" mode="widthFix" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_47.png"></image>
-    <view class="choose">请选择一个收货地址</view>
-    <image class="img" mode="widthFix" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_52.png"></image>
+    <view class="header-left">
+      <image class="map" mode="widthFix" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_47.png"></image>
+    </view>
+    <view class="hader-address">
+      <view class="header-address-middel actives" wx:if='{{addressInfo==""}}'>
+        请选择一个收货地址
+      </view>
+      <view class="header-address-middel" wx:else>
+        <view><span>{{addressInfo.recName}}</span> {{addressInfo.recPhone}} </view>
+        <view>{{addressInfo.recProvince}}{{addressInfo.recCity}}{{addressInfo.recArea}}{{addressInfo.recAddr}}</view>
+      </view>
+
+    </view>
+    <view class="header-right">
+      <image mode="widthFix" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_52.png"></image>
+    </view>
   </view>
+
   <!--边框-->
   <image class="border" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_51.png"></image>
   <!--订单清单-->

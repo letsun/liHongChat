@@ -41,9 +41,12 @@ Page({
       receiveProvince: receiveProvince,
       receivePhone: receivePhone,
     }, res => {
-      wx.navigateBack({
-        delta: 1
-      })
+      common.showToast('保存成功','success',res=>{})
+      setTimeout(res=>{
+        wx.navigateBack({
+          delta: 1
+        })
+      },1500)
     })
   },
 
