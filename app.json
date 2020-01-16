@@ -15,6 +15,7 @@
     "pages/shopping/shoppingOrder/shoppingOrder",
     "pages/shopping/shoppingPayment/shoppingPayment",
     "pages/shopping/shoppingActivity/shoppingActivity",
+
     "pages/personalCenter/personal/personal",
     "pages/personalCenter/orders/orders",
     "pages/personalCenter/myaddress/myaddress",
@@ -27,6 +28,7 @@
     "pages/personalCenter/personalData/personalData",
     "pages/personalCenter/signInList/signInList",
     "pages/personalCenter/addAddress/addAddress",
+    "pages/personalCenter/updAddress/updAddress",
     "pages/personalCenter/personals/personals",
     "pages/login/login"
   ],

@@ -204,6 +204,7 @@
   font-size: 23rpx;
   line-height: 88rpx;
   margin-left: 34rpx;
+  width: 500rpx;
 }
 
 .tfooter {

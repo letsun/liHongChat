@@ -9,30 +9,47 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isDefault: false,
-    pickValue:'请选择省份市区'
+    
   },
 
 
-  //保存地址
-  addressAdd(e) {
+  onLoad(options) {
     let that = this;
+    let addressInfo = JSON.parse(options.addressInfo);
+    let pickValue = [addressInfo.recProvince, addressInfo.recCity, addressInfo.recArea];
+    if (addressInfo.isDefault ==0) {
+      var isDefault = false
+    }else {
+      var isDefault = true
+    }
+  
+    that.setData({
+      addressInfo: addressInfo,
+      isDefault: isDefault,
+      pickValue: pickValue
+    })  
+  },
 
-    let isDefault = that.data.isDefault,
+  //修改地址
+  addressUpd(e) {
+    let that = this;
+    // debugger
+    let id = that.data.addressInfo.id,
+      isDefault = that.data.isDefault,
       receiveAddress = e.detail.value.receiveAddress,
       receiveArea = that.data.pickValue[2],
       receiveCity = that.data.pickValue[1],
       receiveName = e.detail.value.receiveName,
       receiveProvince = that.data.pickValue[0],
       receivePhone = e.detail.value.receivePhone;
+      if (isDefault == false) {
+        isDefault = 0
+      } else {
+        isDefault = 1
+      }
 
-    if (isDefault == false) {
-      isDefault = 0
-    } else {
-      isDefault = 1
-    }
-
-    common.requestPosts(api.addressAdd + app.globalData.memberId, {
+    common.requestPosts(api.addressUpd+ app.globalData.memberId, {
+      id:id,
       isDefault: isDefault,
       receiveAddress: receiveAddress,
       receiveArea: receiveArea,
@@ -51,7 +68,6 @@ Page({
   },
 
 
-
   //是否为默认地址
   isDefault() {
     let that = this;
@@ -67,16 +83,12 @@ Page({
     })
   },
 
-
   //选择省市区
   pickchange(e) {
     let that = this;
     that.setData({
-      pickValue:e.detail.value
+      pickValue: e.detail.value
     })
   }  
-
-
-
 
 })

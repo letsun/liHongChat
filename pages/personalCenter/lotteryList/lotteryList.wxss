@@ -2,10 +2,10 @@
 
 .record {
   width: 690rpx;
-  height: 90rpx;
+
   display: flex;
   font-size: 26rpx;
-  line-height: 90rpx;
+  line-height: 100rpx;
   margin: 0 0 21rpx 30rpx;
   border: 1px solid #f1f1f1;
   border-radius: 10rpx;
@@ -14,8 +14,8 @@
 
 /* 图片 */
 .packet {
-  width: 50rpx;
-  height: 50rpx;
+  max-width: 50rpx;
+  max-height: 50rpx;
   margin: 22rpx 0 0 19rpx;
 }
 

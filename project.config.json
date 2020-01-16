@@ -130,6 +130,69 @@
 					"id": -1,
 					"name": "添加收货地址",
 					"pathName": "pages/personalCenter/addAddress/addAddress",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/personalCenter/personal/personal",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单列表",
+					"pathName": "pages/personalCenter/orders/orders",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "积分记录",
+					"pathName": "pages/personalCenter/integralList/integralList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "抽奖记录",
+					"pathName": "pages/personalCenter/lotteryList/lotteryList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "点赞记录",
+					"pathName": "pages/personalCenter/praiseList/praiseList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "分享记录",
+					"pathName": "pages/personalCenter/shareList/shareList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "一物一码中奖记录",
+					"pathName": "pages/personalCenter/winning/winning",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "完善个人资料",
+					"pathName": "pages/personalCenter/personalData/personalData",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "九宫格抽奖",
+					"pathName": "pages/shopping/shoppingActivity/shoppingActivity",
 					"scene": null
 				}
 			]

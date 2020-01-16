@@ -50,7 +50,7 @@
   <view class="tfooter"></view>
   <view class="footer">
     <view class="footer-item">
-      <view>合计积分:
+      <view class="{{memberId>0?'':'linheight'}}" >合计积分:
         <span> {{integral}} </span>
       </view>
       <view wx:if="{{memberId>0}}">(可使用积分:{{goodsInfo.memScore}})</view>

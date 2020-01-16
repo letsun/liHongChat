@@ -2,134 +2,48 @@
 <view class="container">
   <!--导航条-->
   <view class="infor">
-    <view class="nav-ation {{flag == 0 ? 'active' : ''}}" data-id="0" catchtap="tabFunc">待发货</view>
-    <view class="nav-ation state {{flag == 1 ? 'active' : ''}}" data-id="1" catchtap="tabFunc">待收货</view>
-    <view class="nav-ation state {{flag == 2 ? 'active' : ''}}" data-id="2" catchtap="tabFunc">已完成</view>
+    <view class="nav-ation {{index == indexa ? 'active' : ''}}" wx:for="{{nav}}" data-index="{{index}}" wx:key="" bindtap="tabBtn"> {{item}}</view>
   </view>
-  <!--待发货内容-->
-  <view class="main" wx:if="{{flag == 0}}">
-    <view class="content">
-      <view class="order">
-        <view class="serial" wx:if="{{flag != 0}}">订单编号：FJ09389068526462</view>
-        <view class="wait" wx:if="{{flag == 0}}">等待发货</view>
-        <view class="wait" wx:if="{{flag == 1}}">已发货</view>
-        <view class="wait" wx:if="{{flag == 2}}">已签收</view>
-      </view>
-      <!--商品内容-->
-      <view class="details">
-        <image class="img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_1.png"></image>
-        <view class="shopping">五丰黎红花椒油400ml</view>
-        <view class="shop">
-          <view class="integral">20积分</view>
-          <view class="number">x1</view>
-        </view>
-      </view>
-      <view class="total">合计：20积分</view>
-      <!--收货信息-->
-      <view class="goods">收货信息：广东省深圳市宝安区宝源路F518时尚创意园6栋</view>
-      <view class="specific">
-        <view class="name">我是昵称</view>
-        <view class="tel">18218645789</view>
-      </view>
-      <view class="courier" wx:if="{{flag == 1}}">
-        <view class="delivery">快递信息：</view>
-        <view class="express">
-          <view class="position">快递在【虎门转运中心】装车，正在发往【深圳运转中心】</view>
-          <view class="scan">扫描员【张三】</view>
-          <view class="data">2019年11月11日 17:30:26</view>
-        </view>
-      </view>
-      <view class="courier" wx:if="{{flag == 2}}">
-        <view class="delivery">快递信息：</view>
-        <view class="express">
-          <view class="position">快递已到达【宝源路顺风站点】,已完成派送,派送员是【李四】,联系电话：18699978945</view>
-          <view class="data">2019年11月11日 17:30:26</view>
-        </view>
-      </view>
-    </view>
-  </view>
-  <!--待收货内容-->
-  <view class="main" wx:if="{{flag == 1}}">
-    <view class="content">
-      <view class="order">
-        <view class="serial" wx:if="{{flag != 0}}">订单编号：FJ09389068526462</view>
-        <view class="wait" wx:if="{{flag == 0}}">等待发货</view>
-        <view class="wait" wx:if="{{flag == 1}}">已发货</view>
-        <view class="wait" wx:if="{{flag == 2}}">已签收</view>
-      </view>
-      <!--商品内容-->
-      <view class="details">
-        <image class="img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_1.png"></image>
-        <view class="shopping">五丰黎红花椒油400ml</view>
-        <view class="shop">
-          <view class="integral">20积分</view>
-          <view class="number">x1</view>
-        </view>
-      </view>
-      <view class="total">合计：20积分</view>
-      <!--收货信息-->
-      <view class="goods">收货信息：广东省深圳市宝安区宝源路F518时尚创意园6栋</view>
-      <view class="specific">
-        <view class="name">我是昵称</view>
-        <view class="tel">18218645789</view>
-      </view>
-      <view class="courier" wx:if="{{flag == 1}}">
-        <view class="delivery">快递信息：</view>
-        <view class="express">
-          <view class="position">快递在【虎门转运中心】装车，正在发往【深圳运转中心】</view>
-          <view class="scan">扫描员【张三】</view>
-          <view class="data">2019年11月11日 17:30:26</view>
-        </view>
-      </view>
-      <view class="courier" wx:if="{{flag == 2}}">
-        <view class="delivery">快递信息：</view>
-        <view class="express">
-          <view class="position">快递已到达【宝源路顺风站点】,已完成派送,派送员是【李四】,联系电话：18699978945</view>
-          <view class="data">2019年11月11日 17:30:26</view>
-        </view>
-      </view>
-    </view>
-  </view>
+
   <!--已完成内容-->
-  <view class="main" wx:if="{{flag == 2}}">
-    <view class="content">
+  <view class="main">
+    <view class="content" wx:for="{{orderList}}" wx:key=''>
       <view class="order">
-        <view class="serial" wx:if="{{flag != 0}}">订单编号：FJ09389068526462</view>
-        <view class="wait" wx:if="{{flag == 0}}">等待发货</view>
-        <view class="wait" wx:if="{{flag == 1}}">已发货</view>
-        <view class="wait" wx:if="{{flag == 2}}">已签收</view>
+        <view class="serial" wx:if="{{indexa != 0}}">订单编号：{{item.orderNo}}</view>
+        <view class="wait" wx:if="{{indexa == 0}}">等待发货</view>
+        <view class="wait" wx:if="{{indexa == 1}}">已发货</view>
+        <view class="wait" wx:if="{{indexa == 2}}">已签收</view>
       </view>
       <!--商品内容-->
       <view class="details">
-        <image class="img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_1.png"></image>
-        <view class="shopping">五丰黎红花椒油400ml</view>
+        <image class="img" src="{{item.orderItem[0].imagesUrl}}"></image>
+        <view class="shopping">{{item.orderItem[0].goodsName}}</view>
         <view class="shop">
-          <view class="integral">20积分</view>
-          <view class="number">x1</view>
+          <view class="integral">{{item.orderItem[0].goodsScore}}积分</view>
+          <view class="number">x{{item.orderItem[0].amount}}</view>
         </view>
       </view>
-      <view class="total">合计：20积分</view>
+      <view class="total">
+        <view class="kdinfo" wx:if="{{indexa != 0}}" bindtap="kdinfo" data-orderno="{{item.orderNo}}" data-index="{{index}}">查看物流信息</view>
+        <view class="Integral">合计：{{item.payScore}}积分</view>
+      </view>
       <!--收货信息-->
-      <view class="goods">收货信息：广东省深圳市宝安区宝源路F518时尚创意园6栋</view>
+      <view class="goods">收货信息：{{item.recieveAddr}}</view>
       <view class="specific">
-        <view class="name">我是昵称</view>
-        <view class="tel">18218645789</view>
+        <view class="name">{{item.recieveName}}</view>
+        <view class="tel">{{item.recievePhone}}</view>
       </view>
-      <view class="courier" wx:if="{{flag == 1}}">
-        <view class="delivery">快递信息：</view>
-        <view class="express">
-          <view class="position">快递在【虎门转运中心】装车，正在发往【深圳运转中心】</view>
-          <view class="scan">扫描员【张三】</view>
-          <view class="data">2019年11月11日 17:30:26</view>
+
+      <block wx:if="{{indexa != 0}}">
+        <view class="courier" wx:if="{{item.kdinfo == true}}">
+          <view class="delivery">快递信息：</view>
+          <view class="express">
+            <view class="position">快递在【虎门转运中心】装车，正在发往【深圳运转中心】</view>
+            <view class="scan">扫描员【张三】</view>
+            <view class="data">2019年11月11日 17:30:26</view>
+          </view>
         </view>
-      </view>
-      <view class="courier" wx:if="{{flag == 2}}">
-        <view class="delivery">快递信息：</view>
-        <view class="express">
-          <view class="position">快递已到达【宝源路顺风站点】,已完成派送,派送员是【李四】,联系电话：18699978945</view>
-          <view class="data">2019年11月11日 17:30:26</view>
-        </view>
-      </view>
+      </block>
     </view>
   </view>
 </view>

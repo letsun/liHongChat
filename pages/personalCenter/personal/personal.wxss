@@ -19,9 +19,7 @@
   height: 254rpx;
 }
 
-.old {
-  display: none;
-}
+
 
 .new {
   display: flex;
@@ -43,9 +41,9 @@
   position: absolute;
   left: 270rpx;
   top: 72rpx;
-  width: 186rpx;
+  width: 210rpx;
   height: 54rpx;
-  font-size: 21rpx;
+  font-size: 26rpx;
   line-height: 54rpx;
   text-align: center;
   color: #f63001;

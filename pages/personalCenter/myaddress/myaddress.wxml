@@ -29,12 +29,12 @@
         </view>
       </view>
       <!--编辑-->
-      <view class="editor">
+      <view class="editor" bindtap="updAddress" data-index="{{index}}" data-id="{{item.id}}">
         <image class="editor-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_49.png"></image>
         <view class="editor-text">编辑</view>
       </view>
       <!--删除-->
-      <view class="del">
+      <view class="del" bindtap="addressDel" data-id="{{item.id}}">
         <image class="del-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_50.png"></image>
         <view class="del-text">删除</view>
       </view>

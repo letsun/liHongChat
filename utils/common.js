@@ -1,9 +1,10 @@
 const app = getApp();
 const api = require("api.js");
 const utilMd5 = require("md5.js");
-
 var newData = new Date().getTime();
 var key = "api-HR-lihong2019!@#$%^&";
+
+
 
 /***
  * 
@@ -110,14 +111,7 @@ function requestPost(url, data, success) {
     },
 
     fail: res => {
-      wx.showToast({
-        title: '网络异常，请重新刷新页面',
-        icon: 'none',
-        duration: 500,
-        mask: true,
-        success: function(res) {},
-        fail: function(res) {},
-      })
+      showToast('网络异常，请重新刷新页面', 'none', res => { })
     },
 
     complete: res => {
@@ -138,10 +132,8 @@ function requestPost(url, data, success) {
  * res:回调
  */
 
-
 function requestPosts(url, data, success) {
   showLoading();
-
   wx.request({
     url: url,
     method: "POST",
@@ -154,8 +146,6 @@ function requestPosts(url, data, success) {
       's': utilMd5.hexMD5(app.globalData.idData.openid + app.globalData.idData.apipwd + newData + key).toUpperCase(),
       'pwd': app.globalData.idData.apipwd,
       'tk': app.globalData.idData.token,
-
-      
     },
 
     data: data,
@@ -166,21 +156,13 @@ function requestPosts(url, data, success) {
         wx.hideLoading()
       } else {
         wx.hideLoading()
-        showToast(res.data.msg, 'none')
+        showToast(res.data.msg, 'none', res => { })
       }
     },
 
     fail: res => {
-
       wx.hideLoading();
-      wx.showToast({
-        title: '网络异常，请重新刷新页面',
-        icon: 'none',
-        duration: 500,
-        mask: true,
-        success: function(res) {},
-        fail: function(res) {},
-      })
+      showToast('网络异常，请重新刷新页面', 'none', res => { })
     },
 
     complete: res => {
@@ -204,7 +186,7 @@ function requestPosts(url, data, success) {
  */
 
 
-function requestGet(url, data, res) {
+function requestGet(url, data, success) {
   wx.request({
     url: url,
     method: "GET",
@@ -223,25 +205,15 @@ function requestGet(url, data, res) {
       if (res.data.code == 200) {
         success(res)
       } else {
-        showToast(res.data.msg, 'none')
+        showToast(res.data.msg, 'none', res => { })
       }
     },
 
     fail: res => {
-      wx.showToast({
-        title: '网络异常，请重新刷新页面',
-        icon: 'none',
-        duration: 500,
-        mask: true,
-        success: function(res) {},
-        fail: function(res) {},
-      })
+      showToast('网络异常，请重新刷新页面', 'none', res => { })
     },
 
-    complete: res => {
-
-    }
-
+    complete: res => { }
   })
 
 }
@@ -256,7 +228,7 @@ function requestGet(url, data, res) {
  */
 
 
-function requestGets(url, data, res) {
+function requestGets(url, data, success) {
   showLoading();
   wx.request({
     url: url,
@@ -278,26 +250,15 @@ function requestGets(url, data, res) {
         wx.hideLoading()
       } else {
         wx.hideLoading()
-        showToast(res.data.msg, 'none')
+        showToast(res.data.msg, 'none',res=>{})
       }
     },
 
     fail: res => {
       wx.hideLoading()
-      wx.showToast({
-        title: '网络异常，请重新刷新页面',
-        icon: 'none',
-        duration: 500,
-        mask: true,
-        success: function(res) {},
-        fail: function(res) {},
-      })
+      showToast('网络异常，请重新刷新页面', 'none', res => { })
     },
-
-    complete: res => {
-
-    }
-
+    complete: res => {}
   })
 }
 
@@ -307,20 +268,89 @@ function requestGets(url, data, res) {
  * 
  */
 
-function getopenid() {
+function getopenid(callback) {
   wx.login({
     success: res => {
-      console.log(res)
-
       requestPost(api.getOpenidByCode,{
-
         code: res.code
       },res=>{
-
+        callback(res)
       })
     }
   })
 }
+
+/***
+ * 
+ * 是否授权登录
+ * 
+ */
+function login(callback) {
+  let that = this;
+  wx.login({
+    success: res => {
+      wx.request({
+        url:api.getOpenidByCode,
+        data: {
+          code: res.code
+        },
+        header: {
+          'Accept': 'application/json',
+          'content-type': "application/x-www-form-urlencoded",
+        },
+        method: 'POST',
+        success: function (reg) {
+          app.globalData.idData = reg.data.result;
+          wx.getUserInfo({
+            success: function (red) {
+              app.globalData.headImg = red.userInfo.avatarUrl;
+              app.globalData.nickName = red.userInfo.nickName;
+              app.globalData.sex = red.userInfo.gender;
+              var appId = 'wx92ddcbce04fc34b6';
+              var encryptedData = red.encryptedData;
+              var iv = red.iv;
+              var pc = new RdWXBizDataCrypt(appId, app.globalData.idData.sessionKey);
+              var data = pc.decryptData(encryptedData, iv);
+              app.globalData.idData.unionId = data.unionId;
+
+              wx.request({
+                url: api.reginfo,
+                data: {
+                  headImg: app.globalData.headImg,
+                  nickName: app.globalData.nickName,
+                  sex: app.globalData.sex,
+                  unionId: app.globalData.idData.unionId,
+                  xcxOpenid: app.globalData.idData.openid,
+                },
+                header: {
+                  'content-type': "application/x-www-form-urlencoded",
+                },
+                method: 'POST',
+                success: function (reg) {
+                  if (reg.data.code == 200) {
+                    app.globalData.memberId = reg.data.data.memId;
+                  }
+                },
+                fail: function (reg) { },
+              })
+            },
+            fail: function (red) {
+              wx.navigateTo({
+                url: '../../author/author',
+              })
+            },
+          })
+        },
+        fail: function (reg) { },
+        complete: function (reg) { },
+      })
+
+    }
+  })
+}
+
+
+
 
 
 
@@ -334,4 +364,5 @@ module.exports = {
   requestGet: requestGet,
   requestGets: requestGets,
   getopenid: getopenid,
+  login: login
 }

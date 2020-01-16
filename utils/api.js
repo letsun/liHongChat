@@ -1,54 +1,49 @@
 
 const app = getApp()
 var dev = 'http://192.168.1.105:8085';
-var dev1 = 'http://192.168.1.105:18001'
+var dev1 = 'http://192.168.1.105:8080'
 
 var ip = dev;
 var ip1  = dev1;
 
 var api = {
   getOpenidByCode: ip1 + '/mini/program/getOpenidByCode', // 获取openid
- 
+  reginfo: ip + 'api/member/register/info', // 小程序授权成功自动注册会员接口
   deliciousList: ip + '/api/mwkt/video/recipes/list', // 美味课堂首页 
-  siginInfo: ip + '/api/member/sign/info/' + app.globalData.memberId, //美味课堂签到信息
+  siginInfo: ip + '/api/member/sign/info/', //美味课堂签到信息
   dianz: ip + '/api/mwkt/video/recipes/dianz', //点赞
   deliciousDetail: ip + '/api/mwkt/video/recipes/detail', //美味菜谱详情
   browse: ip + '/api/mwkt/video/recipes/view', //美味菜谱详情
   comment: ip + '/api/mwkt/video/recipes/comment', //发表评论接口
-  siginBtn: ip + '/api/member/sign/start/' + app.globalData.memberId, //点击签到
-  calendar: ip + '/api/member/signin/list/' + app.globalData.memberId, //日历记录
+  siginBtn: ip + '/api/member/sign/start/', //点击签到
+  calendar: ip + '/api/member/signin/list/', //日历记录
 
   banner: ip + '/api/shop/adv/getAll', //商城轮播图
   shoppingcategory: ip + '/api/shop/category/getAll', //商城分类
   shoppingList: ip + '/api/shop/goods/list', //商城列表
   shoppingDetail: ip + '/api/shop/goods/detail/', //商品详情
-  address: ip + '/api/shop/getDefault/' + app.globalData.memberId, //默认收货地址
- 
-  addressList: ip + '/api/shop/receiveAddr/list/' + app.globalData.memberId, //收货地址列表
-  addressAdd: ip + '/api/shop/receiveAddr/add/' + app.globalData.memberId, //添加地址
-  addressUpd: ip + '/api/shop/receiveAddr/upd/' + app.globalData.memberId, //修改地址
-  addressDel: ip + '/api/shop/receiveAddr/del/' + app.globalData.memberId, //删除地址
+  address: ip + '/api/shop/getDefault/', //默认收货地址
+  submitOrder: ip + '/api/shop/submit/order/', //提交订单
+  
+  addressList: ip + '/api/shop/receiveAddr/list/', //收货地址列表
+  addressAdd: ip + '/api/shop/receiveAddr/add/', //添加地址
+  addressUpd: ip + '/api/shop/receiveAddr/upd/', //修改地址
+  addressDel: ip + '/api/shop/receiveAddr/del/', //删除地址
   addressDef: ip + '/api/shop/setDefault/', //设置默认收货地址
-   
-
 
   register: ip + '/api/member/register/info',    // 注册
-
-
-   
-
-   
-
-
-   
-       
-  commentList: ip + '/api/member/comment/list/' + app.globalData.memberId, // 评论记录
-  memberId : ip + '/api/member/dianz/list/{memberId}',	//点赞记录接口
-	list: ip + '/api/mwkt/video/recipes/list',	//美味课堂接口
-	view: ip + '/api/mwkt/video/recipes/view',	//美味菜谱和视频浏览
-	relay: ip + '/api/mwkt/video/recipes/relay',	//美味课堂视频或菜谱分享
-	detail: ip + '/api/mwkt/video/recipes/detail',	//美味视频或美味菜谱详情
-	dianz: ip + '/api/mwkt/video/recipes/dianz'	//视频，美味菜谱和评论点赞接口
+  userInfo: ip + '/api/member/owner/info/', //个人中心
+  orderList: ip + '/api/shop/order/list/', //订单列表
+  kdinfo: ip + '/api/shop/order/wuliu/', //快递信息
+ 
+  integralList: ip + '/api/member/point/updlist/', //积分记录
+  joinList: ip + '/api/member/pointj/list/', //积分抽奖记录
+  dianzList: ip + '/api/member/dianz/list/', //点赞记录
+  commentList: ip + '/api/member/comment/list/', // 评论记录
+  relayList: ip + '/api/member/share/list/', // 分享记录
+  lotteryList: ip + '/api/member/activity/lottery/', // 分享记录
+  infoSub: ip + '/api/member/finish/info/', // 完善个人资料
+  
 };
 
 module.exports = api;

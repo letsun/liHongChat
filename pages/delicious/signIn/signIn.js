@@ -22,7 +22,6 @@ Page({
     var year = util.year(new Date())
     var month = util.month(new Date())
 
-    
     that.setData({
       timer: timer,
       year: year,
@@ -36,7 +35,7 @@ Page({
   //签到信息
   siginInfo() {
     let that = this;
-    common.requestPost(api.siginInfo, {
+    common.requestPost(api.siginInfo + app.globalData.memberId, {
     }, res => {
       that.setData({
         siginInfo: res.data.data
@@ -48,7 +47,7 @@ Page({
   calendar(){
     let that = this;
 
-    common.requestPost(api.calendar, {
+    common.requestPost(api.calendar + app.globalData.memberId, {
       yearMonth: that.data.timer,
     }, res => {
       that.setData({
@@ -116,7 +115,7 @@ Page({
   siginBtn(){
 
     let that = this;
-    common.requestPost(api.siginBtn, {
+    common.requestPost(api.siginBtn + app.globalData.memberId, {
     }, res => {
       that.setData({
         siginBtn: res.data.data,

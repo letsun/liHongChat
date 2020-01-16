@@ -1,60 +1,109 @@
 <!--pages/complete/complete.wxml-->
 <view class="container">
-  <!--填写内容-->
-  <view class="write">
-    <!--填写内容的标题-->
-    <view class="title">
-      <!--必填项-->
-      <view class="asterisk">*</view>
-      <view class="specific">1、您的姓名是</view>
+  <form bindsubmit="infoSub">
+    <!--填写内容-->
+    <view class="write">
+      <!--填写内容的标题-->
+      <view class="title">
+        <!--必填项-->
+        <view class="asterisk">*</view>
+        <view class="specific">1、您的姓名是</view>
+      </view>
+      <!--输入框-->
+      <input class="text" name="memName" placeholder="请输入" maxlength="15"></input>
     </view>
-    <!--输入框-->
-    <input class="text" placeholder="请输入" maxlength="15"></input>
-  </view>
-  <!--填写内容-->
-  <view class="write">
-    <!--填写内容的标题-->
-    <view class="title">
-      <!--必填项-->
-      <view class="asterisk">*</view>
-      <view class="specific">1、您的姓名是</view>
+    <!--填写内容-->
+    <view class="write">
+      <!--填写内容的标题-->
+      <view class="title">
+        <!--必填项-->
+        <view class="asterisk">*</view>
+        <view class="specific">2、您的性别是</view>
+      </view>
+      <!--输入框-->
+
+      <picker class="text" mode="selector" bindchange='sexchange' value='{{index}}' range="{{sex}}">
+        {{sex[index]}}
+      </picker>
+
     </view>
-    <!--输入框-->
-    <input class="text" placeholder="请输入" maxlength="15"></input>
-  </view>
-  <!--填写内容-->
-  <view class="write">
-    <!--填写内容的标题-->
-    <view class="title">
-      <!--必填项-->
-      <view class="asterisk">*</view>
-      <view class="specific">1、您的姓名是</view>
+    <!--填写内容-->
+    <view class="write">
+      <!--填写内容的标题-->
+      <view class="title">
+        <!--必填项-->
+        <view class="asterisk">*</view>
+        <view class="specific">3、您的生日是
+          <span>(例：1990-10-01)</span>
+        </view>
+      </view>
+      <!--输入框-->
+      <input class="text" name="birthDay" placeholder="请输入" maxlength="15"></input>
     </view>
-    <!--输入框-->
-    <input class="text" placeholder="请输入" maxlength="15"></input>
-  </view>
-  <!--填写内容-->
-  <view class="write">
-    <!--填写内容的标题-->
-    <view class="title">
-      <!--必填项-->
-      <view class="asterisk">*</view>
-      <view class="specific">1、您的姓名是</view>
+    <!--填写内容-->
+    <view class="write">
+      <!--填写内容的标题-->
+      <view class="title">
+        <!--必填项-->
+        <view class="asterisk">*</view>
+        <view class="specific">4、您的城市是
+          <span>(例：广东省-深圳市-宝安区)</span>
+        </view>
+      </view>
+      <!--输入框-->
+      <picker class="text {{pickValue=='请输入'? 'color':''}}" mode="region" bindchange='pickchange' value=''>
+        {{pickValue}}
+      </picker>
     </view>
-    <!--输入框-->
-    <input class="text" placeholder="请输入" maxlength="15"></input>
-  </view>
-  <!--填写内容-->
-  <view class="write">
-    <!--填写内容的标题-->
-    <view class="title">
-      <!--必填项-->
-      <view class="asterisk">*</view>
-      <view class="specific">1、您的姓名是</view>
+    <!--填写内容-->
+    <view class="write">
+      <!--填写内容的标题-->
+      <view class="title">
+        <!--必填项-->
+        <view class="asterisk">*</view>
+        <view class="specific">5、您所在的门店是</view>
+      </view>
+      <!--输入框-->
+      <input class="text" name="memShop" placeholder="请输入" maxlength="15"></input>
     </view>
-    <!--输入框-->
-    <input class="text" placeholder="请输入" maxlength="15"></input>
-  </view>
-  <!--提交按钮-->
-  <view class="commit">确认提交</view>
+
+    <!--填写内容-->
+    <view class="write">
+      <!--填写内容的标题-->
+      <view class="title">
+        <!--必填项-->
+        <view class="asterisk">*</view>
+        <view class="specific">6、您所在的岗位是</view>
+      </view>
+      <!--输入框-->
+      <input class="text" name="memJob" placeholder="请输入" maxlength="15"></input>
+    </view>
+
+    <!--填写内容-->
+    <view class="write">
+      <!--填写内容的标题-->
+      <view class="title">
+        <!--必填项-->
+        <view class="asterisk"></view>
+        <view class="specific">7、您使用的调味品通常由谁负责购买</view>
+      </view>
+      <!--输入框-->
+      <input class="text" name="buyWho" placeholder="请输入" maxlength="15"></input>
+    </view>
+
+    <!--填写内容-->
+    <view class="write">
+      <!--填写内容的标题-->
+      <view class="title">
+        <!--必填项-->
+        <view class="asterisk"> </view>
+        <view class="specific">8、您一般是从哪里购买调味品</view>
+      </view>
+      <!--输入框-->
+      <input class="text" name="buyAddr" placeholder="请输入" maxlength="15"></input>
+    </view>
+    <!--提交按钮-->
+    <button class="commit" form-type="submit">确认提交</button>
+
+  </form>
 </view>

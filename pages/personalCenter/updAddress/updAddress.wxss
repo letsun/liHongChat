@@ -77,7 +77,3 @@
   background-image: linear-gradient(to right, #f64301 , #fa9f0a);
   margin: 92rpx 0 0 60rpx;
 }
-
-.color {
-  color: #777;
-}

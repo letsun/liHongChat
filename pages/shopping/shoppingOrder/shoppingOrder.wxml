@@ -61,7 +61,7 @@
   <!--订单备注-->
   <view class="desc">
     <view class="note">订单备注</view>
-    <input class="input" id="text" maxlength="20" placeholder="选填"></input>
+    <input class="input"  bindinput="inputchange"  placeholder="选填"></input>
   </view>
 
 

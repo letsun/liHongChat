@@ -1,66 +1,73 @@
 // pages/complete/complete.js
+const app = getApp();
+const common = require("../../../utils/common.js")
+const api = require("../../../utils/api.js")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    pickValue:'请输入',
+    sex:['女','男'],
+    index:0,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  infoSub(e) {
+    let that = this, 
+      birthDay =e.detail.value.birthDay,
+      buyAddr = e.detail.value.buyAddr,
+      buyWho = e.detail.value.buyWho,
+      city = that.data.city,
+      district = that.data.district,
+      memJob = e.detail.value.memJob,
+      memName = e.detail.value.memName,
+      memShop = e.detail.value.memShop,
+      province =that.data.province,
+      sex = that.data.index
 
+    common.requestPosts(api.infoSub+ app.globalData.memberId, {
+      birthDay: birthDay,
+      buyAddr: buyAddr,
+      buyWho: buyWho,
+      city: city,
+      district: district,
+      memJob: memJob,
+      memName: memName,
+      memShop: memShop,
+      province: province,
+      sex: sex,
+    }, res => {
+      common.showToast('提交资料成功','success',res=>{})
+        setTimeout(res=>{
+          wx.navigateBack({})
+        },1500)
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
+   // 获取省市区
+  pickchange(e) {
+
+    let that = this;
+    let pickValue = e.detail.value;
+    let province = pickValue[0];
+    let city = pickValue[1];
+    let district = pickValue[2];
+    that.setData({
+      pickValue: pickValue,
+      province: province,
+      city: city,
+      district: district,
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  //获取男女
 
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  sexchange(e) {
+    let that = this;
+    that.setData({
+      index:e.detail.value
+    })
   }
 })

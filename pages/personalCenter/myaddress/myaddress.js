@@ -19,7 +19,6 @@ Page({
   },
 
   onLoad(options) {
-
     let that = this;
     that.setData({
       types: options.types
@@ -38,26 +37,33 @@ Page({
   //收货地址列表
   addressList() {
     let that = this;
-    common.requestPost(api.addressList, {}, res => {
+    common.requestPost(api.addressList+ app.globalData.memberId, {}, res => {
       that.setData({
         list: res.data.data
       })
     })
   },
 
-
-  //设置为默认收货地址
-  isDefault(e) {
-    console.log(e)
+  //删除收货地址
+  addressDel(e) {
     let that = this;
     let receiveId = e.currentTarget.dataset.id
-
-    common.requestPost(api.addressDef + receiveId, {}, res => {
+    common.requestPost(api.addressDel+ app.globalData.memberId, {
+      receiveId: receiveId
+    }, res => {
       that.addressList()
     })
   },
 
 
+  //设置为默认收货地址
+  isDefault(e) {
+    let that = this;
+    let receiveId = e.currentTarget.dataset.id
+    common.requestPost(api.addressDef + receiveId, {}, res => {
+      that.addressList()
+    })
+  },
 
   //跳转到添加收货人
   addAddress() {
@@ -67,6 +73,18 @@ Page({
   },
 
 
+  //修改收货人
+  updAddress(e) {
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    let list = that.data.list;
+    let addressInfo = JSON.stringify(list[index])
+
+    wx.navigateTo({
+      url: '../../personalCenter/updAddress/updAddress?addressInfo=' + addressInfo,
+    })
+  },
+
   //订单获取收货地址信息
   addinfo(e) {
     let that = this;
@@ -74,7 +92,6 @@ Page({
     let list = that.data.list;
     let pages = getCurrentPages(); // 当前页的数据，可以输出来看看有什么东西
     let prevPage = pages[pages.length - 2]; // 上一页的数据，也可以输出来看看有什么东西
-
 
     if (that.data.types == 1) {
       /** 设置数据 这里面的 value 是上一页你想被携带过去的数据，

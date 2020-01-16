@@ -1,8 +1,16 @@
 /* pages/complete/complete.wxss */
 
+.container {
+    padding-bottom: 20rpx;
+}
+
 /* 填写内容 */
 .write {
   margin-top: 21rpx;
+}
+
+.write:nth-last-child(2){
+  padding-bottom: 30rpx;
 }
 
 /* 填写内容的标题 */
@@ -35,17 +43,22 @@
   border-radius: 10rpx;
   margin-left: 111rpx;
   padding-left: 20rpx;
+ 
+}
+
+.color {
+   color: #777
 }
 
 /* 提交按钮 */
 .commit {
-  width: 489rpx;
-  height: 78rpx;
+  width: 490rpx;
   font-size: 30rpx;
-  line-height: 78rpx;
+  line-height: 80rpx;
   text-align: center;
   color: #fff;
   border-radius: 10rpx;
   background-image: linear-gradient(to right, #f63200 , #fbba0a);
-  margin: 63rpx 0 0 131rpx;
+
+  margin: 0 auto;
 }

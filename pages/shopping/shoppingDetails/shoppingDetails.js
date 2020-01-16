@@ -11,7 +11,7 @@ Page({
    */
   data: {
     num: 0,
-    integral:0,
+    integral: 0,
   },
 
   /**
@@ -45,10 +45,11 @@ Page({
 
   shoppingDetail() {
     let that = this;
-    //app.globalData.goodsId
     common.requestPost(api.shoppingDetail + app.globalData.goodsId, {
       memberId: app.globalData.memberId
     }, res => {
+
+      app.globalData.companyId = res.data.data.companyId;
       var jsonProp = JSON.parse(res.data.data.jsonProp);
       var goodsDesc = res.data.data.goodsDesc
 
@@ -65,7 +66,7 @@ Page({
         goodsInfo: res.data.data,
         jsonProp: jsonProp,
         goodsDesc: goodsDesc,
-       
+
       })
     })
   },
@@ -75,18 +76,30 @@ Page({
   shoppingOrder() {
     let that = this;
 
-    var carinfo = {
-      integral: that.data.integral, //合计积分
-      num: that.data.num, //商品数量
-      goodsImgs: that.data.goodsInfo.goodsImgs[0].picUrl, //商品图片
-      goodsName: that.data.goodsInfo.goodsName,  //商品名称 
-      goodsScore: that.data.goodsInfo.goodsScore, // 商品积分
-      memScore: that.data.goodsInfo.memScore  //可使用积分
+    if (app.globalData.memberId >0) {
+      var carinfo = {
+        integral: that.data.integral, //合计积分
+        num: that.data.num, //商品数量
+        goodsImgs: that.data.goodsInfo.goodsImgs[0].picUrl, //商品图片
+        goodsName: that.data.goodsInfo.goodsName, //商品名称 
+        goodsScore: that.data.goodsInfo.goodsScore, // 商品积分
+        memScore: that.data.goodsInfo.memScore //可使用积分
+      }
+      carinfo = JSON.stringify(carinfo);
+      if (that.data.num <= 0) {
+        common.showToast('兑换数量不能小于1', 'none', res => { })
+      } else {
+        wx.navigateTo({
+          url: "../../shopping/shoppingOrder/shoppingOrder?carinfo=" + carinfo
+        })
+      }
+    }else {
+      common.login()
     }
-    carinfo = JSON.stringify(carinfo);
-    wx.navigateTo({
-      url: "../../shopping/shoppingOrder/shoppingOrder?carinfo=" + carinfo
-    })
+
+
+
+
   },
 
 
@@ -97,7 +110,7 @@ Page({
     let num = that.data.num;
     let goodsScore = that.data.goodsInfo.goodsScore;
 
-    let integral = that.data.integral-0;
+    let integral = that.data.integral - 0;
     num--;
     integral = goodsScore * num;
 
@@ -115,10 +128,10 @@ Page({
     let that = this;
     let goodsScore = that.data.goodsInfo.goodsScore;
     let num = that.data.num;
-    let integral = that.data.integral-0;
+    let integral = that.data.integral - 0;
     num++;
     integral = goodsScore * num;
-    
+
     if (num > 0) {
       that.setData({
         num: num,

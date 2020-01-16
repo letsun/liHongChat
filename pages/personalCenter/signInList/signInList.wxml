@@ -7,8 +7,23 @@
   </view>
 
   <view class="calendar">
-    <calendar class='content' mode='normal' selectedMode="{{selectedMode}}"  selected-date='{{selectedDate}}' begin-date='{{beginDate}}' end-date='{{endDate}}'  bindOnMonthChange="onMonthChange" bindOnDayClick='onDayClick' bindOnRangeComplete='onRangeComplete'
-      language='' days-style='{{daysStyle}}' />
+    <view class="calendar-header">
+      <view class="calendar-back" bindtap="back">
+        <image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_95.png"></image>
+      </view>
+
+      <view>{{year}}年{{month}}月</view>
+
+      <view class="calendar-Forward" bindtap="forward">
+        <image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_94.png"></image>
+      </view>
+    </view>
+
+    <view class="calendar-con">
+      <view class="calendar-item {{item.sign=='Y' ?'active':''}}" wx:for="{{calendar}}" wx:key="">
+        {{item.day}}
+      </view>
+    </view>
   </view>
 
   

@@ -6,19 +6,24 @@
   <view class="header">
     <image class="small-bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_57.png"></image>
     <view class="main">
-      <view class="old">
+
+      <!-- 已登录 -->
+      <view class="new" wx:if="{{memberId>0}}">
+        <!--头像-->
+        <image class="icon" src="{{userInfo.headImg}}"></image>
+        <!--昵称和积分-->
+        <view class="name">{{userInfo.nickName}}</view>
+        <view class="integral">当前积分：{{userInfo.memScore}}</view>
+      </view>
+
+      <!-- 未登录 -->
+      <view class="old" wx:else>
         <!--头像-->
         <image class="icon" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_54.png"></image>
         <!--点击登录/注册-->
-        <view class="login">点击登录/注册</view>
+        <view class="login" bindtap="login">点击登录/注册</view>
       </view>
-      <view class="new">
-        <!--头像-->
-        <image class="icon" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_54.png"></image>
-        <!--昵称和积分-->
-        <view class="name">我是昵称</view>
-        <view class="integral">当前积分：200</view>
-      </view>
+
       <!--会员规则-->
       <view class="member">
         <image class="vip" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_55.png"></image>
@@ -27,13 +32,13 @@
       <!--个人资料-->
       <view class="personal">
         <image class="about" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_56.png"></image>
-        <view class="data" bindtap="personalData" >个人资料</view>
+        <view class="data" bindtap="personalData">个人资料</view>
       </view>
     </view>
   </view>
   <!--中间内容-->
   <view class="content">
-    <view class="active" wx:for="{{nav}}" wx:key="{{index}}" data-index="{{index}}"  bindtap="bindnav" >
+    <view class="active" wx:for="{{nav}}" wx:key="{{index}}" data-index="{{index}}" bindtap="bindnav">
       <image class="left" src="{{item.img}}"></image>
       <view class="record">{{item.name}}</view>
       <image class="right" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_52.png"></image>

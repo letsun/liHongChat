@@ -166,3 +166,7 @@ rich-text {
   line-height: 100rpx;
   font-size: 30rpx;
 }
+
+.linheight {
+  line-height: 80rpx;
+}

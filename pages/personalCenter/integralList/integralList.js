@@ -1,66 +1,71 @@
 // pages/integral/integral.js
+const app = getApp();
+const common = require("../../../utils/common.js")
+const api = require("../../../utils/api.js")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    arr: ['签到赠送积分','点赞赠送积分','注册会员赠送积分']
+    pageNum: 1,
+    pointList: '',
+    hasNext: 'false',
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this;
+    that.integralList()
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    let that = this;
+    that.setData({
+      pageNum: that.data.pageNum + 1
+    })
 
+    that.integralList()
   },
 
   /**
-   * 用户点击右上角分享
+   * 
+   *积分记录
    */
-  onShareAppMessage: function () {
+  integralList() {
+    let that = this;
+    let pageNum = that.data.pageNum;
+    let status = that.data.status;
 
-  }
+    common.requestPosts(api.integralList+ app.globalData.memberId, {
+      pageNum: pageNum,
+    }, res => {
+
+      let pointList = that.data.pointList;
+      let hasNext = that.data.hasNext;
+      if (pointList == '') {
+        that.setData({
+          pointList: res.data.data.pointList,
+          hasNext: res.data.data.hasNext
+        })
+      } else {
+        if (hasNext == "true") {
+          that.setData({
+            pointList: pointList.concat(res.data.data.pointList),
+            hasNext: res.data.data.hasNext
+          })
+        }
+      }
+
+    })
+  },
+
+
 })

@@ -10,6 +10,8 @@ Page({
 
     onLoad: function () {
         const that = this;
+
+        console.log(app)
     },
 
     goHome(){
@@ -42,8 +44,10 @@ Page({
                 unionId: app.globalData.idData.unionId,
                 xcxOpenid: app.globalData.idData.openid,
             }, reg => {
+
                 if (reg.data.code == 200) {
-                    app.globalData.memberId = reg.data.data.memId;
+                  app.globalData.memberId = reg.data.data.memId;
+                  
                     setTimeout(function () {
                         that.goHome();
                     },500)
