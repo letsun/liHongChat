@@ -1,7 +1,7 @@
 <!--pages/login/login.wxml-->
 <view class="container">
   <!--图片-->
-  <image class="img" mode="widthFix" src="../image/1_70.png"></image>
+  <image class="img" mode="widthFix" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_70.png"></image>
   <!--成功激活-->
   <view class="success">恭喜您，已成功激活</view>
   <view class="become">您已是星厨俱乐部会员,20积分将在3天内同步</view>

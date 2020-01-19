@@ -34,10 +34,15 @@ Page({
       mwktLista: '',
       mwktListb: '',
       mwktListc: '',
+      isPlay:'',
     })
     that.deliciousList(0);
-    that.deliciousList(2);
-    that.deliciousList(1);
+    if (that.data.indexa==0) {
+      that.deliciousList(2);
+
+    }else {
+      that.deliciousList(1);
+    } 
   },
 
     // 监听轮播图

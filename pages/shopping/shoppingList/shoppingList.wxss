@@ -18,7 +18,6 @@
   top: 159rpx;
   width: 690rpx;
   height: 300rpx;
-  border: 1rpx solid red;
 }
 
 /*导航*/

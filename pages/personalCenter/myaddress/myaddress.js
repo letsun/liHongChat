@@ -75,6 +75,7 @@ Page({
 
   //修改收货人
   updAddress(e) {
+
     let that = this;
     let index = e.currentTarget.dataset.index;
     let list = that.data.list;

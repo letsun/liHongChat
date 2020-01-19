@@ -29,7 +29,7 @@
         </view>
       </view>
       <!--编辑-->
-      <view class="editor" bindtap="updAddress" data-index="{{index}}" data-id="{{item.id}}">
+      <view class="editor" catchtap="updAddress" data-index="{{index}}" data-id="{{item.id}}">
         <image class="editor-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_49.png"></image>
         <view class="editor-text">编辑</view>
       </view>

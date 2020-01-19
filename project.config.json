@@ -193,6 +193,21 @@
 					"id": -1,
 					"name": "九宫格抽奖",
 					"pathName": "pages/shopping/shoppingActivity/shoppingActivity",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "一物一码活动",
+					"pathName": "pages/activityHome/act/act",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
+					"query": "",
 					"scene": null
 				}
 			]

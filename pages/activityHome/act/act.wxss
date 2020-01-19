@@ -190,6 +190,13 @@ page{
 	line-height: 60rpx;
 }
 
+.result-amount image {
+  max-width: 300rpx;
+  max-height: 120rpx;
+}
+
+
+
 .result-amount text {
 	font-size: 60rpx;
 }

@@ -9,7 +9,7 @@
 
         <view class="nav-list">
             <view class="nav-item" catchtap="openRule">活动规则</view>
-            <view class="nav-item">中奖记录</view>
+            <view class="nav-item" bindtap="winning">中奖记录</view>
         </view>
     </view>
 
@@ -41,13 +41,22 @@
             <image class="result-title result-title3" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_11.png"></image>-->
             <view class="result-title">恭喜您获得</view>
 
-            <view class="result-dec">
-                <view class="result-amount"><text>8.88</text>元</view>
+            <view class="result-dec" wx:if="{{lottery.type==0}}">
+                <view class="result-amount"><text>{{lottery.redPack.prizeAmount}}</text>元</view>
                 <view class="result-tip">现金红包</view>
+            </view>
+            <view class="result-dec" wx:if="{{lottery.type==2}}">
+                <view class="result-amount"> <image src="{{lottery.materialObj.prizePic}}"></image>  </view>
+                <view class="result-tip " style="margin-top: 10rpx;">{{lottery.materialObj.prizeName}}</view>
+            </view>
+
+            <view class="result-dec" wx:if="{{lottery.type==3}}">
+                <view class="result-amount">{{lottery.setPoint.point}}</view>
+                <view class="result-tip">积分</view>
             </view>
 
             <view class="btn-wra btn-wra1">
-                <image class="result-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_7.png"></image>
+                <image class="result-btn"  mode="widthFix" bindtap="personal" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_7.png"></image>
             </view>
 
             <!--<view class="btn-wra btn-wra2">

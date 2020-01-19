@@ -14,14 +14,19 @@
   top: 100rpx;
   z-index: 11;
   width: 690rpx;
-  height: 300rpx;
+  height: 320rpx;
   border-radius: 10rpx;
+}
+
+swiper {
+  height: 320rpx;
+  width: 690rpx;
 }
 
 .main .dishes {
 
     width: 690rpx;
-  height: 300rpx;
+  height: 320rpx;
 }
 
 /*头部视频播放按钮*/

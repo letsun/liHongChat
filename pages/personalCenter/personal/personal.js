@@ -50,9 +50,13 @@ Page({
 
   onShow() {
     let that = this;
-
+    let memberId = app.globalData.memberId;
     if (app.globalData.memberId>0) {
       that.userInfo();
+
+      that.setData({
+        memberId: memberId,
+      })
     }
   },
 

@@ -54,7 +54,8 @@ Page({
       memberId: app.globalData.memberId
     }, res => {
       that.setData({
-        orderList: orderList
+        orderList: orderList,
+        kdinfo : res.data.data
       }) 
       
     })

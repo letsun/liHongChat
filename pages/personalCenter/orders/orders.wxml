@@ -36,12 +36,24 @@
 
       <block wx:if="{{indexa != 0}}">
         <view class="courier" wx:if="{{item.kdinfo == true}}">
-          <view class="delivery">快递信息：</view>
-          <view class="express">
-            <view class="position">快递在【虎门转运中心】装车，正在发往【深圳运转中心】</view>
-            <view class="scan">扫描员【张三】</view>
-            <view class="data">2019年11月11日 17:30:26</view>
+          <view class="courier-item">
+            <view class="delivery">快递信息：</view>
+            <view class="express">
+              <view class="kdinfo">
+                快递公司：{{kdinfo.kdname}}
+              </view>
+              <view class="position">快递单号：{{kdinfo.kdno}}</view>
+            </view>
+
           </view>
+          <!-- -->
+          <view class="courier-item" wx:for="{{kdinfo.kdinfo}}" wx:key=''>
+            <view class="delivery">{{item.ftime}}</view>
+            <view class="express">
+             {{item.context}}
+            </view>
+          </view>
+
         </view>
       </block>
     </view>

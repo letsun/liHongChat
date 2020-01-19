@@ -1,12 +1,16 @@
 
 const app = getApp()
 var dev = 'http://192.168.1.105:8085';
-var dev1 = 'http://192.168.1.105:8080'
+var dev1 = 'http://192.168.1.105:8080';
 
-var ip = dev;
-var ip1  = dev1;
+var test = 'https://apitest-qr.cresz.com.cn';
+var test1 = 'https://test-qr.cresz.com.cn';
+
+var ip = test;
+var ip1 = test1;
 
 var api = {
+  
   getOpenidByCode: ip1 + '/mini/program/getOpenidByCode', // 获取openid
   reginfo: ip + 'api/member/register/info', // 小程序授权成功自动注册会员接口
   deliciousList: ip + '/api/mwkt/video/recipes/list', // 美味课堂首页 
@@ -43,9 +47,9 @@ var api = {
   dianzList: ip + '/api/member/dianz/list/', //点赞记录
   commentList: ip + '/api/member/comment/list/', // 评论记录
   relayList: ip + '/api/member/share/list/', // 分享记录
-  lotteryList: ip + '/api/member/activity/lottery/', // 分享记录
+  lotteryList: ip + '/api/member/activity/lottery/', //一物一码中奖记录
   infoSub: ip + '/api/member/finish/info/', // 完善个人资料
-  
+  lotter: ip + '/qdwz/lihong/xcx/lotter', // 一物一码抽奖接口
 };
 
 module.exports = api;

@@ -2,11 +2,11 @@ const RdWXBizDataCrypt = require('utils/WXBizDataCrypt.js');
 App({
 
   globalData: {
-    memberId: '1',
-    //memberId: '',
+    //memberId: '1',
+    memberId: '',
     idData: {
-      // openid: '',
-      openid: 'ofjyq5bIZoFepEV22XbqTsxAtkI0',
+      openid: '',
+      //openid: 'ofjyq5bIZoFepEV22XbqTsxAtkI0',
       apipwd:'',
       token:'',
       sessionKey:'',

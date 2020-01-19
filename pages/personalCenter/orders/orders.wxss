@@ -157,21 +157,35 @@
 }
 
 .courier {
-  display: flex;
   font-size: 21rpx;
   line-height: 31rpx;
   color: #656565;
-  padding: 19rpx 0 0 29rpx;
-  margin-left: -29rpx;
+  padding: 20rpx;
+  margin-left: -25rpx;
   background-color: #f6f6f6;
   border-radius: 0 0 10rpx 10rpx;
 }
 
+.courier-item {
+  display: flex;
+  padding-bottom: 20rpx;
+}
+
 .delivery {
-  width: 100rpx;
+  width: 130rpx;
+
+  position: relative;
 }
 
 .express {
   flex: 1;
-  margin-bottom: 25rpx;
+  display: flex;
+}
+
+.kdinfo {
+  padding-right: 20rpx;
+}
+
+.kdinfo span:first-child {
+  padding-right: 20rpx;
 }
