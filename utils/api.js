@@ -34,7 +34,7 @@ var api = {
   addressUpd: ip + '/api/shop/receiveAddr/upd/', //修改地址
   addressDel: ip + '/api/shop/receiveAddr/del/', //删除地址
   activity: ip + '/api/game/point/activity', // 九宫格获取奖项信息
-  lottery: ip + '/api/game/point/lottery/' + app.globalData.memberId, // 九宫格抽奖
+  lottery: ip + '/api/game/point/lottery/' , // 九宫格抽奖
   addressDef: ip + '/api/shop/setDefault/', //设置默认收货地址
 
   register: ip + '/api/member/register/info',    // 注册
