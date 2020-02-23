@@ -21,7 +21,7 @@
     </view>
     <view class='picture'>
         <canvas
-                style="width:300px; height: 430px;"
+                style="width:300px; height: 266px;"
                 canvas-id="firstCanvas"></canvas>
     </view>
     <button class='btn' bindtap='saveImageToPhotosAlbum'>保存</button>

@@ -26,6 +26,11 @@ Page({
 
 
     // that.deliciousList()
+
+    let that = this;
+    if (app.globalData.memberId <= 0) {
+      common.login()
+    }
   },
 
   onShow() {
@@ -246,6 +251,14 @@ Page({
       let mwktListc = that.data.mwktListc;
 
       mwktListc[index].isPlays = true;
+
+      for (var i = 0; i < mwktListc.length; i++) {
+          if (i != index) {
+            mwktListc[i].isPlays = false;
+            var videoContextCurrent = wx.createVideoContext('videos' + i);
+            videoContextCurrent.stop();
+          }
+      }
       this.setData({
         mwktListc: mwktListc,
       })

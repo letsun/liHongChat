@@ -91,8 +91,8 @@ Page({
                     avatarPath: res.path
                 })
 
-                ctx.drawImage(self.data.avatarPath, 0, 0, 300, 300);
-                ctx.drawImage(self.data.qrcode, 190,310, 100, 100);
+                ctx.drawImage(self.data.avatarPath, 0, 0, 300, parseInt(300/2.204));
+                ctx.drawImage(self.data.qrcode, 190,310 - 164, 100, 100);
 
                 let str = '';
                 if (self.data.objtype == 1) {
@@ -114,7 +114,7 @@ Page({
                 ctx.setFontSize(15);
                 ctx.setFillStyle('#333333');
                 ctx.setTextAlign('left');
-                self.fillTextWrap(ctx, str, 10, 350, 160, 20);
+                self.fillTextWrap(ctx, str, 10, 350 - 164, 160, 20);
 
                 ctx.draw(false, function () {
                     wx.canvasToTempFilePath({

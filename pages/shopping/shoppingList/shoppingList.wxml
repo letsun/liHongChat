@@ -3,7 +3,7 @@
   <!--顶部背景图片-->
   <image class="bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_17.png"></image>
   <!--头部图片-->
-  <image class="image" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_1.png" bindtap="shoppingActivity"></image>
+  <image class="image" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_88.jpg" bindtap="shoppingActivity"></image>
   <!--导航-->
   <scroll-view scroll-x="{{true}}" class="nav">
     <view class="goods" data-id="{{index}}" data-cateid="{{item.cateId}}" catchtap="tabFunc" wx:for="{{shoppingcategory}}" wx:key="{{index}}">

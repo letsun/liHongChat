@@ -1,8 +1,9 @@
 {
-  "pages": [
-    
+  "pages": [ 
     "pages/activityHome/index/index",
+    "pages/personalCenter/winning/winning",
     "pages/activityHome/act/act",
+    "pages/shopping/shoppingOrder/shoppingOrder",
     "pages/delicious/deliciousDetail/deliciousDetail",
     "pages/delicious/createPic/createPic",
     "pages/author/author",
@@ -13,7 +14,6 @@
     "pages/delicious/reviews/reviews",
     "pages/shopping/shoppingList/shoppingList",
     "pages/shopping/shoppingDetails/shoppingDetails",
-    "pages/shopping/shoppingOrder/shoppingOrder",
     "pages/shopping/shoppingPayment/shoppingPayment",
     "pages/shopping/shoppingActivity/shoppingActivity",
 
@@ -25,7 +25,6 @@
     "pages/personalCenter/praiseList/praiseList",
     "pages/personalCenter/commentList/commentList",
     "pages/personalCenter/shareList/shareList",
-    "pages/personalCenter/winning/winning",
     "pages/personalCenter/personalData/personalData",
     "pages/personalCenter/signInList/signInList",
     "pages/personalCenter/addAddress/addAddress",
@@ -36,7 +35,6 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

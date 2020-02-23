@@ -73,7 +73,17 @@ Page({
 
   //点击调取授权信息
   login() {
-    common.login()
+    let that = this;
+    common.login(function(){
+      let memberId = app.globalData.memberId;
+      if (app.globalData.memberId > 0) {
+        that.userInfo();
+
+        that.setData({
+          memberId: memberId,
+        })
+      }
+    })
   },
 
 
@@ -81,11 +91,23 @@ Page({
   personalData() {
     let that = this;
 
-    if(that.data)
+    if (app.globalData.memberId > 0) {
+      wx.navigateTo({
+        url: '../../personalCenter/personalData/personalData',
+      })
+    } else {
+      common.login(function () {
+        let memberId = app.globalData.memberId;
+        debugger
+        if (app.globalData.memberId > 0) {
+          that.userInfo();
 
-    wx.navigateTo({
-      url: '../../personalCenter/personalData/personalData',
-    })
+          that.setData({
+            memberId: memberId,
+          })
+        }
+      })
+    }
   },
 
 
@@ -133,7 +155,30 @@ Page({
         })
       }
     }else {
-      common.login()
+      common.login(function () {
+        let memberId = app.globalData.memberId;
+        if (app.globalData.memberId > 0) {
+          that.userInfo();
+
+          that.setData({
+            memberId: memberId,
+          })
+        }
+      })
     }
+  },
+
+  onLoad () {
+    let that = this;
+    common.login(function () {
+      let memberId = app.globalData.memberId;
+      if (app.globalData.memberId > 0) {
+        that.userInfo();
+
+        that.setData({
+          memberId: memberId,
+        })
+      }
+    })
   }
 })

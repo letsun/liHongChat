@@ -14,9 +14,9 @@
 /*头部图片*/
 .image {
   position: absolute;
-  left: 30rpx;
+  left: 101rpx;
   top: 159rpx;
-  width: 690rpx;
+  width: 548rpx;
   height: 300rpx;
 }
 
@@ -116,9 +116,14 @@
   display: flex;
 }
 
+.number {
+  font-weight: bold;
+}
+
 .small {
   font-size: 18rpx;
   padding-top: 5rpx;
+  line-height: 32rpx;
 }
 
 /* 商品兑换 */

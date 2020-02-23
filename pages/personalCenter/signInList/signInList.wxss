@@ -61,10 +61,26 @@
   width: 90rpx;
   text-align: center;
   padding: 22.5rpx 0;
+  font-size: 28rpx;
 }
 
 .active {
   background: #fff3f3;
   border-radius: 50%;
+  color: #FE5D4B;
+}
+
+/*底部固定按钮*/
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 25rpx;
+  z-index: 111;
+}
+
+/*按钮图片*/
+.sign {
+  width: 144rpx;
+  height: 158rpx;
 }
 

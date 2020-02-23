@@ -17,9 +17,24 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+
+  onShow() {
     let that = this;
-    that.lotteryList()
+    let memberId = app.globalData.memberId;
+    that.lotteryList();
+    if (app.globalData.memberId > 0) {
+      that.userInfo();
+    }
+  },
+
+  //获取用户信息
+  userInfo() {
+    let that = this;
+    common.requestPost(api.userInfo + app.globalData.memberId, {}, res => {
+      that.setData({
+        userInfo: res.data.data
+      })
+    })
   },
 
   /**

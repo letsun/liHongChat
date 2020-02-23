@@ -27,7 +27,11 @@
   </view>
 
   
-
+<!-- 底部固定按钮 -->
+  <view class="footer" catchtap="signIn">
+    <!-- 按钮图片 -->
+    <image class="sign" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_31.png"></image>
+  </view>
 
 
 </view>

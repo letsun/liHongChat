@@ -1,6 +1,7 @@
 const app = getApp();
 const api = require("api.js");
 const utilMd5 = require("md5.js");
+const RdWXBizDataCrypt = require("WXBizDataCrypt.js");
 var newData = new Date().getTime();
 var key = "api-HR-lihong2019!@#$%^&";
 
@@ -328,6 +329,10 @@ function login(callback) {
                 success: function (reg) {
                   if (reg.data.code == 200) {
                     app.globalData.memberId = reg.data.data.memId;
+                    if (callback) {
+                      callback();
+                    }
+                    
                   }
                 },
                 fail: function (reg) { },

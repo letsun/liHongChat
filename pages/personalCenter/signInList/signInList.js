@@ -98,5 +98,18 @@ Page({
     that.calendar()
   },
 
+  //签到页面
+  signIn() {
+
+    if (app.globalData.memberId > 0) {
+      wx.navigateTo({
+        url: '../../delicious/signIn/signIn',
+      })
+
+    } else {
+      common.login()
+    }
+  },
+
 
 })

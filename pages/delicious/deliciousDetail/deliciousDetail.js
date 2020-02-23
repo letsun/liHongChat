@@ -67,6 +67,7 @@ Page({
    */
 
   deliciousDetail(type) {
+
     let that = this;
     common.requestPosts(api.deliciousDetail, {
       memberId: app.globalData.memberId,
@@ -92,13 +93,24 @@ Page({
 
       }
 
-
       if(type==0) {
         if (that.data.deliciousDetail == '') {
           that.setData({
             deliciousDetail: res.data.data,
             commentList: res.data.data.commentInfo.commentList,
             hasNext: res.data.data.commentInfo.hasNext
+          })
+
+          var detail = '';
+          var detail2 = '';
+          var detail3 = '';
+          var detail4 = '';
+          detail = that.data.deliciousDetail.recipesDesc.replace(/\<section/gi, '<div');
+          detail2 = detail.replace(/section\>/gi, 'div>');
+          detail3 = detail2.replace(/\<u/gi, '<i');
+          detail4 = detail3.replace(/u\>/gi, 'i>');
+          that.setData({
+            recipesDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
           })
         } else {
           let commentList = that.data.commentList;
@@ -117,6 +129,20 @@ Page({
           commentList: res.data.data.commentInfo.commentList,
           hasNext: res.data.data.commentInfo.hasNext
         })
+
+        var detail = '';
+        var detail2 = '';
+        var detail3 = '';
+        var detail4 = '';
+        detail = that.data.deliciousDetail.recipesDesc.replace(/\<section/gi, '<div');
+        detail2 = detail.replace(/section\>/gi, 'div>');
+        detail3 = detail2.replace(/\<u/gi, '<i');
+        detail4 = detail3.replace(/u\>/gi, 'i>');
+        that.setData({
+          recipesDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
+        })
+
+        console.log(that.data.recipesDesc);
       }
 
 
@@ -190,12 +216,36 @@ Page({
           deliciousDetail: deliciousDetail,
         })
 
+        var detail = '';
+        var detail2 = '';
+        var detail3 = '';
+        var detail4 = '';
+        detail = that.data.deliciousDetail.recipesDesc.replace(/\<section/gi, '<div');
+        detail2 = detail.replace(/section\>/gi, 'div>');
+        detail3 = detail2.replace(/\<u/gi, '<i');
+        detail4 = detail3.replace(/u\>/gi, 'i>');
+        that.setData({
+          recipesDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
+        })
+
       } else {
 
         let dianzNum = that.data.deliciousDetail.commentInfo.commentList[index].dianzNum;
         deliciousDetail.commentInfo.commentList[index].dianzNum = dianzNum - 0 + 1;
         that.setData({
           deliciousDetail: deliciousDetail
+        })
+
+        var detail = '';
+        var detail2 = '';
+        var detail3 = '';
+        var detail4 = '';
+        detail = that.data.deliciousDetail.recipesDesc.replace(/\<section/gi, '<div');
+        detail2 = detail.replace(/section\>/gi, 'div>');
+        detail3 = detail2.replace(/\<u/gi, '<i');
+        detail4 = detail3.replace(/u\>/gi, 'i>');
+        that.setData({
+          recipesDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
         })
 
       }

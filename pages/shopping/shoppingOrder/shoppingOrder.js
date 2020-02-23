@@ -19,6 +19,8 @@ Page({
     // },
 
     orderRemark: '',
+    isTipsShow: false,    // 是否弹出提示框
+    tipsText: '',    // 提示框提示文字
   },
 
   /**
@@ -61,9 +63,43 @@ Page({
 
   //跳转到支付成功页面
   shoppingPayment() {
-    
     // debugger
+
+    this.setData({
+      tipsText: '此次兑换将花费' + this.data.carinfo.integral + '积分,是否确认兑换？',
+      isTipsShow:true,
+    })
+  },
+
+
+  inputchange(e) {
     let that = this;
+    console.log(e)
+    that.setData({
+      orderRemark: e.detail.value
+    })
+  },
+
+  //跳转到收货地址
+  myaddress() {
+    wx.navigateTo({
+      url: '../../personalCenter/myaddress/myaddress?types=' + 1,
+    })
+  },
+
+  // 关掉提示框
+  cancelTip () {
+      this.setData({
+        isTipsShow: false,
+      })
+  },
+
+  // 确认提示框
+  confirmTip() {
+    let that = this;
+    that.setData({
+      isTipsShow: false,
+    })
     let obj = {};
     let goodsList = {};
 
@@ -84,31 +120,13 @@ Page({
 
     let orderInfo = JSON.stringify(obj)
 
-    common.showModal('提示', '此次兑换将花费' + that.data.carinfo.integral + '积分,是否确认兑换？', confirm => {
-      common.requestPost(api.submitOrder + app.globalData.memberId, {
-        orderInfo: orderInfo
-      }, res => {
-        wx.navigateTo({
-          url: "../../shopping/shoppingPayment/shoppingPayment"
-        })
+    common.requestPost(api.submitOrder + app.globalData.memberId, {
+      orderInfo: orderInfo
+    }, res => {
+      wx.navigateTo({
+        url: "../../shopping/shoppingPayment/shoppingPayment"
       })
-    }, cancel => {})
-  },
-
-
-  inputchange(e) {
-    let that = this;
-    console.log(e)
-    that.setData({
-      orderRemark: e.detail.value
     })
   },
-
-  //跳转到收货地址
-  myaddress() {
-    wx.navigateTo({
-      url: '../../personalCenter/myaddress/myaddress?types=' + 1,
-    })
-  }
 
 })

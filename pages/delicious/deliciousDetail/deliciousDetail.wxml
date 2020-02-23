@@ -7,7 +7,7 @@
   </view>
 
   <view class="header" wx:else>
-    <image class="controls-bg" src="{{deliciousDetail.videoPic}}" wx:if="{{!isPlay}}" bindtap="videoPlay"></image>
+    <image class="controls-bg" src="{{deliciousDetail.videoPic}}" wx:if="{{!isPlay}}" catchtap="videoPlay"></image>
     <video id="{{video}}" src="{{deliciousDetail.videoFile}}" controls wx:else></video>
   </view>
 
@@ -21,7 +21,7 @@
       <view class="active love">
         <!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}"> -->
         <!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 2}}" data-objtype="{{1}}" > -->
-        <view class="dianzan" bindtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}" data-objid = "{{deliciousDetail.objId}}">
+        <view class="dianzan" catchtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}" data-objid = "{{deliciousDetail.objId}}">
           <image class="love-img" wx:if="{{deliciousDetail.isDianz=='flase'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
 
           <image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
@@ -29,7 +29,7 @@
 
         </view>
 
-        <view class="dianzan" bindtap="dianz" wx:if="{{objType == 0}}" data-objtype="{{1}}" data-objid = "{{deliciousDetail.objId}}">
+        <view class="dianzan" catchtap="dianz" wx:if="{{objType == 0}}" data-objtype="{{1}}" data-objid = "{{deliciousDetail.objId}}">
           <image class="love-img" wx:if="{{deliciousDetail.isDianz=='flase'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
 
           <image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
@@ -50,7 +50,7 @@
       </view>
     </view>
     <!-- 说明 -->
-    <view class="main">{{deliciousDetail.recipesDesc}}</view>
+    <view class="main"><rich-text class="rich-text" nodes="{{recipesDesc}}"></rich-text></view>
     <!-- 标签 -->
     <view class="btn">
       <view class="food" wx:for="{{labels}}" wx:key="">{{item}}</view>
@@ -96,7 +96,7 @@
           <view class="data">
             <!-- 时间 -->
             <view class="time">{{item.timeStr}}</view>
-            <view class="thumb" bindtap="dianz" data-objtype = "{{3}}" data-objid = "{{item.commentId}}" data-index="{{index}}">
+            <view class="thumb" catchtap="dianz" data-objtype = "{{3}}" data-objid = "{{item.commentId}}" data-index="{{index}}">
               <!-- 点赞 -->
               <image class="nice" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_71.png"></image>
               <view class="thumb-text">{{item.dianzNum}}</view>
@@ -112,10 +112,10 @@
   <!-- 底部发布评论 -->
   <view class="footer">
     <input class="input" placeholder="请输入评论" value='{{commentDesc}}' maxlength="500" bindinput="inputchang" ></input>
-    <view class="release" bindtap="comment" >发布</view>
+    <view class="release" catchtap="comment" >发布</view>
   </view>
 
 
   <!-- 底部按钮 -->
-  <view class="poster" wx:if="{{objType == 1}}" catchtap="toPic">海报</view>
+  <view class="poster" wx:if="{{objType == 1}}" catchtap="toPic">分享</view>
 </view>

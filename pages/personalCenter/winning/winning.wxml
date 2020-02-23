@@ -1,15 +1,28 @@
 <!--pages/winning/winning.wxml-->
+<!--顶部背景图片-->
+  <image class="bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_17.png"></image>
+  <view class="main">
+      <!-- 已登录 -->
+      <view class="new">
+        <!--头像-->
+        <image class="icon" src="{{userInfo.headImg}}"></image>
+        <!--昵称和积分-->
+        <view class="name">{{userInfo.nickName}}</view>
+      </view>
+    </view>
+
+
 <view class="integral">
-  <view class="record" wx:for="{{lotteryList}}" wx:key=''>
-    <!-- 图片 -->
+  <view class="integral-title">
+      <view class="title-border"></view>
+      <view class="title-text">中奖记录</view>
+  </view>
+  <view class="record" wx:for="{{lotteryList}}" wx:key=''>  
     <image class="packet" src="{{item.prizePic}}"></image>
     <view class="win">
-      <!-- 获得物品 -->
       <view class="get">获得{{item.prizeName}}</view>
-      <!-- 获取时间 -->
       <view class="day">{{item.lotteryTime}}</view>
     </view>
-    <!-- 活动 -->
     <view class="activity">一物一码活动</view>
   </view>
 

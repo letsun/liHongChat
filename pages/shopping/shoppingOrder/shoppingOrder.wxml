@@ -77,4 +77,15 @@
       提交订单
     </view>
   </view>
+
+  <view class="tips-win" wx:if="{{isTipsShow}}">
+      <view class="tips-content">
+          <view class="tips-title">提示</view>
+          <view class="tips-dec">{{tipsText}}</view>
+          <view class="tips-bottom">
+              <view class="tips-cancel tips-btn" catchtap="cancelTip">取消</view>
+              <view class="tips-confirm tips-btn" catchtap="confirmTip">确认</view>
+          </view>
+      </view>
+  </view>
 </view>

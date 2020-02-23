@@ -1,17 +1,39 @@
 /* pages/winning/winning.wxss */
 
 .integral {
-  margin-top: 21rpx;
+  margin: 21rpx 0 0 30rpx;
+}
+
+.integral-title {
+    display: flex;
+
+    margin: 60rpx auto 20rpx auto;
+
+    font-size: 34rpx;
+    font-weight: bold;
+    color: #000;
+    line-height: 44rpx;
+}
+
+.integral-title .title-border {
+   width: 8rpx;
+   height: 44rpx;
+
+   border-radius: 15rpx;
+
+   background: #CC403F;
+}
+
+.integral-title .title-text {
+   margin-left: 30rpx;
 }
 
 .record {
-  width: 690rpx;
   height: 120rpx;
   display: flex;
-  margin: 0 0 21rpx 30rpx;
-  border: 1px solid #f1f1f1;
+  padding: 0 0 0 30rpx;
+  border-bottom: 1px solid #f1f1f1;
   border-radius: 10rpx;
-  box-shadow: 0px 0px 20px #f1f1f1;
 }
 
 /* 图片 */
@@ -46,4 +68,47 @@
   line-height: 21rpx;
   color: #f52f02;
   margin: 52rpx 0 0 220rpx;
+}
+
+.bg {
+  width: 100%;
+  height: 381rpx;
+}
+
+.main {
+  position: relative;
+  z-index: 10;
+  width: 670rpx;
+  margin: -160rpx auto 0 auto;
+  padding-bottom: 10rpx;
+
+  background: #fff;
+
+  border-radius: 20rpx;
+
+  box-shadow: 0px 5px 10px #ebebeb;
+}
+
+.new {
+    position: relative;
+    top: -40rpx;
+}
+
+/*头像*/
+.icon {
+  display: block;
+  width: 121rpx;
+  height: 121rpx;
+  margin: 0 auto;
+  border: 4rpx solid #fefefe;
+  border-radius: 50%;
+}
+
+.name {
+  margin-top: 40rpx;
+  
+  font-size: 33rpx;
+  line-height: 33rpx;
+  text-align: center;
+  font-weight: bold;
 }

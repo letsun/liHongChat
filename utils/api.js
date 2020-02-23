@@ -12,7 +12,7 @@ var ip1 = test1;
 var api = {
   
   getOpenidByCode: ip1 + '/mini/program/getOpenidByCode', // 获取openid
-  reginfo: ip + 'api/member/register/info', // 小程序授权成功自动注册会员接口
+  reginfo: ip + '/api/member/register/info', // 小程序授权成功自动注册会员接口
   deliciousList: ip + '/api/mwkt/video/recipes/list', // 美味课堂首页 
   siginInfo: ip + '/api/member/sign/info/', //美味课堂签到信息
   dianz: ip + '/api/mwkt/video/recipes/dianz', //点赞
@@ -50,6 +50,7 @@ var api = {
   lotteryList: ip + '/api/member/activity/lottery/', //一物一码中奖记录
   infoSub: ip + '/api/member/finish/info/', // 完善个人资料
   lotter: ip + '/qdwz/lihong/xcx/lotter', // 一物一码抽奖接口
+  relay: ip + '/api/mwkt/video/recipes/relay', // 美味课堂分享接口
 };
 
 module.exports = api;
