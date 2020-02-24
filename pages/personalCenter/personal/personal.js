@@ -98,7 +98,6 @@ Page({
     } else {
       common.login(function () {
         let memberId = app.globalData.memberId;
-        debugger
         if (app.globalData.memberId > 0) {
           that.userInfo();
 

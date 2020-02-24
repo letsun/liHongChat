@@ -10,7 +10,7 @@
         <view class="specific">1、您的姓名是</view>
       </view>
       <!--输入框-->
-      <input class="text" name="memName" placeholder="请输入" maxlength="15"></input>
+      <input class="text" name="memName" placeholder="请输入" value="{{userInfo.memName}}" maxlength="15"></input>
     </view>
     <!--填写内容-->
     <view class="write">
@@ -38,7 +38,9 @@
         </view>
       </view>
       <!--输入框-->
-      <input class="text" name="birthDay" placeholder="请输入" maxlength="15"></input>
+      <picker class="text" mode="date" value="{{birthDay}}" start="1940" end="2020-02-24" bindchange="bindDateChange">
+        <view class="picker">{{birthDay}}</view>
+      </picker>
     </view>
     <!--填写内容-->
     <view class="write">
@@ -64,7 +66,7 @@
         <view class="specific">5、您所在的门店是</view>
       </view>
       <!--输入框-->
-      <input class="text" name="memShop" placeholder="请输入" maxlength="15"></input>
+      <input class="text" name="memShop" value="{{userInfo.memShop}}" placeholder="请输入" maxlength="15"></input>
     </view>
 
     <!--填写内容-->
@@ -76,7 +78,9 @@
         <view class="specific">6、您所在的岗位是</view>
       </view>
       <!--输入框-->
-      <input class="text" name="memJob" placeholder="请输入" maxlength="15"></input>
+      <picker class="text" mode="selector" bindchange='postchange' value='{{memJob}}' range="{{postList}}">
+        {{postList[memJob]}}
+      </picker>
     </view>
 
     <!--填写内容-->
@@ -88,7 +92,7 @@
         <view class="specific">7、您使用的调味品通常由谁负责购买</view>
       </view>
       <!--输入框-->
-      <input class="text" name="buyWho" placeholder="请输入" maxlength="15"></input>
+      <input class="text" name="buyWho" value="{{userInfo.buyWho}}" placeholder="请输入" maxlength="15"></input>
     </view>
 
     <!--填写内容-->
@@ -100,7 +104,7 @@
         <view class="specific">8、您一般是从哪里购买调味品</view>
       </view>
       <!--输入框-->
-      <input class="text" name="buyAddr" placeholder="请输入" maxlength="15"></input>
+      <input class="text" name="buyAddr" value="{{userInfo.buyAddr}}" placeholder="请输入" maxlength="15"></input>
     </view>
     <!--提交按钮-->
     <button class="commit" form-type="submit">确认提交</button>
