@@ -138,6 +138,7 @@ Page({
   //获取男女
 
   sexchange(e) {
+    debugger
     let that = this;
     that.setData({
       index:e.detail.value
@@ -167,8 +168,6 @@ Page({
                     that.setData({
                         memJob: i,
                     });
-
-                    console.log(memJob);
                 }
             }
             that.setData({

@@ -49,8 +49,11 @@
         <view class="browse-text">{{deliciousDetail.viewNum}}浏览</view>
       </view>
     </view>
-    <!-- 说明 -->
-    <view class="main"><rich-text class="rich-text" nodes="{{recipesDesc}}"></rich-text></view>
+
+    <view class="main" wx:if="{{objType == 1}}">
+      {{deliciousDetail.recipesRmk}}
+    </view>
+
     <!-- 标签 -->
     <view class="btn">
       <view class="food" wx:for="{{labels}}" wx:key="">{{item}}</view>
@@ -81,6 +84,9 @@
       </view>
     </view>
   </block>
+
+  <!-- 说明 -->
+  <view class="main" style="margin: 22rpx auto;"><rich-text class="rich-text" nodes="{{recipesDesc}}"></rich-text></view>
 
   <!--所有评论-->
 
