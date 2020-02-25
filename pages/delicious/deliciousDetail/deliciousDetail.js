@@ -41,6 +41,8 @@ Page({
     } else if (options.objtype == 2) {
       that.browse(0) //浏览记录
     }
+
+
   },
 
 
@@ -91,6 +93,14 @@ Page({
           })
         }
 
+        wx.setNavigationBarTitle({
+          title: res.data.data.recipesName,
+        }) 
+
+      }else{
+        wx.setNavigationBarTitle({
+          title: res.data.data.videoName,
+        }) 
       }
       if(type==0) {
         if (that.data.deliciousDetail == '') {
@@ -204,6 +214,7 @@ Page({
    * 点赞
    */
   dianz(e) {
+
     let that = this;
     let index = e.currentTarget.dataset.index;
     let objId = e.currentTarget.dataset.objid;
@@ -224,19 +235,19 @@ Page({
           deliciousDetail: deliciousDetail,
         })
 
-        var detail = '';
-        var detail2 = '';
-        var detail3 = '';
-        var detail4 = '';
-        if (that.data.deliciousDetail.recipesDesc) {
-          detail = that.data.deliciousDetail.recipesDesc.replace(/\<section/gi, '<div');
-          detail2 = detail.replace(/section\>/gi, 'div>');
-          detail3 = detail2.replace(/\<u/gi, '<i');
-          detail4 = detail3.replace(/u\>/gi, 'i>');
-          that.setData({
-            recipesDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
-          })
-        }
+        // var detail = '';
+        // var detail2 = '';
+        // var detail3 = '';
+        // var detail4 = '';
+        // if (that.data.deliciousDetail.recipesDesc) {
+        //   detail = that.data.deliciousDetail.recipesDesc.replace(/\<section/gi, '<div');
+        //   detail2 = detail.replace(/section\>/gi, 'div>');
+        //   detail3 = detail2.replace(/\<u/gi, '<i');
+        //   detail4 = detail3.replace(/u\>/gi, 'i>');
+        //   that.setData({
+        //     recipesDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
+        //   })
+        // }
 
       } else {
 
@@ -246,23 +257,23 @@ Page({
           deliciousDetail: deliciousDetail
         })
 
-        var detail = '';
-        var detail2 = '';
-        var detail3 = '';
-        var detail4 = '';
-        if (that.data.deliciousDetail.recipesDesc) {
-          detail = that.data.deliciousDetail.recipesDesc.replace(/\<section/gi, '<div');
-          detail2 = detail.replace(/section\>/gi, 'div>');
-          detail3 = detail2.replace(/\<u/gi, '<i');
-          detail4 = detail3.replace(/u\>/gi, 'i>');
-          that.setData({
-            recipesDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
-          })
-        }
+        // var detail = '';
+        // var detail2 = '';
+        // var detail3 = '';
+        // var detail4 = '';
+        // if (that.data.deliciousDetail.recipesDesc) {
+        //   detail = that.data.deliciousDetail.recipesDesc.replace(/\<section/gi, '<div');
+        //   detail2 = detail.replace(/section\>/gi, 'div>');
+        //   detail3 = detail2.replace(/\<u/gi, '<i');
+        //   detail4 = detail3.replace(/u\>/gi, 'i>');
+        //   that.setData({
+        //     recipesDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
+        //   })
+        // }
 
       }
 
-
+      common.showToast('点赞成功', 'success', res => { })
     })
 
   },
@@ -300,24 +311,27 @@ Page({
         let that = this;
         let title = '';
         let pic = '';
+        let objType;
         if (that.data.objType == 1) {
             title = that.data.deliciousDetail.recipesName;
             pic = that.data.deliciousDetail.recipesPic;
-        } else {
+          objType = 2;
+        } else if (that.data.objType == 0) {
             title = that.data.deliciousDetail.videoName;
             pic = that.data.deliciousDetail.videoPic;
+          objType = 1
         }
 
         common.requestPost(api.relay, {
             memberId: app.globalData.memberId,
             objId: that.data.objid,
-            objType: that.data.objType,
+            objType: objType,
         }, red => {
 
         });
         return {
             title: title,
-            path: 'pages/delicious/deliciousDetail/deliciousDetail' + '?objid=' + that.data.objid + '&objtype=' + that.data.objType,
+            path: 'pages/delicious/deliciousDetail/deliciousDetail' + '?objid=' + that.data.objid + '&objtype=' + objType,
             imageUrl: pic,
         }
     },

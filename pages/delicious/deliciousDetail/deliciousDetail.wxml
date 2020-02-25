@@ -94,7 +94,7 @@
   <view class="contentc" style="{{objType == 1 ?'':'padding-top:120rpx;' }}">
     <view class="parameter">所有评论</view>
     <view class="all">
-      <view class="lis" wx:for="{{commentList}}" wx:key="">
+      <view class="lis" wx:for="{{deliciousDetail.commentInfo.commentList}}" wx:key="">
         <image class="icon" src="{{item.headImg}}"></image>
         <view class="characterc">
           <!-- 昵称 -->
@@ -117,7 +117,7 @@
   </view>
   <!-- 底部发布评论 -->
   <view class="footer">
-    <input class="input" placeholder="请输入评论" value='{{commentDesc}}' maxlength="500" bindinput="inputchang" ></input>
+    <input class="input" placeholder="请输入评论(最多200字)" value='{{commentDesc}}' maxlength="200" bindinput="inputchang" ></input>
     <view class="release" catchtap="comment" >发布</view>
   </view>
 

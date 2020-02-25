@@ -179,6 +179,10 @@ Page({
     }, res => {
       if (objType == 0) {
         var mwktLista = that.data.mwktLista;
+        var isDianz = mwktLista[index].isDianz;
+        if (isDianz != 'true') {
+          mwktLista[index].dianzNum = mwktLista[index].dianzNum + 1;
+        }
         mwktLista[index].isDianz = 'true';
         that.setData({
           mwktLista: mwktLista,
@@ -187,6 +191,10 @@ Page({
       } else if (objType == 1) {
 
         var mwktListc = that.data.mwktListc;
+        var isDianz = mwktListc[index].isDianz;
+        if (isDianz != 'true') {
+          mwktListc[index].dianzNum = mwktListc[index].dianzNum + 1;
+        }
         mwktListc[index].isDianz = 'true';
         that.setData({
           mwktListc: mwktListc,
@@ -195,6 +203,11 @@ Page({
 
       } else if (objType == 2) {
         var mwktListb = that.data.mwktListb;
+        var isDianz = mwktListb[index].isDianz;
+        if(isDianz != 'true') {
+          mwktListb[index].dianzNum = mwktListb[index].dianzNum + 1;
+        }
+
         mwktListb[index].isDianz = 'true';
         that.setData({
           mwktListb: mwktListb,

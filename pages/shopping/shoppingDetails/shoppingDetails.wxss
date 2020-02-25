@@ -55,13 +55,13 @@ swiper {
 }
 
 .inventory {
-  font-size: 22rpx;
+  font-size: 24rpx;
   color: #9a9a9a;
   margin: 0 90rpx;
 }
 
 .change {
-  font-size: 22rpx;
+  font-size: 24rpx;
   color: #9a9a9a;
 }
 
