@@ -16,4 +16,5 @@
       <view class="time">{{item.cmtTime}}</view>
     </view>
   </view>
+  <view class="zwsj" wx:if="{{commentList==''}}">暂无数据</view>
 </view>

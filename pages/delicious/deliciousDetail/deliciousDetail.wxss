@@ -129,6 +129,12 @@ rich-text img {
   font-weight: 500;
   margin-left: 54rpx;
 }
+.parametera {
+  font-size: 35rpx;
+  line-height: 35rpx;
+  font-weight: 500;
+  padding-bottom: 50rpx;
+}
 
 .all {
   margin-top: 56rpx;

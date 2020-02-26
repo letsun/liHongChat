@@ -16,4 +16,5 @@
       <view class="time">{{item.relayTime}}</view>
     </view>
   </view>
+  <view class="zwsj" wx:if="{{relayList==''}}">暂无数据</view>
 </view>

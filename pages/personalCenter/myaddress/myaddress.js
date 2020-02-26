@@ -47,12 +47,14 @@ Page({
   //删除收货地址
   addressDel(e) {
     let that = this;
-    let receiveId = e.currentTarget.dataset.id
-    common.requestPost(api.addressDel+ app.globalData.memberId, {
-      receiveId: receiveId
-    }, res => {
-      that.addressList()
-    })
+    let receiveId = e.currentTarget.dataset.id;
+    common.showModal('提示','是否删除地址',confirm=>{
+      common.requestPost(api.addressDel + app.globalData.memberId, {
+        receiveId: receiveId
+      }, res => {
+        that.addressList()
+      })
+    },cancel=>{})
   },
 
 

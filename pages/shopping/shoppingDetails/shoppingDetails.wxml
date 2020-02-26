@@ -15,7 +15,7 @@
     <view class="title">{{goodsInfo.goodsName}}</view>
     <!--积分兑换、库存、兑换数量-->
     <view class="details">
-      <view class="integral">{{goodsInfo.goodsScore}}积分</view>
+      <view class="integral">{{goodsInfo.goodsScore}} <span style="font-size:20rpx;">积分</span></view>
       <view class="inventory">库存：{{goodsInfo.goodsStock}}</view>
       <view class="change">兑换数量</view>
       <!--减少-->

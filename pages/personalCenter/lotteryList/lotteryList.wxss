@@ -31,3 +31,9 @@
   margin-left: 142rpx;
   color: #999;
 }
+
+.zwsj {
+  /* margin: auto; */
+  text-align: center;
+  line-height: 100rpx;
+}

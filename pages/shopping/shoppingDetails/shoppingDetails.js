@@ -10,8 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    num: 0,
-    integral: 0,
+    num: 1,
+    integral: 10,
   },
 
   /**
@@ -89,16 +89,19 @@ Page({
       if (that.data.num <= 0) {
         common.showToast('兑换数量不能小于1', 'none', res => { })
       } else {
-        wx.navigateTo({
-          url: "../../shopping/shoppingOrder/shoppingOrder?carinfo=" + carinfo
-        })
+
+        if (that.data.goodsInfo.memScore <that.data.integral) {
+          common.showToast('可使用积分小于合计积分', 'none', res => { })
+        }else {
+          wx.navigateTo({
+            url: "../../shopping/shoppingOrder/shoppingOrder?carinfo=" + carinfo
+          })
+        }
+
       }
     }else {
       common.login()
     }
-
-
-
 
   },
 

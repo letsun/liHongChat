@@ -111,7 +111,7 @@ Page({
 
         setTimeout(function() {
           cjIn = false;
-          This.getPrize();
+          // This.getPrize();
           return;
         }, 200)
       }, 1000)
@@ -188,8 +188,15 @@ Page({
 
   // 跳转到个人中心
   toPersonCenter() {
-    wx.navigateTo({
+    wx.switchTab({
       url: '../../personalCenter/personal/personal',
+    })
+  },
+
+  // 跳转到个人中心
+  lotteryList() {
+    wx.navigateTo({
+      url: '../../personalCenter/lotteryList/lotteryList',
     })
   },
 

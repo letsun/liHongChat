@@ -104,7 +104,7 @@
   font-size: 23rpx;
   line-height: 23rpx;
   margin-top: 16rpx;
-  padding-left: 490rpx;
+  padding-left: 430rpx;
 }
 
 .together {

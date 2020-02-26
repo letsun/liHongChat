@@ -14,10 +14,11 @@
 /*头部图片*/
 .image {
   position: absolute;
-  left: 101rpx;
-  top: 159rpx;
-  width: 548rpx;
-  height: 300rpx;
+  left: 30rpx;
+  top: 110rpx;
+  width: 690rpx;
+  height: 320rpx;
+  border-radius: 15rpx;
 }
 
 /*导航*/
@@ -123,7 +124,7 @@
 .small {
   font-size: 18rpx;
   padding-top: 5rpx;
-  line-height: 32rpx;
+  line-height: 38rpx;
 }
 
 /* 商品兑换 */

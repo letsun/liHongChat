@@ -250,11 +250,11 @@ Page({
         // }
 
       } else {
-
-        let dianzNum = that.data.deliciousDetail.commentInfo.commentList[index].dianzNum;
-        deliciousDetail.commentInfo.commentList[index].dianzNum = dianzNum - 0 + 1;
+        let commentList = that.data.commentList;
+        let dianzNum = that.data.commentList[index].dianzNum;
+        commentList[index].dianzNum = dianzNum - 0 + 1;
         that.setData({
-          deliciousDetail: deliciousDetail
+          commentList: commentList
         })
 
         // var detail = '';
@@ -273,7 +273,7 @@ Page({
 
       }
 
-      common.showToast('点赞成功', 'success', res => { })
+      common.showToast(res.data.msg, 'none', res => { })
     })
 
   },

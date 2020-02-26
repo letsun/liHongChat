@@ -27,6 +27,7 @@ swiper {
 
     width: 690rpx;
   height: 320rpx;
+  border-radius: 15rpx;
 }
 
 /*头部视频播放按钮*/

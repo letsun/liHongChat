@@ -58,10 +58,10 @@
 }
 
 .calendar-item {
-  width: 90rpx;
+  width: 40rpx;
   text-align: center;
-  padding: 22.5rpx 0;
-  font-size: 28rpx;
+  margin: 15rpx;
+  padding: 10rpx;
 }
 
 .active {

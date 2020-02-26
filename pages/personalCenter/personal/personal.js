@@ -92,8 +92,15 @@ Page({
     let that = this;
 
     if (app.globalData.memberId > 0) {
+
+      //0 为没填写资料 1为已填写资料
+      if (that.data.userInfo.memName==''){
+        var type = 0 ;
+      }else {
+        var type = 1;
+      }
       wx.navigateTo({
-        url: '../../personalCenter/personalData/personalData',
+        url: '../../personalCenter/personalData/personalData?type=' + type,
       })
     } else {
       common.login(function () {

@@ -22,7 +22,7 @@
         <!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}"> -->
         <!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 2}}" data-objtype="{{1}}" > -->
         <view class="dianzan" catchtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}" data-objid = "{{deliciousDetail.objId}}">
-          <image class="love-img" wx:if="{{deliciousDetail.isDianz=='flase'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
+          <image class="love-img" wx:if="{{deliciousDetail.isDianz=='false'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
 
           <image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
           <view class="love-text">{{deliciousDetail.dianzNum}}</view>
@@ -86,7 +86,12 @@
   </block>
 
   <!-- 说明 -->
-  <view class="main" style="margin: 22rpx auto;"><rich-text class="rich-text" nodes="{{recipesDesc}}"></rich-text></view>
+  <view class="main" style="margin: 22rpx auto;">
+
+  <view class="parametera">菜谱描述</view>
+  <rich-text class="rich-text" nodes="{{recipesDesc}}"></rich-text>
+  
+  </view>
 
   <!--所有评论-->
 
@@ -94,7 +99,7 @@
   <view class="contentc" style="{{objType == 1 ?'':'padding-top:120rpx;' }}">
     <view class="parameter">所有评论</view>
     <view class="all">
-      <view class="lis" wx:for="{{deliciousDetail.commentInfo.commentList}}" wx:key="">
+      <view class="lis" wx:for="{{commentList}}" wx:key="">
         <image class="icon" src="{{item.headImg}}"></image>
         <view class="characterc">
           <!-- 昵称 -->

@@ -12,4 +12,7 @@
     <!--过期时间-->
     <view class="time past">当前总积分：{{item.thisScore}}</view>
   </view>
+
+  
+    <view class="zwsj" wx:if="{{pointList==''}}">暂无数据</view>
 </view>

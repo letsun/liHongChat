@@ -52,6 +52,7 @@ swiper {
 .integral {
   color: #f83000;
   font-weight: 600;
+  font-size: 32rpx;
 }
 
 .inventory {

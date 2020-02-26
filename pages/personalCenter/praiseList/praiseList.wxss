@@ -63,3 +63,9 @@
   height: 109rpx;
   margin: 11rpx 0 0 175rpx;
 }
+
+.zwsj {
+  /* margin: auto; */
+  text-align: center;
+  line-height: 100rpx;
+}

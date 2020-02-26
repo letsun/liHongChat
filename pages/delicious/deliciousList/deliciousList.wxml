@@ -9,7 +9,7 @@
     <!-- 头部视频播放按钮 -->
     <swiper autoplay="{{true}}" interval="3000" circular="{{true}}" bindchange="bindchange">
       <swiper-item  wx:for="{{mwktLista}}" wx:key="">
-        <image class="dishes" src="{{item.objPic}}" catchtap="video" wx:if="{{!isPlay}}"></image>
+        <image class="dishes" src="{{item.objPic}}" data-objid="{{item.objId}}" catchtap="video" wx:if="{{!isPlay}}"></image>
         <video id="video1" class="dishes" src="{{item.objVideo}}" wx:if="{{isPlay}}" controls></video>
         <!-- <image class="start" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_24.png"></image> -->
         <!-- 点赞次数和浏览次数 -->
@@ -82,7 +82,7 @@
       <!-- 商品 -->
       <view class="photo">
 
-        <image class="controls-bg" catchtap="videos" data-index="{{index}}" wx:if="{{!item.isPlays}}" src="{{item.objPic}}"></image>
+        <image class="controls-bg" catchtap="videos"  data-objid="{{item.objId}}" data-index="{{index}}" wx:if="{{!item.isPlays}}" src="{{item.objPic}}"></image>
         <video style="height:320rpx;width:690rpx;" object-fit="fill" wx:if="{{item.isPlays}}" class="video" id="videos{{index}}" src="{{item.objVideo}}" show-center-play-btn="{{btnShow}}" bindfullscreenchange="fullscreenTap" custom-cache="{{false}}" controls></video>
       </view>
       <!-- 商品名称 -->

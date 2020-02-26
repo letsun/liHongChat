@@ -17,5 +17,5 @@
       <image class="img" src="{{item.objPic}}"></image>
     </view>
   </view>
-
+    <view class="zwsj" wx:if="{{dianzList==''}}">暂无数据</view>
 </view>

@@ -26,4 +26,6 @@
     <view class="activity">一物一码活动</view>
   </view>
 
+  <view class="zwsj" wx:if="{{lotteryList==''}}">暂无数据</view>
+
 </view>

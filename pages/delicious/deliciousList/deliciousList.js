@@ -39,26 +39,26 @@ Page({
       mwktLista: '',
       mwktListb: '',
       mwktListc: '',
-      isPlay:'',
+      isPlay: '',
     })
     that.deliciousList(0);
-    if (that.data.indexa==0) {
+    if (that.data.indexa == 0) {
       that.deliciousList(2);
 
-    }else {
+    } else {
       that.deliciousList(1);
-    } 
+    }
   },
 
-    // 监听轮播图
-    bindchange (e) {
-        let index = e.detail.current;
-        this.setData({
-            videoid: this.data.mwktLista[index].objId,
-            objName: this.data.mwktLista[index].objName,
-            objPic: this.data.mwktLista[index].objPic,
-        })
-    },
+  // 监听轮播图
+  bindchange(e) {
+    let index = e.detail.current;
+    this.setData({
+      videoid: this.data.mwktLista[index].objId,
+      objName: this.data.mwktLista[index].objName,
+      objPic: this.data.mwktLista[index].objPic,
+    })
+  },
 
 
 
@@ -204,7 +204,7 @@ Page({
       } else if (objType == 2) {
         var mwktListb = that.data.mwktListb;
         var isDianz = mwktListb[index].isDianz;
-        if(isDianz != 'true') {
+        if (isDianz != 'true') {
           mwktListb[index].dianzNum = mwktListb[index].dianzNum + 1;
         }
 
@@ -214,7 +214,7 @@ Page({
         })
       }
 
-
+      common.showToast(res.data.msg, 'none', res => {})
     })
   },
 
@@ -239,13 +239,18 @@ Page({
 
 
   //点击播放视频
-  video() {
+  video(e) {
+    console.log(e)
+    let that = this;
     if (app.globalData.memberId > 0) {
       this.setData({
         isPlay: true,
       })
       var videoContextCurrent = wx.createVideoContext('video1');
       videoContextCurrent.play();
+
+      var objid = e.currentTarget.dataset.objid;
+      that.browse(0, objid)
     } else {
       common.login()
     }
@@ -266,11 +271,11 @@ Page({
       mwktListc[index].isPlays = true;
 
       for (var i = 0; i < mwktListc.length; i++) {
-          if (i != index) {
-            mwktListc[i].isPlays = false;
-            var videoContextCurrent = wx.createVideoContext('videos' + i);
-            videoContextCurrent.stop();
-          }
+        if (i != index) {
+          mwktListc[i].isPlays = false;
+          var videoContextCurrent = wx.createVideoContext('videos' + i);
+          videoContextCurrent.stop();
+        }
       }
       this.setData({
         mwktListc: mwktListc,
@@ -278,13 +283,29 @@ Page({
       var videoContextCurrent = wx.createVideoContext('videos' + index);
       videoContextCurrent.play();
 
+      var objid = e.currentTarget.dataset.objid;
+      that.browse(1, objid)
     } else {
       common.login()
     }
   },
 
 
+  /**
+   * 0：官方视频；1：美味视频；2：美味菜谱
+   * 浏览记录
+   */
+  browse(objType, objid) {
+    console.log(app.globalData.memberId);
+    let that = this;
+    common.requestPost(api.browse, {
+      memberId: app.globalData.memberId,
+      objId: objid,
+      objType: objType,
+    }, res => {
 
+    })
+  },
 
 
 
@@ -321,26 +342,26 @@ Page({
     }
   },
 
-    sharePage () {
-        let that = this;
-        common.requestPost(api.relay, {
-            memberId: app.globalData.memberId,
-            objId: that.data.videoid,
-            objType: 0,
-        }, red => {
+  sharePage() {
+    let that = this;
+    common.requestPost(api.relay, {
+      memberId: app.globalData.memberId,
+      objId: that.data.videoid,
+      objType: 0,
+    }, red => {
 
-        });
-        return {
-            title: that.data.objName,
-            path: 'pages/delicious/deliciousList/deliciousList',
-            imageUrl: that.data.objPic,
-        }
-    },
+    });
+    return {
+      title: that.data.objName,
+      path: 'pages/delicious/deliciousList/deliciousList',
+      imageUrl: that.data.objPic,
+    }
+  },
 
 
-    onShareAppMessage: function() {
-        return this.sharePage();
-    },
+  onShareAppMessage: function() {
+    return this.sharePage();
+  },
 
 
 })

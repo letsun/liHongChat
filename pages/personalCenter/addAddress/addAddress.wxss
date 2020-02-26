@@ -69,8 +69,8 @@
 
 .save {
   width: 629rpx;
-  height: 70rpx;
-  line-height: 70rpx;
+  height: 90rpx;
+  line-height: 90rpx;
   text-align: center;
   color: #fff;
   border-radius: 10rpx;

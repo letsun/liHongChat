@@ -13,4 +13,6 @@
     </view>
 
   </view>
+  
+    <view class="zwsj" wx:if="{{joinList==''}}">暂无数据</view>
 </view>

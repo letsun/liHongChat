@@ -40,3 +40,9 @@
 .change {
   margin: 22rpx 0 11rpx;
 }
+
+.zwsj {
+  /* margin: auto; */
+  text-align: center;
+  line-height: 100rpx;
+}
