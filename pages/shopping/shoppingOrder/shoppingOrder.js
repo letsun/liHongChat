@@ -21,6 +21,7 @@ Page({
     orderRemark: '',
     isTipsShow: false,    // 是否弹出提示框
     tipsText: '',    // 提示框提示文字
+    addressInfo:''
   },
 
   /**
@@ -64,11 +65,15 @@ Page({
   //跳转到支付成功页面
   shoppingPayment() {
     // debugger
-
-    this.setData({
-      tipsText: '此次兑换将花费' + this.data.carinfo.integral + '积分,是否确认兑换？',
-      isTipsShow:true,
-    })
+    let that = this;
+    if (that.data.addressInfo == '') {
+      common.showToast('请填写收货地址', 'none', res => { })
+    }else{
+      this.setData({
+        tipsText: '此次兑换将花费' + this.data.carinfo.integral + '积分,是否确认兑换？',
+        isTipsShow: true,
+      })
+    }
   },
 
 

@@ -7,7 +7,7 @@
       <view class="give">点赞</view>
       <view class="like-time">{{item.dzTime}}</view>
     </view>
-    <view class="content">
+    <view class="content" bindtap="deliciousDetail" data-objid="{{item.objId}}" data-objtype="{{item.objType}}">
       <!--点赞内容-->
       <view class="text">
         <view class="noodles">{{item.objName}}</view>

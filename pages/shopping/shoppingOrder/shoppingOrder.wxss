@@ -104,11 +104,11 @@
   font-size: 23rpx;
   line-height: 23rpx;
   margin-top: 16rpx;
-  padding-left: 430rpx;
+  padding-left: 360rpx;
 }
 
 .together {
-  width: 110rpx;
+  width: 140rpx;
   height: 23rpx;
   text-align: right;
 }

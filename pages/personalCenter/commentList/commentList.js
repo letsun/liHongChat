@@ -60,5 +60,29 @@ Page({
     })
   },
 
+  //详情
+  deliciousDetail(e) {
+
+    let objid = e.currentTarget.dataset.objid;
+    let objtype = e.currentTarget.dataset.objtype;
+          wx.navigateTo({
+        url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + objid + '&objtype=' + objtype,
+      })
+    // if (e.currentTarget.dataset.objtype == 2) {
+
+    //   var objtype = 1;
+    //   wx.navigateTo({
+    //     url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + objid + '&objtype=' + objtype,
+    //   })
+    // } else if (e.currentTarget.dataset.objtype == 1) {
+    //   var objtype = 0;
+    //   wx.navigateTo({
+    //     url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + objid + '&objtype=' + objtype,
+    //   })
+    // } 
+
+
+  },
+
 
 })

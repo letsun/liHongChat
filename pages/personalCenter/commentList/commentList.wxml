@@ -5,7 +5,7 @@
     <!--评论内容-->
     <view class="give">评论：{{item.cmtDesc}}</view>
     <!--商品内容-->
-    <view class="content">
+    <view class="content" bindtap="deliciousDetail" data-objid="{{item.objId}}" data-objtype="{{item.objType}}">
       <view class="text">
         <!--商品-->
         <view class="noodles">{{item.objName}}</view>

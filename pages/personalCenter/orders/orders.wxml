@@ -9,7 +9,8 @@
   <view class="main">
     <view class="content" wx:for="{{orderList}}" wx:key=''>
       <view class="order">
-        <view class="serial" wx:if="{{indexa != 0}}">订单编号：{{item.orderNo}}</view>
+        <!-- <view class="serial" wx:if="{{indexa != 0}}">订单编号：{{item.orderNo}}</view> -->
+        <view class="serial">订单编号：{{item.orderNo}}</view>
         <view class="wait" wx:if="{{indexa == 0}}">等待发货</view>
         <view class="wait" wx:if="{{indexa == 1}}">已发货</view>
         <view class="wait" wx:if="{{indexa == 2}}">已签收</view>
@@ -40,14 +41,14 @@
             <view class="delivery">快递信息：</view>
             <view class="express">
               <view class="kdinfo">
-                快递公司：{{kdinfo.kdname}}
+                快递公司：{{item.kdinfolist.kdname}}
               </view>
-              <view class="position">快递单号：{{kdinfo.kdno}}</view>
+              <view class="position">快递单号：{{item.kdinfolist.kdno}}</view>
             </view>
 
           </view>
           <!-- -->
-          <view class="courier-item" wx:for="{{kdinfo.kdinfo}}" wx:key=''>
+          <view class="courier-item" wx:for="{{item.kdinfolist.kdinfo}}" wx:key=''>
             <view class="delivery">{{item.ftime}}</view>
             <view class="express">
              {{item.context}}

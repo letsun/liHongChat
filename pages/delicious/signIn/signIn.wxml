@@ -5,7 +5,7 @@
   <view class="header">
     <image class="signin" wx:if="{{siginInfo.todaySign==0}}" bindtap="siginBtn" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_40.png"></image>
     <image class="signin" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_43.png" wx:else></image>
-    <view class="header-text">您已签到{{siginInfo.continueDay}}天,请继续加油哦</view>
+    <view class="header-text">您已连续签到{{siginInfo.continueDay}}天,请继续加油哦</view>
   </view>
 
 

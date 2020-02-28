@@ -14,7 +14,6 @@ Page({
     pageNum: 1,
     orderList:'',
     hasNext:'false',
-
   },
 
 
@@ -46,7 +45,7 @@ Page({
     let orderNo = e.currentTarget.dataset.orderno;
     let index = e.currentTarget.dataset.index;
     let orderList = that.data.orderList;
-    
+    let kdinfolist = that.data.kdinfolist;
 
     common.requestPost(api.kdinfo + orderNo, {
       memberId: app.globalData.memberId
@@ -54,13 +53,17 @@ Page({
 
       if (orderList[index].kdinfo == false) {
         orderList[index].kdinfo = true;
+
       }else {
         orderList[index].kdinfo = false;
       }
+
+      orderList[index].kdinfolist = res.data.data
+
       
       that.setData({
         orderList: orderList,
-        kdinfo : res.data.data
+        // kdinfo: kdinfolist
       }) 
       
     })

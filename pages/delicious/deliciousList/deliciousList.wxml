@@ -83,7 +83,7 @@
       <view class="photo">
 
         <image class="controls-bg" catchtap="videos"  data-objid="{{item.objId}}" data-index="{{index}}" wx:if="{{!item.isPlays}}" src="{{item.objPic}}"></image>
-        <video style="height:320rpx;width:690rpx;" object-fit="fill" wx:if="{{item.isPlays}}" class="video" id="videos{{index}}" src="{{item.objVideo}}" show-center-play-btn="{{btnShow}}" bindfullscreenchange="fullscreenTap" custom-cache="{{false}}" controls></video>
+        <video style="height:370rpx;width:690rpx;" object-fit="fill" wx:if="{{item.isPlays}}" class="video" id="videos{{index}}" src="{{item.objVideo}}" show-center-play-btn="{{btnShow}}" bindfullscreenchange="fullscreenTap" custom-cache="{{false}}" controls></video>
       </view>
       <!-- 商品名称 -->
       <view class="details" catchtap="deliciousDetail" data-objId="{{item.objId}}" data-objType="{{0}}">
@@ -91,9 +91,9 @@
         <view class="thumbs">
           <!-- 商品点赞次数 -->
           <view class="tags">
-            <view class="old">
-              <image class="love" wx:if="{{item.isDianz!='true'}}"   catchtap="dianz" data-objId="{{item.objId}}" data-objType="{{1}}" data-index="{{index}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
-              <image class="love" wx:if="{{item.isDianz=='true'}}" catchtap="dianz" data-objId="{{item.objId}}" data-objType="{{1}}" data-index="{{index}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
+            <view class="old" catchtap="dianz" data-objId="{{item.objId}}" data-objType="{{1}}" data-index="{{index}}" >
+              <image class="love" wx:if="{{item.isDianz!='true'}}"   src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
+              <image class="love" wx:if="{{item.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
 
               <view class="tags-text">{{item.dianzNum}}</view>
             </view>

@@ -17,7 +17,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     let that = this;
     that.dianzList()
   },
@@ -25,7 +25,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     let that = this;
     that.setData({
       pageNum: that.data.pageNum + 1
@@ -39,7 +39,7 @@ Page({
     let that = this;
     let pageNum = that.data.pageNum;
 
-    common.requestPosts(api.dianzList+ app.globalData.memberId, {
+    common.requestPosts(api.dianzList + app.globalData.memberId, {
       pageNum: pageNum,
     }, res => {
       let dianzList = that.data.dianzList;
@@ -58,6 +58,30 @@ Page({
         }
       }
     })
+  },
+
+  //详情
+  deliciousDetail(e) {
+ 
+    let objid = e.currentTarget.dataset.objid;
+    if (e.currentTarget.dataset.objtype == 2) {
+
+      var objtype = 1 ;
+      wx.navigateTo({
+        url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + objid + '&objtype=' + objtype,
+      })
+    } else if (e.currentTarget.dataset.objtype == 1) {
+      var objtype = 0;
+      wx.navigateTo({
+        url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + objid + '&objtype=' + objtype,
+      })
+    } else if (e.currentTarget.dataset.objtype == 0) {
+      wx.switchTab({
+        url: '../../delicious/deliciousList/deliciousList' 
+      })
+    }
+
+
   },
 
 

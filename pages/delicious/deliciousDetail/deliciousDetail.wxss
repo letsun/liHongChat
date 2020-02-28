@@ -83,7 +83,7 @@
 /* 说明 */
 .main {
   width: 638rpx;
-  font-size: 22rpx;
+  font-size: 24rpx;
   line-height: 32rpx;
   color: #666;
   margin: 22rpx 0 0 25rpx;
@@ -91,6 +91,8 @@
 
 rich-text {
   width: 100%;
+  font-size: 26rpx;
+  line-height: 40rpx;
 }
 
 rich-text img {

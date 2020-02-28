@@ -32,15 +32,29 @@ Page({
     let that = this;
 
     that.addressList()
+
   },
 
   //收货地址列表
   addressList() {
     let that = this;
-    common.requestPost(api.addressList+ app.globalData.memberId, {}, res => {
+    common.requestPost(api.addressList + app.globalData.memberId, {}, res => {
       that.setData({
         list: res.data.data
       })
+
+      var pages = getCurrentPages(); // 获取页面栈
+      var currPage = pages[pages.length - 1]; // 当前页面
+      var prevPage = pages[pages.length - 2]; // 上一个页面
+
+      if (that.data.types == 1) {
+
+        if (that.data.list == '') {
+          prevPage.setData({
+            addressInfo: ''
+          })
+        }
+      }
     })
   },
 
@@ -48,13 +62,13 @@ Page({
   addressDel(e) {
     let that = this;
     let receiveId = e.currentTarget.dataset.id;
-    common.showModal('提示','是否删除地址',confirm=>{
+    common.showModal('提示', '你确定删除地址吗？', confirm => {
       common.requestPost(api.addressDel + app.globalData.memberId, {
         receiveId: receiveId
       }, res => {
         that.addressList()
       })
-    },cancel=>{})
+    }, cancel => {})
   },
 
 
@@ -99,9 +113,12 @@ Page({
     if (that.data.types == 1) {
       /** 设置数据 这里面的 value 是上一页你想被携带过去的数据，
   后面是本方法里你得到的数据，我这里是detail.value，根据自己实际情况设置 */
+
       prevPage.setData({
         addressInfo: list[index]
       })
+
+
       wx.navigateBack({
         delta: 1
       })

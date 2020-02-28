@@ -121,7 +121,7 @@ swiper {
 .recipe {
   position: relative;
   width: 690rpx;
-  height: 420rpx;
+
   margin: 0 auto 33rpx;
   border-radius: 10rpx;
   border: 1px solid #f3f3f3;
@@ -129,14 +129,14 @@ swiper {
 }
 
 .photo {
-  height: 320rpx;
+  height: 370rpx;
   width: 690rpx;
 }
 
 /*商品图片*/
 .controls-bg {
   width: 690rpx;
-  height: 313rpx;
+  height: 370rpx;
   border-radius: 10rpx 10rpx 0 0;
 }
 
@@ -223,7 +223,7 @@ swiper {
 .footer {
   position: fixed;
   right: 0;
-  bottom: 25rpx;
+  bottom: -20rpx;
   z-index: 111;
 }
 
