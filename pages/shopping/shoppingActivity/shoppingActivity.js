@@ -185,6 +185,27 @@ Page({
     })
   },
 
+  //跳转到提交订单页面
+  shoppingOrder() {
+    let that = this;
+    app.globalData.goodsId = that.data.resultData.goodsId;
+    var carinfo = {
+      integral: 0, //合计积分
+      num: 1, //商品数量
+      goodsImgs: that.data.resultData.prizeImg, //商品图片
+      goodsName: that.data.resultData.prizeName, //商品名称
+      goodsScore: that.data.resultData.prizeAmount, // 商品积分
+      memScore: that.data.resultData.memScore, //可使用积分
+      orderCategory:1                         //积分传1
+    }
+    carinfo = JSON.stringify(carinfo);
+
+    wx.navigateTo({
+      url: "../../shopping/shoppingOrder/shoppingOrder?carinfo=" + carinfo
+    })
+  },
+
+
 
   // 跳转到个人中心
   toPersonCenter() {

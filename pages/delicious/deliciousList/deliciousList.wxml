@@ -7,13 +7,13 @@
 
   <view class="main">
     <!-- 头部视频播放按钮 -->
-    <swiper autoplay="{{true}}" interval="3000" circular="{{true}}" bindchange="bindchange">
-      <swiper-item  wx:for="{{mwktLista}}" wx:key="">
-        <image class="dishes" src="{{item.objPic}}" data-objid="{{item.objId}}" catchtap="video" wx:if="{{!isPlay}}"></image>
-        <video id="video1" class="dishes" src="{{item.objVideo}}" wx:if="{{isPlay}}" controls></video>
+    <swiper autoplay="{{autoplay}}" interval="3000" circular="{{true}}"  bindchange="bindchange">
+      <swiper-item  wx:for="{{mwktLista}}" wx:key="" bindtouchend='touchEnd' data-index="{{index}}">
+        <image class="dishes" src="{{item.objPic}}" data-objid="{{item.objId}}" data-index="{{index}}" catchtap="video" wx:if="{{!item.isPlay}}"></image>
+        <video  id="video{{index}}"  class="dishes" src="{{item.objVideo}}" wx:if="{{item.isPlay}}" controls></video>
         <!-- <image class="start" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_24.png"></image> -->
         <!-- 点赞次数和浏览次数 -->
-        <view class="like" wx:if="{{!isPlay}}">
+        <view class="like" wx:if="{{!item.isPlay}}">
           <!-- 点赞次数 -->
           <view class="active">
             <image class="love-img" wx:if="{{item.isDianz!='true'}}" catchtap="dianz" data-objId="{{item.objId}}" data-objType="{{0}}" data-index="{{index}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_25.png"></image>

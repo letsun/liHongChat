@@ -56,14 +56,19 @@
   left: 184rpx;
   top: 41rpx;
   font-size: 33rpx;
-  line-height: 33rpx;
+  line-height: 34rpx;
+  width: 260rpx;
+  display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+overflow: hidden;
 }
 
 .integral {
   position: absolute;
   left: 473rpx;
   top: 30rpx;
-  width: 188rpx;
+  padding: 0 20rpx;
   height: 56rpx;
   font-size: 20rpx;
   line-height: 56rpx;

@@ -137,9 +137,15 @@ Page({
 
   //九宫格页面
   shoppingActivity() {
-    wx.navigateTo({
-      url: "../../shopping/shoppingActivity/shoppingActivity"
-    })
+    let that = this;
+    if (app.globalData.memberId > 0){
+      wx.navigateTo({
+        url: "../../shopping/shoppingActivity/shoppingActivity"
+      })
+    } else {
+      common.login()
+    }
+
   },
 
 

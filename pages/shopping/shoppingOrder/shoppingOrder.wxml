@@ -27,7 +27,7 @@
     <view class="list">订单清单</view>
     <!--订单清单内容-->
     <view class="details">
-      <image class="shop" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_1.png"></image>
+      <image class="shop" src="{{carinfo.goodsImgs}}"></image>
       <view class="shopping">
         <view class="good">{{carinfo.goodsName}}</view>
         <view class="integral">{{carinfo.goodsScore}}积分</view>

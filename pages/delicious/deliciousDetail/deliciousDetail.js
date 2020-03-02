@@ -16,7 +16,7 @@ Page({
 
     hasNext: '',
     deliciousDetail: '',
-    commentList:''
+    commentList: ''
   },
 
   /**
@@ -95,14 +95,14 @@ Page({
 
         wx.setNavigationBarTitle({
           title: res.data.data.recipesName,
-        }) 
+        })
 
-      }else{
+      } else {
         wx.setNavigationBarTitle({
           title: res.data.data.videoName,
-        }) 
+        })
       }
-      if(type==0) {
+      if (type == 0) {
         if (that.data.deliciousDetail == '') {
           that.setData({
             deliciousDetail: res.data.data,
@@ -123,7 +123,7 @@ Page({
               recipesDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
             })
           }
-         
+
         } else {
           let commentList = that.data.commentList;
           if (that.data.hasNext == 'true') {
@@ -134,7 +134,7 @@ Page({
           }
         }
 
-      }else {
+      } else {
 
         that.setData({
           deliciousDetail: res.data.data,
@@ -184,7 +184,7 @@ Page({
   comment() {
     let that = this;
     if (that.data.commentDesc == '' || !that.data.commentDesc) {
-      common.showToast('请输入评论','none',function(){
+      common.showToast('请输入评论', 'none', function() {
 
       });
       return false;
@@ -198,8 +198,8 @@ Page({
       that.setData({
         // deliciousDetail:'',
         // commentList:'',
-        commentDesc:'',
-        pageNum:1
+        commentDesc: '',
+        pageNum: 1
       })
 
       that.deliciousDetail(1) //详情
@@ -273,7 +273,7 @@ Page({
 
       }
 
-      common.showToast(res.data.msg, 'none', res => { })
+      common.showToast(res.data.msg, 'none', res => {})
     })
 
   },
@@ -307,47 +307,47 @@ Page({
   },
 
 
-    sharePage () {
-        let that = this;
-        let title = '';
-        let pic = '';
-        let objType;
-        if (that.data.objType == 1) {
-            title = that.data.deliciousDetail.recipesName;
-            pic = that.data.deliciousDetail.recipesPic;
-          objType = 2;
-        } else if (that.data.objType == 0) {
-            title = that.data.deliciousDetail.videoName;
-            pic = that.data.deliciousDetail.videoPic;
-          objType = 1
-        }
+  sharePage() {
+    let that = this;
+    let title = '';
+    let pic = '';
+    let objType;
+    if (that.data.objType == 1) {
+      title = that.data.deliciousDetail.recipesName;
+      pic = that.data.deliciousDetail.recipesPic;
+      objType = 2;
+    } else if (that.data.objType == 0) {
+      title = that.data.deliciousDetail.videoName;
+      pic = that.data.deliciousDetail.videoPic;
+      objType = 1
+    }
 
-        common.requestPost(api.relay, {
-            memberId: app.globalData.memberId,
-            objId: that.data.objid,
-            objType: objType,
-        }, red => {
+    common.requestPost(api.relay, {
+      memberId: app.globalData.memberId,
+      objId: that.data.objid,
+      objType: objType,
+    }, red => {
 
-        });
-        return {
-            title: title,
-            path: 'pages/delicious/deliciousDetail/deliciousDetail' + '?objid=' + that.data.objid + '&objtype=' + objType,
-            imageUrl: pic,
-        }
-    },
-
-
-    onShareAppMessage: function() {
-        return this.sharePage();
-    },
+    });
+    return {
+      title: title,
+      path: 'pages/delicious/deliciousDetail/deliciousDetail' + '?objid=' + that.data.objid + '&objtype=' + objType,
+      imageUrl: pic,
+    }
+  },
 
 
-    // 跳转到生成海报
-    toPic () {
-        let that = this;
-        wx.navigateTo({
-            url: '../createPic/createPic?objid=' + that.data.objid + '&objtype=' + that.data.objType
-        })
-    },
+  onShareAppMessage: function() {
+    return this.sharePage();
+  },
+
+
+  // 跳转到生成海报
+  toPic() {
+    let that = this;
+    wx.navigateTo({
+      url: '../createPic/createPic?objid=' + that.data.objid + '&objtype=' + that.data.objType
+    })
+  },
 
 })

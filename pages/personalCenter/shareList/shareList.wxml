@@ -7,7 +7,7 @@
       <image class="share-img" src="{{img[0]}}" mode="widthFix"></image>
     </view>
     <!--内容-->
-    <view class="content">
+    <view class="content" bindtap="deliciousDetail"  data-objid="{{item.objId}}" data-objtype="{{item.objType}}">
       <view class="text">
         <view class="noodles">{{item.objName}}</view>
         <image class="img" src="{{item.objPic}}"></image>

@@ -3,13 +3,14 @@
 .container {
     position: absolute;
     left: 0;
-    top: 50%;
+    /* top: 50%; */
+    top: 0;
     z-index: 1;
 
     width: 100%;
     height: auto;
 
-    -webkit-transform: translateY(-50%);
+    /* -webkit-transform: translateY(-50%); */
 }
 .slider-code .title{
 	margin-left: 24rpx;

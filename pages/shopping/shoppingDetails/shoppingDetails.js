@@ -11,7 +11,7 @@ Page({
    */
   data: {
     num: 1,
-    integral: 10,
+    integral: '',
   },
 
   /**
@@ -25,19 +25,19 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
     let that = this;
     that.shoppingDetail()
     let memberId = app.globalData.memberId;
     that.setData({
       memberId: memberId
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+
   },
 
 
@@ -66,7 +66,7 @@ Page({
         goodsInfo: res.data.data,
         jsonProp: jsonProp,
         goodsDesc: goodsDesc,
-
+        integral: res.data.data.goodsScore
       })
     })
   },
@@ -83,7 +83,8 @@ Page({
         goodsImgs: that.data.goodsInfo.goodsImgs[0].picUrl, //商品图片
         goodsName: that.data.goodsInfo.goodsName, //商品名称 
         goodsScore: that.data.goodsInfo.goodsScore, // 商品积分
-        memScore: that.data.goodsInfo.memScore //可使用积分
+        memScore: that.data.goodsInfo.memScore, //可使用积分
+        orderCategory: 0                         //商品传0
       }
       carinfo = JSON.stringify(carinfo);
       if (that.data.num <= 0) {

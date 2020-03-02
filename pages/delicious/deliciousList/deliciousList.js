@@ -14,7 +14,7 @@ Page({
     mwktLista: '',
     mwktListb: '',
     mwktListc: '',
-
+    autoplay: true,
   },
 
 
@@ -52,13 +52,24 @@ Page({
 
   // 监听轮播图
   bindchange(e) {
+    let that = this;
     let index = e.detail.current;
-    this.setData({
+    let mwktLista = that.data.mwktLista;
+    for (var i = 0; i < mwktLista.length; i++) {
+      mwktLista[i].isPlay = false;
+      var videoContextCurrent = wx.createVideoContext('video' + i);
+      videoContextCurrent.stop();
+    }
+
+    that.setData({
       videoid: this.data.mwktLista[index].objId,
       objName: this.data.mwktLista[index].objName,
       objPic: this.data.mwktLista[index].objPic,
+      mwktLista: mwktLista,
+      autoplay: true
     })
   },
+
 
 
 
@@ -95,12 +106,10 @@ Page({
     let that = this;
 
     if (mwktType == 0) {
-
       var pageNum = 0;
     } else {
       var pageNum = that.data.pageNum;
     }
-
 
     common.requestPosts(api.deliciousList, {
       memberId: app.globalData.memberId,
@@ -109,8 +118,13 @@ Page({
     }, res => {
 
       if (mwktType == 0) {
+
+        var mwktLista = res.data.data.mwktList;
+        for (var i in mwktLista) {
+          mwktLista[i].isPlay = false
+        }
         that.setData({
-          mwktLista: res.data.data.mwktList
+          mwktLista: mwktLista
         })
       } else if (mwktType == 1) {
 
@@ -238,15 +252,30 @@ Page({
   },
 
 
-  //点击播放视频
+  //点击轮播图播放视频
   video(e) {
-    console.log(e)
     let that = this;
+    let index = e.currentTarget.dataset.index;
+    let mwktLista = that.data.mwktLista;
     if (app.globalData.memberId > 0) {
+      // this.setData({
+      //   isPlay: true,
+      // })
+      mwktLista[index].isPlay = true;
+
+      for (var i = 0; i < mwktLista.length; i++) {
+        if (i != index) {
+          mwktLista[i].isPlay = false;
+          var videoContextCurrent = wx.createVideoContext('video' + i);
+          videoContextCurrent.stop();
+        }
+      }
       this.setData({
-        isPlay: true,
+        mwktLista: mwktLista,
+        autoplay: false
       })
-      var videoContextCurrent = wx.createVideoContext('video1');
+
+      var videoContextCurrent = wx.createVideoContext('video' + index);
       videoContextCurrent.play();
 
       var objid = e.currentTarget.dataset.objid;
@@ -257,7 +286,6 @@ Page({
 
 
   },
-
 
 
   //点击美味视频
@@ -296,7 +324,6 @@ Page({
    * 浏览记录
    */
   browse(objType, objid) {
-    console.log(app.globalData.memberId);
     let that = this;
     common.requestPost(api.browse, {
       memberId: app.globalData.memberId,

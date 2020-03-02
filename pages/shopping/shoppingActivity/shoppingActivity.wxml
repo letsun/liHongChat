@@ -63,10 +63,15 @@
       </view>
 
       <view class="btn-wra btn-wra1">
-        <image class="result-btn"  catchtap="toPersonCenter" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_82.png"></image>
+        <image class="result-btn" wx:if="{{resultData.prizeType != 5}}"  catchtap="toPersonCenter"  mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_82.png"></image>
+
+        <block wx:else>
+          <view class="linqu" catchtap="shoppingOrder">点击领取</view>
+          <view class="fangqi" catchtap="closeResult">放弃</view>
+        </block>
       </view>
 
-      <image class="close-result" mode="widthFix" catchtap="closeResult" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_83.png"></image>
+      <image class="close-result" mode="widthFix" catchtap="closeResult"  wx:if="{{resultData.prizeType != 5}}"src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_83.png"></image>
     </view>
   </view>
 

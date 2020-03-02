@@ -113,7 +113,7 @@ Page({
 
     obj.goodsList = goodsList;
     obj.mallType = 1;
-    obj.orderCategory = 0;
+    obj.orderCategory = that.data.carinfo.orderCategory;
     obj.orderRemark = that.data.orderRemark;
     obj.orderType = 0;
     obj.payScore = that.data.carinfo.integral;
