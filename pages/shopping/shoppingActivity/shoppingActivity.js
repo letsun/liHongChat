@@ -189,6 +189,7 @@ Page({
   shoppingOrder() {
     let that = this;
     app.globalData.goodsId = that.data.resultData.goodsId;
+    app.globalData.companyId = that.data.resultData.companyId;
     var carinfo = {
       integral: 0, //合计积分
       num: 1, //商品数量
