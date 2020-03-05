@@ -353,6 +353,27 @@ function login(callback) {
   })
 }
 
+/**
+ * 页面访问uv信息
+ * 
+ */
+function uvpv(activityId, pageName) {
+  var pages = getCurrentPages() //获取加载的页面
+  var currentPage = pages[pages.length - 1] //获取当前页面的对象
+  var url = currentPage.route //当前页面url
+  requestPost(api.uvpv, {
+    activityId: '',	//活动ID	number	如果是一物一码活动，需要传此ID。 可以为空
+    clientType: '0',	//	客户端类型	number	0：小程序；1：H5（小程序默认传： 0）
+    memberId: app.globalData.memberId,	//	会员ID	number	会员ID，如果授权登录了，需要传。否则可以为空
+    nickName: app.globalData.nickName,	//	会员昵称	number	会员昵称，如果授权登录了，需要传，否则可以为空
+    openId: app.globalData.idData.openid,	//	小程序openid	string	小程序openid，必须传
+    pageName: pageName,	//	页面名称	string	页面名称，必须传（如：美味菜谱详情页，积分商城首页等）
+    pageUrl: url,	//	页面路径	string	页面路径url，必须传（如：/ page / jifen） 
+  }, res => {
+
+  })
+}
+
 
 module.exports = {
   showModal: showModal,
@@ -363,5 +384,6 @@ module.exports = {
   requestGet: requestGet,
   requestGets: requestGets,
   getopenid: getopenid,
-  login: login
+  login: login,
+  uvpv: uvpv
 }

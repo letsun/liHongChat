@@ -32,36 +32,42 @@ Page({
     let that = this;
 
     that.addressList()
-
+    common.uvpv('', '收货地址页') //页面访问uv信息
   },
 
   //收货地址列表
   addressList() {
     let that = this;
+
+
     common.requestPost(api.addressList + app.globalData.memberId, {}, res => {
       that.setData({
         list: res.data.data
       })
-
-      if (that.data.types == 1) {
-
-        if (that.data.list == '') {
-          prevPage.setData({
-            addressInfo: ''
-          })
-        }
-      }
     })
   },
 
   //删除收货地址
   addressDel(e) {
     let that = this;
+    let pages = getCurrentPages(); // 当前页的数据，可以输出来看看有什么东西
+    let prevPage = pages[pages.length - 2]; // 上一页的数据，也可以输出来看看有什么东西
     let receiveId = e.currentTarget.dataset.id;
+
+    console.log()
     common.showModal('提示', '你确定删除地址吗？', confirm => {
       common.requestPost(api.addressDel + app.globalData.memberId, {
         receiveId: receiveId
       }, res => {
+
+        if (that.data.types == 1) {
+          if (receiveId == prevPage.__data__.addressInfo.id) {
+            prevPage.setData({
+              addressInfo: ''
+            })
+          }
+        }
+
         that.addressList()
       })
     }, cancel => {})

@@ -21,6 +21,7 @@ Page({
   onShow: function () {
     let that = this;
     that.joinList()
+    common.uvpv('', '抽奖记录页') //页面访问uv信息
   },
 
   /**

@@ -48,16 +48,40 @@ Page({
     ],
   },
 
+  onLoad() {
+
+    console.log(1)
+    let that = this;
+    common.login(function () {
+      let memberId = app.globalData.memberId;
+      if (app.globalData.memberId > 0) {
+        that.userInfo();
+
+        that.setData({
+          memberId: memberId,
+        })
+      }
+    })
+  },
+
   onShow() {
+    console.log(2)
     let that = this;
     let memberId = app.globalData.memberId;
+    console.log(memberId)
     if (app.globalData.memberId>0) {
       that.userInfo();
-
       that.setData({
         memberId: memberId,
       })
     }
+    console.log(app.globalData)
+    common.getopenid(res => {
+      // console.log(res)
+      app.globalData.idData.openid = res.data.result.openid
+      common.uvpv('', '个人中心首页') //页面访问uv信息
+    })
+
   },
 
   //获取用户信息
@@ -174,17 +198,7 @@ Page({
     }
   },
 
-  onLoad () {
-    let that = this;
-    common.login(function () {
-      let memberId = app.globalData.memberId;
-      if (app.globalData.memberId > 0) {
-        that.userInfo();
 
-        that.setData({
-          memberId: memberId,
-        })
-      }
-    })
-  }
+
+
 })

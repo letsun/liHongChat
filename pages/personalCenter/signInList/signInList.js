@@ -29,6 +29,8 @@ Page({
       month: month
     })
     that.calendar();
+
+    common.uvpv('', '签到记录页') //页面访问uv信息
   },
 
   //日历签到记录

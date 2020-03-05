@@ -42,6 +42,13 @@ Page({
 
     that.banner(); //轮播图
     that.shoppingcategory(); //商品分类
+
+
+    common.getopenid(res => {
+      // console.log(res)
+      app.globalData.idData.openid = res.data.result.openid
+      common.uvpv('', '积分商城首页') //页面访问uv信息
+    })
   },
 
 

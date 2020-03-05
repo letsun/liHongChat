@@ -23,6 +23,7 @@ Page({
   onShow: function() {
     let that = this;
     that.orderList();
+    common.uvpv('', '我的订单页') //页面访问uv信息
   },
 
 

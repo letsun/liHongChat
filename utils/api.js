@@ -51,6 +51,7 @@ var api = {
   infoSub: ip + '/api/member/finish/info/', // 完善个人资料
   lotter: ip + '/qdwz/lihong/xcx/lotter', // 一物一码抽奖接口
   relay: ip + '/api/mwkt/video/recipes/relay', // 美味课堂分享接口
+  uvpv: ip + '/api/uvpv/submit/info',
 };
 
 module.exports = api;

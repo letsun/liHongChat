@@ -48,6 +48,14 @@ Page({
     } else {
       that.deliciousList(1);
     }
+
+
+    common.getopenid(res => {
+      // console.log(res)
+      app.globalData.idData.openid = res.data.result.openid
+      common.uvpv('', '美味课堂首页') //页面访问uv信息
+    })
+
   },
 
   // 监听轮播图

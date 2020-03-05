@@ -25,7 +25,7 @@
         </view>
       </view>
       <view class="total">
-        <view class="kdinfo" wx:if="{{indexa != 0}}" bindtap="kdinfo" data-orderno="{{item.orderNo}}" data-index="{{index}}">查看物流信息</view>
+        <view class="kdinfo" wx:if="{{indexa != 0}}" bindtap="kdinfo" data-orderno="{{item.orderNo}}" data-index="{{index}}"> <view class="kdinfodetail">查看物流信息</view> </view>
         <view class="Integral">合计：{{item.payScore}}积分</view>
       </view>
       <!--收货信息-->

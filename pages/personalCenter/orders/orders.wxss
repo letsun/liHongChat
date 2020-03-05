@@ -173,7 +173,6 @@
 
 .delivery {
   width: 130rpx;
-
   position: relative;
 }
 
@@ -186,9 +185,18 @@
   padding-right: 20rpx;
 }
 
+.kdinfodetail {
+  padding: 5rpx 10rpx;
+  border: 1rpx solid #999;
+  display: inline-block;
+  line-height: 20px;
+  border-radius: 10rpx;
+}
+
 .kdinfo span:first-child {
   padding-right: 20rpx;
 }
+
 .zwsj {
   /* margin: auto; */
   text-align: center;

@@ -20,6 +20,7 @@ Page({
   onShow: function () {
     let that = this;
     that.integralList()
+    common.uvpv('', '积分记录页') //页面访问uv信息
   },
 
 

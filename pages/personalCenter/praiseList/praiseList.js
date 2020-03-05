@@ -20,6 +20,7 @@ Page({
   onShow: function() {
     let that = this;
     that.dianzList()
+    common.uvpv('', '点赞记录页') //页面访问uv信息
   },
 
   /**

@@ -18,7 +18,13 @@ Page({
   },
 
   onShow() {
-    console.log(app)
+    common.getopenid(res=>{
+      // console.log(res)
+      app.globalData.idData.openid = res.data.result.openid
+      common.uvpv('', '一物一码活动主页') //页面访问uv信息
+    })
+
+    
   },
 
   // 获取地理位置
@@ -140,7 +146,7 @@ Page({
       town: town,
       unionId: unionId,
     }, res => {
-      // type  1  2  3中积分   
+      // type  1现金红包  2  3中积分   
 
       let lottery = res.data.data
       that.setData({

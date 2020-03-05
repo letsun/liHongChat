@@ -21,7 +21,8 @@ Page({
    */
   onShow: function() {
     let that = this;
-    that.relayList()
+    that.relayList();
+    common.uvpv('', '分享记录页') //页面访问uv信息
   },
 
   /**

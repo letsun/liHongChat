@@ -25,6 +25,8 @@ Page({
     if (app.globalData.memberId > 0) {
       that.userInfo();
     }
+
+    common.uvpv('', '一物一码记录页') //页面访问uv信息
   },
 
   //获取用户信息

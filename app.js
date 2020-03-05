@@ -13,6 +13,16 @@ App({
       unionId: "",
     },
     goodsId:'',//商品id
-    companyId:'' //企业id
+    companyId:'', //企业id
+    nickName:'',
+    addressComponent:{
+      city:'',
+      district:'',
+      province: '',
+      street: '',
+      town: '',
+    },
+
+    formatted_address:''
   }
 })

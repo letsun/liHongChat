@@ -35,14 +35,14 @@ Page({
     });
 
     if (options.objtype == 0) {
+      common.uvpv('', '美味视频详情页') //页面访问uv信息
       that.browse(1)
     } else if (options.objtype == 1) {
+      common.uvpv('', '美味菜谱详情页') //页面访问uv信息
       that.browse(2)
     } else if (options.objtype == 2) {
       that.browse(0) //浏览记录
     }
-
-
   },
 
 

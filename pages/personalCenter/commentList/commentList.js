@@ -19,7 +19,8 @@ Page({
    */
   onShow: function () {
     let that = this;
-    that.commentList()
+    that.commentList();
+    common.uvpv('', '评论记录页') //页面访问uv信息
   },
 
   /**

@@ -7,28 +7,38 @@
   <!--导航-->
   <scroll-view scroll-x="{{true}}" class="nav">
     <view class="goods" data-id="{{index}}" data-cateid="{{item.cateId}}" catchtap="tabFunc" wx:for="{{shoppingcategory}}" wx:key="{{index}}">
-      <view class="shopping {{indexa == index ? 'active' : ''}}" >{{item.cateName}}</view>
+      <view class="shopping {{indexa == index ? 'active' : ''}}">{{item.cateName}}</view>
       <image class="{{indexa == index ? 'scoll' : 'img'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_30.png"></image>
     </view>
   </scroll-view>
   <!--商品内容-->
   <view class="content">
-    <view class="shop" wx:for="{{goodsList}}"  catchtap="shoppingDetails" data-goodsid="{{item.goodsId}}"  wx:key="">
-      <image class="shop-img" src="{{item.imagesUrl}}"></image>
-      <view class="text">
-        <!-- 商品标题 -->
-        <view class="title">{{item.goodsName}}</view>
-        <view class="integral">
-          <!-- 商品需要的积分 -->
-          <view class="need">
-            <view class="number">{{item.goodsScore}}</view>
-            <view class="small">积分</view>
+
+    <block wx:if="{{goodsList!=''}}">
+      <view class="shop" wx:for="{{goodsList}}" catchtap="shoppingDetails" data-goodsid="{{item.goodsId}}" wx:key="">
+        <image class="shop-img" src="{{item.imagesUrl}}"></image>
+        <view class="text">
+          <!-- 商品标题 -->
+          <view class="title">{{item.goodsName}}</view>
+          <view class="integral">
+            <!-- 商品需要的积分 -->
+            <view class="need">
+              <view class="number">{{item.goodsScore}}</view>
+              <view class="small">积分</view>
+            </view>
+            <!-- 商品兑换 -->
+            <view class="exchange">兑换</view>
           </view>
-          <!-- 商品兑换 -->
-          <view class="exchange">兑换</view>
         </view>
       </view>
-    </view>
+
+    </block>
+
+    <block wx:else>
+      <view class="tisi">
+        暂无兑换商品，敬请期待......
+      </view>
+    </block>
 
   </view>
 </view>

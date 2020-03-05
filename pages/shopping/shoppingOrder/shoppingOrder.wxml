@@ -37,11 +37,11 @@
     <!--订单清单合计-->
     <view class="total">
       <view class="together">小计：</view>
-      <view class="total-integral">{{carinfo.integral}}积分</view>
+      <view class="total-integral">{{carinfo.integral}} 积分</view>
     </view>
     <view class="total">
       <view class="together">商品合计：</view>
-      <view class="total-integral">{{carinfo.integral}}积分</view>
+      <view class="total-integral">{{carinfo.integral}} 积分</view>
     </view>
   </view>
   <!--弹出框-->

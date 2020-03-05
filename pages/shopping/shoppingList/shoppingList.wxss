@@ -44,7 +44,7 @@
 }
 
 .shopping {
-  font-size: 25rpx;
+  font-size: 26rpx;
   line-height: 28rpx;
   color: #999;
   margin: 0 25rpx;
@@ -142,4 +142,10 @@
   border-radius: 10rpx;
   background-image: linear-gradient(to right, #f63200 , #fbba0a);
   /* margin-left: 133rpx; */
+}
+
+.tisi {
+  text-align: center;
+  /* padding-top: 200rpx; */
+  font-size: 24rpx;
 }

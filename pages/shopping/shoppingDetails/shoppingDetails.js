@@ -18,7 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(options)
 
+        
   },
 
   /**
@@ -37,6 +39,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    common.uvpv('', '商品详情页') //页面访问uv信息
 
   },
 

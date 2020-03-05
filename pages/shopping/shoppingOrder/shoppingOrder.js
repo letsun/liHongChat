@@ -33,6 +33,8 @@ Page({
     that.setData({
       carinfo: carinfo
     })
+
+    common.uvpv('', '提交订单页') //页面访问uv信息
   },
 
   /**

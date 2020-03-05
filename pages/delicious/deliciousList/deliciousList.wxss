@@ -174,7 +174,7 @@ swiper {
   font-size: 25rpx;
   line-height: 25rpx;
   font-weight: 600;
-  padding: 20rpx 0 19rpx 30rpx;
+  padding: 20rpx 0 0 30rpx;
 }
 
 .thumbs {
@@ -189,6 +189,7 @@ swiper {
   line-height: 24rpx;
   color: #999;
   padding-left: 35rpx;
+  padding-top: 20rpx;
 }
 
 .old,

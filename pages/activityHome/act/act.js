@@ -5,12 +5,15 @@ var bmap = require('../../../utils/bmap-wx.min.js');
 var BMap;
 Page({
   data: {
+    latitude: '',
+    longitude: '',
     isShakeShow: false,
     isResultShow: false,
     isRuleShow: false,
     isShake: true,
     isAni: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
+    code:''
   },
 
   onLoad(options) {
@@ -87,18 +90,24 @@ Page({
 
   // 打开摇一摇弹窗
   openShake() {
-    // this.setData({
-    //     isShakeShow: true,
-    // })
+    let that = this;
 
-    if (app.globalData.memberId > 0) {
-      // this.lottery()
-      this.setData({
-        isShakeShow: true,
-      })
-    } else {
-      common.login();
+    if (that.data.code != '') {
+
+
+      if (app.globalData.memberId > 0) {
+        // this.lottery()
+        this.setData({
+          isShakeShow: true,
+        })
+      } else {
+        common.login();
+      }
+    }else {
+      common.showToast('请扫描二维码参与活动','none',res=>{})
     }
+
+
   },
 
   // 摇一摇
@@ -181,7 +190,7 @@ Page({
       unionId: unionId,
     }, res => {
       // type  1  2  3中积分   
-
+      console.log(res)
       let lottery = res.data.data
       that.setData({
         isResultShow: true,
@@ -197,6 +206,7 @@ Page({
 
   // 扫一扫
   scanFunc() {
+    // debugger
     var that = this;
     wx.scanCode({
       onlyFromCamera: true,
@@ -229,7 +239,12 @@ Page({
     } else {
       common.login()
     }
-
+  },
+  onHide() {
+    let that = this;
+    that.setData({
+      // code: '',
+      // isShakeShow: false,
+    })
   }
-
 })
