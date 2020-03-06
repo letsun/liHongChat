@@ -2,6 +2,7 @@ const app = getApp();
 const common = require("../../../utils/common.js");
 const api = require("../../../utils/api.js");
 var bmap = require('../../../utils/bmap-wx.min.js');
+const utilMd5 = require("../../../utils/md5.js");
 var BMap;
 Page({
   data: {
@@ -13,7 +14,12 @@ Page({
     isShake: true,
     isAni: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
-    code:''
+    code:'',
+    //code: 'Gjups04WM6S7GB38pn6783CBE',
+
+    // https://test-qr.cresz.com.cn/Gjups44WM6PXLW93pn33CED6A
+    //   https://test-qr.cresz.com.cn/Gjups04WM6S7GB38pn6783CBE
+    // https://test-qr.cresz.com.cn/Gjups64WM6T6GX38pn2875974
   },
 
   onLoad(options) {
@@ -28,9 +34,7 @@ Page({
 
       console.log(code);
     }
-    // app.login(function () {
-    //
-    // })
+
 
     BMap = new bmap.BMapWX({
       ak: that.data.ak
@@ -53,7 +57,12 @@ Page({
   },
 
   onShow() {
-    console.log(app)
+    // console.log(app)
+    common.getopenid(res => {
+      // console.log(res)
+      app.globalData.idData.openid = res.data.result.openid
+      common.uvpv('', '一物一码活动主页') //页面访问uv信息
+    })
   },
 
   // 获取地理位置
@@ -93,18 +102,16 @@ Page({
     let that = this;
 
     if (that.data.code != '') {
-
-
       if (app.globalData.memberId > 0) {
-        // this.lottery()
-        this.setData({
-          isShakeShow: true,
-        })
+        this.lottery()
+        // this.setData({
+        //   isShakeShow: true,
+        // })
       } else {
         common.login();
       }
-    }else {
-      common.showToast('请扫描二维码参与活动','none',res=>{})
+    } else {
+      common.showToast('请扫描二维码参与活动', 'none', res => {})
     }
 
 
@@ -121,38 +128,31 @@ Page({
     const innerAudioContextEnd = wx.createInnerAudioContext();
     innerAudioContextStart.src = 'https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/suc.mp3';
     innerAudioContextEnd.src = 'https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/suc2.mp3';
-    if (that.data.isShake) {
-      that.setData({
-        isShake: false,
-      });
-      wx.onAccelerometerChange(function(e) {
-        let curTime = new Date().getTime(); //获取当前时间戳
-        let diffTime = curTime - lastTime; //获取摇动的间隔
 
-        if (diffTime > 400) {
-          that.setData({
-            x: e.x,
-            y: e.y,
-            z: e.z,
-          });
-          lastTime = curTime; //记录上一次摇动的时间
-          if (e.x > 1 || e.y > 1 || e.z > 1) {
-            console.log(e.x, e.y, e.z);
+    wx.onAccelerometerChange(function(e) {
+      let curTime = new Date().getTime(); //获取当前时间戳
+      let diffTime = curTime - lastTime; //获取摇动的间隔
+      if (diffTime > 400) {
+        lastTime = curTime; //记录上一次摇动的时间
+        if (e.x > 1 || e.y > 1 || e.z > 1) {
+          if (that.data.isShake) {
+            that.setData({
+              isShake: false
+            })
+            console.log(e.x, e.y, e.z, '138');
             innerAudioContextStart.play();
             innerAudioContextStart.onEnded(function() {
               innerAudioContextEnd.stop();
-              that.lottery();
               setTimeout(function() {
+                that.lottery();
                 innerAudioContextEnd.play();
               }, 50)
             })
-
           }
         }
+      }
 
-      })
-    }
-
+    })
   },
 
 
@@ -163,7 +163,6 @@ Page({
     let city = app.globalData.addressComponent.city; //市区
     let district = app.globalData.addressComponent.district; //地区
     let headimgurl = app.globalData.headImg; //用户头像
-    //let labelno ='covjF33CF6HBC0C0pn44F3BF7'; //二维码-
     let labelno = that.data.code;
     let latitude = that.data.latitude; //纬度
     let longitude = that.data.longitude; //经度
@@ -174,33 +173,118 @@ Page({
     let town = app.globalData.addressComponent.town; //城镇
     let unionId = app.globalData.idData.unionId; //微信unionid
 
-    common.requestPost(api.lotter, {
-      address: address,
-      city: city,
-      district: district,
-      headimgurl: headimgurl,
-      labelno: labelno,
-      latitude: latitude,
-      longitude: longitude,
-      nickname: nickname,
-      openid: openid,
-      province: province,
-      street: street,
-      town: town,
-      unionId: unionId,
-    }, res => {
-      // type  1  2  3中积分   
-      console.log(res)
-      let lottery = res.data.data
-      that.setData({
-        isResultShow: true,
-        lottery: lottery
-      })
+    var newData = new Date().getTime();
+    var key = "api-HR-lihong2019!@#$%^&";
+    wx.request({
+      url: api.lotter,
+      method: "POST",
+      header: {
+        //'Content-Type': 'application/json'
+        'Accept': 'application/json',
+        "content-type": "application/x-www-form-urlencoded",
+        'oi': app.globalData.idData.openid,
+        'times': newData,
+        's': utilMd5.hexMD5(app.globalData.idData.openid + app.globalData.idData.apipwd + newData + key).toUpperCase(),
+        'pwd': app.globalData.idData.apipwd,
+        'tk': app.globalData.idData.token,
+        // 'ui': app.globalData.unionId,
+      },
 
-      if (lottery.type == 0) {
+      data: {
+        address: address,
+        city: city,
+        district: district,
+        headimgurl: headimgurl,
+        labelno: labelno,
+        latitude: latitude,
+        longitude: longitude,
+        nickname: nickname,
+        openid: openid,
+        province: province,
+        street: street,
+        town: town,
+        unionId: unionId,
+      },
+      success: res => {
+        if (res.data.code == 200) {
+          // type  0=红包 1=优惠券 2=实物 3=积分 4=权益券
+          console.log('219')
+          let lottery = res.data.data
+          that.setData({
+            isResultShow: true,
+            lottery: lottery,
+          })
+
+          if (lottery.type == 0) {
+            that.userCash()  //红包提现
+          }
+
+          that.setData({
+            code: ''
+          })
+        } else {
+          console.log('226')
+          common.showToast(res.data.msg, 'none', res => {
+            that.setData({
+              code: ''
+            })
+          })
+        }
+      },
+
+      fail: res => {
+        common.showToast('网络异常，请重新刷新页面', 'none', res => {})
+      },
+
+      complete: res => {
 
       }
+
     })
+    // common.requestPost(api.lotter, {
+    //   address: address,
+    //   city: city,
+    //   district: district,
+    //   headimgurl: headimgurl,
+    //   labelno: labelno,
+    //   latitude: latitude,
+    //   longitude: longitude,
+    //   nickname: nickname,
+    //   openid: openid,
+    //   province: province,
+    //   street: street,
+    //   town: town,
+    //   unionId: unionId,
+    // }, res => {
+    //   // type  0=红包 1=优惠券 2=实物 3=积分 4=权益券
+
+    //   console.log(res)
+    //   let lottery = res.data.data
+    //   that.setData({
+    //     isResultShow: true,
+    //     lottery: lottery
+    //   })
+
+    // })
+  },
+
+
+  /**
+   * 
+   * 红包提现
+   */
+  userCash() {
+    let that = this;
+    let openid = app.globalData.idData.openid; //小程序openid
+    let lottery = that.data.lottery;
+    let code = that.data.code;
+    common.requestPost(api.userCash, {
+      openid: openid,
+      amount: lottery.redPack.prizeAmount,
+      cashType: 0,     // 默认： 0
+      lotteryId: lottery.lotteryId,     //  中奖记录ID
+      activityCode: code,     //  活动二维码
+    }, reg => { })
   },
 
 
@@ -225,9 +309,15 @@ Page({
   },
   //跳转到个人中心
   personal() {
-    wx.switchTab({
-      url: '../../personalCenter/personal/personal',
-    })
+
+    if (app.globalData.memberId > 0) {
+      wx.switchTab({
+        url: '../../personalCenter/personal/personal',
+      })
+
+    } else {
+      common.login()
+    }
   },
 
   //跳转到中奖记录
@@ -242,9 +332,12 @@ Page({
   },
   onHide() {
     let that = this;
-    that.setData({
-      // code: '',
-      // isShakeShow: false,
-    })
+    // if (app.globalData.memberId > 0) {
+    //   that.setData({
+    //     code: '',
+    //     isShakeShow: false,
+    //   })
+    // }
+
   }
 })
