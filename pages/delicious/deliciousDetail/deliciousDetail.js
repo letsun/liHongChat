@@ -16,7 +16,7 @@ Page({
 
     hasNext: '',
     deliciousDetail: '',
-    commentList: ''
+    commentList: '',
   },
 
   /**
@@ -27,20 +27,40 @@ Page({
   onLoad: function(options) {
     let that = this;
 
-    console.log(options)
+    console.log(options, "30")
 
     that.setData({
       objid: options.objid,
       objType: options.objtype
     });
 
-    if (options.objtype == 0) {
+    // if (options.objtype == 0) {
+    //   common.uvpv('', '美味视频详情页') //页面访问uv信息
+    //   that.browse(1)
+    //   that.deliciousDetail(0) //详情
+    // } else if (options.objtype == 1) {
+    //   common.uvpv('', '美味菜谱详情页') //页面访问uv信息
+    //   that.browse(2)
+    //   that.deliciousDetail(0) //详情
+    // } else if (options.objtype == 2) {
+    //   that.browse(0) //浏览记录
+    // }
+  },
+
+  onShow() {
+    let that = this;
+    let objtype = that.data.objType;
+    console.log(objtype)
+    console.log(that.data.objType)
+    if (objtype == 0) {
       common.uvpv('', '美味视频详情页') //页面访问uv信息
       that.browse(1)
-    } else if (options.objtype == 1) {
+      that.deliciousDetail(0) //详情
+    } else if (objtype == 1) {
       common.uvpv('', '美味菜谱详情页') //页面访问uv信息
       that.browse(2)
-    } else if (options.objtype == 2) {
+      that.deliciousDetail(0) //详情
+    } else if (objtype == 2) {
       that.browse(0) //浏览记录
     }
   },
@@ -79,7 +99,6 @@ Page({
     }, res => {
 
       if (that.data.objType == 1) {
-
         if (that.data.deliciousDetail == '') {
 
           let ingredients = JSON.parse(res.data.data.ingredients); //食材组成
@@ -183,30 +202,28 @@ Page({
    */
   comment() {
     let that = this;
-    if (that.data.commentDesc == '' || !that.data.commentDesc) {
-      common.showToast('请输入评论', 'none', function() {
+    if (app.globalData.memberId > 0) {
+      if (that.data.commentDesc == '' || !that.data.commentDesc) {
+        common.showToast('请输入评论', 'none',res=>{});
+        return false;
+      }
+      common.requestPost(api.comment, {
+        memberId: app.globalData.memberId,
+        objId: that.data.objid,
+        objType: that.data.objType,
+        commentDesc: that.data.commentDesc
+      }, res => {
+        that.setData({
+          commentDesc: '',
+          pageNum: 1
+        })
+        that.deliciousDetail(1) //详情
 
-      });
-      return false;
-    }
-    common.requestPost(api.comment, {
-      memberId: app.globalData.memberId,
-      objId: that.data.objid,
-      objType: that.data.objType,
-      commentDesc: that.data.commentDesc
-    }, res => {
-      that.setData({
-        // deliciousDetail:'',
-        // commentList:'',
-        commentDesc: '',
-        pageNum: 1
       })
-
-      that.deliciousDetail(1) //详情
-
-    })
+    } else {
+      common.login()
+    }
   },
-
 
 
   /***
@@ -214,68 +231,36 @@ Page({
    * 点赞
    */
   dianz(e) {
-
     let that = this;
-    let index = e.currentTarget.dataset.index;
-    let objId = e.currentTarget.dataset.objid;
-    let objType = e.currentTarget.dataset.objtype;
-    let deliciousDetail = that.data.deliciousDetail;
+    if (app.globalData.memberId > 0) {
+      let index = e.currentTarget.dataset.index;
+      let objId = e.currentTarget.dataset.objid;
+      let objType = e.currentTarget.dataset.objtype;
+      let deliciousDetail = that.data.deliciousDetail;
 
-    common.requestPost(api.dianz, {
-      memberId: app.globalData.memberId,
-      objId: objId,
-      objType: objType,
-    }, res => {
-
-      if (objType != 3) {
-
-        deliciousDetail.isDianz = 'true';
-
-        that.setData({
-          deliciousDetail: deliciousDetail,
-        })
-
-        // var detail = '';
-        // var detail2 = '';
-        // var detail3 = '';
-        // var detail4 = '';
-        // if (that.data.deliciousDetail.recipesDesc) {
-        //   detail = that.data.deliciousDetail.recipesDesc.replace(/\<section/gi, '<div');
-        //   detail2 = detail.replace(/section\>/gi, 'div>');
-        //   detail3 = detail2.replace(/\<u/gi, '<i');
-        //   detail4 = detail3.replace(/u\>/gi, 'i>');
-        //   that.setData({
-        //     recipesDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
-        //   })
-        // }
-
-      } else {
-        let commentList = that.data.commentList;
-        let dianzNum = that.data.commentList[index].dianzNum;
-        commentList[index].dianzNum = dianzNum - 0 + 1;
-        that.setData({
-          commentList: commentList
-        })
-
-        // var detail = '';
-        // var detail2 = '';
-        // var detail3 = '';
-        // var detail4 = '';
-        // if (that.data.deliciousDetail.recipesDesc) {
-        //   detail = that.data.deliciousDetail.recipesDesc.replace(/\<section/gi, '<div');
-        //   detail2 = detail.replace(/section\>/gi, 'div>');
-        //   detail3 = detail2.replace(/\<u/gi, '<i');
-        //   detail4 = detail3.replace(/u\>/gi, 'i>');
-        //   that.setData({
-        //     recipesDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
-        //   })
-        // }
-
-      }
-
-      common.showToast(res.data.msg, 'none', res => {})
-    })
-
+      common.requestPost(api.dianz, {
+        memberId: app.globalData.memberId,
+        objId: objId,
+        objType: objType,
+      }, res => {
+        if (objType != 3) {
+          deliciousDetail.isDianz = 'true';
+          that.setData({
+            deliciousDetail: deliciousDetail,
+          })
+        } else {
+          let commentList = that.data.commentList;
+          let dianzNum = that.data.commentList[index].dianzNum;
+          commentList[index].dianzNum = dianzNum - 0 + 1;
+          that.setData({
+            commentList: commentList
+          })
+        }
+        common.showToast(res.data.msg, 'none', res => {})
+      })
+    } else {
+      common.login()
+    }
   },
 
   /**
@@ -290,22 +275,22 @@ Page({
       objId: that.data.objid,
       objType: objType,
     }, res => {
-      that.deliciousDetail() //详情
+      //that.deliciousDetail(0) //详情
 
     })
   },
 
-
   //点击播放视频
   videoPlay() {
     var videoContextCurrent = wx.createVideoContext('video');
+
+    console.log(videoContextCurrent)
     // debugger
     videoContextCurrent.play();
     this.setData({
       isPlay: true,
     })
   },
-
 
   sharePage() {
     let that = this;
@@ -315,11 +300,11 @@ Page({
     if (that.data.objType == 1) {
       title = that.data.deliciousDetail.recipesName;
       pic = that.data.deliciousDetail.recipesPic;
-      objType = 2;
+      objType = 1;
     } else if (that.data.objType == 0) {
       title = that.data.deliciousDetail.videoName;
       pic = that.data.deliciousDetail.videoPic;
-      objType = 1
+      objType = 0
     }
 
     common.requestPost(api.relay, {
@@ -331,7 +316,7 @@ Page({
     });
     return {
       title: title,
-      path: 'pages/delicious/deliciousDetail/deliciousDetail' + '?objid=' + that.data.objid + '&objtype=' + objType,
+      path: 'pages/delicious/deliciousDetail/deliciousDetail' + '?objid=' + that.data.objid + '&objtype=' + objType + '&pageNum=' + 1,
       imageUrl: pic,
     }
   },

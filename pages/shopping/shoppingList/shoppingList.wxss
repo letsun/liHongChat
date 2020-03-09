@@ -108,7 +108,7 @@
 .integral {
   width: 328rpx;
   display: flex;
-  margin: 25rpx 0 0 21rpx;
+  margin: 15rpx 0 0 21rpx;
 }
 
 /* 商品需要的积分 */
@@ -131,7 +131,7 @@
 .exchange {
   position: absolute;
   right: 20rpx;
-  bottom:20rpx;
+  bottom:30rpx;
 
   width: 78rpx;
   height: 37rpx;

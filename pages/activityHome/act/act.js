@@ -6,6 +6,7 @@ const utilMd5 = require("../../../utils/md5.js");
 var BMap;
 Page({
   data: {
+    flag:true,
     latitude: '',
     longitude: '',
     isShakeShow: false,
@@ -15,12 +16,27 @@ Page({
     isAni: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
     code:'',
-    //code: 'Gjups04WM6S7GB38pn6783CBE',
+    //code: 'Gjups44WM6PXLW93pn33CED6A',
 
     // https://test-qr.cresz.com.cn/Gjups44WM6PXLW93pn33CED6A
-    //   https://test-qr.cresz.com.cn/Gjups04WM6S7GB38pn6783CBE
+    // https://test-qr.cresz.com.cn/Gjups04WM6S7GB38pn6783CBE
     // https://test-qr.cresz.com.cn/Gjups64WM6T6GX38pn2875974
   },
+
+  isflag(){
+    this.setData({
+      flag:false
+    })
+  },
+
+  load(e) {
+    console.log(e,33)
+  },
+
+  error(e) {
+    console.log(e,37)
+  },
+
 
   onLoad(options) {
     let that = this;
@@ -57,9 +73,8 @@ Page({
   },
 
   onShow() {
-    // console.log(app)
+
     common.getopenid(res => {
-      // console.log(res)
       app.globalData.idData.openid = res.data.result.openid
       common.uvpv('', '一物一码活动主页') //页面访问uv信息
     })
@@ -103,10 +118,10 @@ Page({
 
     if (that.data.code != '') {
       if (app.globalData.memberId > 0) {
-        this.lottery()
-        // this.setData({
-        //   isShakeShow: true,
-        // })
+        // this.lottery()
+        this.setData({
+          isShakeShow: true,
+        })
       } else {
         common.login();
       }
@@ -158,6 +173,8 @@ Page({
 
   // 抽奖
   lottery() {
+    common.showLoading()
+
     let that = this;
     let address = app.globalData.formatted_address; //详细地址
     let city = app.globalData.addressComponent.city; //市区
@@ -206,7 +223,10 @@ Page({
         unionId: unionId,
       },
       success: res => {
+        wx.hideLoading();
         if (res.data.code == 200) {
+
+
           // type  0=红包 1=优惠券 2=实物 3=积分 4=权益券
           console.log('219')
           let lottery = res.data.data

@@ -209,6 +209,20 @@
 					"pathName": "pages/login/login",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "测试关注公众号",
+					"pathName": "pages/activityHome/index/index",
+					"query": "",
+					"scene": 1011
+				},
+				{
+					"id": -1,
+					"name": "测试关注公众号1",
+					"pathName": "pages/activityHome/act/act",
+					"query": "",
+					"scene": 1011
 				}
 			]
 		}

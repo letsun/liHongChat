@@ -17,7 +17,7 @@ var api = {
   siginInfo: ip + '/api/member/sign/info/', //美味课堂签到信息
   dianz: ip + '/api/mwkt/video/recipes/dianz', //点赞
   deliciousDetail: ip + '/api/mwkt/video/recipes/detail', //美味菜谱详情
-  browse: ip + '/api/mwkt/video/recipes/view', //美味菜谱详情
+  browse: ip + '/api/mwkt/video/recipes/view', //美味菜谱浏览记录
   comment: ip + '/api/mwkt/video/recipes/comment', //发表评论接口
   siginBtn: ip + '/api/member/sign/start/', //点击签到
   calendar: ip + '/api/member/signin/list/', //日历记录

@@ -8,7 +8,7 @@
 
   <view class="header" wx:else>
     <image class="controls-bg" src="{{deliciousDetail.videoPic}}" wx:if="{{!isPlay}}" catchtap="videoPlay"></image>
-    <video id="{{video}}" src="{{deliciousDetail.videoFile}}" controls wx:else></video>
+    <video id="video" src="{{deliciousDetail.videoFile}}" controls wx:else></video>
   </view>
 
   <view class="details">

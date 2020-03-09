@@ -23,8 +23,14 @@ Page({
       app.globalData.idData.openid = res.data.result.openid
       common.uvpv('', '一物一码活动主页') //页面访问uv信息
     })
+  },
 
-    
+  load(e) {
+    console.log(e,"29")
+  },
+
+  error(e) {
+    console.log(e,"33")
   },
 
   // 获取地理位置

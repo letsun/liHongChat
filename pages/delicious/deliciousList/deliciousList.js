@@ -7,9 +7,6 @@ Page({
   data: {
     arr: ['美味菜谱', '美味视频'],
     indexa: 0,
-    isPlay: false,
-
-    // isPlays: false,
     pageNum: 1,
     mwktLista: '',
     mwktListb: '',
@@ -22,12 +19,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    // let that = this;
-
-
-    // that.deliciousList()
-
     let that = this;
+    // that.deliciousList(0)
     if (app.globalData.memberId <= 0) {
       common.login()
     }
@@ -36,10 +29,9 @@ Page({
   onShow() {
     let that = this;
     that.setData({
-      mwktLista: '',
       mwktListb: '',
       mwktListc: '',
-      isPlay: '',
+      autoplay: true,
     })
     that.deliciousList(0);
     if (that.data.indexa == 0) {
@@ -49,13 +41,11 @@ Page({
       that.deliciousList(1);
     }
 
-
     common.getopenid(res => {
       // console.log(res)
       app.globalData.idData.openid = res.data.result.openid
       common.uvpv('', '美味课堂首页') //页面访问uv信息
     })
-
   },
 
   // 监听轮播图
@@ -134,17 +124,13 @@ Page({
         that.setData({
           mwktLista: mwktLista
         })
+
       } else if (mwktType == 1) {
 
         var mwktListc = res.data.data.mwktList;
         for (var i in mwktListc) {
           mwktListc[i].isPlays = false
         }
-        // that.setData({
-        //   mwktListc: mwktListc
-        // })
-
-
         if (that.data.mwktListc == '') {
           that.setData({
             mwktListc: res.data.data.mwktList,
@@ -159,7 +145,6 @@ Page({
             })
           }
         }
-
 
       } else if (mwktType == 2) {
 
@@ -222,7 +207,6 @@ Page({
           mwktListc: mwktListc,
         })
 
-
       } else if (objType == 2) {
         var mwktListb = that.data.mwktListb;
         var isDianz = mwktListb[index].isDianz;
@@ -266,11 +250,8 @@ Page({
     let index = e.currentTarget.dataset.index;
     let mwktLista = that.data.mwktLista;
     if (app.globalData.memberId > 0) {
-      // this.setData({
-      //   isPlay: true,
-      // })
-      mwktLista[index].isPlay = true;
 
+      mwktLista[index].isPlay = true;
       for (var i = 0; i < mwktLista.length; i++) {
         if (i != index) {
           mwktLista[i].isPlay = false;
@@ -278,6 +259,7 @@ Page({
           videoContextCurrent.stop();
         }
       }
+
       this.setData({
         mwktLista: mwktLista,
         autoplay: false
@@ -285,9 +267,9 @@ Page({
 
       var videoContextCurrent = wx.createVideoContext('video' + index);
       videoContextCurrent.play();
-
       var objid = e.currentTarget.dataset.objid;
       that.browse(0, objid)
+
     } else {
       common.login()
     }
@@ -397,6 +379,21 @@ Page({
   onShareAppMessage: function() {
     return this.sharePage();
   },
+
+  onHide() {
+    let that = this;
+    let mwktLista = that.data.mwktLista;
+
+    for (var i = 0; i < mwktLista.length; i++) {
+      mwktLista[i].isPlay = false;
+      var videoContextCurrent = wx.createVideoContext('video' + i);
+      videoContextCurrent.stop();
+    }
+    this.setData({
+      mwktLista: mwktLista,
+    })
+
+  }
 
 
 })

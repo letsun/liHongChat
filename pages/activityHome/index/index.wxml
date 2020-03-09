@@ -80,5 +80,5 @@
     </view>
   </view>
 
-  <!-- <official-account style="position:absolute;bottom:0;width:100%;height:168rpx;background: red;z-index:99;"></official-account> -->
+  <!-- <official-account bindload="load" binderror="error" style="position:absolute;bottom:0;right: 0;left: 0;height:168rpx;z-index:99;"></official-account> -->
 </view>
