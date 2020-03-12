@@ -200,7 +200,7 @@ swiper {
 /*点赞图片*/
 .love {
   width: 26rpx;
-  height: 26rpx;
+  height: 24rpx;
 }
 
 /*留言图片*/

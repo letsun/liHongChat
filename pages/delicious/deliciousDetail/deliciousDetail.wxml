@@ -21,7 +21,7 @@
       <view class="active love">
         <!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}"> -->
         <!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 2}}" data-objtype="{{1}}" > -->
-        <view class="dianzan" catchtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}" data-objid = "{{deliciousDetail.objId}}">
+        <view class="dianzan" catchtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}" data-objid="{{deliciousDetail.objId}}">
           <image class="love-img" wx:if="{{deliciousDetail.isDianz=='false'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
 
           <image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
@@ -29,7 +29,7 @@
 
         </view>
 
-        <view class="dianzan" catchtap="dianz" wx:if="{{objType == 0}}" data-objtype="{{1}}" data-objid = "{{deliciousDetail.objId}}">
+        <view class="dianzan" catchtap="dianz" wx:if="{{objType == 0}}" data-objtype="{{1}}" data-objid="{{deliciousDetail.objId}}">
           <image class="love-img" wx:if="{{deliciousDetail.isDianz=='flase'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
 
           <image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
@@ -86,17 +86,15 @@
   </block>
 
   <!-- 说明 -->
-  <view class="main" style="margin: 22rpx auto;">
-
-  <view class="parametera">菜谱描述</view>
-  <rich-text class="rich-text" nodes="{{recipesDesc}}"></rich-text>
-  
+  <view class="main" wx:if="{{objType == 1}}" style="margin: 22rpx auto;">
+    <view class="parametera">菜谱描述</view>
+    <rich-text class="rich-text" nodes="{{recipesDesc}}"></rich-text>
   </view>
 
   <!--所有评论-->
 
 
-  <view class="contentc" style="{{objType == 1 ?'':'padding-top:120rpx;' }}">
+  <view class="contentc" style="{{objType == 1 ?'':'padding-top:60rpx;' }}">
     <view class="parameter">所有评论</view>
     <view class="all">
       <view class="lis" wx:for="{{commentList}}" wx:key="">
@@ -107,7 +105,7 @@
           <view class="data">
             <!-- 时间 -->
             <view class="time">{{item.timeStr}}</view>
-            <view class="thumb" catchtap="dianz" data-objtype = "{{3}}" data-objid = "{{item.commentId}}" data-index="{{index}}">
+            <view class="thumb" catchtap="dianz" data-objtype="{{3}}" data-objid="{{item.commentId}}" data-index="{{index}}">
               <!-- 点赞 -->
               <image class="nice" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_71.png"></image>
               <view class="thumb-text">{{item.dianzNum}}</view>
@@ -122,8 +120,8 @@
   </view>
   <!-- 底部发布评论 -->
   <view class="footer">
-    <input class="input" placeholder="请输入评论(最多200字)" value='{{commentDesc}}' maxlength="200" bindinput="inputchang" ></input>
-    <view class="release" catchtap="comment" >发布</view>
+    <input class="input" placeholder="请输入评论(最多200字)" value='{{commentDesc}}' maxlength="200" bindinput="inputchang"></input>
+    <view class="release" catchtap="comment">发布</view>
   </view>
 
 

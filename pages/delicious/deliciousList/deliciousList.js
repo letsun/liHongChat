@@ -8,7 +8,7 @@ Page({
     arr: ['美味菜谱', '美味视频'],
     indexa: 0,
     pageNum: 1,
-    mwktLista: '',
+    // mwktLista: '',
     mwktListb: '',
     mwktListc: '',
     autoplay: true,
@@ -104,7 +104,7 @@ Page({
     let that = this;
 
     if (mwktType == 0) {
-      var pageNum = 0;
+      var pageNum = 1;
     } else {
       var pageNum = that.data.pageNum;
     }
@@ -179,49 +179,55 @@ Page({
     let objId = e.currentTarget.dataset.objid;
     let objType = e.currentTarget.dataset.objtype;
 
-    common.requestPost(api.dianz, {
-      memberId: app.globalData.memberId,
-      objId: objId,
-      objType: objType,
-    }, res => {
-      if (objType == 0) {
-        var mwktLista = that.data.mwktLista;
-        var isDianz = mwktLista[index].isDianz;
-        if (isDianz != 'true') {
-          mwktLista[index].dianzNum = mwktLista[index].dianzNum + 1;
+    if (app.globalData.memberId > 0) {
+      common.requestPost(api.dianz, {
+        memberId: app.globalData.memberId,
+        objId: objId,
+        objType: objType,
+      }, res => {
+        if (objType == 0) {
+          var mwktLista = that.data.mwktLista;
+          var isDianz = mwktLista[index].isDianz;
+          if (isDianz != 'true') {
+            mwktLista[index].dianzNum = mwktLista[index].dianzNum + 1;
+          }
+          mwktLista[index].isDianz = 'true';
+          that.setData({
+            mwktLista: mwktLista,
+          })
+
+        } else if (objType == 1) {
+
+          var mwktListc = that.data.mwktListc;
+          var isDianz = mwktListc[index].isDianz;
+          if (isDianz != 'true') {
+            mwktListc[index].dianzNum = mwktListc[index].dianzNum + 1;
+          }
+          mwktListc[index].isDianz = 'true';
+          that.setData({
+            mwktListc: mwktListc,
+          })
+
+        } else if (objType == 2) {
+          var mwktListb = that.data.mwktListb;
+          var isDianz = mwktListb[index].isDianz;
+          if (isDianz != 'true') {
+            mwktListb[index].dianzNum = mwktListb[index].dianzNum + 1;
+          }
+
+          mwktListb[index].isDianz = 'true';
+          that.setData({
+            mwktListb: mwktListb,
+          })
         }
-        mwktLista[index].isDianz = 'true';
-        that.setData({
-          mwktLista: mwktLista,
-        })
 
-      } else if (objType == 1) {
+        common.showToast(res.data.msg, 'none', res => {})
+      })
+    } else {
+      common.login()
+    }
 
-        var mwktListc = that.data.mwktListc;
-        var isDianz = mwktListc[index].isDianz;
-        if (isDianz != 'true') {
-          mwktListc[index].dianzNum = mwktListc[index].dianzNum + 1;
-        }
-        mwktListc[index].isDianz = 'true';
-        that.setData({
-          mwktListc: mwktListc,
-        })
 
-      } else if (objType == 2) {
-        var mwktListb = that.data.mwktListb;
-        var isDianz = mwktListb[index].isDianz;
-        if (isDianz != 'true') {
-          mwktListb[index].dianzNum = mwktListb[index].dianzNum + 1;
-        }
-
-        mwktListb[index].isDianz = 'true';
-        that.setData({
-          mwktListb: mwktListb,
-        })
-      }
-
-      common.showToast(res.data.msg, 'none', res => {})
-    })
   },
 
 
@@ -391,9 +397,9 @@ Page({
     }
     this.setData({
       mwktLista: mwktLista,
+      pageNum: 1,
+      autoplay:false
     })
-
   }
-
 
 })

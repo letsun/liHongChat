@@ -68,12 +68,14 @@ page{
 
 .content .open-btn {
 	position: absolute;
-	left: 50%;
+	left: 0;
+  right: 0;
+  margin: auto;
 	bottom: 120rpx;
 	z-index: 3;
 
 	width: 452rpx;
-	margin-left: -226rpx;
+	/* margin-left: -226rpx; */
 }
 
 .nav-list {

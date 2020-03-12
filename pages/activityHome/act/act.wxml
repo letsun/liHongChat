@@ -80,5 +80,5 @@
       <image class="rule-confirm" catchtap="confirmRule" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_1.png"></image>
     </view>
   </view>
-  <official-account bindload="load" binderror="error" wx:if="{{flag==true}}" style="position:absolute;bottom:0;right: 0;left: 0;height:168rpx;z-index:99;"></official-account>
+  <!-- <official-account bindload="load" binderror="error" wx:if="{{flag==true}}" style="position:absolute;bottom:0;right: 0;left: 0;height:168rpx;z-index:99;"></official-account> -->
 </view>

@@ -6,7 +6,7 @@ const utilMd5 = require("../../../utils/md5.js");
 var BMap;
 Page({
   data: {
-    flag:true,
+    flag: true,
     latitude: '',
     longitude: '',
     isShakeShow: false,
@@ -15,30 +15,32 @@ Page({
     isShake: true,
     isAni: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
-    code:'',
-    //code: 'Gjups44WM6PXLW93pn33CED6A',
+    //code:'',
+    code: 'Gjups04WM6S7GB38pn6783CBE',
 
     // https://test-qr.cresz.com.cn/Gjups44WM6PXLW93pn33CED6A
     // https://test-qr.cresz.com.cn/Gjups04WM6S7GB38pn6783CBE
     // https://test-qr.cresz.com.cn/Gjups64WM6T6GX38pn2875974
   },
 
-  isflag(){
+  isflag() {
     this.setData({
-      flag:false
+      flag: false
     })
   },
 
   load(e) {
-    console.log(e,33)
+    console.log(e, 33)
   },
 
   error(e) {
-    console.log(e,37)
+    console.log(e, 37)
   },
 
 
   onLoad(options) {
+    wx.getLaunchOptionsSync()
+
     let that = this;
     let q = decodeURIComponent(options.q);
     if (q != 'undefined') {
@@ -72,7 +74,9 @@ Page({
     });
   },
 
-  onShow() {
+  onShow(options) {
+    var data = wx.getLaunchOptionsSync()//获取场景代码
+    console.log(data.scene,'场景值')
 
     common.getopenid(res => {
       app.globalData.idData.openid = res.data.result.openid
@@ -91,9 +95,7 @@ Page({
         console.log(res.originalData.result.addressComponent);
       },
       fail: function() {
-        wx.showToast({
-          title: '请检查位置服务是否开启',
-        })
+        common.showToast('请检查位置服务是否开启', 'none', res => {})
       },
     });
   },
@@ -118,10 +120,10 @@ Page({
 
     if (that.data.code != '') {
       if (app.globalData.memberId > 0) {
-        // this.lottery()
-        this.setData({
-          isShakeShow: true,
-        })
+        this.lottery()
+        // this.setData({
+        //   isShakeShow: true,
+        // })
       } else {
         common.login();
       }
@@ -236,7 +238,7 @@ Page({
           })
 
           if (lottery.type == 0) {
-            that.userCash()  //红包提现
+            that.userCash() //红包提现
           }
 
           that.setData({
@@ -301,10 +303,36 @@ Page({
     common.requestPost(api.userCash, {
       openid: openid,
       amount: lottery.redPack.prizeAmount,
-      cashType: 0,     // 默认： 0
-      lotteryId: lottery.lotteryId,     //  中奖记录ID
-      activityCode: code,     //  活动二维码
-    }, reg => { })
+      cashType: 0, // 默认： 0
+      lotteryId: lottery.lotteryId, //  中奖记录ID
+      activityCode: code, //  活动二维码
+    }, res => {
+      console.log(res,'红包提现接口返回的内容')
+      console.log(res.data.data.timeStamp,'timeStamp')
+      console.log(res.data.data.nonceStr, 'nonceStr')
+      console.log(res.data.data.package, 'package')
+      console.log(res.data.data.signType, 'signType')
+      console.log(res.data.data.paySign, 'paySign')
+
+      // debugger
+      wx.sendBizRedPacket({
+        timeStamp: res.data.data.timeStamp, // 支付签名时间戳，
+        nonceStr: res.data.data.nonceStr, // 支付签名随机串，不长于 32 位
+        package: res.data.data.package, //扩展字段，由商户传入
+        signType: res.data.data.signType, // 签名方式，
+        paySign: res.data.data.paySign, // 支付签名
+        success: function(res) {
+
+          console.log('微信提现成功回调',res)
+        },
+        fail: function(res) {
+          console.log(res.errMsg)
+          console.log('微信提现失败回调',res)
+        },
+        complete: function(res) {}
+      })
+
+    })
   },
 
 
