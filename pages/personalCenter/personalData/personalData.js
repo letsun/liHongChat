@@ -46,6 +46,8 @@ Page({
     
   },
 
+  
+
   infoSub(e) {
     let that = this,
       birthDay = that.data.birthDay,
@@ -53,7 +55,9 @@ Page({
       buyWho = e.detail.value.buyWho,
       city = that.data.city,
       district = that.data.district,
-      memJob = that.data.memJob,
+      postList = that.data.postList,
+
+    memJob = that.data.postList[that.data.memJob],
       memName = e.detail.value.memName,
       memShop = e.detail.value.memShop,
       province = that.data.province,
@@ -95,26 +99,8 @@ Page({
       common.showToast('请选择岗位', 'none', () => {
 
       });
-
       return false;
     }
-
-    if (buyWho == '') {
-      common.showToast('请输入购买人', 'none', () => {
-
-      });
-
-      return false;
-    }
-
-    if (buyAddr == '') {
-      common.showToast('请输入购买渠道', 'none', () => {
-
-      });
-
-      return false;
-    }
-
 
     common.requestPosts(api.infoSub + app.globalData.memberId, {
       birthDay: birthDay,
@@ -130,7 +116,9 @@ Page({
     }, res => {
       common.showToast('提交资料成功', 'success', res => {})
       setTimeout(res => {
-        wx.navigateBack({})
+        wx.reLaunch({
+          url: '../../personalCenter/personal/personal',
+        })
       }, 1500)
     })
   },
@@ -155,7 +143,10 @@ Page({
   //获取男女
 
   sexchange(e) {
+    console.log(e)
+    
     let that = this;
+    console.log(that.data.sex)
     that.setData({
       index: e.detail.value
     })

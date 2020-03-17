@@ -33,10 +33,10 @@ Page({
         'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_63.png',
         'name': '点赞记录'
       },
-      {
-        'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_64.png',
-        'name': '评论记录'
-      },
+      // {
+      //   'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_64.png',
+      //   'name': '评论记录'
+      // },
       {
         'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_65.png',
         'name': '分享记录'
@@ -49,56 +49,116 @@ Page({
   },
 
   onLoad() {
-
-    console.log(1)
     let that = this;
-    common.login(function () {
+    common.login(function() {
       let memberId = app.globalData.memberId;
       if (app.globalData.memberId > 0) {
         that.userInfo();
-
         that.setData({
           memberId: memberId,
         })
+
       }
     })
   },
 
   onShow() {
-    console.log(2)
     let that = this;
     let memberId = app.globalData.memberId;
-    console.log(memberId)
-    if (app.globalData.memberId>0) {
+
+    var data = wx.getLaunchOptionsSync() //获取场景代码
+    console.log(data.scene, '场景值')
+
+    that.setData({
+      scene: data.scene
+    })
+
+
+    if (app.globalData.memberId > 0) {
       that.userInfo();
       that.setData({
         memberId: memberId,
       })
+
     }
-    console.log(app.globalData)
+
     common.getopenid(res => {
-      // console.log(res)
       app.globalData.idData.openid = res.data.result.openid
-      common.uvpv('', '个人中心首页') //页面访问uv信息
+      common.uvpv('', '个人中心首页') //页面访问uv信息    
     })
 
   },
+
+
 
   //获取用户信息
   userInfo() {
     let that = this;
-    common.requestPost(api.userInfo+ app.globalData.memberId,{},res=>{
+    common.requestPost(api.userInfo + app.globalData.memberId, {}, res => {
       that.setData({
-        userInfo:res.data.data
+        userInfo: res.data.data
       })
+      if (that.data.scene == 1011 || that.data.scene == 1012) {
+        that.retry()
+      }
     })
   },
+
+  //红包未领取接口
+  retry() {
+    let that = this;
+    common.requestPostf(api.retry + app.globalData.memberId, {}, res => {
+      that.setData({
+        retry: res.data.data
+      })
+      that.sendBizRedPacket()
+    }, reg => {})
+  },
+
+  //微信开启红包
+  sendBizRedPacket() {
+    let that = this;
+    let retry = that.data.retry;
+
+    wx.sendBizRedPacket({
+      timeStamp: retry.timeStamp, // 支付签名时间戳，
+      nonceStr: retry.nonceStr, // 支付签名随机串，不长于 32 位
+      package: retry.package, //扩展字段，由商户传入
+      signType: retry.signType, // 签名方式，
+      paySign: retry.paySign, // 支付签名
+      success: function(res) {
+        console.log('微信提现成功回调', res)
+        that.callback('success', '红包领取成功');
+      },
+
+      fail: function(res) {
+
+        console.log(res, "130")
+        that.callback('fail', res.errMsg);
+      },
+      complete: function(res) {}
+    })
+  },
+
+  //补发红包回调
+  callback(recCode, recMsg) {
+    let that = this;
+    let retry = that.data.retry;
+    common.requestPost(api.callback + app.globalData.memberId, {
+      cashRetryId: retry.cashRetryId,
+      recCode: recCode,
+      recMsg: recMsg
+    }, res => {})
+  },
+
+
+
 
 
   //点击调取授权信息
   login() {
     let that = this;
-    common.login(function(){
+    common.login(function() {
       let memberId = app.globalData.memberId;
       if (app.globalData.memberId > 0) {
         that.userInfo();
@@ -118,16 +178,16 @@ Page({
     if (app.globalData.memberId > 0) {
 
       //0 为没填写资料 1为已填写资料
-      if (that.data.userInfo.memName==''){
-        var type = 0 ;
-      }else {
+      if (that.data.userInfo.memName == '') {
+        var type = 0;
+      } else {
         var type = 1;
       }
       wx.navigateTo({
         url: '../../personalCenter/personalData/personalData?type=' + type,
       })
     } else {
-      common.login(function () {
+      common.login(function() {
         let memberId = app.globalData.memberId;
         if (app.globalData.memberId > 0) {
           that.userInfo();
@@ -171,21 +231,23 @@ Page({
         wx.navigateTo({
           url: '../../personalCenter/praiseList/praiseList',
         })
-      } else if (index == 6) {
-        wx.navigateTo({
-          url: '../../personalCenter/commentList/commentList',
-        })
-      } else if (index == 7) {
+      }
+      //  else if (index == 6) {
+      //   wx.navigateTo({
+      //     url: '../../personalCenter/commentList/commentList',
+      //   })
+      // }
+      else if (index == 6) {
         wx.navigateTo({
           url: '../../personalCenter/shareList/shareList',
         })
-      } else if (index == 8) {
+      } else if (index == 7) {
         wx.navigateTo({
           url: '../../personalCenter/winning/winning',
         })
       }
-    }else {
-      common.login(function () {
+    } else {
+      common.login(function() {
         let memberId = app.globalData.memberId;
         if (app.globalData.memberId > 0) {
           that.userInfo();

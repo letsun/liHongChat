@@ -2,8 +2,8 @@ const RdWXBizDataCrypt = require('utils/WXBizDataCrypt.js');
 App({
 
   globalData: {
-    //memberId: '1',
     memberId: '',
+    mobile: '',
     idData: {
       openid: '',
       //openid: 'ofjyq5bIZoFepEV22XbqTsxAtkI0',

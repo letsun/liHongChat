@@ -1,3 +1,4 @@
+const RdWXBizDataCrypt = require('../../../utils/WXBizDataCrypt.js');
 const app = getApp();
 const common = require("../../../utils/common.js");
 const api = require("../../../utils/api.js");
@@ -15,8 +16,8 @@ Page({
     isShake: true,
     isAni: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
-    //code:'',
-    code: 'Gjups04WM6S7GB38pn6783CBE',
+    code: '',
+    //code: 'Gjups44WM6PXLW93pn33CED6A',
 
     // https://test-qr.cresz.com.cn/Gjups44WM6PXLW93pn33CED6A
     // https://test-qr.cresz.com.cn/Gjups04WM6S7GB38pn6783CBE
@@ -40,7 +41,6 @@ Page({
 
   onLoad(options) {
     wx.getLaunchOptionsSync()
-
     let that = this;
     let q = decodeURIComponent(options.q);
     if (q != 'undefined') {
@@ -49,10 +49,8 @@ Page({
       that.setData({
         code: code,
       });
-
       console.log(code);
     }
-
 
     BMap = new bmap.BMapWX({
       ak: that.data.ak
@@ -75,10 +73,11 @@ Page({
   },
 
   onShow(options) {
-    var data = wx.getLaunchOptionsSync()//获取场景代码
-    console.log(data.scene,'场景值')
-
+    var data = wx.getLaunchOptionsSync() //获取场景代码
+    console.log(data.scene, '场景值')
     common.getopenid(res => {
+
+      app.globalData.idData.sessionKey = res.data.result.sessionKey
       app.globalData.idData.openid = res.data.result.openid
       common.uvpv('', '一物一码活动主页') //页面访问uv信息
     })
@@ -94,7 +93,7 @@ Page({
         app.globalData.formatted_address = res.originalData.result.formatted_address;
         console.log(res.originalData.result.addressComponent);
       },
-      fail: function() {
+      fail: function(res) {
         common.showToast('请检查位置服务是否开启', 'none', res => {})
       },
     });
@@ -115,21 +114,49 @@ Page({
   },
 
   // 打开摇一摇弹窗
-  openShake() {
+  openShake(res) {
+    // this.lottery()
     let that = this;
+    console.log(res)
+    
+    if (res.detail.userInfo != null) {
+      app.globalData.headImg = res.detail.userInfo.avatarUrl;
+      app.globalData.nickName = res.detail.userInfo.nickName;
+      app.globalData.sex = res.detail.userInfo.gender;
+      var appId = 'wx92ddcbce04fc34b6';
+      var encryptedData = res.detail.encryptedData;
+      var iv = res.detail.iv;
+      var pc = new RdWXBizDataCrypt(appId, app.globalData.idData.sessionKey);
+      var data = pc.decryptData(encryptedData, iv);
+      // debugger
+      app.globalData.idData.unionId = data.unionId;
 
-    if (that.data.code != '') {
-      if (app.globalData.memberId > 0) {
-        this.lottery()
-        // this.setData({
-        //   isShakeShow: true,
-        // })
-      } else {
-        common.login();
+
+      if (that.data.code!='') {
+        this.setData({
+          isShakeShow: true,
+        })
+      }else {
+        common.showToast('请扫描二维码参与活动', 'none', res => { })
       }
     } else {
-      common.showToast('请扫描二维码参与活动', 'none', res => {})
+      wx.showToast({
+        title: '亲,我拿不到你的头像与昵称呢',
+        icon: 'none',
+      });
     }
+    // if (that.data.code != '') {
+    //   if (app.globalData.memberId > 0) {
+    //     // this.lottery()
+    //     this.setData({
+    //       isShakeShow: true,
+    //     })
+    //   } else {
+    //     common.login();
+    //   }
+    // } else {
+    //   common.showToast('请扫描二维码参与活动', 'none', res => {})
+    // }
 
 
   },
@@ -176,7 +203,6 @@ Page({
   // 抽奖
   lottery() {
     common.showLoading()
-
     let that = this;
     let address = app.globalData.formatted_address; //详细地址
     let city = app.globalData.addressComponent.city; //市区
@@ -191,103 +217,50 @@ Page({
     let street = app.globalData.addressComponent.street; //街道
     let town = app.globalData.addressComponent.town; //城镇
     let unionId = app.globalData.idData.unionId; //微信unionid
+    common.requestPostf(api.lotter, {
+      address: address,
+      city: city,
+      district: district,
+      headimgurl: headimgurl,
+      labelno: labelno,
+      latitude: latitude,
+      longitude: longitude,
+      nickname: nickname,
+      openid: openid,
+      province: province,
+      street: street,
+      town: town,
+      unionId: unionId,
+    }, res => {
+      // type  0=红包 1=优惠券 2=实物 3=积分 4=权益券
+      wx.hideLoading();
+      let lottery = res.data.data
+      that.setData({
+        isResultShow: true,
+        lottery: lottery,
+      })
 
-    var newData = new Date().getTime();
-    var key = "api-HR-lihong2019!@#$%^&";
-    wx.request({
-      url: api.lotter,
-      method: "POST",
-      header: {
-        //'Content-Type': 'application/json'
-        'Accept': 'application/json',
-        "content-type": "application/x-www-form-urlencoded",
-        'oi': app.globalData.idData.openid,
-        'times': newData,
-        's': utilMd5.hexMD5(app.globalData.idData.openid + app.globalData.idData.apipwd + newData + key).toUpperCase(),
-        'pwd': app.globalData.idData.apipwd,
-        'tk': app.globalData.idData.token,
-        // 'ui': app.globalData.unionId,
-      },
-
-      data: {
-        address: address,
-        city: city,
-        district: district,
-        headimgurl: headimgurl,
-        labelno: labelno,
-        latitude: latitude,
-        longitude: longitude,
-        nickname: nickname,
-        openid: openid,
-        province: province,
-        street: street,
-        town: town,
-        unionId: unionId,
-      },
-      success: res => {
-        wx.hideLoading();
-        if (res.data.code == 200) {
-
-
-          // type  0=红包 1=优惠券 2=实物 3=积分 4=权益券
-          console.log('219')
-          let lottery = res.data.data
-          that.setData({
-            isResultShow: true,
-            lottery: lottery,
-          })
-
-          if (lottery.type == 0) {
-            that.userCash() //红包提现
-          }
-
+      if (lottery.type == 0) {
+        that.userCash() //红包提现
+      }
+      that.setData({
+        code: ''
+      })
+    }, reg => {
+      wx.hideLoading();
+      setTimeout(res => {
+        common.showToast(reg.data.msg, 'none', res => {
           that.setData({
             code: ''
           })
-        } else {
-          console.log('226')
-          common.showToast(res.data.msg, 'none', res => {
-            that.setData({
-              code: ''
-            })
+          that.setData({
+            isResultShow: false,
+            isShakeShow: false
           })
-        }
-      },
-
-      fail: res => {
-        common.showToast('网络异常，请重新刷新页面', 'none', res => {})
-      },
-
-      complete: res => {
-
-      }
+        })
+      }, 1000)
 
     })
-    // common.requestPost(api.lotter, {
-    //   address: address,
-    //   city: city,
-    //   district: district,
-    //   headimgurl: headimgurl,
-    //   labelno: labelno,
-    //   latitude: latitude,
-    //   longitude: longitude,
-    //   nickname: nickname,
-    //   openid: openid,
-    //   province: province,
-    //   street: street,
-    //   town: town,
-    //   unionId: unionId,
-    // }, res => {
-    //   // type  0=红包 1=优惠券 2=实物 3=积分 4=权益券
-
-    //   console.log(res)
-    //   let lottery = res.data.data
-    //   that.setData({
-    //     isResultShow: true,
-    //     lottery: lottery
-    //   })
-
-    // })
   },
 
 
@@ -307,31 +280,53 @@ Page({
       lotteryId: lottery.lotteryId, //  中奖记录ID
       activityCode: code, //  活动二维码
     }, res => {
-      console.log(res,'红包提现接口返回的内容')
-      console.log(res.data.data.timeStamp,'timeStamp')
-      console.log(res.data.data.nonceStr, 'nonceStr')
-      console.log(res.data.data.package, 'package')
-      console.log(res.data.data.signType, 'signType')
-      console.log(res.data.data.paySign, 'paySign')
 
-      // debugger
-      wx.sendBizRedPacket({
-        timeStamp: res.data.data.timeStamp, // 支付签名时间戳，
-        nonceStr: res.data.data.nonceStr, // 支付签名随机串，不长于 32 位
-        package: res.data.data.package, //扩展字段，由商户传入
-        signType: res.data.data.signType, // 签名方式，
-        paySign: res.data.data.paySign, // 支付签名
-        success: function(res) {
-
-          console.log('微信提现成功回调',res)
-        },
-        fail: function(res) {
-          console.log(res.errMsg)
-          console.log('微信提现失败回调',res)
-        },
-        complete: function(res) {}
+      that.setData({
+        userCash: res.data.data
       })
 
+    })
+  },
+
+
+  //点击开红包
+
+  hbbtn() {
+    let that = this;
+    let userCash = that.data.userCash;
+    let openid = app.globalData.idData.openid; //小程序openid
+    let lottery = that.data.lottery;
+    console.log(userCash, '334')
+    that.setData({
+      isResultShow: false,
+      isShakeShow: false
+    })
+
+
+    // debugger
+    wx.sendBizRedPacket({
+      timeStamp: userCash.timeStamp, // 支付签名时间戳，
+      nonceStr: userCash.nonceStr, // 支付签名随机串，不长于 32 位
+      package: userCash.package, //扩展字段，由商户传入
+      signType: userCash.signType, // 签名方式，
+      paySign: userCash.paySign, // 支付签名
+      success: function(reg) {
+        console.log('微信提现成功回调', reg)
+      },
+
+      fail: function(reg) {
+        console.log('微信提现失败回调', reg)
+        console.log('微信提现失败回调', reg.errMsg)
+        //提交错误信息
+        common.requestPost(api.msg, {
+          wxerrmsg: reg.errMsg,
+          openid: openid,
+          redpackmsg: " lotteryId:" + lottery.lotteryId
+        }, reg => {
+
+        })
+      },
+      complete: function(res) {}
     })
   },
 
@@ -349,24 +344,22 @@ Page({
           that.setData({
             code: code,
           });
-
-          console.log(code);
         }
       }
     })
   },
   //跳转到个人中心
   personal() {
+    wx.switchTab({
+      url: '../../personalCenter/personal/personal',
+    })
 
-    if (app.globalData.memberId > 0) {
-      wx.switchTab({
-        url: '../../personalCenter/personal/personal',
-      })
-
-    } else {
-      common.login()
-    }
+    that.setData({
+      isResultShow: false,
+      isShakeShow: false
+    })
   },
+
 
   //跳转到中奖记录
   winning() {
@@ -378,14 +371,5 @@ Page({
       common.login()
     }
   },
-  onHide() {
-    let that = this;
-    // if (app.globalData.memberId > 0) {
-    //   that.setData({
-    //     code: '',
-    //     isShakeShow: false,
-    //   })
-    // }
 
-  }
 })

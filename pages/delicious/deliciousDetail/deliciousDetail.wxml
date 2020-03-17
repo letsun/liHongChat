@@ -94,37 +94,37 @@
   <!--所有评论-->
 
 
-  <view class="contentc" style="{{objType == 1 ?'':'padding-top:60rpx;' }}">
+  <!-- <view class="contentc" style="{{objType == 1 ?'':'padding-top:60rpx;' }}">
     <view class="parameter">所有评论</view>
     <view class="all">
       <view class="lis" wx:for="{{commentList}}" wx:key="">
         <image class="icon" src="{{item.headImg}}"></image>
         <view class="characterc">
-          <!-- 昵称 -->
+        
           <view class="name">{{item.nickName}}</view>
           <view class="data">
-            <!-- 时间 -->
+           
             <view class="time">{{item.timeStr}}</view>
             <view class="thumb" catchtap="dianz" data-objtype="{{3}}" data-objid="{{item.commentId}}" data-index="{{index}}">
-              <!-- 点赞 -->
+            
               <image class="nice" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_71.png"></image>
               <view class="thumb-text">{{item.dianzNum}}</view>
             </view>
           </view>
-          <!-- 留言 -->
+         
           <view class="specific">{{item.commentDesc}}</view>
         </view>
       </view>
 
     </view>
-  </view>
+  </view> -->
   <!-- 底部发布评论 -->
-  <view class="footer">
+  <!-- <view class="footer">
     <input class="input" placeholder="请输入评论(最多200字)" value='{{commentDesc}}' maxlength="200" bindinput="inputchang"></input>
     <view class="release" catchtap="comment">发布</view>
-  </view>
+  </view> -->
 
 
   <!-- 底部按钮 -->
-  <view class="poster" wx:if="{{objType == 1}}" catchtap="toPic">分享</view>
+  <!-- <view class="poster" wx:if="{{objType == 1}}" catchtap="toPic">分享</view> -->
 </view>

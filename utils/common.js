@@ -174,6 +174,58 @@ function requestPosts(url, data, success) {
 }
 
 
+/***
+ * 带加载
+ * post请求
+ *url:请求地址 
+ * data:请求数据
+ * res:回调
+ * fali:失败回调
+ */
+
+function requestPostf(url, data, success,fail) {
+
+  wx.request({
+    url: url,
+    method: "POST",
+    header: {
+      // 'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'content-type': "application/x-www-form-urlencoded",
+      'oi': app.globalData.idData.openid,
+      'times': newData,
+      's': utilMd5.hexMD5(app.globalData.idData.openid + app.globalData.idData.apipwd + newData + key).toUpperCase(),
+      'pwd': app.globalData.idData.apipwd,
+      'tk': app.globalData.idData.token,
+    },
+
+    data: data,
+    success: res => {
+
+      if (res.data.code == 200) {
+        success(res)
+        wx.hideLoading()
+      } else {
+        fail(res)
+        wx.hideLoading()
+       
+      }
+    },
+
+    fail: res => {
+      wx.hideLoading();
+      showToast('网络异常，请重新刷新页面', 'none', res => { })
+    },
+
+    complete: res => {
+      // wx.hideLoading();
+    }
+
+  })
+
+}
+
+
 
 
 
@@ -321,6 +373,7 @@ function login(callback) {
                   sex: app.globalData.sex,
                   unionId: app.globalData.idData.unionId,
                   xcxOpenid: app.globalData.idData.openid,
+                  mobile: app.globalData.mobile
                 },
                 header: {
                   'content-type': "application/x-www-form-urlencoded",
@@ -333,6 +386,12 @@ function login(callback) {
                       callback();
                     }
                     
+                  }else {
+                    showToast(reg.data.msg, 'none', res => {
+                      wx.navigateTo({
+                        url: '../../author/author',
+                      })
+                     })
                   }
                 },
                 fail: function (reg) { },
@@ -352,6 +411,7 @@ function login(callback) {
     }
   })
 }
+
 
 /**
  * 页面访问uv信息
@@ -381,9 +441,11 @@ module.exports = {
   showLoading: showLoading,
   requestPost: requestPost,
   requestPosts: requestPosts,
+  requestPostf:requestPostf,
   requestGet: requestGet,
   requestGets: requestGets,
   getopenid: getopenid,
   login: login,
+
   uvpv: uvpv
 }

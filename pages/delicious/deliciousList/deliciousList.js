@@ -5,7 +5,8 @@ const api = require("../../../utils/api.js");
 Page({
 
   data: {
-    arr: ['美味菜谱', '美味视频'],
+    arr: ['美味菜谱', ],
+    // arr: ['美味菜谱', '美味视频'],
     indexa: 0,
     pageNum: 1,
     // mwktLista: '',

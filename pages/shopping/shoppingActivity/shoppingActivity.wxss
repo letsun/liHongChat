@@ -204,14 +204,17 @@ page {
 .con-btn {
   position: absolute;
   left: 0;
-  right: 0;
-  bottom: -10rpx;
+  right: 0rpx;
+  bottom: 0rpx;
   text-align: center;
 }
 
 .con-btn image {
   width: 480rpx;
   height: 100rpx;
+  display: block;
+  margin: auto;
+  margin-bottom: -1rpx;
 }
 
 .result-win {

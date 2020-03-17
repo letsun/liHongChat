@@ -1,4 +1,4 @@
-<view class="container" bindtap="isflag" >
+<view class="container" bindtap="isflag">
   <view class="content">
     <!-- <image class="logo" mode="widthFix" catchtap="scanFunc" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_13.png"></image> -->
 
@@ -7,7 +7,12 @@
     <image class="effect" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_16.png"></image>
     <image class="title" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_12.png"></image>
     <image class="rule-btn" mode="widthFix" catchtap="openRule" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_2.png"></image>
-    <image class="open-btn" catchtap="openShake" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_14.png"></image>
+
+
+<!-- <image class="open-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_14.png"></image> -->
+    <button class="open-btn" open-type="getUserInfo"  bindgetuserinfo='openShake'>
+      <image mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_14.png"></image>
+    </button>
 
     <view class="nav-list">
       <view class="nav-item" catchtap="openRule">活动规则</view>
@@ -61,7 +66,9 @@
       </view>
 
       <view class="btn-wra btn-wra1">
-        <image class="result-btn" mode="widthFix" bindtap="personal" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_7.png"></image>
+        <image wx:if="{{lottery.type!=0}}" class="result-btn" mode="widthFix" bindtap="personal" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_7.png"></image>
+
+        <image wx:if="{{lottery.type==0}}" bindtap="hbbtn" class="result-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_71.png"></image>
       </view>
 
       <!--<view class="btn-wra btn-wra2">

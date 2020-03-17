@@ -6,6 +6,9 @@ var dev1 = 'http://192.168.1.105:8080';
 var test = 'https://apitest-qr.cresz.com.cn';
 var test1 = 'https://test-qr.cresz.com.cn';
 
+var pro = 'https://api-qr.cresz.com.cn';
+var pro1 = 'https://qr.cresz.com.cn';
+
 var ip = test;
 var ip1 = test1;
 
@@ -37,7 +40,7 @@ var api = {
   lottery: ip + '/api/game/point/lottery/' , // 九宫格抽奖
   addressDef: ip + '/api/shop/setDefault/', //设置默认收货地址
 
-  register: ip + '/api/member/register/info',    // 注册
+  //register: ip + '/api/member/register/info',    // 注册
   userInfo: ip + '/api/member/owner/info/', //个人中心
   orderList: ip + '/api/shop/order/list/', //订单列表
   kdinfo: ip + '/api/shop/order/wuliu/', //快递信息
@@ -53,6 +56,14 @@ var api = {
   relay: ip + '/api/mwkt/video/recipes/relay', // 美味课堂分享接口
   uvpv: ip + '/api/uvpv/submit/info', //uv记录
   userCash: ip + '/api/consumer/cash/userCash', //提现接口
-};
+
+  msg:ip+ '/qdwz/wechat/xcx/bizRedPacket/msg', //红包提现错误接口
+
+  decrypt: ip+'/qdwz/wechat/xcx/mobile/decrypt', //获取手机号码
+  retry: ip+'/api/consumer/cash/retry/', //当前未领取红包
+
+  callback: ip + '/api/consumer/cash/callback/' //领取红包回调
+}
+
 
 module.exports = api;

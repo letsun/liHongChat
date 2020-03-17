@@ -93,13 +93,6 @@
 				},
 				{
 					"id": -1,
-					"name": "美味评论",
-					"pathName": "pages/delicious/deliciousComment/deliciousComment",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "商城首页",
 					"pathName": "pages/shopping/shoppingList/shoppingList",
 					"query": "",
@@ -223,6 +216,13 @@
 					"pathName": "pages/activityHome/act/act",
 					"query": "",
 					"scene": 1011
+				},
+				{
+					"id": -1,
+					"name": "激活后跳转页面",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

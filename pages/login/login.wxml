@@ -13,8 +13,8 @@
         <view class="continue">您可以选择继续完善个人资料</view>
         <view class="gain">来获得更多积分和会员权益</view>
       </view>
-      <view class="immediately">立即完善我的个人资料</view>
-      <view class="later">稍后完善</view>
+      <view class="immediately" bindtap="personalData">立即完善我的个人资料</view>
+      <view class="later" bindtap="personal">稍后完善</view>
     </view>
   </view>
   <!--提示-->

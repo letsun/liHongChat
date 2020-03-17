@@ -63,8 +63,8 @@
           <!-- 商品留言 -->
           <!-- <view class="tags" catchtap="deliciousComment"> -->
           <view class="tags" >
-            <image class="text" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_73.png"></image>
-            <view class="tags-text">{{item.pinglNum}}</view>
+            <!-- <image class="text" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_73.png"></image>
+            <view class="tags-text">{{item.pinglNum}}</view> -->
           </view>
           <!-- 商品浏览次数 -->
           <view class="tags">

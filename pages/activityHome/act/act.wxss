@@ -78,6 +78,35 @@ page{
 	/* margin-left: -226rpx; */
 }
 
+.content .open-btn image{
+  width: 452rpx;
+}
+
+.button-hover {
+
+background-color:transparent;
+
+}
+
+button::after {
+
+border: none;
+
+}
+
+button {
+
+background-color: transparent;
+
+padding-left: 0;
+
+padding-right: 0;
+
+line-height:inherit;
+
+}
+
+
 .nav-list {
 	position: absolute;
 	left: 50%;
@@ -339,7 +368,7 @@ page{
 .shake-btn {
 	position: absolute;
 	left: 50%;
-	bottom: 102rpx;
+	bottom: 30rpx;
 	z-index: 2;
 
 	width: 362rpx;
