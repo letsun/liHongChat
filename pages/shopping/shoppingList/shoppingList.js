@@ -126,8 +126,16 @@ Page({
 
   //轮播图
   banner() {
-    common.requestPost(api.banner, {}, res => {
-
+    let that = this;
+    
+    common.requestPostf(api.banner, {}, res => {
+      that.setData({
+        banner: res.data.data
+      })
+    },reg=>{
+      that.setData({
+        banner: ''
+      })
     })
   },
 

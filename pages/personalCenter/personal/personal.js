@@ -89,6 +89,29 @@ Page({
 
   },
 
+  // 扫一扫
+  scanFunc() {
+    // debugger
+    var that = this;
+    wx.scanCode({
+      onlyFromCamera: true,
+      success(res) {
+        console.log()
+        if (res.result != 'undefined') {
+          var urlList = res.result.split('/');
+          var code = urlList[urlList.length - 1];
+          app.globalData.code = code;
+          app.globalData.qrtypes =1;
+          wx.switchTab({
+            url: '../../activityHome/act/act',
+          })  
+
+              
+        }
+      }
+    })
+  },
+
 
 
   //获取用户信息
@@ -98,7 +121,7 @@ Page({
       that.setData({
         userInfo: res.data.data
       })
-      if (that.data.scene == 1011 || that.data.scene == 1012) {
+      if (that.data.scene == 1011) {
         that.retry()
       }
     })

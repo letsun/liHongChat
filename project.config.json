@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"enhance": false,
 		"postcss": true,
@@ -190,11 +190,11 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 19,
 					"name": "一物一码活动",
 					"pathName": "pages/activityHome/act/act",
 					"query": "",
-					"scene": null
+					"scene": 1001
 				},
 				{
 					"id": -1,
@@ -223,6 +223,20 @@
 					"pathName": "pages/login/login",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "授权页面",
+					"pathName": "pages/author/author",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "扫码测试",
+					"pathName": "pages/activityHome/act/act",
+					"query": "",
+					"scene": 1011
 				}
 			]
 		}

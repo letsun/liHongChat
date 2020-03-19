@@ -31,12 +31,13 @@ Page({
 
   //抽奖操作
   cj() {
+    // debugger
     let This = this;
     if (this.data.mum > 0) {
-      cjChange = 0;
       this.setData({
         cjChange: -1,
       });
+      // debugger
       if (cjIn) {
         wx.showToast({
           title: '正在抽奖请稍候...',
@@ -46,8 +47,9 @@ Page({
         });
         return;
       } else {
+        console.log('111')
         cjIn = true;
-
+        cjChange = 0;
         this.lottery(function() {
           for (var i = 0; i < This.data.prizeData.prizeList.length; i++) {
             if (This.data.prizeData.prizeList[i].prizeId == This.data.resultData.prizeId) {
@@ -101,19 +103,17 @@ Page({
     }
 
     if (cjChange > 32 && cjChange % 8 == This.data.prizeIndex) {
-      cjIn = false;
       clearInterval(timer);
-
       setTimeout(function() {
         This.setData({
           isResultShow: true
         });
+        cjIn = false;
 
-        setTimeout(function() {
-          cjIn = false;
-          // This.getPrize();
-          return;
-        }, 200)
+        // setTimeout(function() {
+        //   // This.getPrize();
+        //   return;
+        // }, 200)
       }, 1000)
     }
 
@@ -188,6 +188,7 @@ Page({
   //跳转到提交订单页面
   shoppingOrder() {
     let that = this;
+  
     app.globalData.goodsId = that.data.resultData.goodsId;
     app.globalData.companyId = that.data.resultData.companyId;
     var carinfo = {
@@ -197,7 +198,8 @@ Page({
       goodsName: that.data.resultData.prizeName, //商品名称
       goodsScore: that.data.resultData.prizeAmount, // 商品积分
       memScore: that.data.resultData.memScore, //可使用积分
-      orderCategory:1                         //积分传1
+      orderCategory:1 ,                        //积分传1
+      joinid: that.data.resultData.joinId,
     }
     carinfo = JSON.stringify(carinfo);
 

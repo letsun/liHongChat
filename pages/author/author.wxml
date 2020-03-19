@@ -1,11 +1,14 @@
-
 <view class='container'>
-    <!--<view class='tips' style="color:#68BD48">亲,请选择授权登录即可购买商品,不想登录可以点击取消登录查看首页商品</view>-->
-    <view style="display: flex;width:90%;margin:auto;padding-top: 48%;">
-        <button class='buttonType' catchtap="goHome" style="background:black;">暂不登录</button>
-        <button class='buttonType' wx:if="{{userInfo==null}}" open-type="getUserInfo" bindgetuserinfo='bindgetuserinfo'  >授权登录</button>
 
-        <button  class='buttonType'  wx:else  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">立即激活</button>
-    </view>
+  <view class="login">
+    <image src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_74.png"></image>
+  </view>
+  <!--<view class='tips' style="color:#68BD48">亲,请选择授权登录即可购买商品,不想登录可以点击取消登录查看首页商品</view>-->
+  <view style="width:100%;margin:auto;padding-top: 20%;">
+    <button class='buttonType' wx:if="{{userInfo==null}}" open-type="getUserInfo" bindgetuserinfo='bindgetuserinfo'>微信授权登录</button>
+    <button class='buttonType' wx:else open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">立即激活</button>
+    <button class='buttonType' catchtap="goHome" >暂不登录</button>
+
+  </view>
 
 </view>

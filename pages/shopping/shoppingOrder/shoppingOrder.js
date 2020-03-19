@@ -122,9 +122,10 @@ Page({
     obj.payType = 5;
     obj.receiveAddrId = that.data.addressInfo.id;
     obj.companyId = app.globalData.companyId;
-
-    console.log(obj)
-
+    if (that.data.carinfo.joinid!=undefined) {
+      obj.containerId = that.data.carinfo.joinid;
+    }
+ 
     let orderInfo = JSON.stringify(obj)
 
     common.requestPost(api.submitOrder + app.globalData.memberId, {

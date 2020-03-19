@@ -12,7 +12,8 @@ Page({
     id: '',
     msgData: '',
     qrcode: 'https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/code.jpg',
-    storeId: ''
+    storeId: '',
+    integral:''
   },
   //保存至相册
   saveImageToPhotosAlbum() {
@@ -184,6 +185,18 @@ Page({
     });
   },
 
+  onShow(){
+    let that = this;
+    let integral = that.data.integral;
+    if (integral != '') {
+      common.showToast(integral, 'none', res => {
+        that.setData({
+          integral: ''
+        })
+      })
+    }
+  },
+
   deliciousDetail(type) {
     let that = this;
     common.requestPosts(api.deliciousDetail, {
@@ -238,7 +251,9 @@ Page({
       objId: that.data.objid,
       objType: objtype,
     }, red => {
-
+      that.setData({
+        integral: red.data.msg
+      })
     });
   }
 });

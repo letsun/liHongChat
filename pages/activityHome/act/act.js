@@ -5,16 +5,18 @@ const api = require("../../../utils/api.js");
 var bmap = require('../../../utils/bmap-wx.min.js');
 const utilMd5 = require("../../../utils/md5.js");
 var BMap;
+var innerAudioContextEnd;
+var innerAudioContextStart;
 Page({
   data: {
-    flag: true,
+    // flag: true,
     latitude: '',
     longitude: '',
     isShakeShow: false,
     isResultShow: false,
     isRuleShow: false,
     isShake: true,
-    isAni: false,
+    isqr: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
     code: '',
     //code: 'Gjups44WM6PXLW93pn33CED6A',
@@ -24,11 +26,11 @@ Page({
     // https://test-qr.cresz.com.cn/Gjups64WM6T6GX38pn2875974
   },
 
-  isflag() {
-    this.setData({
-      flag: false
-    })
-  },
+  // isflag() {
+  //   this.setData({
+  //     flag: false
+  //   })
+  // },
 
   load(e) {
     console.log(e, 33)
@@ -40,7 +42,6 @@ Page({
 
 
   onLoad(options) {
-    wx.getLaunchOptionsSync()
     let that = this;
     let q = decodeURIComponent(options.q);
     if (q != 'undefined') {
@@ -49,7 +50,6 @@ Page({
       that.setData({
         code: code,
       });
-      console.log(code);
     }
 
     BMap = new bmap.BMapWX({
@@ -73,10 +73,29 @@ Page({
   },
 
   onShow(options) {
+    let that = this;
+    console.log(app.globalData.qrtypes, '44')
+
+    //个人中心扫码进来
+    if (app.globalData.qrtypes == 1) {
+      console.log('1111')
+      that.setData({
+        isqr: false,
+        isShake: true
+      })
+    }
+    if (app.globalData.code != '') {
+      this.setData({
+        code: app.globalData.code
+      })
+    }
+
+
+    console.log(that.data.code)
     var data = wx.getLaunchOptionsSync() //获取场景代码
     console.log(data.scene, '场景值')
-    common.getopenid(res => {
 
+    common.getopenid(res => {
       app.globalData.idData.sessionKey = res.data.result.sessionKey
       app.globalData.idData.openid = res.data.result.openid
       common.uvpv('', '一物一码活动主页') //页面访问uv信息
@@ -114,89 +133,104 @@ Page({
   },
 
   // 打开摇一摇弹窗
+
+  // openShake() {
+  //   this.setData({
+  //     isShakeShow: true
+  //   })
+  // },
   openShake(res) {
     // this.lottery()
     let that = this;
     console.log(res)
-    
-    if (res.detail.userInfo != null) {
-      app.globalData.headImg = res.detail.userInfo.avatarUrl;
-      app.globalData.nickName = res.detail.userInfo.nickName;
-      app.globalData.sex = res.detail.userInfo.gender;
-      var appId = 'wx92ddcbce04fc34b6';
-      var encryptedData = res.detail.encryptedData;
-      var iv = res.detail.iv;
-      var pc = new RdWXBizDataCrypt(appId, app.globalData.idData.sessionKey);
-      var data = pc.decryptData(encryptedData, iv);
-      // debugger
-      app.globalData.idData.unionId = data.unionId;
+
+    var data = wx.getLaunchOptionsSync() //获取场景代码
+    console.log(data.scene, '场景值')
+    //判断码是否为空
+    if (that.data.code != '') {
+
+      //判断场景值是否为1011
+      if (data.scene == '1011') {
+        if (res.detail.userInfo != null) {
+          app.globalData.headImg = res.detail.userInfo.avatarUrl;
+          app.globalData.nickName = res.detail.userInfo.nickName;
+          app.globalData.sex = res.detail.userInfo.gender;
+          var appId = 'wx92ddcbce04fc34b6';
+          var encryptedData = res.detail.encryptedData;
+          var iv = res.detail.iv;
+          var pc = new RdWXBizDataCrypt(appId, app.globalData.idData.sessionKey);
+          var data = pc.decryptData(encryptedData, iv);
+          // debugger
+
+          console.log(data)
+          app.globalData.idData.unionId = data.unionId;
+
+          this.setData({
+            isShakeShow: true,
+            isqr: true
+          })
 
 
-      if (that.data.code!='') {
-        this.setData({
-          isShakeShow: true,
-        })
+
+          that.shakeFunc()
+
+        } else {
+          wx.showToast({
+            title: '亲,我拿不到你的头像与昵称呢',
+            icon: 'none',
+          });
+        }
       }else {
-        common.showToast('请扫描二维码参与活动', 'none', res => { })
+        wx.showToast({
+          title: '扫码异常，请删除小程序重新扫码！',
+          icon: 'none',
+        });
       }
-    } else {
-      wx.showToast({
-        title: '亲,我拿不到你的头像与昵称呢',
-        icon: 'none',
-      });
-    }
-    // if (that.data.code != '') {
-    //   if (app.globalData.memberId > 0) {
-    //     // this.lottery()
-    //     this.setData({
-    //       isShakeShow: true,
-    //     })
-    //   } else {
-    //     common.login();
-    //   }
-    // } else {
-    //   common.showToast('请扫描二维码参与活动', 'none', res => {})
-    // }
 
+    } else {
+      common.showToast('请扫描二维码参与活动', 'none', res => {})
+    }
 
   },
 
   // 摇一摇
   shakeFunc() {
+    console.log('摇一摇')
     let that = this;
-    that.setData({
-      isAni: true,
-    });
+
     let lastTime = 0;
-    const innerAudioContextStart = wx.createInnerAudioContext();
-    const innerAudioContextEnd = wx.createInnerAudioContext();
+    innerAudioContextStart = wx.createInnerAudioContext();
+    innerAudioContextEnd = wx.createInnerAudioContext();
     innerAudioContextStart.src = 'https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/suc.mp3';
     innerAudioContextEnd.src = 'https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/suc2.mp3';
 
     wx.onAccelerometerChange(function(e) {
-      let curTime = new Date().getTime(); //获取当前时间戳
-      let diffTime = curTime - lastTime; //获取摇动的间隔
-      if (diffTime > 400) {
-        lastTime = curTime; //记录上一次摇动的时间
-        if (e.x > 1 || e.y > 1 || e.z > 1) {
-          if (that.data.isShake) {
-            that.setData({
-              isShake: false
-            })
-            console.log(e.x, e.y, e.z, '138');
-            innerAudioContextStart.play();
-            innerAudioContextStart.onEnded(function() {
-              innerAudioContextEnd.stop();
-              setTimeout(function() {
-                that.lottery();
-                innerAudioContextEnd.play();
-              }, 50)
-            })
+      if (that.data.isqr) {
+        let curTime = new Date().getTime(); //获取当前时间戳
+        let diffTime = curTime - lastTime; //获取摇动的间隔
+        if (diffTime > 400) {
+          lastTime = curTime; //记录上一次摇动的时间
+          if (e.x > 1 || e.y > 1 || e.z > 1) {
+            if (that.data.isShake) {
+              that.setData({
+                isShake: false
+              })
+              console.log(e.x, e.y, e.z, '138');
+              innerAudioContextStart.play();
+              innerAudioContextStart.onEnded(function() {
+                innerAudioContextEnd.stop();
+                setTimeout(function() {
+                  that.lottery();
+                  innerAudioContextEnd.play();
+                }, 50)
+              })
+            }
           }
         }
       }
-
     })
+
+
   },
 
 
@@ -233,15 +267,17 @@ Page({
       unionId: unionId,
     }, res => {
       // type  0=红包 1=优惠券 2=实物 3=积分 4=权益券
-      wx.hideLoading();
+
       let lottery = res.data.data
       that.setData({
-        isResultShow: true,
         lottery: lottery,
+        isResultShow: true,
       })
-
       if (lottery.type == 0) {
+
         that.userCash() //红包提现
+      } else {
+        wx.hideLoading();
       }
       that.setData({
         code: ''
@@ -255,10 +291,10 @@ Page({
           })
           that.setData({
             isResultShow: false,
-            isShakeShow: false
+            isShakeShow: false,
           })
         })
-      }, 1000)
+      }, 500)
 
     })
   },
@@ -269,6 +305,7 @@ Page({
    * 红包提现
    */
   userCash() {
+    console.log('268')
     let that = this;
     let openid = app.globalData.idData.openid; //小程序openid
     let lottery = that.data.lottery;
@@ -280,11 +317,13 @@ Page({
       lotteryId: lottery.lotteryId, //  中奖记录ID
       activityCode: code, //  活动二维码
     }, res => {
-
       that.setData({
-        userCash: res.data.data
+        usercash: res.data.data,
+        isResultShow: true,
       })
 
+      wx.hideLoading();
+      console.log(that.data.usercash, '284')
     })
   },
 
@@ -293,23 +332,24 @@ Page({
 
   hbbtn() {
     let that = this;
-    let userCash = that.data.userCash;
+    let usercash = that.data.usercash;
     let openid = app.globalData.idData.openid; //小程序openid
     let lottery = that.data.lottery;
-    console.log(userCash, '334')
+    console.log(usercash, '334')
     that.setData({
       isResultShow: false,
-      isShakeShow: false
+      isShakeShow: false,
+
     })
 
 
     // debugger
     wx.sendBizRedPacket({
-      timeStamp: userCash.timeStamp, // 支付签名时间戳，
-      nonceStr: userCash.nonceStr, // 支付签名随机串，不长于 32 位
-      package: userCash.package, //扩展字段，由商户传入
-      signType: userCash.signType, // 签名方式，
-      paySign: userCash.paySign, // 支付签名
+      timeStamp: usercash.timeStamp, // 支付签名时间戳，
+      nonceStr: usercash.nonceStr, // 支付签名随机串，不长于 32 位
+      package: usercash.package, //扩展字段，由商户传入
+      signType: usercash.signType, // 签名方式，
+      paySign: usercash.paySign, // 支付签名
       success: function(reg) {
         console.log('微信提现成功回调', reg)
       },
@@ -372,4 +412,10 @@ Page({
     }
   },
 
+  onUnload: function () {
+
+    console.log('412')
+    innerAudioContextEnd.destroy();
+    innerAudioContextStart.destroy();
+  }
 })

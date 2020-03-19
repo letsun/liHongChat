@@ -7,6 +7,12 @@ Page({
   data: {
 
   },
+  onLoad(optios){
+    this.setData({
+      score: optios.score
+    })  
+  },
+
   personalData() {
     wx.navigateTo({
       url: '../personalCenter/personalData/personalData?type=' + 0,

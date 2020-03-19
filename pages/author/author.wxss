@@ -1,4 +1,5 @@
 /* pages/test/index.wxss */
+
 view {
 	box-sizing: border-box;
 }
@@ -12,6 +13,18 @@ page {
 .container {
 	width: 100%;
 	position: relative;
+  background: url(https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_72.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.login {
+  text-align: center;
+}
+
+.login image{
+  width: 560rpx;
+  height: 380rpx;
+  margin-top: 70rpx;
 }
 
 .tips {
@@ -28,10 +41,17 @@ page {
 
 .buttonType {
 	display: block;
-	width: 45%;
+	width:420rpx;
 	margin: 0 auto;
-	color: white;
-	background-color: #68BD48;
+  font-size: 30rpx;
+	background-color: #edcb6d;
+  color: #333;
 	height: 80rpx;
 	line-height: 80rpx;
+}
+
+.buttonType:last-child {
+  margin-top: 40rpx;
+  background: #fff;
+  border: 1rpx solid #edcb6d;
 }

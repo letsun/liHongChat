@@ -14,6 +14,7 @@ Page({
     index1: 0,
     memJob: 0,
     birthDay: '2020-02-24',
+    city:'',
     postList: [
       '服务员',
       '帮厨',
@@ -23,6 +24,7 @@ Page({
       '餐饮老板/分销老板',
       '消费者',
     ],
+    
   },
 
   onLoad(options) {
@@ -114,7 +116,8 @@ Page({
       province: province,
       sex: sex,
     }, res => {
-      common.showToast('提交资料成功', 'success', res => {})
+      let  data  = res.data.data
+      common.showToast('提交资料成功,恭喜获得' + data +'积分', 'none', res => {})
       setTimeout(res => {
         wx.reLaunch({
           url: '../../personalCenter/personal/personal',

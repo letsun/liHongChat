@@ -6,10 +6,10 @@ Page({
 
   data: {
     arr: ['美味菜谱', ],
-    // arr: ['美味菜谱', '美味视频'],
+     //arr: ['美味菜谱', '美味视频'],
     indexa: 0,
     pageNum: 1,
-    // mwktLista: '',
+    mwktLista: '',
     mwktListb: '',
     mwktListc: '',
     autoplay: true,
@@ -29,6 +29,7 @@ Page({
 
   onShow() {
     let that = this;
+    let integral = that.data.integral;
     that.setData({
       mwktListb: '',
       mwktListc: '',
@@ -47,6 +48,17 @@ Page({
       app.globalData.idData.openid = res.data.result.openid
       common.uvpv('', '美味课堂首页') //页面访问uv信息
     })
+
+    if (integral != '') {
+      setTimeout(reg => {
+        common.showToast(integral, 'none', res => {
+          that.setData({
+            integral: ''
+          })
+        })
+      }, 500)
+
+    }
   },
 
   // 监听轮播图
@@ -61,9 +73,9 @@ Page({
     }
 
     that.setData({
-      videoid: this.data.mwktLista[index].objId,
-      objName: this.data.mwktLista[index].objName,
-      objPic: this.data.mwktLista[index].objPic,
+      // videoid: this.data.mwktLista[index].objId,
+      // objName: this.data.mwktLista[index].objName,
+      // objPic: this.data.mwktLista[index].objPic,
       mwktLista: mwktLista,
       autoplay: true
     })
@@ -368,18 +380,34 @@ Page({
 
   sharePage() {
     let that = this;
-    common.requestPost(api.relay, {
-      memberId: app.globalData.memberId,
-      objId: that.data.videoid,
-      objType: 0,
-    }, red => {
+    let mwktLista = that.data.mwktLista;
+    if (mwktLista!='') {
+      common.requestPost(api.relay, {
+        memberId: app.globalData.memberId,
+        objId: mwktLista[0].objId,
+        objType: 0,
+      }, red => {
 
-    });
-    return {
-      title: that.data.objName,
-      path: 'pages/delicious/deliciousList/deliciousList',
-      imageUrl: that.data.objPic,
+          that.setData({
+            integral:red.data.msg
+          })
+      });
+
+      return {
+        title: that.data.objName,
+        path: 'pages/delicious/deliciousList/deliciousList',
+        imageUrl: that.data.objPic,
+      }
+    }else {
+
+      return {
+        title: '首页',
+        path: 'pages/delicious/deliciousList/deliciousList',
+        // imageUrl: that.data.objPic,
+      }
     }
+
+
   },
 
 

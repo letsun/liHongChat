@@ -4,15 +4,28 @@
   <view style="padding-top:40rpx">
     <view class="record" wx:for="{{joinList}}" wx:key="">
       <!-- 图片 -->
-      <image class="packet" src="{{item.prizePic}}"></image>
-      <!-- 获得物品 -->
-      <view class="get"  wx:if="{{item.prizeType==9}}">{{item.prizeName}}</view>
-      <view class="get"  wx:else>获得{{item.prizeName}}</view>
-      <!-- 获取时间 -->
-      <view class="day">{{item.joinDate}}</view>
+      <view class="recordimg">
+        <image class="packet" src="{{item.prizePic}}"></image>
+      </view>
+
+
+      <view class="middle">
+        <!-- 获得物品 -->
+        <view class="get" wx:if="{{item.prizeType==9}}">{{item.prizeName}}</view>
+        <view class="get" wx:else>获得{{item.prizeName}}</view>
+        <!-- 获取时间 -->
+
+        <view class="day">参与时间：{{item.joinDate}}</view>
+
+ 
+      </view>
+
+
+      <view class="right" wx:if="{{item.recStatus==0}}"> <view class="btn" data-joinid="{{item.joinId}}" data-index="{{index}}"  bindtap="shoppingOrder">点击领取</view> </view>
+      <view class="right" wx:if="{{item.recStatus==1}}"><view class="btn1">已领取</view></view>
     </view>
 
   </view>
-  
-    <view class="zwsj" wx:if="{{joinList==''}}">暂无数据</view>
+
+  <view class="zwsj" wx:if="{{joinList==''}}">暂无数据</view>
 </view>

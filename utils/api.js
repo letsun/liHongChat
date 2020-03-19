@@ -44,6 +44,8 @@ var api = {
   userInfo: ip + '/api/member/owner/info/', //个人中心
   orderList: ip + '/api/shop/order/list/', //订单列表
   kdinfo: ip + '/api/shop/order/wuliu/', //快递信息
+
+  orderOk: ip + '/api/shop/confirm/order/',//确认收货
  
   integralList: ip + '/api/member/point/updlist/', //积分记录
   joinList: ip + '/api/member/pointj/list/', //积分抽奖记录

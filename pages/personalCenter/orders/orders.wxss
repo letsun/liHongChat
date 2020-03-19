@@ -110,7 +110,7 @@
 .shop {
   font-size: 25rpx;
   line-height: 25rpx;
-  margin: 42rpx 0 0 110rpx;
+  margin: 42rpx 0 0 100rpx;
 }
 
 .number {
@@ -148,7 +148,18 @@
   margin-top: 22rpx;
 }
 
+.orderok {
+  position: absolute;
+  right: 30rpx;
+  color: #f4f4f4;
+  background-image: linear-gradient(to right, #f64904, #f99408);
+  top: -30rpx;
+  padding: 15rpx 20rpx;
+  border-radius: 10rpx;
+}
+
 .specific {
+  position: relative;
   display: flex;
   font-size: 22rpx;
   line-height: 22rpx;

@@ -2,6 +2,8 @@
 <view class="container">
   <!--顶部背景图片-->
   <image class="bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_17.png"></image>
+
+  <view class="qrcode" bindtap="scanFunc">扫一扫</view>
   <!--个人信息-->
   <view class="header">
     <image class="small-bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_57.png"></image>

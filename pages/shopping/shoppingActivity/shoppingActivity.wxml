@@ -67,7 +67,7 @@
 
         <block wx:else>
           <view class="linqu" catchtap="shoppingOrder">点击领取</view>
-          <view class="fangqi" catchtap="closeResult">放弃</view>
+          <!-- <view class="fangqi" catchtap="closeResult">放弃</view> -->
         </block>
       </view>
 

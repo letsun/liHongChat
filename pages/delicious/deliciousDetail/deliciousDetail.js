@@ -17,6 +17,8 @@ Page({
     hasNext: '',
     deliciousDetail: '',
     commentList: '',
+
+    integral:'',
   },
 
   /**
@@ -63,6 +65,21 @@ Page({
     } else if (objtype == 2) {
       that.browse(0) //浏览记录
     }
+
+    let integral = that.data.integral;
+    console.log(integral,'70')
+
+    if (integral!='') {
+      setTimeout(reg=>{
+        common.showToast(integral, 'none', res => {
+          that.setData({
+            integral: ''
+          })
+        })
+      },500)
+
+    }
+    
   },
 
 
@@ -213,6 +230,12 @@ Page({
         objType: that.data.objType,
         commentDesc: that.data.commentDesc
       }, res => {
+
+        setTimeout(red=>{
+          common.showToast(res.data.msg, 'none', reg => { })
+        },500)
+
+        
         that.setData({
           commentDesc: '',
           pageNum: 1
@@ -300,11 +323,15 @@ Page({
     if (that.data.objType == 1) {
       title = that.data.deliciousDetail.recipesName;
       pic = that.data.deliciousDetail.recipesPic;
-      objType = 1;
+      objType = 2;//请求参数
+
+      var objTypea =1 //分享参数
     } else if (that.data.objType == 0) {
       title = that.data.deliciousDetail.videoName;
       pic = that.data.deliciousDetail.videoPic;
-      objType = 0
+      objType = 1;
+
+      var objTypea = 0 //分享参数
     }
 
     common.requestPost(api.relay, {
@@ -312,17 +339,24 @@ Page({
       objId: that.data.objid,
       objType: objType,
     }, red => {
+      that.setData({
+        integral:red.data.msg
+      })
 
     });
+
+
     return {
       title: title,
-      path: 'pages/delicious/deliciousDetail/deliciousDetail' + '?objid=' + that.data.objid + '&objtype=' + objType + '&pageNum=' + 1,
+      path: 'pages/delicious/deliciousDetail/deliciousDetail' + '?objid=' + that.data.objid + '&objtype=' + objTypea + '&pageNum=' + 1,
       imageUrl: pic,
     }
   },
 
-
   onShareAppMessage: function() {
+    
+   
+
     return this.sharePage();
   },
 

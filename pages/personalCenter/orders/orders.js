@@ -12,8 +12,8 @@ Page({
     status: '3',
     indexa: 0,
     pageNum: 1,
-    orderList:'',
-    hasNext:'false',
+    orderList: '',
+    hasNext: 'false',
   },
 
 
@@ -55,18 +55,18 @@ Page({
       if (orderList[index].kdinfo == false) {
         orderList[index].kdinfo = true;
 
-      }else {
+      } else {
         orderList[index].kdinfo = false;
       }
 
       orderList[index].kdinfolist = res.data.data
 
-      
+
       that.setData({
         orderList: orderList,
         // kdinfo: kdinfolist
-      }) 
-      
+      })
+
     })
   },
 
@@ -79,23 +79,23 @@ Page({
     let pageNum = that.data.pageNum;
     let status = that.data.status;
 
-    common.requestPosts(api.orderList+ app.globalData.memberId, {
+    common.requestPosts(api.orderList + app.globalData.memberId, {
       pageNum: pageNum,
       status: status,
     }, res => {
-      let orderList = res.data.data.orderList;    
-      
+      let orderList = res.data.data.orderList;
+
       for (var i in orderList) {
         orderList[i].kdinfo = false;
       }
-        
-      let hasNext = that.data.hasNext;    
+
+      let hasNext = that.data.hasNext;
       if (that.data.orderList == '') {
         that.setData({
           orderList: res.data.data.orderList,
           hasNext: res.data.data.hasNext
         })
-      }else {
+      } else {
         if (hasNext == "true") {
           that.setData({
             orderList: that.data.orderList.concat(res.data.data.orderList),
@@ -107,6 +107,26 @@ Page({
     })
   },
 
+  //确认收货
+  orderOk(e) {
+
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    let orderno = e.currentTarget.dataset.orderno;
+    let orderList = that.data.orderList;
+    common.showModal('提示', '是否确认收货？', confirm => {
+      common.requestPost(api.orderOk + orderno, {
+        memberId: app.globalData.memberId
+      }, res => {
+        orderList.splice(index,1);
+        that.setData({
+          orderList: orderList
+        })
+      })
+    }, cancel => {})
+
+  },
+
   //点击切换导航
   tabBtn(e) {
     let that = this;
@@ -115,14 +135,14 @@ Page({
       var status = 3
     } else if (index == 1) {
       var status = 4
-    } else  {
+    } else {
       var status = 5
     }
     that.setData({
       indexa: index,
-      status:status,
-      pageNum:1,
-      orderList:'',
+      status: status,
+      pageNum: 1,
+      orderList: '',
     })
 
     that.orderList()

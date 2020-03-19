@@ -1,4 +1,4 @@
-<view class="container" bindtap="isflag">
+<view class="container">
   <view class="content">
     <!-- <image class="logo" mode="widthFix" catchtap="scanFunc" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_13.png"></image> -->
 
@@ -9,8 +9,8 @@
     <image class="rule-btn" mode="widthFix" catchtap="openRule" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_2.png"></image>
 
 
-<!-- <image class="open-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_14.png"></image> -->
-    <button class="open-btn" open-type="getUserInfo"  bindgetuserinfo='openShake'>
+    <!-- <image class="open-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_14.png"></image> -->
+    <button class="open-btn" open-type="getUserInfo" bindgetuserinfo='openShake'>
       <image mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_14.png"></image>
     </button>
 
@@ -27,16 +27,21 @@
     </view>-->
 
   <!--摇一摇弹窗-->
-  <view class="shake-win" wx:if="{{isShakeShow}}">
+  <view class="shake-win {{isShakeShow?'block':''}}">
     <view class="shake-content">
       <image class="shake-title" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_18.png"></image>
       <image class="shake-rule" catchtap="openRule" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_2.png"></image>
       <view class="shake-tip">
-        <image class="shake-hands {{isAni ? 'shake' : ''}}" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_20.png"></image>
+
+        <view class="shake-tipa"></view>
+        <view class="shake-tipb"></view>
+        <image class="shake-hands shake" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_20.png"></image>
         <image class="shake-num" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_19.png"></image>
       </view>
 
-      <image class="shake-btn" catchtap="shakeFunc" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_17.png"></image>
+
+
+      <image class="shake-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_17.png"></image>
     </view>
   </view>
 

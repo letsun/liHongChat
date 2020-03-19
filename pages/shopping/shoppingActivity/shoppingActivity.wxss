@@ -294,7 +294,7 @@ page {
   margin: 0 auto;
   width: 330rpx;
 }
-/* .linqu {
+.linqu {
   margin: auto;
   line-height: 70rpx;
   width: 330rpx;
@@ -303,8 +303,8 @@ page {
   background: #72c134;
   color: #f4f4f4;
   text-align: center;
-} */
-.linqu {
+}
+/* .linqu {
   margin-left: 170rpx;
   width: 120rpx;
   border-radius: 42rpx;
@@ -313,7 +313,7 @@ page {
   background: #72c134;
   color: #f4f4f4;
   text-align: center;
-}
+} */
 
 .fangqi {
   text-align: center;

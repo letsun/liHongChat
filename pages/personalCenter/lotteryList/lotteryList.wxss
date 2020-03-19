@@ -2,34 +2,61 @@
 
 .record {
   width: 690rpx;
-
   display: flex;
   font-size: 26rpx;
-  line-height: 100rpx;
-  margin: 0 0 21rpx 30rpx;
+  margin: 0 0 20rpx 30rpx;
+  padding: 20rpx;
   border: 1px solid #f1f1f1;
   border-radius: 10rpx;
   box-shadow: 0px 0px 20px #f1f1f1;
 }
 
+.recordimg {
+  width: 10%;
+}
+
+.middle {
+  width: 70%;
+}
+
 /* 图片 */
+
 .packet {
-  max-width: 50rpx;
-  max-height: 50rpx;
-  margin: 22rpx 0 0 19rpx;
+  max-width: 60rpx;
+  max-height: 60rpx;
+  margin: auto;
 }
 
 /* 获得物品 */
+
 .get {
-  font-weight: 500; 
-  margin-left: 17rpx;
+  font-weight: 500;
+  width: 450rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* 获取时间 */
+
 .day {
-  font-size: 17rpx;
-  margin-left: 142rpx;
+  font-size: 22rpx;
   color: #999;
+}
+
+.right {
+  width: 20%;
+  margin: auto;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10rpx 15rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  color: #f4f4f4;
+  background-image: linear-gradient(to right, #f64904, #f99408);
 }
 
 .zwsj {

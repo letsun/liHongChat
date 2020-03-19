@@ -5,9 +5,20 @@
   height: 100%;
 }
 
+.qrcode {
+  position: absolute;
+  right: 40rpx;
+  top: 40rpx;
+  border-radius: 30rpx;
+  padding: 5rpx 20rpx;
+  color: #f4f4f4;
+  background-image: linear-gradient(to right, #f64904 , #f99408);
+}
+
 .bg {
   width: 100%;
   height: 381rpx;
+  
 }
 
 .main,

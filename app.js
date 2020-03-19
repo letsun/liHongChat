@@ -1,9 +1,14 @@
 const RdWXBizDataCrypt = require('utils/WXBizDataCrypt.js');
 App({
 
+  onShow: function (options) {
+    console.log("[onShow] 本次场景值:", options.scene)
+  },
   globalData: {
+    qrtypes:'', //判断从哪里扫码进来
     memberId: '',
     mobile: '',
+    code:'',
     idData: {
       openid: '',
       //openid: 'ofjyq5bIZoFepEV22XbqTsxAtkI0',

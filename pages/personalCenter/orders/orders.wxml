@@ -33,7 +33,13 @@
       <view class="specific">
         <view class="name">{{item.recieveName}}</view>
         <view class="tel">{{item.recievePhone}}</view>
+        <view class="orderok" wx:if="{{indexa == 1}}" data-index="{{index}}" bindtap="orderOk" data-orderNo="{{item.orderNo}}">确认收货</view>
       </view>
+
+
+      <!-- 确认收货 -->
+
+      
 
       <block wx:if="{{indexa != 0}}">
         <view class="courier" wx:if="{{item.kdinfo == true}}">

@@ -99,49 +99,29 @@ Page({
       unionId: app.globalData.idData.unionId,
       xcxOpenid: app.globalData.idData.openid,
       mobile: app.globalData.mobile
-    }, reg => {
+    }, res => {
 
-      if (reg.data.code == 200) {
-        app.globalData.memberId = reg.data.data.memId;
+      if (res.data.code == 200) {
+        app.globalData.memberId = res.data.data.memId;
 
-        that.userInfo()
+        if (res.data.data.firstReg == 'N') {
+            setTimeout(function () {
+                that.goHome();
+            },1500)
+        } else {
+
+          let score = res.data.data.score
+          wx.navigateTo({
+            url: '../login/login?score=' + score,
+          })
+        }
 
       }
     })
   },
 
 
-  //获取用户信息
-  userInfo() {
-    let that = this;
-    common.requestPost(api.userInfo + app.globalData.memberId, {}, res => {
-      that.setData({
-        userInfo: res.data.data
-      })
 
-      //0 为没填写资料 1为已填写资料
-      if (that.data.userInfo.memName == '') {
-        wx.navigateTo({
-          url: '../login/login',
-        })
-      } else {
-        setTimeout(function () {
-          that.goHome();
-        }, 500)
-        // wx.navigateTo({
-        //   url: '../personalCenter/personalData/personalData?type=' + 0,
-        // })
-
-      }
-
-
-
-
-
-
-
-    })
-  },
   /**
    * 页面上拉触底事件的处理函数
    */
