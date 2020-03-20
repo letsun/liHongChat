@@ -19,7 +19,7 @@ Page({
     isqr: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
     code: '',
-    //code: 'Gjups44WM6PXLW93pn33CED6A',
+    //code: 'Gjups04WM6S7GB38pn6783CBE',
 
     // https://test-qr.cresz.com.cn/Gjups44WM6PXLW93pn33CED6A
     // https://test-qr.cresz.com.cn/Gjups04WM6S7GB38pn6783CBE
@@ -135,12 +135,13 @@ Page({
   // 打开摇一摇弹窗
 
   // openShake() {
+  //   // this.lottery()
   //   this.setData({
   //     isShakeShow: true
   //   })
   // },
   openShake(res) {
-    // this.lottery()
+    // 
     let that = this;
     console.log(res)
 
@@ -236,7 +237,7 @@ Page({
 
   // 抽奖
   lottery() {
-    common.showLoading()
+    common.showLoading();
     let that = this;
     let address = app.globalData.formatted_address; //详细地址
     let city = app.globalData.addressComponent.city; //市区
@@ -267,15 +268,42 @@ Page({
       unionId: unionId,
     }, res => {
       // type  0=红包 1=优惠券 2=实物 3=积分 4=权益券
-
+     
       let lottery = res.data.data
       that.setData({
         lottery: lottery,
         isResultShow: true,
       })
+     
       if (lottery.type == 0) {
+      
+        // that.userCash() //红包提现
 
-        that.userCash() //红包提现
+        common.requestPostf(api.userCash, {
+          openid: openid,
+          amount: lottery.redPack.prizeAmount,
+          cashType: 0, // 默认： 0
+          lotteryId: lottery.lotteryId, //  中奖记录ID
+          activityCode: labelno, //  活动二维码
+        }, res => {
+          that.setData({
+            usercash: res.data.data,
+            isResultShow: true,
+          })
+
+          if (that.data.usercash != undefined || that.data.usercash != '') {
+            wx.hideLoading();
+          }
+
+          console.log(that.data.usercash, '284')
+        }, reg => {
+
+          wx.hideLoading();
+          setTimeout(res => {
+            common.showToast(reg.data.msg, 'none', res => { })
+          }, 500)
+
+        })
       } else {
         wx.hideLoading();
       }
@@ -304,33 +332,25 @@ Page({
    * 
    * 红包提现
    */
-  userCash() {
-    console.log('268')
-    let that = this;
-    let openid = app.globalData.idData.openid; //小程序openid
-    let lottery = that.data.lottery;
-    let code = that.data.code;
-    common.requestPost(api.userCash, {
-      openid: openid,
-      amount: lottery.redPack.prizeAmount,
-      cashType: 0, // 默认： 0
-      lotteryId: lottery.lotteryId, //  中奖记录ID
-      activityCode: code, //  活动二维码
-    }, res => {
-      that.setData({
-        usercash: res.data.data,
-        isResultShow: true,
-      })
+  // userCash() {
+  //   console.log('268')
+  //   wx.showLoading({
+  //     title: '红包发放中',
+  //     mask: true,
+  //   })
+  //   let that = this;
+  //   let openid = app.globalData.idData.openid; //小程序openid
+  //   let lottery = that.data.lottery;
+  //   let code = that.data.code;
 
-      wx.hideLoading();
-      console.log(that.data.usercash, '284')
-    })
-  },
+  // },
 
 
   //点击开红包
 
   hbbtn() {
+
+
     let that = this;
     let usercash = that.data.usercash;
     let openid = app.globalData.idData.openid; //小程序openid
@@ -339,7 +359,6 @@ Page({
     that.setData({
       isResultShow: false,
       isShakeShow: false,
-
     })
 
 

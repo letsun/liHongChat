@@ -203,11 +203,11 @@ function requestPostf(url, data, success,fail) {
     success: res => {
 
       if (res.data.code == 200) {
+   
         success(res)
-        wx.hideLoading()
       } else {
         fail(res)
-        wx.hideLoading()
+  
        
       }
     },

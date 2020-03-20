@@ -26,7 +26,7 @@
         <view>z:{{z}}</view>
     </view>-->
 
-  <!--摇一摇弹窗-->
+  <!--摇一摇弹窗 "-->
   <view class="shake-win {{isShakeShow?'block':''}}">
     <view class="shake-content">
       <image class="shake-title" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_18.png"></image>
