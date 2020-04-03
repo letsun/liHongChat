@@ -62,3 +62,53 @@
 
   margin: 0 auto;
 }
+
+
+.mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.mask-con {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.mask-con-bg {
+
+  width: 750rpx;
+  height: 490rpx;  
+}
+
+.mask-con-text {
+  position: absolute;
+  top: 320rpx;
+  left: 230rpx;
+  right: 270rpx;
+  margin: auto;
+  z-index: 10;
+  font-size: 30rpx;
+  font-weight: bold;
+  display: flex;
+  color: #FCF1E3;
+  text-shadow: 3rpx 5rpx 8rpx  red;
+}
+
+.mask-con-btn {
+  max-width: 328rpx;
+  max-height: 113rpx;
+  position: absolute;
+  bottom: -40rpx;
+  left: -50rpx;
+  right: 0;
+  margin: auto;
+}
+
+

@@ -11,6 +11,7 @@
     "pages/index/index/index",
     "pages/delicious/deliciousList/deliciousList",
 
+
     "pages/delicious/signIn/signIn",
     "pages/shopping/shoppingList/shoppingList",
     "pages/shopping/shoppingDetails/shoppingDetails",

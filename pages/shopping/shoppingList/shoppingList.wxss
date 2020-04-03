@@ -12,10 +12,16 @@
 }
 
 /*头部图片*/
-.image {
+
+swiper{
   position: absolute;
   left: 30rpx;
   top: 110rpx;
+  width: 690rpx;
+  height: 320rpx;
+  border-radius: 15rpx;
+}
+swiper image {
   width: 690rpx;
   height: 320rpx;
   border-radius: 15rpx;

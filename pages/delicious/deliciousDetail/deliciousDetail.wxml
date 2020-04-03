@@ -1,130 +1,133 @@
 <!--pages/material/material.wxml-->
 
 <view class="container">
-  <!--头部图片-->
-  <view class="header" wx:if="{{objType == 1}}">
-    <image class="controls-bg" src="{{deliciousDetail.recipesPic}}"></image>
-  </view>
+	<!--头部图片-->
+	<view class="header" wx:if="{{objType == 1}}">
+		<image class="controls-bg" src="{{deliciousDetail.recipesPic}}"></image>
+	</view>
 
-  <view class="header" wx:else>
-    <image class="controls-bg" src="{{deliciousDetail.videoPic}}" wx:if="{{!isPlay}}" catchtap="videoPlay"></image>
-    <video id="video" src="{{deliciousDetail.videoFile}}" controls wx:else></video>
-  </view>
+	<view class="header" wx:else>
+		<image class="controls-bg" src="{{deliciousDetail.videoPic}}" wx:if="{{!isPlay}}" catchtap="videoPlay"></image>
+		<video id="video" src="{{deliciousDetail.videoFile}}" controls wx:else></video>
+	</view>
 
-  <view class="details">
-    <!--商品名称-->
-    <view class="title" wx:if="{{objType == 1}}">{{deliciousDetail.recipesName}}</view>
-    <view class="title" wx:else>{{deliciousDetail.videoName}}</view>
-    <!-- 点赞留言浏览 -->
-    <view class="like">
-      <!-- 点赞 -->
-      <view class="active love">
-        <!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}"> -->
-        <!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 2}}" data-objtype="{{1}}" > -->
-        <view class="dianzan" catchtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}" data-objid="{{deliciousDetail.objId}}">
-          <image class="love-img" wx:if="{{deliciousDetail.isDianz=='false'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
+	<view class="details">
+		<!--商品名称-->
+		<view class="title" wx:if="{{objType == 1}}">{{deliciousDetail.recipesName}}</view>
+		<view class="title" wx:else>{{deliciousDetail.videoName}}</view>
+		<!-- 点赞留言浏览 -->
+		<view class="like">
+			<!-- 点赞 -->
+			<view class="active love">
+				<!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}"> -->
+				<!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 2}}" data-objtype="{{1}}" > -->
+				<view class="dianzan" catchtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}" data-objid="{{deliciousDetail.objId}}">
+					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='false'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_107.png"></image>
 
-          <image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
-          <view class="love-text">{{deliciousDetail.dianzNum}}</view>
+					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_106.png"></image>
+					<view class="love-text">{{deliciousDetail.dianzNum}}</view>
 
-        </view>
+				</view>
 
-        <view class="dianzan" catchtap="dianz" wx:if="{{objType == 0}}" data-objtype="{{1}}" data-objid="{{deliciousDetail.objId}}">
-          <image class="love-img" wx:if="{{deliciousDetail.isDianz=='flase'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
+				<view class="dianzan" catchtap="dianz" wx:if="{{objType == 0}}" data-objtype="{{1}}" data-objid="{{deliciousDetail.objId}}">
+					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='flase'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
 
-          <image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
-          <view class="love-text">{{deliciousDetail.dianzNum}}</view>
+					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
+					<view class="love-text">{{deliciousDetail.dianzNum}}</view>
 
-        </view>
+				</view>
 
-      </view>
-      <!-- 留言 -->
-      <view class="active text">
-        <image class="text-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_73.png"></image>
-        <view class="text-text">{{deliciousDetail.pinglNum}}</view>
-      </view>
-      <!-- 浏览 -->
-      <view class="active browse">
-        <image class="browse-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_74.png"></image>
-        <view class="browse-text">{{deliciousDetail.viewNum}}浏览</view>
-      </view>
-    </view>
+			</view>
+			<!-- 留言 -->
+			<view class="active text">
+				<image class="text-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_73.png"></image>
+				<view class="text-text">{{deliciousDetail.pinglNum}}</view>
+			</view>
+			<!-- 浏览 -->
+			<view class="active browse">
+				<image class="browse-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_74.png"></image>
+				<view class="browse-text">{{deliciousDetail.viewNum}}浏览</view>
+			</view>
+		</view>
 
-    <view class="main" wx:if="{{objType == 1}}">
-      {{deliciousDetail.recipesRmk}}
-    </view>
+		<view class="main" wx:if="{{objType == 1}}">
+			{{deliciousDetail.recipesRmk}}
+		</view>
 
-    <!-- 标签 -->
-    <view class="btn">
-      <view class="food" wx:for="{{labels}}" wx:key="">{{item}}</view>
-    </view>
-  </view>
-
-
-  <block wx:if="{{objType == 1}}">
-    <!--用料-->
-    <view class="content">
-      <view class="parameter">用料</view>
-      <view class="all">
-        <view class="character" wx:for="{{ingredients}}" wx:for-item="obj" wx:key="">
-          <view class="material" wx:for="{{obj}}" wx:for-index="key" wx:key="">{{key}}</view>
-          <view class="usage" wx:for="{{obj}}" wx:for-item="value" wx:key="">{{value}}</view>
-        </view>
-      </view>
-    </view>
-
-    <!-- 调料 -->
-    <view class="contenta">
-      <view class="parameter">调料</view>
-      <view class="all">
-        <view class="character" wx:for="{{seasoning}}" wx:key="" wx:for-item="obj">
-          <view class="material" wx:for="{{obj}}" wx:for-index="key" wx:for-item="value" wx:key="">{{key}}</view>
-          <view class="usage" wx:for="{{obj}}" wx:for-item="value" wx:key="">{{value}}</view>
-        </view>
-      </view>
-    </view>
-  </block>
-
-  <!-- 说明 -->
-  <view class="main" wx:if="{{objType == 1}}" style="margin: 22rpx auto;">
-    <view class="parametera">菜谱描述</view>
-    <rich-text class="rich-text" nodes="{{recipesDesc}}"></rich-text>
-  </view>
-
-  <!--所有评论-->
+		<!-- 标签 -->
+		<view class="btn">
+			<view class="food" wx:for="{{labels}}" wx:key="">{{item}}</view>
+		</view>
+	</view>
 
 
-  <!-- <view class="contentc" style="{{objType == 1 ?'':'padding-top:60rpx;' }}">
-    <view class="parameter">所有评论</view>
-    <view class="all">
-      <view class="lis" wx:for="{{commentList}}" wx:key="">
-        <image class="icon" src="{{item.headImg}}"></image>
-        <view class="characterc">
-        
-          <view class="name">{{item.nickName}}</view>
-          <view class="data">
-           
-            <view class="time">{{item.timeStr}}</view>
-            <view class="thumb" catchtap="dianz" data-objtype="{{3}}" data-objid="{{item.commentId}}" data-index="{{index}}">
-            
-              <image class="nice" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_71.png"></image>
-              <view class="thumb-text">{{item.dianzNum}}</view>
-            </view>
-          </view>
-         
-          <view class="specific">{{item.commentDesc}}</view>
-        </view>
-      </view>
+	<block wx:if="{{objType == 1}}">
+		<!--用料-->
+		<view class="content">
+			<view class="parameter">用料</view>
+			<view class="all">
+				<view class="character" wx:for="{{ingredients}}" wx:for-item="obj" wx:key="">
+					<view class="material" wx:for="{{obj}}" wx:for-index="key" wx:key="">{{key}}</view>
+					<view class="usage" wx:for="{{obj}}" wx:for-item="value" wx:key="">{{value}}</view>
+				</view>
+			</view>
+		</view>
 
-    </view>
-  </view> -->
-  <!-- 底部发布评论 -->
-  <!-- <view class="footer">
-    <input class="input" placeholder="请输入评论(最多200字)" value='{{commentDesc}}' maxlength="200" bindinput="inputchang"></input>
-    <view class="release" catchtap="comment">发布</view>
-  </view> -->
+		<!-- 调料 -->
+		<view class="contenta">
+			<view class="parameter">调料</view>
+			<view class="all">
+				<view class="character" wx:for="{{seasoning}}" wx:key="" wx:for-item="obj">
+					<view class="material" wx:for="{{obj}}" wx:for-index="key" wx:for-item="value" wx:key="">{{key}}</view>
+					<view class="usage" wx:for="{{obj}}" wx:for-item="value" wx:key="">{{value}}</view>
+				</view>
+			</view>
+		</view>
+	</block>
 
+	<!-- 说明 -->
+	<view class="main" wx:if="{{objType == 1}}" style="margin: 22rpx auto;">
+		<view class="parametera">菜谱描述</view>
+		<rich-text class="rich-text" nodes="{{recipesDesc}}"></rich-text>
+	</view>
 
-  <!-- 底部按钮 -->
-  <!-- <view class="poster" wx:if="{{objType == 1}}" catchtap="toPic">分享</view> -->
+	<!--所有评论-->
+
+	<block wx:if="{{deliciousDetail.commentFlag==1}}">
+
+		<!-- <view class="contentc" style="{{index == 1 ?'':'padding-top:60rpx;' }}"> -->
+		<view class="contentc">
+
+			<view class="parameter">所有评论</view>
+			<view class="all">
+				<view class="lis" wx:for="{{commentList}}" wx:key="">
+					<image class="icon" src="{{item.headImg}}"></image>
+					<view class="characterc">
+
+						<view class="name">{{item.nickName}}</view>
+						<view class="data">
+
+							<view class="time">{{item.timeStr}}</view>
+							<view class="thumb" catchtap="dianz" data-objtype="{{3}}" data-objid="{{item.commentId}}" data-index="{{index}}">
+
+								<image class="nice" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_71.png"></image>
+								<view class="thumb-text">{{item.dianzNum}}</view>
+							</view>
+						</view>
+
+						<view class="specific">{{item.commentDesc}}</view>
+					</view>
+				</view>
+
+			</view>
+		</view>
+		<!-- 底部发布评论 -->
+		<view class="footer">
+			<input class="input" placeholder="请输入评论(最多200字)" value='{{commentDesc}}' maxlength="200" bindinput="inputchang"></input>
+			<view class="release" catchtap="comment">发布</view>
+		</view>
+
+	</block>
+	<!-- 底部按钮 -->
+	<!-- <view class="poster" wx:if="{{objType == 1}}" catchtap="toPic">分享</view> -->
 </view>

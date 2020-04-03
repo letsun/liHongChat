@@ -57,7 +57,9 @@
       <view class="result-dec">
         <view class="result-amount" wx:if="{{resultData.prizeType == 0}}"><text>{{resultData.prizeAmount}}</text>元</view>
         <view class="result-amount" wx:if="{{resultData.prizeType == 3}}"><text>{{resultData.prizeAmount}}</text>积分</view>
+        
         <view class="result-amount" wx:if="{{resultData.prizeType == 5}}"><text>{{resultData.prizeName}}</text></view>
+        <view class="result-amount" wx:if="{{resultData.prizeType == 6}}"><text>{{resultData.prizeAmount}}</text>奖劵</view>
         <!-- <view class="result-tip" wx:if="{{resultData.prizeType == 0 || resultData.prizeType == 3 || resultData.prizeType == 5}}">{{resultData.prizeType == 0 ? '现金红包' : resultData.prizeType == 3 ? '积分' : '实物'}}</view> -->
         <image mode="widthFix" class="smiley" wx:if="{{resultData.prizeType == 9}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_89.png"></image>
       </view>

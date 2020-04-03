@@ -25,6 +25,7 @@ Page({
       '消费者',
     ],
     
+    mask:false,
   },
 
   onLoad(options) {
@@ -37,7 +38,7 @@ Page({
     if(that.data.type == 1) {
 
       wx.setNavigationBarTitle({
-        title: '个人资料',
+        title: '编辑个人资料',
       }) 
       that.userInfo();
     } else if (that.data.type == 0) {
@@ -57,9 +58,10 @@ Page({
       buyWho = e.detail.value.buyWho,
       city = that.data.city,
       district = that.data.district,
+      pickValue = that.data.pickValue,
       postList = that.data.postList,
 
-    memJob = that.data.postList[that.data.memJob],
+      memJob = postList[that.data.memJob],
       memName = e.detail.value.memName,
       memShop = e.detail.value.memShop,
       province = that.data.province,
@@ -81,13 +83,21 @@ Page({
       return false;
     }
 
-    if (city == '') {
-      common.showToast('请选择城市', 'none', () => {
+    if(that.data.type == 0) {
 
-      });
-
-      return false;
+      if (city == '') {
+        common.showToast('请选城市', 'none', () => {
+        });
+        return false;
+      }
+    }else {
+      if (pickValue == '') {
+        common.showToast('请选城市', 'none', () => {
+        });
+        return false;
+      }
     }
+
 
     if (memShop == '') {
       common.showToast('请输入门店名称', 'none', () => {
@@ -116,16 +126,44 @@ Page({
       province: province,
       sex: sex,
     }, res => {
-      let  data  = res.data.data
-      common.showToast('提交资料成功,恭喜获得' + data +'积分', 'none', res => {})
-      setTimeout(res => {
-        wx.reLaunch({
-          url: '../../personalCenter/personal/personal',
+      //let  data  = res.data.data;
+
+      if (that.data.type ==0) {
+        // common.showToast('提交资料成功,恭喜获得' + data +'积分', 'none', res => {})
+
+        let coupon = res.data.data.coupon;
+        let score = res.data.data.score;
+        that.setData({
+          coupon:coupon,
+          score:score,
+          mask:true,
         })
-      }, 1500)
+        
+      }else {
+        common.showToast('资料修改成功','',res=>{})
+        setTimeout(res => {
+          wx.reLaunch({
+            url: '../../personalCenter/personal/personal',
+          })
+        }, 1500)
+      }
+      
+
     })
   },
 
+
+  maskbtn () {
+    let that = this;
+    that.setData({
+      mask:false
+    })
+    setTimeout(res => {
+      wx.reLaunch({
+        url: '../../personalCenter/personal/personal',
+      })
+    }, 1500)
+  },
 
   // 获取省市区
   pickchange(e) {
@@ -185,6 +223,9 @@ Page({
         pickValue: res.data.data.province + '-' + res.data.data.city + '-' + res.data.data.district,
         index: res.data.data.sex,
         birthDay: res.data.data.birthDay,
+        province: res.data.data.province,
+        city: res.data.data.city,
+        district: res.data.data.district,
       })
     })
   },

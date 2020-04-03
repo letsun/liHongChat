@@ -13,6 +13,25 @@ Page({
     hasNext: 'false',
   },
 
+  onLoad(options) {
+    let that = this;
+
+
+    if (options.spendType ==0) {
+      wx.setNavigationBarTitle({
+        title:'积分记录',
+      })
+    }else {
+      wx.setNavigationBarTitle({
+        title:'奖券记录',
+      })
+    }
+
+    that.setData({
+      spendType:options.spendType
+    })
+
+  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -43,10 +62,11 @@ Page({
   integralList() {
     let that = this;
     let pageNum = that.data.pageNum;
-    let status = that.data.status;
+    let spendType = that.data.spendType;
 
     common.requestPosts(api.integralList+ app.globalData.memberId, {
       pageNum: pageNum,
+      spendType:spendType
     }, res => {
 
       let pointList = that.data.pointList;

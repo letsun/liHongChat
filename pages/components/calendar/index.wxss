@@ -137,11 +137,11 @@
   margin-right: 2px;
 }
 
-.day-selected-round {
-  /* background: #28f;
+/* .day-selected-round {
+  background: #28f;
   color: #fff;
-  border-radius: 30px; */
-}
+  border-radius: 30px;
+} */
 
 .day-selected-square {
   background: #28f;

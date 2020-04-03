@@ -6,13 +6,12 @@ Page({
 
   data: {
     arr: ['美味菜谱', ],
-     //arr: ['美味菜谱', '美味视频'],
+    // arr: ['美味菜谱', '美味视频'],
     indexa: 0,
     pageNum: 1,
-    mwktLista: '',
-    mwktListb: '',
-    mwktListc: '',
+    mwktList: 0,
     autoplay: true,
+    integral:'',
   },
 
 
@@ -21,34 +20,26 @@ Page({
    */
   onLoad() {
     let that = this;
-    // that.deliciousList(0)
     if (app.globalData.memberId <= 0) {
       common.login()
     }
+    //that.categoryList()//社区版块-社区分类接口
+
+    that.deliciousList(2);
   },
 
   onShow() {
     let that = this;
     let integral = that.data.integral;
     that.setData({
-      mwktListb: '',
-      mwktListc: '',
       autoplay: true,
     })
-    that.deliciousList(0);
-    if (that.data.indexa == 0) {
-      that.deliciousList(2);
 
-    } else {
-      that.deliciousList(1);
-    }
-
+    that.banner(); //轮播图
     common.getopenid(res => {
-      // console.log(res)
       app.globalData.idData.openid = res.data.result.openid
       common.uvpv('', '美味课堂首页') //页面访问uv信息
     })
-
     if (integral != '') {
       setTimeout(reg => {
         common.showToast(integral, 'none', res => {
@@ -57,53 +48,73 @@ Page({
           })
         })
       }, 500)
-
     }
   },
 
-  // 监听轮播图
-  bindchange(e) {
-    let that = this;
-    let index = e.detail.current;
-    let mwktLista = that.data.mwktLista;
-    for (var i = 0; i < mwktLista.length; i++) {
-      mwktLista[i].isPlay = false;
-      var videoContextCurrent = wx.createVideoContext('video' + i);
-      videoContextCurrent.stop();
-    }
-
-    that.setData({
-      // videoid: this.data.mwktLista[index].objId,
-      // objName: this.data.mwktLista[index].objName,
-      // objPic: this.data.mwktLista[index].objPic,
-      mwktLista: mwktLista,
-      autoplay: true
-    })
-  },
-
-
-
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-    let that = this;
-    if (that.data.indexa == 0) {
-      that.setData({
-        pageNum: that.data.pageNum + 1
+    //轮播图
+    banner() {
+      let that = this;
+      common.requestPostf(api.banner, {}, res => {
+        that.setData({
+          banner: res.data.data
+        })
+      }, reg => {
+        that.setData({
+          banner: ''
+        })
       })
-      that.deliciousList(2);
-    } else {
+    },
+    //轮播图跳转  0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
+    bannernav(e) {
+      let that = this;
+      let banner = that.data.banner;
+      let index = e.currentTarget.dataset.index;
+      let type = banner[index].type;
+      console.log(type)
+  
+      if (app.globalData.memberId > 0) {
+        if (type == 0) {
+          wx.navigateTo({
+            url: "../../shopping/shoppingActivity/shoppingActivity"
+          })
+        } else if (type == 1) {
+          app.globalData.goodsId = banner[index].objId;
+          wx.navigateTo({
+            url: "../../shopping/shoppingDetails/shoppingDetails"
+          })
+        } else if (type == 2) {
+          wx.navigateTo({
+            url: '../../delicious/deliciousDetail/deliciousDetail?objid=' +  banner[index].objId + '&objtype=' +1,
+          })
+        } else if (type == 3) {
+          wx.navigateTo({
+            url: '../../delicious/deliciousDetail/deliciousDetail?objid=' +  banner[index].objId + '&objtype=' +0,
+          })
+        }
+      } else {
+        common.login()
+      }
 
-      that.setData({
-        pageNum: that.data.pageNum + 1
-      })
-      that.deliciousList(1);
+    },
 
-    }
-  },
 
+  //社区版块-社区分类接口
+  // categoryList() {
+  //   let that = this;
+  //   let indexa = that.data.indexa;
+  //   common.requestPost(api.categoryList, {}, res => {
+  //     that.setData({
+  //       categoryList: res.data.data
+  //     })
+
+  //     if (indexa == 0) {
+  //       var mwktType = 2;
+  //     } else {
+  //       var mwktType = 1;
+  //     }
+  //     that.deliciousList(mwktType);
+  //   })
+  // },
 
 
   /**
@@ -115,69 +126,61 @@ Page({
 
   deliciousList(mwktType) {
     let that = this;
-
     if (mwktType == 0) {
       var pageNum = 1;
     } else {
       var pageNum = that.data.pageNum;
     }
-
+    console.log(mwktType)
     common.requestPosts(api.deliciousList, {
       memberId: app.globalData.memberId,
       mwktType: mwktType,
       pageNum: pageNum
     }, res => {
-
-      if (mwktType == 0) {
-
-        var mwktLista = res.data.data.mwktList;
-        for (var i in mwktLista) {
-          mwktLista[i].isPlay = false
-        }
-        that.setData({
-          mwktLista: mwktLista
-        })
-
-      } else if (mwktType == 1) {
-
-        var mwktListc = res.data.data.mwktList;
-        for (var i in mwktListc) {
-          mwktListc[i].isPlays = false
-        }
-        if (that.data.mwktListc == '') {
-          that.setData({
-            mwktListc: res.data.data.mwktList,
-            hasNext: res.data.data.hasNext,
-          })
-        } else {
-          if (that.data.hasNext == 'true') {
-            let mwktListc = that.data.mwktListc;
-            that.setData({
-              mwktListc: mwktListc.concat(res.data.data.mwktList),
-              hasNext: res.data.data.hasNext,
-            })
-          }
-        }
-
-      } else if (mwktType == 2) {
-
-        if (that.data.mwktListb == '') {
-          that.setData({
-            mwktListb: res.data.data.mwktList,
-            hasNext: res.data.data.hasNext,
-          })
-        } else {
-          if (that.data.hasNext == 'true') {
-            let mwktListb = that.data.mwktListb;
-            that.setData({
-              mwktListb: mwktListb.concat(res.data.data.mwktList),
-              hasNext: res.data.data.hasNext,
-            })
-          }
+      var mwktList = res.data.data.mwktList;
+    
+      if (mwktType == 1) {
+        for (var i in mwktList) {
+          mwktList[i].isPlays = false
         }
       }
-
+      if (that.data.mwktList == '') {
+        that.setData({
+          mwktList: res.data.data.mwktList,
+          hasNext: res.data.data.hasNext,
+        })
+      } else {
+        if (that.data.hasNext == 'true') {
+          let mwktList = that.data.mwktList;
+          that.setData({
+            mwktList: mwktList.concat(res.data.data.mwktList),
+            hasNext: res.data.data.hasNext,
+          })
+        }
+      }
+      // wx.hideLoading({})
     })
+  },
+
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+    let that = this;
+
+    // common.showLoading()
+    if (that.data.indexa == 0) {
+      that.setData({
+        pageNum: that.data.pageNum + 1
+      })
+      that.deliciousList(2);
+    } else {
+      that.setData({
+        pageNum: that.data.pageNum + 1
+      })
+      that.deliciousList(1);
+    }
   },
 
 
@@ -189,58 +192,33 @@ Page({
     // debugger;
     let that = this;
     let index = e.currentTarget.dataset.index;
-    let objId = e.currentTarget.dataset.objid;
-    let objType = e.currentTarget.dataset.objtype;
-
+    let indexa = that.data.indexa;
+    let objId = that.data.mwktList[index].objId;
+    if (indexa == 0) {
+      var objType = 2
+    } else {
+      var objType = 1
+    }
     if (app.globalData.memberId > 0) {
       common.requestPost(api.dianz, {
         memberId: app.globalData.memberId,
         objId: objId,
         objType: objType,
       }, res => {
-        if (objType == 0) {
-          var mwktLista = that.data.mwktLista;
-          var isDianz = mwktLista[index].isDianz;
-          if (isDianz != 'true') {
-            mwktLista[index].dianzNum = mwktLista[index].dianzNum + 1;
-          }
-          mwktLista[index].isDianz = 'true';
-          that.setData({
-            mwktLista: mwktLista,
-          })
-
-        } else if (objType == 1) {
-
-          var mwktListc = that.data.mwktListc;
-          var isDianz = mwktListc[index].isDianz;
-          if (isDianz != 'true') {
-            mwktListc[index].dianzNum = mwktListc[index].dianzNum + 1;
-          }
-          mwktListc[index].isDianz = 'true';
-          that.setData({
-            mwktListc: mwktListc,
-          })
-
-        } else if (objType == 2) {
-          var mwktListb = that.data.mwktListb;
-          var isDianz = mwktListb[index].isDianz;
-          if (isDianz != 'true') {
-            mwktListb[index].dianzNum = mwktListb[index].dianzNum + 1;
-          }
-
-          mwktListb[index].isDianz = 'true';
-          that.setData({
-            mwktListb: mwktListb,
-          })
+        var mwktList = that.data.mwktList;
+        var isDianz = mwktList[index].isDianz;
+        if (isDianz != 'true') {
+          mwktList[index].dianzNum = mwktList[index].dianzNum + 1;
         }
-
-        common.showToast(res.data.msg, 'none', res => {})
+        mwktList[index].isDianz = 'true';
+        that.setData({
+          mwktList: mwktList,
+        })
+        common.showToast(res.data.msg, 'none', res => { })
       })
     } else {
       common.login()
     }
-
-
   },
 
 
@@ -250,8 +228,7 @@ Page({
     let index = e.currentTarget.dataset.index;
     this.setData({
       indexa: index,
-      mwktListb: '',
-      mwktListc: '',
+      mwktList: '',
       hasNext: '',
       pageNum: 1,
     })
@@ -263,59 +240,22 @@ Page({
   },
 
 
-  //点击轮播图播放视频
-  video(e) {
-    let that = this;
-    let index = e.currentTarget.dataset.index;
-    let mwktLista = that.data.mwktLista;
-    if (app.globalData.memberId > 0) {
-
-      mwktLista[index].isPlay = true;
-      for (var i = 0; i < mwktLista.length; i++) {
-        if (i != index) {
-          mwktLista[i].isPlay = false;
-          var videoContextCurrent = wx.createVideoContext('video' + i);
-          videoContextCurrent.stop();
-        }
-      }
-
-      this.setData({
-        mwktLista: mwktLista,
-        autoplay: false
-      })
-
-      var videoContextCurrent = wx.createVideoContext('video' + index);
-      videoContextCurrent.play();
-      var objid = e.currentTarget.dataset.objid;
-      that.browse(0, objid)
-
-    } else {
-      common.login()
-    }
-
-
-  },
-
-
   //点击美味视频
   videos(e) {
     if (app.globalData.memberId > 0) {
-
       let that = this;
       let index = e.currentTarget.dataset.index;
-      let mwktListc = that.data.mwktListc;
-
-      mwktListc[index].isPlays = true;
-
-      for (var i = 0; i < mwktListc.length; i++) {
+      let mwktList = that.data.mwktList;
+      mwktList[index].isPlays = true;
+      for (var i = 0; i < mwktList.length; i++) {
         if (i != index) {
-          mwktListc[i].isPlays = false;
+          mwktList[i].isPlays = false;
           var videoContextCurrent = wx.createVideoContext('videos' + i);
           videoContextCurrent.stop();
         }
       }
       this.setData({
-        mwktListc: mwktListc,
+        mwktList: mwktList,
       })
       var videoContextCurrent = wx.createVideoContext('videos' + index);
       videoContextCurrent.play();
@@ -343,13 +283,19 @@ Page({
     })
   },
 
-
-
-  //详情
+  //详情 0： 社区文章；1：美味菜谱
   deliciousDetail(e) {
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    let indexa = that.data.indexa;
+    let mwktList = that.data.mwktList;
+    let objid = mwktList[index].objId;
+    if (indexa == 0) {
+      var objtype = 1
+    } else {
+      var objtype = 0
+    }
     if (app.globalData.memberId > 0) {
-      let objid = e.currentTarget.dataset.objid;
-      let objtype = e.currentTarget.dataset.objtype;
       wx.navigateTo({
         url: '../deliciousDetail/deliciousDetail?objid=' + objid + '&objtype=' + objtype,
       })
@@ -358,21 +304,14 @@ Page({
     }
   },
 
-  //评论
-  // deliciousComment() {
-  //   wx.navigateTo({
-  //     url: '../deliciousComment/deliciousComment',
-  //   })
-  // },
+
 
   //签到页面
   signIn() {
-
     if (app.globalData.memberId > 0) {
       wx.navigateTo({
         url: '../signIn/signIn',
       })
-
     } else {
       common.login()
     }
@@ -381,16 +320,16 @@ Page({
   sharePage() {
     let that = this;
     let mwktLista = that.data.mwktLista;
-    if (mwktLista!='') {
+    if (mwktLista != '') {
       common.requestPost(api.relay, {
         memberId: app.globalData.memberId,
         objId: mwktLista[0].objId,
         objType: 0,
       }, red => {
 
-          that.setData({
-            integral:red.data.msg
-          })
+        that.setData({
+          integral: red.data.msg
+        })
       });
 
       return {
@@ -398,7 +337,7 @@ Page({
         path: 'pages/delicious/deliciousList/deliciousList',
         imageUrl: that.data.objPic,
       }
-    }else {
+    } else {
 
       return {
         title: '首页',
@@ -406,29 +345,30 @@ Page({
         // imageUrl: that.data.objPic,
       }
     }
-
-
   },
 
 
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return this.sharePage();
   },
 
+
+  //onUnload
   onHide() {
     let that = this;
-    let mwktLista = that.data.mwktLista;
-
-    for (var i = 0; i < mwktLista.length; i++) {
-      mwktLista[i].isPlay = false;
-      var videoContextCurrent = wx.createVideoContext('video' + i);
-      videoContextCurrent.stop();
+    if (that.data.indexa!=0) {
+      let mwktList = that.data.mwktList;
+      for (var i = 0; i < mwktList.length; i++) {
+        // debugger
+        mwktList[i].isPlays = false;
+        var videoContextCurrent = wx.createVideoContext('videos' + i);
+        videoContextCurrent.stop();
+      }
+      that.setData({
+        autoplay: false,
+        mwktList:mwktList
+      })
     }
-    this.setData({
-      mwktLista: mwktLista,
-      pageNum: 1,
-      autoplay:false
-    })
   }
 
 })

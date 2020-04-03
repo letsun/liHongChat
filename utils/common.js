@@ -201,7 +201,6 @@ function requestPostf(url, data, success,fail) {
 
     data: data,
     success: res => {
-
       if (res.data.code == 200) {
    
         success(res)
@@ -421,7 +420,7 @@ function uvpv(activityId, pageName) {
   var pages = getCurrentPages() //获取加载的页面
   var currentPage = pages[pages.length - 1] //获取当前页面的对象
   var url = currentPage.route //当前页面url
-  requestPost(api.uvpv, {
+  requestPostf(api.uvpv, {
     activityId: '',	//活动ID	number	如果是一物一码活动，需要传此ID。 可以为空
     clientType: '0',	//	客户端类型	number	0：小程序；1：H5（小程序默认传： 0）
     memberId: app.globalData.memberId,	//	会员ID	number	会员ID，如果授权登录了，需要传。否则可以为空
@@ -431,7 +430,7 @@ function uvpv(activityId, pageName) {
     pageUrl: url,	//	页面路径	string	页面路径url，必须传（如：/ page / jifen） 
   }, res => {
 
-  })
+  },resg=>{})
 }
 
 

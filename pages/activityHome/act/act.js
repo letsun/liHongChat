@@ -19,6 +19,7 @@ Page({
     isqr: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
     code: '',
+    
     //code: 'Gjups04WM6S7GB38pn6783CBE',
 
     // https://test-qr.cresz.com.cn/Gjups44WM6PXLW93pn33CED6A
@@ -50,6 +51,13 @@ Page({
       that.setData({
         code: code,
       });
+    } else {
+      common.login(function () {
+        console.log(app.globalData.memberId, 76)
+
+        that.advlogin()
+        that.siginInfo()
+      })
     }
 
     BMap = new bmap.BMapWX({
@@ -58,7 +66,7 @@ Page({
 
     wx.getLocation({
       type: 'wgs84',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           latitude: res.latitude, //纬度
           longitude: res.longitude //经度
@@ -66,11 +74,13 @@ Page({
 
         that.getLocation();
       },
-      fail: function() {
+      fail: function () {
 
       }
     });
   },
+
+
 
   onShow(options) {
     let that = this;
@@ -81,16 +91,15 @@ Page({
       console.log('1111')
       that.setData({
         isqr: false,
-        isShake: true
-      })
-    }
-    if (app.globalData.code != '') {
-      this.setData({
+        isShake: true,
         code: app.globalData.code
       })
     }
-
-
+    // if (app.globalData.code != '') {
+    //   this.setData({
+    //     code: app.globalData.code
+    //   })
+    // }
     console.log(that.data.code)
     var data = wx.getLaunchOptionsSync() //获取场景代码
     console.log(data.scene, '场景值')
@@ -107,13 +116,13 @@ Page({
     var that = this;
     BMap.regeocoding({
       location: that.data.latitude + ',' + that.data.longitude,
-      success: function(res) {
+      success: function (res) {
         app.globalData.addressComponent = res.originalData.result.addressComponent;
         app.globalData.formatted_address = res.originalData.result.formatted_address;
         console.log(res.originalData.result.addressComponent);
       },
-      fail: function(res) {
-        common.showToast('请检查位置服务是否开启', 'none', res => {})
+      fail: function (res) {
+        common.showToast('请检查位置服务是否开启', 'none', res => { })
       },
     });
   },
@@ -181,7 +190,7 @@ Page({
             icon: 'none',
           });
         }
-      }else {
+      } else {
         wx.showToast({
           title: '扫码异常，请删除小程序重新扫码！',
           icon: 'none',
@@ -189,7 +198,7 @@ Page({
       }
 
     } else {
-      common.showToast('请扫描二维码参与活动', 'none', res => {})
+      common.showToast('请扫描二维码参与活动', 'none', res => { })
     }
 
   },
@@ -205,7 +214,7 @@ Page({
     innerAudioContextStart.src = 'https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/suc.mp3';
     innerAudioContextEnd.src = 'https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/suc2.mp3';
 
-    wx.onAccelerometerChange(function(e) {
+    wx.onAccelerometerChange(function (e) {
       if (that.data.isqr) {
         let curTime = new Date().getTime(); //获取当前时间戳
         let diffTime = curTime - lastTime; //获取摇动的间隔
@@ -218,9 +227,9 @@ Page({
               })
               console.log(e.x, e.y, e.z, '138');
               innerAudioContextStart.play();
-              innerAudioContextStart.onEnded(function() {
+              innerAudioContextStart.onEnded(function () {
                 innerAudioContextEnd.stop();
-                setTimeout(function() {
+                setTimeout(function () {
                   that.lottery();
                   innerAudioContextEnd.play();
                 }, 50)
@@ -268,17 +277,15 @@ Page({
       unionId: unionId,
     }, res => {
       // type  0=红包 1=优惠券 2=实物 3=积分 4=权益券
-     
+
       let lottery = res.data.data
       that.setData({
         lottery: lottery,
         isResultShow: true,
       })
-     
-      if (lottery.type == 0) {
-      
-        // that.userCash() //红包提现
 
+      if (lottery.type == 0) {
+        // that.userCash() //红包提现
         common.requestPostf(api.userCash, {
           openid: openid,
           amount: lottery.redPack.prizeAmount,
@@ -290,11 +297,9 @@ Page({
             usercash: res.data.data,
             isResultShow: true,
           })
-
           if (that.data.usercash != undefined || that.data.usercash != '') {
             wx.hideLoading();
           }
-
           console.log(that.data.usercash, '284')
         }, reg => {
 
@@ -349,8 +354,6 @@ Page({
   //点击开红包
 
   hbbtn() {
-
-
     let that = this;
     let usercash = that.data.usercash;
     let openid = app.globalData.idData.openid; //小程序openid
@@ -369,11 +372,11 @@ Page({
       package: usercash.package, //扩展字段，由商户传入
       signType: usercash.signType, // 签名方式，
       paySign: usercash.paySign, // 支付签名
-      success: function(reg) {
+      success: function (reg) {
         console.log('微信提现成功回调', reg)
       },
 
-      fail: function(reg) {
+      fail: function (reg) {
         console.log('微信提现失败回调', reg)
         console.log('微信提现失败回调', reg.errMsg)
         //提交错误信息
@@ -385,7 +388,7 @@ Page({
 
         })
       },
-      complete: function(res) {}
+      complete: function (res) { }
     })
   },
 
@@ -429,6 +432,60 @@ Page({
     } else {
       common.login()
     }
+  },
+
+  //签到信息
+  siginInfo() {
+    let that = this;
+    common.requestPost(api.siginInfo + app.globalData.memberId, {
+    }, res => {
+      if(res.data.data.todaySign == 0) {
+        var maskclose = true;
+      }else {
+        var maskclose = false
+      }
+
+      that.setData({
+        maskclose: maskclose,
+      })
+    })
+  },
+
+
+  //首页广告弹窗
+  advlogin() {
+    common.requestPostf(api.advlogin,{
+    }, res => {
+      //0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
+      let type = res.data.data[0].type;
+      if (type == 0 ) {
+
+      }else {
+        
+      }
+    },reg=>{})
+  },
+
+  //点击签到
+  siginBtn() {
+    let that = this;
+    common.requestPost(api.siginBtn + app.globalData.memberId, {
+    }, res => {
+      common.showToast('签到成功', 'success', reg => {
+        that.setData({
+          maskclose: false
+        })
+      })
+    })
+  },
+
+
+  //关闭签到弹窗
+  closesign() {
+    let that = this;
+    that.setData({
+      maskclose: false
+    })
   },
 
   onUnload: function () {

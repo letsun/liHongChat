@@ -11,9 +11,21 @@
   top: 40rpx;
   border-radius: 30rpx;
   padding: 5rpx 20rpx;
+  
+  display: flex;
+  /* width: 10rpx; */
   color: #f4f4f4;
   background-image: linear-gradient(to right, #f64904 , #f99408);
 }
+
+.qrcode image{
+  max-height: 40rpx;
+  max-width: 40rpx;
+}
+
+.qrcode view {
+  width: 130rpx;
+} 
 
 .bg {
   width: 100%;
@@ -69,10 +81,32 @@
   font-size: 33rpx;
   line-height: 34rpx;
   width: 260rpx;
-  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* display: -webkit-box;
 -webkit-box-orient: vertical;
 -webkit-line-clamp: 2;
-overflow: hidden;
+overflow: hidden;  */
+  word-break: break-all;
+}
+
+
+.phone {
+  position: absolute;
+  left: 184rpx;
+  top: 81rpx;
+  font-size: 33rpx;
+  line-height: 34rpx;
+  width: 260rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+overflow: hidden;  */
+  word-break: break-all;
 }
 
 .integral {
@@ -81,11 +115,22 @@ overflow: hidden;
   top: 30rpx;
   padding: 0 20rpx;
   height: 56rpx;
-  font-size: 20rpx;
+  font-size: 24rpx;
   line-height: 56rpx;
   text-align: center;
-  color: #fff;
-  background-image: linear-gradient(to right, #f64904 , #f99408);
+  border-radius: 30rpx;
+}
+
+
+.lotter {
+  position: absolute;
+  left: 473rpx;
+  top: 70rpx;
+  padding: 0 20rpx;
+  height: 56rpx;
+  font-size: 24rpx;
+  line-height: 56rpx;
+  text-align: center;
   border-radius: 30rpx;
 }
 

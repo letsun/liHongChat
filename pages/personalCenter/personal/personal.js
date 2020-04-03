@@ -10,56 +10,60 @@ Page({
    */
   data: {
     nav: [{
-        'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_58.png',
-        'name': '我的订单'
-      },
-      {
-        'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_59.png',
-        'name': '我的地址'
-      },
-      {
-        'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_60.png',
-        'name': '积分记录'
-      },
-      {
-        'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_61.png',
-        'name': '抽奖记录'
-      },
-      {
-        'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_62.png',
-        'name': '签到记录'
-      },
-      {
-        'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_63.png',
-        'name': '点赞记录'
-      },
-      // {
-      //   'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_64.png',
-      //   'name': '评论记录'
-      // },
-      {
-        'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_65.png',
-        'name': '分享记录'
-      },
-      {
-        'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_66.png',
-        'name': '一物一码中奖记录'
-      }
+      'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_58.png',
+      'name': '我的订单'
+    },
+    {
+      'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_59.png',
+      'name': '我的地址'
+    },
+    {
+      'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_60.png',
+      'name': '积分记录'
+    },
+    {
+      'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_108.png',
+      'name': '奖券记录'
+    },
+    {
+      'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_61.png',
+      'name': '抽奖记录'
+    },
+    {
+      'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_62.png',
+      'name': '签到记录'
+    },
+    {
+      'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_63.png',
+      'name': '点赞记录'
+    },
+    {
+      'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_64.png',
+      'name': '评论记录'
+    },
+    {
+      'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_65.png',
+      'name': '分享记录'
+    },
+    {
+      'img': 'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_66.png',
+      'name': '一物一码中奖记录'
+    }
     ],
   },
 
   onLoad() {
-    let that = this;
-    common.login(function() {
-      let memberId = app.globalData.memberId;
-      if (app.globalData.memberId > 0) {
-        that.userInfo();
-        that.setData({
-          memberId: memberId,
-        })
+    // let that = this;
+    // common.login(function () {
+    //   let memberId = app.globalData.memberId;
+    //   if (app.globalData.memberId > 0) {
+    //     that.userInfo();
+    //     that.setData({
+    //       memberId: memberId,
+    //     })
 
-      }
-    })
+    //   }
+    // })
   },
 
   onShow() {
@@ -72,8 +76,6 @@ Page({
     that.setData({
       scene: data.scene
     })
-
-
     if (app.globalData.memberId > 0) {
       that.userInfo();
       that.setData({
@@ -81,13 +83,20 @@ Page({
       })
 
     }
-
     common.getopenid(res => {
       app.globalData.idData.openid = res.data.result.openid
       common.uvpv('', '个人中心首页') //页面访问uv信息    
     })
 
   },
+
+  //跳转到抽奖页面
+  // shoppingActivity() {
+  //   wx.navigateTo({
+  //     url: "../../shopping/shoppingActivity/shoppingActivity"
+  //   })
+  // },
+
 
   // 扫一扫
   scanFunc() {
@@ -101,15 +110,27 @@ Page({
           var urlList = res.result.split('/');
           var code = urlList[urlList.length - 1];
           app.globalData.code = code;
-          app.globalData.qrtypes =1;
+          app.globalData.qrtypes = 1;
           wx.switchTab({
             url: '../../activityHome/act/act',
-          })  
+          })
 
-              
+
         }
       }
     })
+  },
+  //签到页面
+  signIn() {
+
+    if (app.globalData.memberId > 0) {
+      wx.navigateTo({
+        url: '../../delicious/signIn/signIn',
+      })
+
+    } else {
+      common.login()
+    }
   },
 
 
@@ -135,7 +156,7 @@ Page({
         retry: res.data.data
       })
       that.sendBizRedPacket()
-    }, reg => {})
+    }, reg => { })
   },
 
   //微信开启红包
@@ -149,17 +170,17 @@ Page({
       package: retry.package, //扩展字段，由商户传入
       signType: retry.signType, // 签名方式，
       paySign: retry.paySign, // 支付签名
-      success: function(res) {
+      success: function (res) {
         console.log('微信提现成功回调', res)
         that.callback('success', '红包领取成功');
       },
 
-      fail: function(res) {
+      fail: function (res) {
 
         console.log(res, "130")
         that.callback('fail', res.errMsg);
       },
-      complete: function(res) {}
+      complete: function (res) { }
     })
   },
 
@@ -171,7 +192,7 @@ Page({
       cashRetryId: retry.cashRetryId,
       recCode: recCode,
       recMsg: recMsg
-    }, res => {})
+    }, res => { })
   },
 
 
@@ -181,7 +202,7 @@ Page({
   //点击调取授权信息
   login() {
     let that = this;
-    common.login(function() {
+    common.login(function () {
       let memberId = app.globalData.memberId;
       if (app.globalData.memberId > 0) {
         that.userInfo();
@@ -210,7 +231,7 @@ Page({
         url: '../../personalCenter/personalData/personalData?type=' + type,
       })
     } else {
-      common.login(function() {
+      common.login(function () {
         let memberId = app.globalData.memberId;
         if (app.globalData.memberId > 0) {
           that.userInfo();
@@ -240,37 +261,41 @@ Page({
         })
       } else if (index == 2) {
         wx.navigateTo({
-          url: '../../personalCenter/integralList/integralList',
+          url: '../../personalCenter/integralList/integralList?spendType='+0,
         })
-      } else if (index == 3) {
+      }else if (index == 3) {
         wx.navigateTo({
-          url: '../../personalCenter/lotteryList/lotteryList',
+          url: '../../personalCenter/integralList/integralList?spendType='+1,
         })
       } else if (index == 4) {
         wx.navigateTo({
-          url: '../../personalCenter/signInList/signInList',
+          url: '../../personalCenter/lotteryList/lotteryList',
         })
       } else if (index == 5) {
+        wx.navigateTo({
+          url: '../../personalCenter/signInList/signInList',
+        })
+      } else if (index == 6) {
         wx.navigateTo({
           url: '../../personalCenter/praiseList/praiseList',
         })
       }
-      //  else if (index == 6) {
-      //   wx.navigateTo({
-      //     url: '../../personalCenter/commentList/commentList',
-      //   })
-      // }
-      else if (index == 6) {
+       else if (index == 7) {
+        wx.navigateTo({
+          url: '../../personalCenter/commentList/commentList',
+        })
+      }
+      else if (index == 8) {
         wx.navigateTo({
           url: '../../personalCenter/shareList/shareList',
         })
-      } else if (index == 7) {
+      } else if (index == 9) {
         wx.navigateTo({
           url: '../../personalCenter/winning/winning',
         })
       }
     } else {
-      common.login(function() {
+      common.login(function () {
         let memberId = app.globalData.memberId;
         if (app.globalData.memberId > 0) {
           that.userInfo();

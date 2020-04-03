@@ -60,11 +60,12 @@ var api = {
   userCash: ip + '/api/consumer/cash/userCash', //提现接口
 
   msg:ip+ '/qdwz/wechat/xcx/bizRedPacket/msg', //红包提现错误接口
-
   decrypt: ip+'/qdwz/wechat/xcx/mobile/decrypt', //获取手机号码
   retry: ip+'/api/consumer/cash/retry/', //当前未领取红包
-
-  callback: ip + '/api/consumer/cash/callback/' //领取红包回调
+  callback: ip + '/api/consumer/cash/callback/', //领取红包回调
+  advlogin: ip + '/api/shop/adv/login', //首页弹窗
+  categoryList: ip + '/api/mwkt/video/category/list', //社区分类
+  
 }
 
 

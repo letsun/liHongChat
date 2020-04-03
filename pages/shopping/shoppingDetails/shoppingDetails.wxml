@@ -3,7 +3,7 @@
   <!--头部图片-->
   <view class="img">
     <swiper interval="{{3000}}" circular="{{true}}" autoplay="{{true}}">
-      <swiper-item wx:for="{{goodsInfo.goodsImgs}}" wx:key="">
+      <swiper-item wx:for="{{goodsInfo.goodsImgs}}" wx:key="xxx">
         <image src="{{item.picUrl}}"></image>
       </swiper-item>
     </swiper>
@@ -30,9 +30,9 @@
   <!--规格参数-->
   <view class="content">
     <view class="parameter">规格参数</view>
-    <view class="item" wx:for="{{jsonProp}}" wx:for-item="obj" wx:key=''>
-      <view class="item-key" wx:for="{{obj}}" wx:for-index="key" wx:key="">{{key}}</view>
-      <view class="item-value" wx:for="{{obj}}" wx:for-item="value" wx:key="">{{value}}</view>
+    <view class="item" wx:for="{{jsonProp}}" wx:for-item="obj" wx:key='xxx'>
+      <view class="item-key" wx:for="{{obj}}" wx:for-index="key" wx:key="xxx">{{key}}</view>
+      <view class="item-value" wx:for="{{obj}}" wx:for-item="value" wx:key="xxx">{{value}}</view>
     </view>
   </view>
 

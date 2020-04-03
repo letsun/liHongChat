@@ -14,8 +14,9 @@ Page({
     categoryId: '0',
 
     pageNum: 1,
-    goodsList:'',
-    hasNext:'',
+    goodsList: '',
+    hasNext: '',
+    autoplay: true
   },
 
 
@@ -75,13 +76,13 @@ Page({
     }, res => {
 
       let goodsList = that.data.goodsList;
-      if (goodsList=='') {
+      if (goodsList == '') {
         that.setData({
           goodsList: res.data.data.goodsList,
           hasNext: res.data.data.hasNext
         })
-      }else {
-        if(that.data.hasNext=='true') {
+      } else {
+        if (that.data.hasNext == 'true') {
           that.setData({
             goodsList: goodsList.concat(res.data.data.goodsList),
             hasNext: res.data.data.hasNext
@@ -97,7 +98,7 @@ Page({
     common.requestPost(api.shoppingcategory, {}, res => {
       let shoppingcategory = res.data.data;
       that.setData({
-        shoppingcategory: res.data.data
+        shoppingcategory: shoppingcategory
       })
       that.shoppingList()
     })
@@ -127,23 +128,53 @@ Page({
   //轮播图
   banner() {
     let that = this;
-    
     common.requestPostf(api.banner, {}, res => {
       that.setData({
         banner: res.data.data
       })
-    },reg=>{
+    }, reg => {
       that.setData({
         banner: ''
       })
     })
+  },
+  //轮播图跳转  0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
+  bannernav(e) {
+    let that = this;
+    let banner = that.data.banner;
+    let index = e.currentTarget.dataset.index;
+    let type = banner[index].type;
+    console.log(type)
+
+    if (app.globalData.memberId > 0) {
+      if (type == 0) {
+        wx.navigateTo({
+          url: "../../shopping/shoppingActivity/shoppingActivity"
+        })
+      } else if (type == 1) {
+        app.globalData.goodsId = banner[index].objId;
+        wx.navigateTo({
+          url: "../../shopping/shoppingDetails/shoppingDetails"
+        })
+      } else if (type == 2) {
+        wx.navigateTo({
+          url: '../../delicious/deliciousDetail/deliciousDetail?objid=' +  banner[index].objId + '&objtype=' +1,
+        })
+      } else if (type == 3) {
+        wx.navigateTo({
+          url: '../../delicious/deliciousDetail/deliciousDetail?objid=' +  banner[index].objId + '&objtype=' +0,
+        })
+      }
+    } else {
+      common.login()
+    }
   },
 
 
   //跳转到商品详情
   shoppingDetails(e) {
     // let goodsId = e.currentTarget.dataset.goodsid;
-      app.globalData.goodsId = e.currentTarget.dataset.goodsid
+    app.globalData.goodsId = e.currentTarget.dataset.goodsid
     wx.navigateTo({
       url: "../../shopping/shoppingDetails/shoppingDetails"
     })
@@ -153,7 +184,7 @@ Page({
   //九宫格页面
   shoppingActivity() {
     let that = this;
-    if (app.globalData.memberId > 0){
+    if (app.globalData.memberId > 0) {
       wx.navigateTo({
         url: "../../shopping/shoppingActivity/shoppingActivity"
       })

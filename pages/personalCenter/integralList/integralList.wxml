@@ -1,16 +1,20 @@
 <!--pages/integral/integral.wxml-->
 <view class="container">
   <!--赠送积分内容-->
-  <view class="integral" wx:for="{{pointList}}" wx:key="">
+  <view class="integral" wx:for="{{pointList}}" wx:key="xxx">
     <!--赠送积分-->
     <view class="sign">
       <view class="give">{{item.updRemark}}</view>
-      <view class="number">获得{{item.score}}积分</view>
+
+
+      <view class="number" wx:if='{{spendType==0}}'>获得{{item.score}}积分</view>
+      <view class="number" wx:else>获得{{item.coupon}}奖券</view>
     </view>
     <!--变更时间-->
     <view class="time change">变更时间：{{item.updTime}}</view>
     <!--过期时间-->
-    <view class="time past">当前总积分：{{item.thisScore}}</view>
+    <view class="time past" wx:if='{{spendType==0}}'>当前总积分：{{item.thisScore}}</view>
+     <view class="time past" wx:else>当前总奖券：{{item.thisCoupon}}</view>
   </view>
 
   

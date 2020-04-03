@@ -3,11 +3,17 @@
   <!--顶部背景图片-->
   <image class="bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_17.png"></image>
   <!--头部图片-->
-  <image class="image" wx:if="{{banner[0].picUrl==''|| banner[0].picUrl== unidentified}}" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_88.jpg" bindtap="shoppingActivity"></image>
-  <image class="image" wx:else src="{{banner[0].picUrl}}" bindtap="shoppingActivity"></image>
+
+<swiper autoplay="{{autoplay}}" interval="3000" circular="{{true}}" >
+  <swiper-item wx:for="{{banner}}" wx:key="xxx"  bindtap = 'bannernav'  data-index="{{index}}" >
+    <image src="{{item.picUrl}}"></image>
+  </swiper-item>
+</swiper>
+  
+
   <!--导航-->
   <scroll-view scroll-x="{{true}}" class="nav">
-    <view class="goods" data-id="{{index}}" data-cateid="{{item.cateId}}" catchtap="tabFunc" wx:for="{{shoppingcategory}}" wx:key="{{index}}">
+    <view class="goods" data-id="{{index}}" data-cateid="{{item.cateId}}" catchtap="tabFunc" wx:for="{{shoppingcategory}}" wx:key="xxx">
       <view class="shopping {{indexa == index ? 'active' : ''}}">{{item.cateName}}</view>
       <image class="{{indexa == index ? 'scoll' : 'img'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_30.png"></image>
     </view>
@@ -16,7 +22,7 @@
   <view class="content">
 
     <block wx:if="{{goodsList!=''}}">
-      <view class="shop" wx:for="{{goodsList}}" catchtap="shoppingDetails" data-goodsid="{{item.goodsId}}" wx:key="">
+      <view class="shop" wx:for="{{goodsList}}" catchtap="shoppingDetails" data-goodsid="{{item.goodsId}}" wx:key="xxx">
         <image class="shop-img" src="{{item.imagesUrl}}"></image>
         <view class="text">
           <!-- 商品标题 -->
