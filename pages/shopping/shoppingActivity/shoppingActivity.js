@@ -26,52 +26,77 @@ Page({
     prizeIndex: -1,
     mum: 0,
     isResultShow: false,
+    integral:''
+  },
+
+  onShow(){
+    let that = this;
+    let integral = that.data.integral;
+    if (integral != '') {
+      setTimeout(reg => {
+        common.showToast(integral, 'none', res => {
+          that.setData({
+            integral: ''
+          })
+
+          
+        })
+      }, 500)
+
+      that.getPrize();
+    }
   },
 
 
   //抽奖操作
   cj() {
-    // debugger
     let This = this;
-    if (this.data.mum > 0) {
-      this.setData({
-        cjChange: -1,
-      });
-      // debugger
-      if (cjIn) {
+    if (app.globalData.memberId > 0) {
+      if (this.data.mum > 0) {
+        this.setData({
+          cjChange: -1,
+        });
+        // debugger
+        if (cjIn) {
+          wx.showToast({
+            title: '正在抽奖请稍候...',
+            icon: 'none',
+            duration: 2000,
+            mask: true,
+          });
+          return;
+        } else {
+          console.log('111')
+          cjIn = true;
+          cjChange = 0;
+          this.lottery(function() {
+            for (var i = 0; i < This.data.prizeData.prizeList.length; i++) {
+              if (This.data.prizeData.prizeList[i].prizeId == This.data.resultData.prizeId) {
+                This.setData({
+                  prizeIndex: i,
+                })
+              }
+            }
+  
+            clearInterval(timer);
+            timer = setInterval(This.changePrize, 80);
+          })
+        }
+      } else {
         wx.showToast({
-          title: '正在抽奖请稍候...',
+          title: '您已经没有抽奖机会啦！',
           icon: 'none',
           duration: 2000,
           mask: true,
         });
         return;
-      } else {
-        console.log('111')
-        cjIn = true;
-        cjChange = 0;
-        this.lottery(function() {
-          for (var i = 0; i < This.data.prizeData.prizeList.length; i++) {
-            if (This.data.prizeData.prizeList[i].prizeId == This.data.resultData.prizeId) {
-              This.setData({
-                prizeIndex: i,
-              })
-            }
-          }
-
-          clearInterval(timer);
-          timer = setInterval(This.changePrize, 80);
-        })
       }
-    } else {
-      wx.showToast({
-        title: '您已经没有抽奖机会啦！',
-        icon: 'none',
-        duration: 2000,
-        mask: true,
-      });
-      return;
+    }else {
+      common.login()
     }
+   
+    
+
 
   },
   //抽奖过程奖品切换
@@ -129,7 +154,7 @@ Page({
   },
   // 获取奖项
   getPrize() {
-    common.requestPosts(api.activity, {
+    common.requestPost(api.activity, {
       memberId: app.globalData.memberId,
     }, res => {
       if (res.data.code == 200) {
@@ -231,55 +256,32 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
+  sharePage() {
+    let that = this;
+    let title = '';
+    let pic = '';
+    let objId =  0;
+    let objtype = 3
+    common.requestPost(api.relay, {
+      memberId: app.globalData.memberId,
+      objId:0,
+      objType: 3,
+    }, red => {
+      that.setData({
+        integral:red.data.msg
+      })
+    });
 
+    //app.globalData.memberId
+    return {
+      title: title,
+      path: 'pages/shopping/shoppingActivity/shoppingActivity',
+      imageUrl: pic,
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-    cjIn = false;
-    cjChange = 0;
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function() {
-
-  }
+    return this.sharePage();
+  },
 
 });

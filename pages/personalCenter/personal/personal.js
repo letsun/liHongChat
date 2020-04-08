@@ -50,6 +50,8 @@ Page({
       'name': '一物一码中奖记录'
     }
     ],
+
+    isPhone:false
   },
 
   onLoad() {
@@ -114,8 +116,6 @@ Page({
           wx.switchTab({
             url: '../../activityHome/act/act',
           })
-
-
         }
       }
     })
@@ -139,14 +139,50 @@ Page({
   userInfo() {
     let that = this;
     common.requestPost(api.userInfo + app.globalData.memberId, {}, res => {
+
+      var memMobile = res.data.data.memMobile;
+      // var len = memMobile.length;
+      // var memMobilea = memMobile.substring(3, len - 4);
+      // memMobile = memMobile.replace(memMobilea, "****");
+      memMobile= that.formatter(memMobile);
+   
       that.setData({
-        userInfo: res.data.data
+        userInfo: res.data.data,
+        memMobile:memMobile
       })
       if (that.data.scene == 1011) {
         that.retry()
       }
     })
   },
+
+  //点击电话号码
+  phonebtn() {
+    // debugger;
+    let that = this;
+    let isPhone = that.data.isPhone;
+    let memMobile = that.data.userInfo.memMobile;
+    if(!isPhone) {
+      that.setData({
+        isPhone:true,
+        memMobile:memMobile
+      })
+    }else {
+      memMobile = that.formatter(memMobile);
+      that.setData({
+        isPhone:false,
+        memMobile:memMobile
+      })
+    }
+  },
+
+  formatter(value) {
+    var len = value.length;
+    var xx = value.substring(3, len - 4);
+    var values = value.replace(xx, "****");
+    return values;
+  },
+
 
   //红包未领取接口
   retry() {
@@ -194,10 +230,6 @@ Page({
       recMsg: recMsg
     }, res => { })
   },
-
-
-
-
 
   //点击调取授权信息
   login() {
@@ -249,7 +281,6 @@ Page({
   bindnav(e) {
     let that = this;
     let index = e.currentTarget.dataset.index;
-
     if (app.globalData.memberId > 0) {
       if (index == 0) {
         wx.navigateTo({
@@ -261,11 +292,11 @@ Page({
         })
       } else if (index == 2) {
         wx.navigateTo({
-          url: '../../personalCenter/integralList/integralList?spendType='+0,
+          url: '../../personalCenter/integralList/integralList?spendType=' + 0,
         })
-      }else if (index == 3) {
+      } else if (index == 3) {
         wx.navigateTo({
-          url: '../../personalCenter/integralList/integralList?spendType='+1,
+          url: '../../personalCenter/integralList/integralList?spendType=' + 1,
         })
       } else if (index == 4) {
         wx.navigateTo({
@@ -280,7 +311,7 @@ Page({
           url: '../../personalCenter/praiseList/praiseList',
         })
       }
-       else if (index == 7) {
+      else if (index == 7) {
         wx.navigateTo({
           url: '../../personalCenter/commentList/commentList',
         })
@@ -307,8 +338,5 @@ Page({
       })
     }
   },
-
-
-
 
 })

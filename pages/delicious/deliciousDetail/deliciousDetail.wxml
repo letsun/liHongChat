@@ -19,24 +19,19 @@
 		<view class="like">
 			<!-- 点赞 -->
 			<view class="active love">
-				<!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}"> -->
-				<!-- <view class="active love" bindtap="dianz" wx:if="{{objType == 2}}" data-objtype="{{1}}" > -->
 				<view class="dianzan" catchtap="dianz" wx:if="{{objType == 1}}" data-objtype="{{2}}" data-objid="{{deliciousDetail.objId}}">
 					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='false'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_107.png"></image>
 
 					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_106.png"></image>
 					<view class="love-text">{{deliciousDetail.dianzNum}}</view>
-
 				</view>
 
 				<view class="dianzan" catchtap="dianz" wx:if="{{objType == 0}}" data-objtype="{{1}}" data-objid="{{deliciousDetail.objId}}">
-					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='flase'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_72.png"></image>
+					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='false'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_107.png"></image>
 
-					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_26.png"></image>
+					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_106.png"></image>
 					<view class="love-text">{{deliciousDetail.dianzNum}}</view>
-
 				</view>
-
 			</view>
 			<!-- 留言 -->
 			<view class="active text">
@@ -56,7 +51,7 @@
 
 		<!-- 标签 -->
 		<view class="btn">
-			<view class="food" wx:for="{{labels}}" wx:key="">{{item}}</view>
+			<view class="food" wx:for="{{labels}}" wx:key="xxx">{{item}}</view>
 		</view>
 	</view>
 
@@ -66,9 +61,9 @@
 		<view class="content">
 			<view class="parameter">用料</view>
 			<view class="all">
-				<view class="character" wx:for="{{ingredients}}" wx:for-item="obj" wx:key="">
-					<view class="material" wx:for="{{obj}}" wx:for-index="key" wx:key="">{{key}}</view>
-					<view class="usage" wx:for="{{obj}}" wx:for-item="value" wx:key="">{{value}}</view>
+				<view class="character" wx:for="{{ingredients}}" wx:for-item="obj" wx:key="xxx">
+					<view class="material" wx:for="{{obj}}" wx:for-index="key" wx:key="xxx">{{key}}</view>
+					<view class="usage" wx:for="{{obj}}" wx:for-item="value" wx:key="xxx">{{value}}</view>
 				</view>
 			</view>
 		</view>
@@ -77,40 +72,41 @@
 		<view class="contenta">
 			<view class="parameter">调料</view>
 			<view class="all">
-				<view class="character" wx:for="{{seasoning}}" wx:key="" wx:for-item="obj">
-					<view class="material" wx:for="{{obj}}" wx:for-index="key" wx:for-item="value" wx:key="">{{key}}</view>
-					<view class="usage" wx:for="{{obj}}" wx:for-item="value" wx:key="">{{value}}</view>
+				<view class="character" wx:for="{{seasoning}}" wx:key="xxx" wx:for-item="obj">
+					<view class="material" wx:for="{{obj}}" wx:for-index="key" wx:for-item="value" wx:key="xxx">{{key}}</view>
+					<view class="usage" wx:for="{{obj}}" wx:for-item="value" wx:key="xxx">{{value}}</view>
 				</view>
 			</view>
 		</view>
 	</block>
 
 	<!-- 说明 -->
-	<view class="main" wx:if="{{objType == 1}}" style="margin: 22rpx auto;">
+	<view class="main"  style="margin: 22rpx auto; {{objType == 0 ?'padding-top:15rpx;':'' }}">
 		<view class="parametera">菜谱描述</view>
-		<rich-text class="rich-text" nodes="{{recipesDesc}}"></rich-text>
+		<rich-text class="rich-text" nodes="{{mwktDesc}}"></rich-text>
 	</view>
+
+
+
+
 
 	<!--所有评论-->
 
 	<block wx:if="{{deliciousDetail.commentFlag==1}}">
-
-		<!-- <view class="contentc" style="{{index == 1 ?'':'padding-top:60rpx;' }}"> -->
 		<view class="contentc">
-
 			<view class="parameter">所有评论</view>
 			<view class="all">
-				<view class="lis" wx:for="{{commentList}}" wx:key="">
+				<view class="lis" wx:for="{{commentList}}" wx:key="xxx">
 					<image class="icon" src="{{item.headImg}}"></image>
 					<view class="characterc">
-
 						<view class="name">{{item.nickName}}</view>
 						<view class="data">
-
 							<view class="time">{{item.timeStr}}</view>
 							<view class="thumb" catchtap="dianz" data-objtype="{{3}}" data-objid="{{item.commentId}}" data-index="{{index}}">
 
-								<image class="nice" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_71.png"></image>
+								<image class="nice" wx:if="{{item.isDianz=='false'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_71.png"></image>
+
+								<image class="nice" wx:else src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_106.png"></image>
 								<view class="thumb-text">{{item.dianzNum}}</view>
 							</view>
 						</view>

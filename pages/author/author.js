@@ -111,7 +111,7 @@ Page({
         } else {
 
           let score = res.data.data.score
-          wx.navigateTo({
+          wx.reLaunch({
             url: '../login/login?score=' + score,
           })
         }

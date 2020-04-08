@@ -118,7 +118,7 @@ rich-text img {
 }
 
 .content {
-  padding-top: 70rpx;
+  padding-top: 60rpx;
 }
 
 .contenta {

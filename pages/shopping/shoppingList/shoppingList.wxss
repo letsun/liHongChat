@@ -30,7 +30,7 @@ swiper image {
 /*导航*/
 .nav {
   height: 55rpx;
-  display: flex;
+  /* display: flex; */
   padding-top: 120rpx;
   margin-left: 14rpx;
   width: 710rpx;
@@ -45,7 +45,7 @@ swiper image {
   position: relative;
   height: 55rpx;
   display: inline-block;
-  margin:0 10rpx;
+  /* margin:0 10rpx; */
   
 }
 

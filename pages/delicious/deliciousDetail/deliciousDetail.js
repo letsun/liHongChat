@@ -36,17 +36,6 @@ Page({
       objType: options.objtype
     });
 
-    // if (options.objtype == 0) {
-    //   common.uvpv('', '美味视频详情页') //页面访问uv信息
-    //   that.browse(1)
-    //   that.deliciousDetail(0) //详情
-    // } else if (options.objtype == 1) {
-    //   common.uvpv('', '美味菜谱详情页') //页面访问uv信息
-    //   that.browse(2)
-    //   that.deliciousDetail(0) //详情
-    // } else if (options.objtype == 2) {
-    //   that.browse(0) //浏览记录
-    // }
   },
 
   onShow() {
@@ -114,7 +103,7 @@ Page({
       objType: that.data.objType,
       pageNum: that.data.pageNum
     }, res => {
-
+      
       if (that.data.objType == 1) {
         if (that.data.deliciousDetail == '') {
 
@@ -138,6 +127,8 @@ Page({
           title: res.data.data.videoName,
         })
       }
+
+      //页面刷新还是评论后刷新
       if (type == 0) {
         if (that.data.deliciousDetail == '') {
           that.setData({
@@ -150,13 +141,13 @@ Page({
           var detail2 = '';
           var detail3 = '';
           var detail4 = '';
-          if (that.data.deliciousDetail.recipesDesc) {
-            detail = that.data.deliciousDetail.recipesDesc.replace(/\<section/gi, '<div');
+          if (that.data.deliciousDetail.mwktDesc) {
+            detail = that.data.deliciousDetail.mwktDesc.replace(/\<section/gi, '<div');
             detail2 = detail.replace(/section\>/gi, 'div>');
             detail3 = detail2.replace(/\<u/gi, '<i');
             detail4 = detail3.replace(/u\>/gi, 'i>');
             that.setData({
-              recipesDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
+              mwktDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
             })
           }
 
@@ -182,13 +173,13 @@ Page({
         var detail2 = '';
         var detail3 = '';
         var detail4 = '';
-        if (that.data.deliciousDetail.recipesDesc) {
-          detail = that.data.deliciousDetail.recipesDesc.replace(/\<section/gi, '<div');
+        if (that.data.deliciousDetail.mwktDesc) {
+          detail = that.data.deliciousDetail.mwktDesc.replace(/\<section/gi, '<div');
           detail2 = detail.replace(/section\>/gi, 'div>');
           detail3 = detail2.replace(/\<u/gi, '<i');
           detail4 = detail3.replace(/u\>/gi, 'i>');
           that.setData({
-            recipesDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
+            mwktDesc: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
           })
         }
       }
@@ -202,7 +193,6 @@ Page({
 
     let that = this;
     let commentDesc = e.detail.value.replace(/(^\s+)|(\s+$)/g, "");
-
     that.setData({
       commentDesc: commentDesc
     })
@@ -230,12 +220,10 @@ Page({
         objType: that.data.objType,
         commentDesc: that.data.commentDesc
       }, res => {
-
         setTimeout(red=>{
           common.showToast(res.data.msg, 'none', reg => { })
         },500)
 
-        
         that.setData({
           commentDesc: '',
           pageNum: 1
@@ -266,8 +254,10 @@ Page({
         objId: objId,
         objType: objType,
       }, res => {
+
         if (objType != 3) {
           deliciousDetail.isDianz = 'true';
+          deliciousDetail.dianzNum = deliciousDetail.dianzNum +1;
           that.setData({
             deliciousDetail: deliciousDetail,
           })
@@ -275,6 +265,8 @@ Page({
           let commentList = that.data.commentList;
           let dianzNum = that.data.commentList[index].dianzNum;
           commentList[index].dianzNum = dianzNum - 0 + 1;
+
+          commentList[index].isDianz = 'true';
           that.setData({
             commentList: commentList
           })
@@ -291,7 +283,6 @@ Page({
    * 浏览记录
    */
   browse(objType) {
-    console.log(app.globalData.memberId);
     let that = this;
     common.requestPost(api.browse, {
       memberId: app.globalData.memberId,
@@ -305,14 +296,20 @@ Page({
 
   //点击播放视频
   videoPlay() {
-    var videoContextCurrent = wx.createVideoContext('video');
 
-    console.log(videoContextCurrent)
-    // debugger
-    videoContextCurrent.play();
-    this.setData({
-      isPlay: true,
-    })
+    let that = this;
+    let videoFile = that.data.deliciousDetail.videoFile;
+    if (videoFile!='') {
+      var videoContextCurrent = wx.createVideoContext('video');
+
+      console.log(videoContextCurrent)
+      videoContextCurrent.play();
+      this.setData({
+        isPlay: true,
+      })
+    }
+
+
   },
 
   sharePage() {
@@ -342,7 +339,6 @@ Page({
       that.setData({
         integral:red.data.msg
       })
-
     });
 
 
@@ -354,8 +350,7 @@ Page({
   },
 
   onShareAppMessage: function() {
-    
-   
+  
 
     return this.sharePage();
   },

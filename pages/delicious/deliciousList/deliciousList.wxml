@@ -22,26 +22,38 @@
 		</swiper>
 	</view>
 	<!-- 导航栏 -->
-	<view class="nav">
-		<view class="delicious" wx:for="{{arr}}" wx:key="xxx" data-index="{{index}}" catchtap="tabFunc">
-			<view class="shopping {{indexa == index ? 'shop' : ''}}">
-				{{item}}
+
+	<view class="nava">
+		<scroll-view scroll-x="{{true}}" class="nav">
+			<view class="delicious" wx:for="{{categoryList}}" wx:key="xxx" data-index="{{index}}" catchtap="tabFunc">
+				<view class="shopping {{indexa == index ? 'shop' : ''}}">
+					{{item.cateName}}
+				</view>
+				<image wx:if="{{indexa == index}}" class="scoll" data-index="{{index}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_30.png"></image>
 			</view>
-			<image wx:if="{{indexa == index}}" class="scoll" data-index="{{index}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_30.png"></image>
+		</scroll-view>
+		<view class="nav-pick">
+			<picker range="{{picklist}}" bindchange="picklist"  value="{{orderType}}">{{picklist[orderType]}}
+				<image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_109.png"></image>
+			</picker>
+
 		</view>
 	</view>
-
 
 	<view class="all">
 		<view class="recipe" wx:for="{{mwktList}}" wx:key="xxx">
 			<!-- 商品 -->
-			<view class="photo" wx:if="{{indexa==0}}" data-index="{{index}}" bindtap="deliciousDetail">
+			<view class="photo"  data-index="{{index}}" bindtap="deliciousDetail">
+				<image class="controls-bg" src="{{item.objPic}}"></image>
+			</view>
+
+			<!-- <view class="photo" wx:if="{{indexa==0}}" data-index="{{index}}" bindtap="deliciousDetail">
 				<image class="controls-bg" src="{{item.objPic}}"></image>
 			</view>
 			<view class="photo" wx:else>
 				<image class="controls-bg" catchtap="videos" data-objid="{{item.objId}}" data-index="{{index}}" wx:if="{{!item.isPlays}}" src="{{item.objPic}}"></image>
 				<video style="height:370rpx;width:690rpx;" object-fit="fill" wx:if="{{item.isPlays}}" class="video" id="videos{{index}}" src="{{item.objVideo}}" show-center-play-btn="{{btnShow}}" bindfullscreenchange="fullscreenTap" custom-cache="{{false}}" controls></video>
-			</view>
+			</view> -->
 			<!-- 商品名称 -->
 			<view class="details" data-index="{{index}}" bindtap="deliciousDetail">
 				<view class="title">{{item.objName}}</view>

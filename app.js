@@ -6,7 +6,7 @@ App({
   },
   globalData: {
     qrtypes:'', //判断从哪里扫码进来
-    memberId: '',
+    memberId: 0,
     mobile: '',
     code:'',
     idData: {

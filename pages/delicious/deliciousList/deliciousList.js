@@ -5,13 +5,15 @@ const api = require("../../../utils/api.js");
 Page({
 
   data: {
-    arr: ['美味菜谱', ],
-    // arr: ['美味菜谱', '美味视频'],
     indexa: 0,
     pageNum: 1,
     mwktList: 0,
     autoplay: true,
-    integral:'',
+    integral: '',
+    // mwktType:2,
+    orderType:0,
+    picklist:['默认排序','最新排序','最热排序',],
+    categoryList:''
   },
 
 
@@ -23,9 +25,9 @@ Page({
     if (app.globalData.memberId <= 0) {
       common.login()
     }
-    //that.categoryList()//社区版块-社区分类接口
+    that.categoryList()//社区版块-社区分类接口
 
-    that.deliciousList(2);
+    //that.deliciousList(2);
   },
 
   onShow() {
@@ -51,70 +53,105 @@ Page({
     }
   },
 
-    //轮播图
-    banner() {
-      let that = this;
-      common.requestPostf(api.banner, {}, res => {
-        that.setData({
-          banner: res.data.data
-        })
-      }, reg => {
-        that.setData({
-          banner: ''
-        })
-      })
-    },
-    //轮播图跳转  0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
-    bannernav(e) {
-      let that = this;
-      let banner = that.data.banner;
-      let index = e.currentTarget.dataset.index;
-      let type = banner[index].type;
-      console.log(type)
-  
-      if (app.globalData.memberId > 0) {
-        if (type == 0) {
-          wx.navigateTo({
-            url: "../../shopping/shoppingActivity/shoppingActivity"
-          })
-        } else if (type == 1) {
-          app.globalData.goodsId = banner[index].objId;
-          wx.navigateTo({
-            url: "../../shopping/shoppingDetails/shoppingDetails"
-          })
-        } else if (type == 2) {
-          wx.navigateTo({
-            url: '../../delicious/deliciousDetail/deliciousDetail?objid=' +  banner[index].objId + '&objtype=' +1,
-          })
-        } else if (type == 3) {
-          wx.navigateTo({
-            url: '../../delicious/deliciousDetail/deliciousDetail?objid=' +  banner[index].objId + '&objtype=' +0,
-          })
-        }
-      } else {
-        common.login()
-      }
 
-    },
+  //排序下拉
+  picklist (e) {
+    let that = this;
+ 
+    let index = that.data.indexa;
+    that.setData({
+      orderType:e.detail.value,
+      mwktList: '',
+      hasNext: '',
+      pageNum: 1,
+    })
+    if (index == 0) {
+      that.deliciousList(2)
+    } else {
+      that.deliciousList(1)
+    }
+  },
+
+  //轮播图
+  banner() {
+    let that = this;
+    common.requestPostf(api.banner, {}, res => {
+      that.setData({
+        banner: res.data.data
+      })
+    }, reg => {
+      that.setData({
+        banner: ''
+      })
+    })
+  },
+  //轮播图跳转  0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
+  bannernav(e) {
+    let that = this;
+    let banner = that.data.banner;
+    let index = e.currentTarget.dataset.index;
+    let type = banner[index].type;
+    console.log(type)
+
+    if (app.globalData.memberId > 0) {
+      if (type == 0) {
+        wx.navigateTo({
+          url: "../../shopping/shoppingActivity/shoppingActivity"
+        })
+      } else if (type == 1) {
+        app.globalData.goodsId = banner[index].objId;
+        wx.navigateTo({
+          url: "../../shopping/shoppingDetails/shoppingDetails"
+        })
+      } else if (type == 2) {
+        wx.navigateTo({
+          url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + banner[index].objId + '&objtype=' + 1,
+        })
+      } else if (type == 3) {
+        wx.navigateTo({
+          url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + banner[index].objId + '&objtype=' + 0,
+        })
+      }
+    } else {
+      common.login()
+    }
+
+  },
 
 
   //社区版块-社区分类接口
-  // categoryList() {
-  //   let that = this;
-  //   let indexa = that.data.indexa;
-  //   common.requestPost(api.categoryList, {}, res => {
-  //     that.setData({
-  //       categoryList: res.data.data
-  //     })
+  categoryList() {
+    let that = this;
+    let indexa = that.data.indexa;
+    common.requestPostf(api.categoryList, {}, res => {
+      let categoryList = res.data.data;
+      let obj = {}
+      obj.cateId = '';
+      obj.cateName = '美味菜谱';
+      categoryList.unshift(obj);
+      that.setData({
+        categoryList: categoryList
+      })
 
-  //     if (indexa == 0) {
-  //       var mwktType = 2;
-  //     } else {
-  //       var mwktType = 1;
-  //     }
-  //     that.deliciousList(mwktType);
-  //   })
-  // },
+      if (indexa == 0) {
+        var mwktType = 2;
+      } else {
+        var mwktType = 1;
+      }
+      that.deliciousList(mwktType);
+    },reg=>{
+      let categoryList = [];
+      let obj = {}
+      obj.cateId = '';
+      obj.cateName = '美味菜谱';
+      categoryList.unshift(obj);
+      
+      that.setData({
+        categoryList:categoryList
+      })
+      that.deliciousList(2);
+    })
+  },
 
 
   /**
@@ -126,19 +163,32 @@ Page({
 
   deliciousList(mwktType) {
     let that = this;
-    if (mwktType == 0) {
-      var pageNum = 1;
-    } else {
-      var pageNum = that.data.pageNum;
+    // if (mwktType == 0) {
+    //   var pageNum = 1;
+    // } else {
+    //   var pageNum = that.data.pageNum;
+    // }
+
+    var indexa = that.data.indexa;
+    var pageNum = that.data.pageNum;
+    var categoryList = that.data.categoryList;
+    var orderType = that.data.orderType;
+
+    if (categoryList!='') {
+      var cateId = categoryList[indexa].cateId;
+    }else {
+      var cateId = 0;
     }
-    console.log(mwktType)
+   
     common.requestPosts(api.deliciousList, {
+      cateId: cateId,
       memberId: app.globalData.memberId,
       mwktType: mwktType,
-      pageNum: pageNum
+      pageNum: pageNum,
+      orderType:orderType
     }, res => {
       var mwktList = res.data.data.mwktList;
-    
+
       if (mwktType == 1) {
         for (var i in mwktList) {
           mwktList[i].isPlays = false
@@ -231,6 +281,7 @@ Page({
       mwktList: '',
       hasNext: '',
       pageNum: 1,
+      orderType:0
     })
     if (index == 0) {
       that.deliciousList(2)
@@ -319,7 +370,7 @@ Page({
 
   sharePage() {
     let that = this;
-    let mwktLista = that.data.mwktLista;
+    let mwktLista = that.data.banner;
     if (mwktLista != '') {
       common.requestPost(api.relay, {
         memberId: app.globalData.memberId,
@@ -356,7 +407,7 @@ Page({
   //onUnload
   onHide() {
     let that = this;
-    if (that.data.indexa!=0) {
+    if (that.data.indexa != 0) {
       let mwktList = that.data.mwktList;
       for (var i = 0; i < mwktList.length; i++) {
         // debugger
@@ -366,7 +417,7 @@ Page({
       }
       that.setData({
         autoplay: false,
-        mwktList:mwktList
+        mwktList: mwktList
       })
     }
   }

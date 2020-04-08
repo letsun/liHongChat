@@ -40,11 +40,8 @@ Page({
    */
   onShow: function () {
     let that = this;
-
     that.banner(); //轮播图
     that.shoppingcategory(); //商品分类
-
-
     common.getopenid(res => {
       // console.log(res)
       app.globalData.idData.openid = res.data.result.openid

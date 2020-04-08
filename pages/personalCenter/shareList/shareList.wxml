@@ -1,6 +1,6 @@
 <!--pages/share/share.wxml-->
 <view class="container">
-  <view class="record" wx:for="{{relayList}}" wx:key="">
+  <view class="record" wx:for="{{relayList}}" wx:key="xxx">
     <!--分享-->
     <view class="share">
       <view class="give">分享到：</view>

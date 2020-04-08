@@ -20,7 +20,7 @@
 				<view class="name">{{userInfo.nickName}}</view>
 				<view class="integral">当前积分：{{userInfo.memScore}}</view>
 
-				<view class="phone">{{userInfo.memMobile}}</view>
+				<view class="phone" bindtap="phonebtn">{{memMobile}}</view>
 				<view class="lotter">当前奖券：{{userInfo.memCoupon}}</view>
 			</view>
 
@@ -46,7 +46,7 @@
 	</view>
 	<!--中间内容-->
 	<view class="content">
-		<view class="active" wx:for="{{nav}}" wx:key="{{index}}" data-index="{{index}}" bindtap="bindnav">
+		<view class="active" wx:for="{{nav}}" wx:key="xxx" data-index="{{index}}" bindtap="bindnav">
 			<image class="left" src="{{item.img}}"></image>
 			<view class="record">{{item.name}}</view>
 			<image class="right" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_52.png"></image>

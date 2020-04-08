@@ -19,7 +19,7 @@ Page({
     isqr: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
     code: '',
-    
+
     //code: 'Gjups04WM6S7GB38pn6783CBE',
 
     // https://test-qr.cresz.com.cn/Gjups44WM6PXLW93pn33CED6A
@@ -439,9 +439,9 @@ Page({
     let that = this;
     common.requestPost(api.siginInfo + app.globalData.memberId, {
     }, res => {
-      if(res.data.data.todaySign == 0) {
+      if (res.data.data.todaySign == 0) {
         var maskclose = true;
-      }else {
+      } else {
         var maskclose = false
       }
 
@@ -454,17 +454,44 @@ Page({
 
   //首页广告弹窗
   advlogin() {
-    common.requestPostf(api.advlogin,{
+    let that = this;
+    common.requestPostf(api.advlogin, {
     }, res => {
       //0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
-      let type = res.data.data[0].type;
-      if (type == 0 ) {
-
-      }else {
-        
-      }
-    },reg=>{})
+      let bannernav = res.data.data[0];
+      that.setData({
+        bannernav: bannernav
+      })
+    }, reg => { })
   },
+
+  //轮播图跳转  0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
+  bannernav(e) {
+    let that = this;
+    let bannernav = that.data.bannernav;
+    let type = bannernav.type;
+    console.log(type)
+    if (type == 0) {
+      wx.navigateTo({
+        url: "../../shopping/shoppingActivity/shoppingActivity"
+      })
+    } else if (type == 1) {
+      app.globalData.goodsId = bannernav.objId;
+      wx.navigateTo({
+        url: "../../shopping/shoppingDetails/shoppingDetails"
+      })
+    } else if (type == 2) {
+      wx.navigateTo({
+        url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + bannernav.objId + '&objtype=' + 1,
+      })
+    } else if (type == 3) {
+      wx.navigateTo({
+        url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + bannernav.objId + '&objtype=' + 0,
+      })
+    }
+  },
+
+
 
   //点击签到
   siginBtn() {
@@ -490,8 +517,10 @@ Page({
 
   onUnload: function () {
 
-    console.log('412')
-    innerAudioContextEnd.destroy();
-    innerAudioContextStart.destroy();
+    if(innerAudioContextEnd!=undefined || innerAudioContextStart!=undefined) {
+      innerAudioContextEnd.destroy();
+      innerAudioContextStart.destroy();
+    }
+
   }
 })

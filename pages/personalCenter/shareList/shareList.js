@@ -83,6 +83,11 @@ Page({
       wx.switchTab({
         url: '../../delicious/deliciousList/deliciousList'
       })
+    } else if (e.currentTarget.dataset.objtype == 3) {
+      
+      wx.reLaunch({
+        url: "../../shopping/shoppingActivity/shoppingActivity"
+      })
     }
 
 

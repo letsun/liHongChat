@@ -72,24 +72,57 @@ swiper {
   margin-right: 10rpx;
 }
 
+.nava {
+  display: flex;
+  margin-top: 70rpx;
+  
+}
+
 /*导航栏*/
 .nav {
-  height: 55rpx;
-  display: flex;
-  padding-top: 70rpx;
-  margin-left: 32rpx;
+  /* height: 55rpx; */
+  /* display: flex; */
+  margin-left: 10rpx;
+  width: 570rpx;
+  white-space: nowrap;
+}
+
+.nav-pick {
+  /* position: absolute;
+  right: 0;
+  top: 0; */
+  text-align: center;
+  width: 120rpx;
+  font-size: 20rpx;
+  margin-top: -5rpx;
+  margin-left: 20rpx;
+}
+
+.nav-pick picker {
+  height: 50rpx;
+  line-height: 48rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #ccc;
+
+}
+
+.nav-pick image{
+  max-height: 13rpx;
+  max-width: 15rpx;
 }
 
 .delicious {
   position: relative;
   height: 55rpx;
+  display: inline-block;
+  padding:0 20rpx;
 }
 
 .shopping {
   font-size: 25rpx;
   line-height: 25rpx;
   color: #989898;
-  margin-right: 51rpx;
+
 }
 
 .shop {
@@ -100,10 +133,13 @@ swiper {
 
 .scoll {
   position: absolute;
-  left: 39rpx;
+  left:0;
+  right: 0;
   bottom: 0;
   width: 36rpx;
   height: 7rpx;
+  text-align: center;
+  margin: auto;
 }
 
 .img {
