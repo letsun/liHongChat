@@ -9,8 +9,8 @@ var test1 = 'https://test-qr.cresz.com.cn';
 var pro = 'https://api-qr.cresz.com.cn';
 var pro1 = 'https://qr.cresz.com.cn';
 
-var ip = pro;
-var ip1 = pro1;
+var ip = test;
+var ip1 = test1;
 
 var api = {
   

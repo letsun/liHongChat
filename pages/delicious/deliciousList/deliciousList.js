@@ -372,17 +372,20 @@ Page({
     let that = this;
     let mwktLista = that.data.banner;
     if (mwktLista != '') {
-      common.requestPost(api.relay, {
-        memberId: app.globalData.memberId,
-        objId: mwktLista[0].objId,
-        objType: 0,
-      }, red => {
+      // common.requestPost(api.relay, {
+      //   memberId: app.globalData.memberId,
+      //   objId:0,
+      //   objType: 0,
+      // }, red => {
 
-        that.setData({
-          integral: red.data.msg
-        })
-      });
+      //   that.setData({
+      //     integral: red.data.msg
+      //   })
+      // });
 
+      that.setData({
+        integral:'分享成功'
+      })
       return {
         title: that.data.objName,
         path: 'pages/delicious/deliciousList/deliciousList',
