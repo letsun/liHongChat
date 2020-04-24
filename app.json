@@ -1,5 +1,8 @@
 {
   "pages": [
+
+    "pages/delicious/deliciousList/deliciousList",
+
     "pages/activityHome/act/act",
     "pages/personalCenter/personalData/personalData",
     "pages/personalCenter/winning/winning",
@@ -9,9 +12,7 @@
     "pages/delicious/createPic/createPic",
     "pages/author/author",
     "pages/index/index/index",
-    "pages/delicious/deliciousList/deliciousList",
-
-
+    
     "pages/delicious/signIn/signIn",
     "pages/shopping/shoppingList/shoppingList",
     "pages/shopping/shoppingDetails/shoppingDetails",

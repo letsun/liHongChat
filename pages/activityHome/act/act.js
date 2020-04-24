@@ -10,6 +10,8 @@ var innerAudioContextStart;
 Page({
   data: {
     // flag: true,
+
+    infomask:false,
     latitude: '',
     longitude: '',
     isShakeShow: false,
@@ -18,9 +20,10 @@ Page({
     isShake: true,
     isqr: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
-    code: '',
+    //code: '',
+    address:["北京市","北京市","东城区"],
 
-    //code: 'Gjups04WM6S7GB38pn6783CBE',
+    code: '',
 
     // https://test-qr.cresz.com.cn/Gjups44WM6PXLW93pn33CED6A
     // https://test-qr.cresz.com.cn/Gjups04WM6S7GB38pn6783CBE
@@ -56,7 +59,7 @@ Page({
         console.log(app.globalData.memberId, 76)
 
         that.advlogin()
-        that.siginInfo()
+        // that.siginInfo()
       })
     }
 
@@ -85,7 +88,7 @@ Page({
   onShow(options) {
     let that = this;
     console.log(app.globalData.qrtypes, '44')
-
+    console.log(app.globalData.idData.openid)
     //个人中心扫码进来
     if (app.globalData.qrtypes == 1) {
       console.log('1111')
@@ -144,10 +147,10 @@ Page({
   // 打开摇一摇弹窗
 
   // openShake() {
-  //   // this.lottery()
-  //   this.setData({
-  //     isShakeShow: true
-  //   })
+  //   this.lottery()
+  //   // this.setData({
+  //   //   isShakeShow: true
+  //   // })
   // },
   openShake(res) {
     // 
@@ -309,7 +312,12 @@ Page({
           }, 500)
 
         })
-      } else {
+      } else if(lottery.type == 2){
+        that.setData({
+          lotteryId:lottery.lotteryId
+        })
+        wx.hideLoading();
+      }else {
         wx.hideLoading();
       }
       that.setData({
@@ -351,8 +359,9 @@ Page({
   // },
 
 
-  //点击开红包
 
+
+  //点击开红包
   hbbtn() {
     let that = this;
     let usercash = that.data.usercash;
@@ -389,6 +398,76 @@ Page({
         })
       },
       complete: function (res) { }
+    })
+  },
+
+
+  //关闭中奖弹窗
+  resultwin () {
+    let that = this;
+    that.setData({
+      isResultShow: false,
+      isShakeShow: false,
+      code:''
+    })
+
+  },
+
+  //填写信息弹窗
+  infomask () {
+    let that = this;
+    that.setData({
+      isResultShow:false,
+      infomask:true,
+      
+    })
+  },
+
+  //选择地区
+
+  pickchange (e) {
+    let that = this;
+    console.log(e.detail.value)
+    that.setData({
+      address: e.detail.value
+    })
+  },
+ 
+  //信息提交后关闭弹窗
+  infobtn(e) {
+    let that = this;
+
+    let name = e.detail.value.name;
+    let phone  = e.detail.value.phone;
+    let receiveAddress = e.detail.value.receiveAddress;
+    let receiveProvince = that.data.address[0];
+    let receiveCity = that.data.address[1];
+    let receiveArea = that.data.address[2];
+
+    if(name == '') {
+      common.showToast('姓名不能为空','none',res=>{});
+      return false;
+    }else if (phone == '') {
+      common.showToast('手机号码不能为空','none',res=>{});
+      return false;
+    }else if (receiveAddress == '') {
+      common.showToast('详细地址不能为空','none',res=>{});
+      return false;
+    }
+
+    common.requestPosts(api.saveEntityObjRewardAddr,{
+      lotteryRecordId:that.data.lotteryId,
+      openid:app.globalData.idData.openid,
+      receiveProvince:receiveProvince,
+      receiveCity:receiveCity,
+      receiveArea:receiveArea,
+      receiveName:name,
+      receivePhone:phone,
+      receiveAddress:receiveAddress
+    },res=>{})
+
+    that.setData({
+      infomask:false
     })
   },
 
@@ -434,22 +513,7 @@ Page({
     }
   },
 
-  //签到信息
-  siginInfo() {
-    let that = this;
-    common.requestPost(api.siginInfo + app.globalData.memberId, {
-    }, res => {
-      if (res.data.data.todaySign == 0) {
-        var maskclose = true;
-      } else {
-        var maskclose = false
-      }
 
-      that.setData({
-        maskclose: maskclose,
-      })
-    })
-  },
 
 
   //首页广告弹窗
@@ -492,28 +556,6 @@ Page({
   },
 
 
-
-  //点击签到
-  siginBtn() {
-    let that = this;
-    common.requestPost(api.siginBtn + app.globalData.memberId, {
-    }, res => {
-      common.showToast('签到成功', 'success', reg => {
-        that.setData({
-          maskclose: false
-        })
-      })
-    })
-  },
-
-
-  //关闭签到弹窗
-  closesign() {
-    let that = this;
-    that.setData({
-      maskclose: false
-    })
-  },
 
   onUnload: function () {
 

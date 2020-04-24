@@ -85,10 +85,10 @@ Page({
       })
 
     }
-    common.getopenid(res => {
-      app.globalData.idData.openid = res.data.result.openid
+    // common.getopenid(res => {
+      // app.globalData.idData.openid = res.data.result.openid
       common.uvpv('', '个人中心首页') //页面访问uv信息    
-    })
+    // })
 
   },
 

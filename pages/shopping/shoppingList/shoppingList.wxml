@@ -32,6 +32,8 @@
             <view class="need">
               <view class="number">{{item.goodsScore}}</view>
               <view class="small">积分</view>
+                          
+             
             </view>
             <!-- 商品兑换 -->
             <view class="exchange">兑换</view>

@@ -17,6 +17,7 @@
 
 .middle {
   width: 70%;
+  margin-top: -4rpx;
 }
 
 /* 图片 */
@@ -24,6 +25,7 @@
 .packet {
   max-width: 60rpx;
   max-height: 60rpx;
+  display: block;
   margin: auto;
 }
 

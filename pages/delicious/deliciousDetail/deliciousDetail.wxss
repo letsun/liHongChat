@@ -9,31 +9,30 @@
 .header {
   position: relative;
   width: 100%;
-  height: 520rpx;
+  height: 400rpx;
 }
 
 .header video{
     width: 750rpx;
+    height: 400rpx;
 }
 
 /*头部图片*/
 .controls-bg {
   width: 100%;
-  height: 520rpx;
+  height: 400rpx;
 }
 
 .details {
-  position: relative;
-  z-index: 2;
-  width: 690rpx;
-  margin: -70rpx auto 0 auto;
-  padding-bottom: 20rpx;
+  padding: 30rpx;
 
   background-color: #fff;
-  border: 1px solid #ebebeb;
+  /* border: 1px solid #ebebeb;
   border-radius: 10rpx;
-  box-shadow: 0px 5px 10px #ebebeb;
-
+  box-shadow: 0px 5px 10px #ebebeb; */
+  /* border-radius: 10rpx;
+  box-shadow: 0px 5px 10px #ebebeb; */
+  border-bottom: 10rpx solid #f4f4f4;
 
 }
 
@@ -41,21 +40,21 @@
   font-size: 30rpx;
   line-height: 30rpx;
   font-weight: 600;
-  margin: 32rpx 0 18rpx 25rpx;
+
 }
 
 /* 点赞留言浏览 */
 .like {
   display: flex;
+  font-size: 26rpx;
+  margin: 20rpx 0;
 }
 
 .active {
-  width: 33%;
+  width: 33.333%;
   display: flex;
-  font-size: 17rpx;
-  line-height: 24rpx;
+
   color: #ccc;
-  padding-left: 28rpx;
 }
 
 .dianzan {
@@ -63,36 +62,47 @@
 }
 
 .love-img {
-  width: 24rpx;
-  height: 22rpx;
+  width: 26rpx;
+  height: 26rpx;
   margin-right: 10rpx;
+  margin-top: 3rpx;
+}
+
+.text {
+  justify-content: center;
 }
 
 .text-img {
-  width: 26rpx;
-  height: 25rpx;
+  width: 30rpx;
+  height: 26rpx;
   margin-right: 10rpx;
+  margin-top: 6rpx;
+}
+
+.browse {
+  justify-content: flex-end;
 }
 
 .browse-img {
   width: 37rpx;
-  height: 23rpx;
+  height: 24rpx;
   margin-right: 10rpx;
+  margin-top: 4rpx;
 }
 
 /* 说明 */
 .main {
-  width: 638rpx;
-  font-size: 24rpx;
+  font-size: 26rpx;
   line-height: 32rpx;
-  color: #666;
-  margin: 22rpx 0 0 25rpx;
+
 }
 
 rich-text {
   width: 100%;
   font-size: 26rpx;
   line-height: 40rpx;
+  /* margin-left: 6rpx; */
+  color: #666;
 }
 
 rich-text img {
@@ -102,13 +112,13 @@ rich-text img {
 /* 标签 */
 .btn {
   display: flex;
-  margin: 8rpx 0 0 26rpx;
+
 }
 
 .food {
   width: 61rpx;
   height: 30rpx;
-  font-size: 19rpx;
+  font-size: 22rpx;
   line-height: 30rpx;
   text-align: center;
   color: #fff;
@@ -118,43 +128,47 @@ rich-text img {
 }
 
 .content {
-  padding-top: 60rpx;
+  /* padding-top: 60rpx; */
 }
 
 .contenta {
-  padding-top: 50rpx;
+  /* padding-top: 50rpx; */
 }
 
 .parameter {
-  font-size: 35rpx;
-  line-height: 35rpx;
-  font-weight: 500;
-  margin-left: 54rpx;
+  font-size: 30rpx;
+
+  font-weight: bold;
+  margin: 30rpx;
+}
+
+.desc {
+  margin: 0 30rpx;
 }
 .parametera {
-  font-size: 35rpx;
-  line-height: 35rpx;
-  font-weight: 500;
-  padding-bottom: 50rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin: 30rpx 0;
+
 }
+
 
 .all {
-  margin-top: 56rpx;
+  font-size: 26rpx;
 }
-
 .character {
-  width: 643rpx;
-  font-size: 29rpx;
-  line-height: 94rpx;
+
+
+  line-height: 70rpx;
   display: flex;
   border-top: 1px solid #e4e4e4;
-  margin-left: 48rpx;
+  margin: 0 30rpx;
   align-items: center;
 }
 
 .material {
   flex: 1;
-  margin-left: 6rpx;
+
 }
 
 .usage {
@@ -181,20 +195,19 @@ rich-text img {
 
 /* 所有评论 */
 .contentc {
-  padding: 50rpx 0 98rpx;
+  /* padding: 50rpx 0 98rpx; */
 }
 
 .contentc .parameter {
-  font-size: 28rpx;
-  line-height: 28rpx;
-  margin-left: 59rpx;
+  font-size: 30rpx;
+  margin-left: 30rpx;
 }
 
 .contentc .lis {
-  width: 640rpx;
+
   display: flex;
-  margin-top: 29rpx;
-  margin-left: 57rpx;
+  margin: 30rpx;
+
   border-bottom: 1rpx solid #e1e1e1;
 }
 
@@ -208,17 +221,20 @@ rich-text img {
   flex: 1;
 }
 
+.characterc-titel {
+ position: relative;
+
+}
+
 /* 昵称 */
 .contentc .name {
-  font-size: 25rpx;
-  line-height: 25rpx;
+  font-size: 26rpx;
   font-weight: 500;
-  margin-top: 14rpx;
 }
 
 .contentc .data {
   display: flex;
-  margin: 22rpx 0 22rpx 4rpx;
+  margin-bottom: 20rpx;
 }
 
 /* 时间 */
@@ -230,25 +246,28 @@ rich-text img {
 
 .contentc .thumb {
   display: flex;
+  position: absolute;
+  top: 0;
+  right: 30rpx;
 }
 
 /* 点赞 */
 .contentc .nice {
   width: 28rpx;
   height: 28rpx;
-  margin: 0 6rpx 0 36rpx;
+  margin: -2rpx 6rpx ;
 }
 
 .contentc .thumb-text {
-  font-size: 18rpx;
+  font-size: 26rpx;
   line-height: 28rpx;
 }
 
 /* 留言 */
 .contentc .specific {
-  font-size: 22rpx;
-  line-height: 31rpx;
-  margin-bottom: 30rpx;
+  font-size: 26rpx;
+  line-height: 30rpx;
+  padding: 20rpx 0;
 }
 
 /* 底部发布评论 */

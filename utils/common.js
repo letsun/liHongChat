@@ -206,8 +206,6 @@ function requestPostf(url, data, success,fail) {
         success(res)
       } else {
         fail(res)
-  
-       
       }
     },
 

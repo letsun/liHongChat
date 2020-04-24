@@ -25,8 +25,19 @@ Page({
     prizeData: {},
     prizeIndex: -1,
     mum: 0,
+    memCoupon:0,
     isResultShow: false,
-    integral:''
+    integral:'',
+
+    mask:false,
+    cjIn:false
+  },
+
+    /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    //this.getPrize();
   },
 
   onShow(){
@@ -43,8 +54,12 @@ Page({
         })
       }, 500)
 
+     
+    }else {
+
       that.getPrize();
     }
+
   },
 
 
@@ -74,12 +89,13 @@ Page({
               if (This.data.prizeData.prizeList[i].prizeId == This.data.resultData.prizeId) {
                 This.setData({
                   prizeIndex: i,
+                  cjIn:true
                 })
               }
             }
   
             clearInterval(timer);
-            timer = setInterval(This.changePrize, 80);
+            timer = setInterval(This.changePrize, 50);
           })
         }
       } else {
@@ -92,7 +108,13 @@ Page({
         return;
       }
     }else {
-      common.login()
+      common.login(function(){
+
+        setTimeout(res=>{
+          This.getPrize();
+        },500)
+      })
+
     }
    
     
@@ -109,49 +131,49 @@ Page({
 
     if (cjChange > 8) {
       clearInterval(timer);
-      timer = setInterval(This.changePrize, 160);
+      timer = setInterval(This.changePrize, 50);
     }
 
     if (cjChange > 16) {
       clearInterval(timer);
-      timer = setInterval(This.changePrize, 240);
+      timer = setInterval(This.changePrize, 100);
     }
 
     if (cjChange > 24) {
       clearInterval(timer);
-      timer = setInterval(This.changePrize, 360);
+      timer = setInterval(This.changePrize,150);
     }
 
     if (cjChange > 30) {
       clearInterval(timer);
-      timer = setInterval(This.changePrize, 430);
+      timer = setInterval(This.changePrize, 200);
     }
+
 
     if (cjChange > 32 && cjChange % 8 == This.data.prizeIndex) {
       clearInterval(timer);
       setTimeout(function() {
+
         This.setData({
-          isResultShow: true
+          isResultShow: true,
+          cjIn:false,
+         
         });
         cjIn = false;
+
 
         // setTimeout(function() {
         //   // This.getPrize();
         //   return;
         // }, 200)
-      }, 1000)
+      }, 500)
     }
 
     cjChange++;
   },
 
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    this.getPrize();
-  },
+
   // 获取奖项
   getPrize() {
     common.requestPost(api.activity, {
@@ -191,8 +213,15 @@ Page({
       method: 'POST',
       success: function(res) {
         if (res.data.code == 200) {
+
+          let prizeData= that.data.prizeData;
+          let memCoupon = that.data.prizeData.memCoupon;
+          let usePoint = that.data.prizeData.usePoint;
+          memCoupon = memCoupon-usePoint;
+          prizeData.memCoupon =  memCoupon;
           that.setData({
-            resultData: res.data.data
+            resultData: res.data.data,
+            prizeData:prizeData
           });
 
           callback();
@@ -242,11 +271,16 @@ Page({
     })
   },
 
-  // 跳转到个人中心
+  // 跳转到中奖纪录
   lotteryList() {
+    let that = this;
+    that.setData ({
+      isResultShow:false
+    })
     wx.navigateTo({
       url: '../../personalCenter/lotteryList/lotteryList',
     })
+    
   },
 
   // 关闭中奖弹窗
@@ -280,8 +314,25 @@ Page({
     }
   },
 
+
+
+
   onShareAppMessage: function() {
     return this.sharePage();
   },
+
+  mask () {
+    let that = this;
+    that.setData({
+      mask:true
+    })
+  },
+
+  maskclose() {
+    let that = this;
+    that.setData({
+      mask:false
+    })
+  }
 
 });

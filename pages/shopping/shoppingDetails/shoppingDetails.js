@@ -58,7 +58,7 @@ Page({
 
       goodsDesc = goodsDesc
         .replace(/<p([\s\w"=\/\.:;]+)((?:(style="[^"]+")))/ig, '<p')
-        .replace(/<p>/ig, '<p style="font-size: 14px; line-height: 20px; color:#666;">')
+        .replace(/<p>/ig, '<p style="font-size: 13px; line-height: 20px; color:#666;">')
         .replace(/<img([\s\w"-=\/\.:;]+)((?:(height="[^"]+")))/ig, '<img$1')
         .replace(/<img([\s\w"-=\/\.:;]+)((?:(width="[^"]+")))/ig, '<img$1')
         .replace(/<img([\s\w"-=\/\.:;]+)((?:(style="[^"]+")))/ig, '<img$1')

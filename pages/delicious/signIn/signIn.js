@@ -118,7 +118,8 @@ Page({
     common.requestPost(api.siginBtn + app.globalData.memberId, {
     }, res => {
       that.setData({
-        siginBtn: res.data.data,
+        signinCoupon: res.data.data.signinCoupon,
+        signinScore: res.data.data.signinScore,
         mask:true
       })
 

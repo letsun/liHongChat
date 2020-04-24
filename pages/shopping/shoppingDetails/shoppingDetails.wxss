@@ -9,67 +9,78 @@
 
 .img {
   width: 100%;
-  height: 520rpx;
+  /* height: 520rpx; */
 }
 
 .img image {
-  width: 100%;
-  height: 520rpx;
+  width: 750rpx;
+  height: 750rpx;
+  display: block;
+  /* height: 520rpx; */
 }
 
 swiper {
   height: 520rpx;
 }
 
-.header {
-  position: absolute;
-  left: 30rpx;
-  top: 497rpx;
-  width: 690rpx;
-  height: 140rpx;
-  background-color: #fff;
-  border: 1px solid #ebebeb;
-  border-radius: 10rpx;
-  box-shadow: 0px 5px 10px #ebebeb;
+.header { 
+  padding: 30rpx;
+  border-bottom: 10rpx solid #f4f4f4;
 }
 
 /*商品名称*/
 
 .title {
   font-size: 30rpx;
-  line-height: 30rpx;
   font-weight: 600;
-  margin: 32rpx 0 20rpx 30rpx;
 }
 
 /*积分兑换、库存、兑换数量*/
 
 .details {
   display: flex;
-  padding-left: 30rpx;
+  margin-top: 15rpx;
 }
 
 .integral {
   color: #f83000;
   font-weight: 600;
-  font-size: 32rpx;
+  font-size:30rpx;
+  width: 35%;
+  display: flex;
+  margin-top: -2rpx;
 }
 
+.integral span {
+  font-size:20rpx;
+  display: block;
+  padding-top: 8rpx;
+
+}
+
+
+
 .inventory {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #9a9a9a;
-  margin: 0 90rpx;
+  width: 25%;
+}
+
+.num {
+  display: flex;
+  width: 40%;
+  text-align: center;
 }
 
 .change {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #9a9a9a;
 }
 
 .minus {
   width: 31rpx;
   height: 31rpx;
-  margin-left: 26rpx;
+  margin-left: 15rpx;
 }
 
 .number {
@@ -88,17 +99,16 @@ swiper {
 /*规格参数*/
 
 .content {
-  padding-top: 180rpx;
+  padding: 30rpx;
 }
 
 .contenta {
-  padding: 50rpx 0rpx;
+  padding:0 30rpx 30rpx 30rpx;
 }
 
 .parameter {
-  font-size: 32rpx;
+  font-size: 30rpx;
   line-height: 28rpx;
-  margin-left: 60rpx;
   padding-bottom: 20rpx;
   font-weight: bold;
 }
@@ -107,11 +117,12 @@ swiper {
   position: relative;
 
   text-align: center;
-  padding: 0 60rpx;
+
+  font-size: 26rpx;
 }
 
 rich-text {
-  padding: 0 60rpx;
+
   max-width: 630rpx;
 
   
@@ -121,8 +132,9 @@ rich-text {
 
 
 .item {
+  font-size: 26rpx;
   display: flex;
-  padding: 0rpx 60rpx;
+
 }
 
 .item-key {

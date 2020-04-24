@@ -3,7 +3,7 @@
 /*头部背景*/
 .bg {
   width: 100%;
-  height: 381rpx;
+  height: 380rpx;
 }
 
 /*头部图片*/
@@ -74,7 +74,7 @@ swiper {
 
 .nava {
   display: flex;
-  margin-top: 70rpx;
+  margin-top: 60rpx;
   
 }
 
@@ -94,7 +94,7 @@ swiper {
   text-align: center;
   width: 120rpx;
   font-size: 20rpx;
-  margin-top: -5rpx;
+  margin-top: -2rpx;
   margin-left: 20rpx;
 }
 
@@ -135,7 +135,7 @@ swiper {
   position: absolute;
   left:0;
   right: 0;
-  bottom: 0;
+  bottom: 10rpx;
   width: 36rpx;
   height: 7rpx;
   text-align: center;
@@ -158,14 +158,14 @@ swiper {
   position: relative;
   width: 690rpx;
 
-  margin: 0 auto 33rpx;
+  margin: 30rpx;
   border-radius: 10rpx;
   border: 1px solid #f3f3f3;
   box-shadow: 0px 0px 10px #f3f3f3;
 }
 
 .photo {
-  height: 370rpx;
+
   width: 690rpx;
 }
 
@@ -173,6 +173,7 @@ swiper {
 .controls-bg {
   width: 690rpx;
   height: 370rpx;
+  display: block;
   border-radius: 10rpx 10rpx 0 0;
 }
 
@@ -200,8 +201,7 @@ swiper {
 
 /*商品名称*/
 .details {
-  width: 690rpx;
-  height: 107rpx;
+  padding:20rpx 30rpx;
   background-color: #fff;
   border-radius: 0 0 10rpx 10rpx;
 }
@@ -210,7 +210,7 @@ swiper {
   font-size: 25rpx;
   line-height: 25rpx;
   font-weight: 600;
-  padding: 20rpx 0 0 30rpx;
+  margin-bottom: 20rpx;
 }
 
 .thumbs {
@@ -219,13 +219,19 @@ swiper {
 
 /*商品点赞次数、留言次数、浏览次数*/
 .tags {
-  width: 33%;
+  width: 33.333%;
   display: flex;
   font-size: 24rpx;
   line-height: 24rpx;
   color: #999;
-  padding-left: 35rpx;
-  padding-top: 20rpx;
+
+}
+.tags:nth-child(2) {
+  justify-content: center;
+}
+
+.tags:nth-child(3) {
+  justify-content: flex-end;
 }
 
 .old,
@@ -261,7 +267,7 @@ swiper {
   position: fixed;
   right: 0;
   bottom: -20rpx;
-  z-index: 111;
+  z-index: 80;
 }
 
 /*按钮图片*/
@@ -269,3 +275,197 @@ swiper {
   width: 144rpx;
   height: 158rpx;
 }
+
+
+.mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 100;
+	background: rgba(0,0,0,.7);
+}
+
+
+
+.mask-con {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	text-align: center;
+}
+
+
+.mask-img {
+	/* position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%); */
+	width: 590rpx;
+	height: 747rpx;
+}
+
+.mask-middel {
+	position: absolute;
+	top: 260rpx;
+	left: 0;
+	right: 0;
+	margin: 0;
+}
+
+.mask-middel-bg {
+
+	width: 427rpx;
+	height: 152rpx;
+}
+
+.mask-middel-img {
+	position: absolute;
+	width: 102rpx;
+	height: 122rpx;
+	font-size: 20rpx;
+	color:#f4f4f4;
+}
+
+.mask-middel-btn {
+	margin-top: 160rpx;
+	width: 462rpx;
+	height: 75rpx;
+}
+
+.mask-close {
+	width: 65rpx;
+	height: 65rpx;
+	
+	margin: auto;
+	margin-top: 50rpx;
+}
+
+.img1 {
+	top:-60rpx;
+	left: 140rpx;
+}
+
+.img2 {
+	top:-60rpx;
+	left:240rpx;
+}
+
+.img3 {
+	top:-60rpx;
+	left: 340rpx;
+}
+
+.img4 {
+	top:90rpx;
+	left: 100rpx;
+}
+
+.img5 {
+	top:90rpx;
+	left: 190rpx;
+}
+
+.img6 {
+	top:90rpx;
+	left: 285rpx;
+}
+
+.img7 {
+	top:90rpx;
+	left: 380rpx;
+}
+
+
+.text1 {
+	top:-30rpx;
+	left: 145rpx;
+}
+
+.text2 {
+	top:-30rpx;
+	left:245rpx;
+}
+
+.text3 {
+	top:-30rpx;
+	left: 345rpx;
+}
+
+.text4 {
+	top:120rpx;
+	left: 103rpx;
+}
+
+.text5 {
+	top:120rpx;
+	left: 192rpx;
+}
+
+.text6 {
+	top:120rpx;
+	left: 287rpx;
+}
+
+.text7 {
+	top:120rpx;
+	left: 382rpx;
+}
+
+
+
+.maska {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+  display: block;
+}
+
+.maska-con {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: url('https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_44.png') no-repeat;
+  background-size: 100% 100%;
+  height: 760rpx;
+  width: 722rpx;
+}
+
+.maska-cona {
+  position: absolute;
+  top: 400rpx;
+  left: 160rpx;
+  right: 160rpx;
+  text-align: center;
+}
+
+.maska-title {
+  font-weight: 100;
+  font-size: 40rpx;
+}
+
+.maska-num {
+  color: #f42f30;
+  padding: 20rpx 0;
+}
+
+.maska-text {
+  color: #999;
+}
+
+.maska-btn {
+  margin: 30rpx;
+  padding: 20rpx;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  background: linear-gradient(to right, #f63200, #fbba0a);
+  color: #f4f4f4;
+}
+

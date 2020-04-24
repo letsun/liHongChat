@@ -11,9 +11,11 @@ Page({
     autoplay: true,
     integral: '',
     // mwktType:2,
-    orderType:0,
-    picklist:['默认排序','最新排序','最热排序',],
-    categoryList:''
+    orderType: 0,
+    picklist: ['默认排序', '最新排序', '最热排序',],
+    categoryList: '',
+    maskclose: false,
+    mask: false
   },
 
 
@@ -22,13 +24,27 @@ Page({
    */
   onLoad() {
     let that = this;
-    if (app.globalData.memberId <= 0) {
-      common.login()
-    }
     that.categoryList()//社区版块-社区分类接口
+    if (app.globalData.memberId <= 0) {
+      common.login(function () {
+
+        setTimeout(res => {
+          that.setData({
+            mwktList: ''
+          })
+          that.categoryList()//社区版块-社区分类接口
+          that.siginInfo();
+        })
+      })
+
+    } else {
+
+    }
+
 
     //that.deliciousList(2);
   },
+
 
   onShow() {
     let that = this;
@@ -54,13 +70,79 @@ Page({
   },
 
 
-  //排序下拉
-  picklist (e) {
+
+  //签到信息
+  siginInfo() {
     let that = this;
- 
+    common.requestPost(api.siginInfo + app.globalData.memberId, {
+    }, res => {
+      if (res.data.data.todaySign == 0) {
+        var maskclose = true;
+      } else {
+        var maskclose = false
+      }
+
+      that.setData({
+        maskclose: maskclose,
+      })
+    })
+  },
+
+  //点击签到
+  siginBtn() {
+    let that = this;
+    common.requestPost(api.siginBtn + app.globalData.memberId, {
+    }, res => {
+
+      var signinScore = res.data.data.signinScore;
+      var signinCoupon = res.data.data.signinCoupon;
+      that.setData({
+        signinScore:signinScore,
+        signinCoupon:signinCoupon,
+        maskclose: false,
+        mask:true
+      })
+
+      // if (signinScore != 0 || signinCoupon != 0) {
+
+      //   if (signinScore != 0) {
+      //     common.showToast('签到成功：+' + signinScore + '积分', 'none', reg => {
+      //       that.setData({
+      //         maskclose: false
+      //       })
+      //     })
+      //   } else if (signinCoupon != 0) {
+      //     common.showToast('签到成功：+' + signinCoupon + '奖券', 'none', reg => {
+      //       that.setData({
+      //         maskclose: false
+      //       })
+      //     })
+      //   }
+
+      // }
+
+    })
+  },
+
+
+  //关闭签到弹窗
+  closesign() {
+    let that = this;
+    that.setData({
+      maskclose: false
+    })
+  },
+
+
+
+
+  //排序下拉
+  picklist(e) {
+    let that = this;
+
     let index = that.data.indexa;
     that.setData({
-      orderType:e.detail.value,
+      orderType: e.detail.value,
       mwktList: '',
       hasNext: '',
       pageNum: 1,
@@ -139,15 +221,15 @@ Page({
         var mwktType = 1;
       }
       that.deliciousList(mwktType);
-    },reg=>{
+    }, reg => {
       let categoryList = [];
       let obj = {}
       obj.cateId = '';
       obj.cateName = '美味菜谱';
       categoryList.unshift(obj);
-      
+
       that.setData({
-        categoryList:categoryList
+        categoryList: categoryList
       })
       that.deliciousList(2);
     })
@@ -174,18 +256,18 @@ Page({
     var categoryList = that.data.categoryList;
     var orderType = that.data.orderType;
 
-    if (categoryList!='') {
+    if (categoryList != '') {
       var cateId = categoryList[indexa].cateId;
-    }else {
+    } else {
       var cateId = 0;
     }
-   
+
     common.requestPosts(api.deliciousList, {
       cateId: cateId,
       memberId: app.globalData.memberId,
       mwktType: mwktType,
       pageNum: pageNum,
-      orderType:orderType
+      orderType: orderType
     }, res => {
       var mwktList = res.data.data.mwktList;
 
@@ -281,7 +363,7 @@ Page({
       mwktList: '',
       hasNext: '',
       pageNum: 1,
-      orderType:0
+      orderType: 0
     })
     if (index == 0) {
       that.deliciousList(2)
@@ -368,6 +450,15 @@ Page({
     }
   },
 
+
+  //关闭签到成功弹窗
+  close() {
+    let that = this;
+    that.setData({
+      mask: false,
+    })
+  },
+
   sharePage() {
     let that = this;
     let mwktLista = that.data.banner;
@@ -384,7 +475,7 @@ Page({
       // });
 
       that.setData({
-        integral:'分享成功'
+        integral: '分享成功'
       })
       return {
         title: that.data.objName,

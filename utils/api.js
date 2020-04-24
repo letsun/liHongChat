@@ -1,7 +1,7 @@
 
 const app = getApp()
-var dev = 'http://192.168.1.105:8085';
-var dev1 = 'http://192.168.1.105:8080';
+var dev = 'http://192.168.1.16:8085';
+var dev1 = 'http://192.168.1.16:8080';
 
 var test = 'https://apitest-qr.cresz.com.cn';
 var test1 = 'https://test-qr.cresz.com.cn';
@@ -55,6 +55,8 @@ var api = {
   lotteryList: ip + '/api/member/activity/lottery/', //一物一码中奖记录
   infoSub: ip + '/api/member/finish/info/', // 完善个人资料
   lotter: ip + '/qdwz/lihong/xcx/lotter', // 一物一码抽奖接口
+
+  saveEntityObjRewardAddr: ip + '/qdwz/lihong/saveEntityObjRewardAddr', // 一物一码收货地址
   relay: ip + '/api/mwkt/video/recipes/relay', // 美味课堂分享接口
   uvpv: ip + '/api/uvpv/submit/info', //uv记录
   userCash: ip + '/api/consumer/cash/userCash', //提现接口

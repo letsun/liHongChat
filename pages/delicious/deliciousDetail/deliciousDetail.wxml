@@ -23,20 +23,20 @@
 					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='false'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_107.png"></image>
 
 					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_106.png"></image>
-					<view class="love-text">{{deliciousDetail.dianzNum}}</view>
+					<view class="love-text">赞 {{deliciousDetail.dianzNum}}</view>
 				</view>
 
 				<view class="dianzan" catchtap="dianz" wx:if="{{objType == 0}}" data-objtype="{{1}}" data-objid="{{deliciousDetail.objId}}">
 					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='false'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_107.png"></image>
 
 					<image class="love-img" wx:if="{{deliciousDetail.isDianz=='true'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_106.png"></image>
-					<view class="love-text">{{deliciousDetail.dianzNum}}</view>
+					<view class="love-text">赞 {{deliciousDetail.dianzNum}}</view>
 				</view>
 			</view>
 			<!-- 留言 -->
 			<view class="active text">
 				<image class="text-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_73.png"></image>
-				<view class="text-text">{{deliciousDetail.pinglNum}}</view>
+				<view class="text-text">评 {{deliciousDetail.pinglNum}}</view>
 			</view>
 			<!-- 浏览 -->
 			<view class="active browse">
@@ -81,7 +81,7 @@
 	</block>
 
 	<!-- 说明 -->
-	<view class="main"  style="margin: 22rpx auto; {{objType == 0 ?'padding-top:15rpx;':'' }}">
+	<view class="desc" style=" {{objType == 0 ?'padding-top:15rpx;':'' }}">
 		<view class="parametera">菜谱描述</view>
 		<rich-text class="rich-text" nodes="{{mwktDesc}}"></rich-text>
 	</view>
@@ -99,9 +99,9 @@
 				<view class="lis" wx:for="{{commentList}}" wx:key="xxx">
 					<image class="icon" src="{{item.headImg}}"></image>
 					<view class="characterc">
-						<view class="name">{{item.nickName}}</view>
-						<view class="data">
-							<view class="time">{{item.timeStr}}</view>
+						<view class="characterc-titel">
+							<view class="name">{{item.nickName}}</view>
+
 							<view class="thumb" catchtap="dianz" data-objtype="{{3}}" data-objid="{{item.commentId}}" data-index="{{index}}">
 
 								<image class="nice" wx:if="{{item.isDianz=='false'}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_71.png"></image>
@@ -109,9 +109,17 @@
 								<image class="nice" wx:else src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_106.png"></image>
 								<view class="thumb-text">{{item.dianzNum}}</view>
 							</view>
+
 						</view>
 
+
+
+
 						<view class="specific">{{item.commentDesc}}</view>
+						<view class="data">
+							<view class="time">{{item.timeStr}}</view>
+
+						</view>
 					</view>
 				</view>
 

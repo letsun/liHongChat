@@ -27,6 +27,7 @@ page {
 
 .header-text {
   text-align: center;
+  margin-bottom: 30rpx;
 }
 
 .text-con {
@@ -42,8 +43,9 @@ page {
 
 .header-text span {
   color: #fdfa64;
-  font-size: 40rpx;
+  font-size: 36rpx;
   font-weight: bold;
+  display: inline-block;
 }
 
 .header-hd {
@@ -55,6 +57,7 @@ page {
 .header-hd image {
   height: 113rpx;
   width: 43rpx;
+  display: block;
 }
 
 .center {
@@ -73,12 +76,50 @@ page {
   position: absolute;
   top: 30rpx;
   left: 30rpx;
+  z-index: 9;
 }
 
 .center-bg {
   width: 642rpx;
   height: 791rpx;
 }
+
+.center-bg1 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 643rpx;
+  width: 643rpx;
+  animation: dg2 0.8s ease-out infinite;
+}
+
+.center-bg2 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 643rpx;
+  width: 643rpx;
+  animation: dg1 0.8s ease-out infinite;
+}
+
+@keyframes dg1{
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes dg2{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 
 .list {
   width: 185rpx;
@@ -93,12 +134,16 @@ page {
   align-items: center;
 }
 
+
+
 /* 抽奖过程中选定样式 */
 
 .list_all.change_in {
+  background: #fff;
   border: 6rpx #fccd0d solid;
   border-radius: 10rpx;
 }
+
 
 .list_all {
   position: absolute;
@@ -108,6 +153,26 @@ page {
   bottom: 12rpx;
   border: 6rpx #fff solid;
   border-radius: 20rpx;
+}
+
+.maska {
+  position: absolute;
+  top: -12rpx;
+  bottom: -20rpx;
+  left: -10rpx;
+  right: -10rpx;
+  
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.maskb {
+  position: absolute;
+  top: 0rpx;
+  bottom: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  
+  background: transparent;
 }
 
 .list-item {
@@ -124,9 +189,20 @@ page {
 }
 
 .list_t image {
-  width: 100%;
-  height: 100%;
+  object-fit: cover;
+  height: 80rpx;
+  max-width: 80rpx;
   margin: auto;
+  display: block;
+}
+
+.list_img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 20rpx;
+  display: block;
+  margin: auto;
+  
 }
 
 .list-bg {
@@ -139,6 +215,7 @@ page {
 
 .list_b {
   width: 90%;
+  margin: auto;
   height: 40rpx;
   line-height: 40rpx;
   text-align: center;
@@ -153,7 +230,7 @@ page {
   left: 50%;
   top: 50%;
   color: #fff;
-  background-color: #1cbbb4;
+  /* background-color: #1cbbb4; */
   display: flex;
   justify-content: center;
   align-content: center;
@@ -162,8 +239,37 @@ page {
   transform: translate(-50%, -50%);
 }
 
+.list-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  text-align: center;
+}
+
+.list-texta {
+  position: absolute;
+  left: -5rpx;
+  right: -7rpx;
+  bottom: -1rpx;
+  top: -9rpx;
+  
+  background: rgba(0, 0, 0, 0.2);
+}
+
+
+.list-text1 {
+  margin-top: 30rpx;
+  font-size: 50rpx;
+}
+
+.list-text2 {
+  margin-top: 10rpx;
+}
+
 .list.grey:nth-child(1) {
-  background-color: #5f9ea0;
+  /* background-color: #5f9ea0; */
 }
 
 .list.grey:nth-child(1) image {
@@ -173,6 +279,13 @@ page {
 
 .list:nth-child(2), .list:nth-child(3), .list:nth-child(4) {
   top: 0;
+}
+
+.list:nth-child(2) .maska{
+  bottom: -21rpx;
+}
+.list:nth-child(4) .maska{
+  bottom: -21rpx;
 }
 
 .list:nth-child(6), .list:nth-child(7), .list:nth-child(8) {
@@ -201,6 +314,8 @@ page {
   right: 0;
 }
 
+
+
 .con-btn {
   position: absolute;
   left: 0;
@@ -222,22 +337,88 @@ page {
   left: 0;
   top: 0;
   z-index: 99999;
-  display: block;
+  display: none;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
 }
 
+.result-win .result-bg {
+  position: absolute;
+  left: 50%;
+  top: 41%;
+  width: 750rpx;
+  height: 735rpx;
+  transform: translate(-50%,-50%);
+  background: url('https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_118.png') no-repeat;
+  background-size: 100% 100%;
+  animation: shansuo 1s ease-out infinite;
+}
+
+@keyframes shansuo{
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.result-win .result-bg .ani {
+  position: absolute;
+}
+
+.result-win .result-bg .result-img1 {
+  height: 30rpx;
+  width: 30rpx;
+  top: 100rpx;
+  left: 150rpx;
+}
+
+.result-win .result-bg .result-img2 {
+  height: 30rpx;
+  width: 30rpx;
+  top: 200rpx;
+  right: 140rpx;
+}
+
+.result-win .result-bg .result-img3 {
+  height: 40rpx;
+  width: 40rpx;
+  left: 70rpx;
+  top: 420rpx;
+}
+
+.result-win .result-bg .result-img4 {
+  height: 24rpx;
+  width: 24rpx;
+  top: 490rpx;
+  right: 100rpx;
+}
+
+.result-win .result-bg .result-img5 {
+  height: 24rpx;
+  width: 24rpx;
+  top: 740rpx;
+  left: 100rpx;
+}
+
+.result-win .result-bg .result-img6 {
+  height: 24rpx;
+  width: 24rpx;
+  top: 790rpx;
+  right: 150rpx;
+}
+
 .result-win .result-content {
   position: absolute;
-  left: 0;
-  top: 50%;
+  left: 50%;
+  top: 46%;
   z-index: 1;
-  width: 750rpx;
-  height: 811rpx;
-  margin-top: -406rpx;
-  padding-top: 254rpx;
-  background: url('https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_84.png') no-repeat;
+  width: 607rpx;
+  height: 690rpx;
+  transform: translate(-50%,-50%);
+  background: url('https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_124.png') no-repeat;
   background-size: 100% 100%;
   box-sizing: border-box;
 }
@@ -245,6 +426,7 @@ page {
 .result-title {
   display: block;
   margin: 0 auto;
+  margin-top: 170rpx;
 }
 
 .result-title1 {
@@ -264,7 +446,7 @@ page {
   font-size: 36rpx;
   font-weight: bold;
   text-align: center;
-  line-height: 60rpx;
+  padding-top: 50rpx;
 }
 
 .result-amount text {
@@ -282,7 +464,7 @@ page {
 .btn-wra {
   position: absolute;
   left: 0;
-  bottom: 110rpx;
+  bottom: 40rpx;
   z-index: 1;
   width: 100%;
   box-sizing: border-box;
@@ -336,8 +518,50 @@ page {
 .close-result {
   position: absolute;
   left: 50%;
-  bottom: -60rpx;
+  bottom: -100rpx;
   z-index: 10;
   width: 64rpx;
   margin-left: -32rpx;
+}
+
+.mask {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.mask-con {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background:url(https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_117.png) ;
+  background-size: 100% 100%;
+  height: 762rpx;
+  width: 604rpx;
+}
+
+.mask-text {
+  margin: 170rpx 30rpx 0rpx 30rpx;
+  height: 460rpx;
+  overflow-y: auto;
+}
+
+.mask-btn  {
+  margin-top: 30rpx;
+}
+
+.mask-btn image{
+  width: 230rpx;
+  height: 73rpx;
+  display: block;
+  margin:auto ;
+}
+
+.block {
+  display: block;
 }

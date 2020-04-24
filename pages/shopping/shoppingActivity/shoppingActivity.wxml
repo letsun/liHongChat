@@ -1,80 +1,121 @@
 <!--pages/shopping/shoppingActivity/shoppingActivity.wxml-->
 <view class="container">
-  <image class="bg-image" src="{{bgSrc}}"></image>
+	<image class="bg-image" src="{{bgSrc}}"></image>
 
-  <view class="header">
-    <view class="header-logo">
-      <image class="logo-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_80.png"></image>
-    </view>
-    <view class="header-text">
-      <view class="text-con">
+	<view class="header">
+		<view class="header-logo">
+			<image class="logo-img" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_80.png"></image>
+		</view>
+		<view class="header-text">
+			<view class="text-con">
+				我的奖券:
+				<span>{{prizeData.memCoupon}}</span>
+			</view>
+
+			<!-- <view class="text-con">
         你有
         <span>{{mum}}</span> 次抽奖机会
-      </view>
-    </view>
+      </view> -->
+		</view>
 
-    <view class="header-hd">
-      <image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_82.png"></image>
-    </view>
+		<view class="header-hd" bindtap="mask">
+			<image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_82.png"></image>
+		</view>
 
-  </view>
+	</view>
 
-  <view class="center">
-    <image class="center-bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_90.png"></image>
-    <view class="con">
-      <view bindtap="cj" class="list {{cjChange > 0 ? 'grey' : ''}}">
-        <image style="width: 100%;height: 100%;" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_88.png"></image>
-      </view>
-      <block wx:for="{{prizeData.prizeList}}" wx:key="">
-        <view class="list ">
-          <image class="list-bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_87.png"></image>
-          <view class="list_all {{cjChange % 8 == index ? 'change_in' : ''}}">
+	<view class="center">
+		<image class="center-bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_125.png"></image>
+		<image class="center-bg1" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_126.png"></image>
+		<image class="center-bg2" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_127.png"></image>
 
-            <view class="list-item">
-              <view class="list_t">
-                <image src="{{item.prizePic}}"></image>
-              </view>
-              <view class="list_b">{{item.prizeName}}</view>
-            </view>
-          </view>
-        </view>
-      </block>
-    </view>
+		<view class="con">
+			<view bindtap="cj" class="list {{cjChange > 0 ? 'grey' : ''}}">
+				<image style="width: 100%;height: 100%;" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_88.png"></image>
+				<view class="list-text">
+					<view class="list-text1">抽奖</view>
+					<view class="list-text2">{{prizeData.usePoint}} 奖券/次</view>
+				</view>
 
-    <view class="con-btn">
-    
-      <image catchtap="lotteryList" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_83.png"></image>
-    </view>
-  </view>
+				<!-- <view class="list-texta "></view> -->
+				<view class="list-texta " wx:if="{{cjIn}}"></view>
+			</view>
+			<block wx:for="{{prizeData.prizeList}}" wx:key="">
+				<view class="list ">
+					<image class="list-bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_87.png"></image>
+					<view class="list_all {{cjChange % 8 == index ? 'change_in' : ''}}">
+						<!-- <view class="list-item">
+							<view class="list_t">
+								<image src="{{item.prizePic}}"></image>
+							</view>
+							<view class="list_b">{{item.prizeName}}</view>
+						</view> -->
+						<image class="list_img" src="{{item.prizePic}}"></image>
+						<view class=" {{cjChange % 8 == index ? 'maskb' : 'maska'}}" wx:if="{{cjIn}}"></view>
+						<!-- <view class="maska"></view> -->
+					</view>
+				</view>
+			</block>
+		</view>
+
+		<view class="con-btn">
+			<image catchtap="lotteryList" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_83.png"></image>
+		</view>
+	</view>
 
 
-  <!--中奖弹窗-->
-  <view class="result-win" wx:if="{{isResultShow}}">
-    <view class="result-content">
-      <image class="result-title result-title1" wx:if="{{resultData.prizeType != 9}}" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_87.png"></image>
-      <image class="result-title result-title2" wx:else mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_86.png"></image>
+	<!--中奖弹窗-->
+	<view class="result-win {{isResultShow?'block':''}}">
 
-      <view class="result-dec">
-        <view class="result-amount" wx:if="{{resultData.prizeType == 0}}"><text>{{resultData.prizeAmount}}</text>元</view>
-        <view class="result-amount" wx:if="{{resultData.prizeType == 3}}"><text>{{resultData.prizeAmount}}</text>积分</view>
-        
-        <view class="result-amount" wx:if="{{resultData.prizeType == 5}}"><text>{{resultData.prizeName}}</text></view>
-        <view class="result-amount" wx:if="{{resultData.prizeType == 6}}"><text>{{resultData.prizeAmount}}</text>奖劵</view>
-        <!-- <view class="result-tip" wx:if="{{resultData.prizeType == 0 || resultData.prizeType == 3 || resultData.prizeType == 5}}">{{resultData.prizeType == 0 ? '现金红包' : resultData.prizeType == 3 ? '积分' : '实物'}}</view> -->
-        <image mode="widthFix" class="smiley" wx:if="{{resultData.prizeType == 9}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_89.png"></image>
-      </view>
+		<view class="result-bg">
+			<image class="ani result-img1" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_122.png"></image>
+			<image class="ani result-img2" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_121.png"></image>
+			<image class="ani result-img3" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_119.png"></image>
+			<image class="ani result-img4" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_119.png"></image>
+			<image class="ani result-img5" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_119.png"></image>
+			<image class="ani result-img6" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_119.png"></image>
+		</view>
+		<view class="result-content">
+			<image class="result-title result-title1" wx:if="{{resultData.prizeType != 9}}" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_87.png"></image>
+			<image class="result-title result-title2" wx:else mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_86.png"></image>
 
-      <view class="btn-wra btn-wra1">
-        <image class="result-btn" wx:if="{{resultData.prizeType != 5}}"  catchtap="toPersonCenter"  mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_82.png"></image>
+			<view class="result-dec">
+				<view class="result-amount" wx:if="{{resultData.prizeType == 0}}"><text>{{resultData.prizeAmount}}</text>元</view>
+				<view class="result-amount" wx:if="{{resultData.prizeType == 3}}"><text>{{resultData.prizeAmount}}</text>积分</view>
 
-        <block wx:else>
-          <view class="linqu" catchtap="shoppingOrder">点击领取</view>
-          <!-- <view class="fangqi" catchtap="closeResult">放弃</view> -->
-        </block>
-      </view>
+				<view class="result-amount" wx:if="{{resultData.prizeType == 5}}"><text>{{resultData.prizeName}}</text></view>
+				<view class="result-amount" wx:if="{{resultData.prizeType == 6}}"><text>{{resultData.prizeAmount}}</text>奖劵</view>
+				<!-- <view class="result-tip" wx:if="{{resultData.prizeType == 0 || resultData.prizeType == 3 || resultData.prizeType == 5}}">{{resultData.prizeType == 0 ? '现金红包' : resultData.prizeType == 3 ? '积分' : '实物'}}</view> -->
+				<image mode="widthFix" class="smiley" wx:if="{{resultData.prizeType == 9}}" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_89.png"></image>
+			</view>
 
-      <image class="close-result" mode="widthFix" catchtap="closeResult"  wx:if="{{resultData.prizeType != 5}}"src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_83.png"></image>
-    </view>
-  </view>
+			<view class="btn-wra btn-wra1">
+				<image class="result-btn" wx:if="{{resultData.prizeType != 5}}" catchtap="lotteryList" mode="widthFix" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_128.png"></image>
+
+				<block wx:else>
+					<view class="linqu" catchtap="shoppingOrder">点击领取</view>
+					<!-- <view class="fangqi" catchtap="closeResult">放弃</view> -->
+				</block>
+			</view>
+
+			<!-- wx:if="{{resultData.prizeType != 5}}" -->
+			<image class="close-result" mode="widthFix" catchtap="closeResult" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_83.png"></image>
+		</view>
+	</view>
+
+
+	<!-- 活动规则 -->
+
+	<view class="mask" wx:if="{{mask}}">
+		<view class="mask-con">
+			<view class="mask-text">
+				11111asffffffffffffffffff拉发链接发发所多付大奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊奥奥奥过所多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多爱的故事所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所打算跟过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过
+			</view>
+
+			<view class="mask-btn" bindtap="maskclose">
+				<image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_116.png"></image>
+			</view>
+		</view>
+	</view>
 
 </view>

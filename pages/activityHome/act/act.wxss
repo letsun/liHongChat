@@ -187,6 +187,16 @@ line-height:inherit;
 	box-sizing: border-box;
 }
 
+.result-win .result-bg {
+	height: 65rpx;
+	width: 65rpx;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 70rpx;
+	margin: auto;
+}
+
 .result-title {
 	display: block;
 
@@ -222,7 +232,7 @@ line-height:inherit;
 }
 
 .result-amount image {
-  max-width: 300rpx;
+  max-width: 120rpx;
   max-height: 120rpx;
 }
 
@@ -260,18 +270,16 @@ line-height:inherit;
 }
 
 .btn-wra2 {
-	padding: 0 50rpx;
+	text-align: center;
+	padding-top: 40rpx;
+	bottom: 125rpx;
 }
 
 .btn-wra2 .result-btn {
-	float: left;
-
-	width: 260rpx;
+	width:328rpx;
 }
 
-.btn-wra2 .result-btn:last-child {
-	float: right;
-}
+
 
 .shake-win {
 	position: absolute;
@@ -464,24 +472,36 @@ line-height:inherit;
 	z-index: 1;
 
 	transform: translate(-50%,-50%);
-}
-
-.rule-content .rule-img {
-	display: block;
-
+	
 	width: 585rpx;
-	height: 1111rpx;
-	max-height: 100%;
+	height: 700rpx;
+	background:url(https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_113.png) no-repeat;
+	background-size: 100% 100%;
+
 }
+
+.rule-title {
+	height: 62rpx;
+	width: 457rpx;
+	display: block;
+	margin: 30rpx auto;
+		
+}
+
+.rule-text {
+	color: #E27C5D;
+	padding: 0 30rpx;
+	height: 360rpx;
+	overflow-x: auto;
+}
+
+
 
 .rule-content .rule-confirm {
-	position: absolute;
-	left: 50%;
-	bottom: 46rpx;
-	z-index: 10;
-
 	width: 346rpx;
-	margin-left: -173rpx;
+	display: block;
+	margin: auto;
+	margin-top: 25px;
 }
 
 
@@ -628,3 +648,79 @@ line-height:inherit;
 }
 
 
+.address {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.6);
+	z-index: 1000;
+}
+
+.address-con {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	background: url(https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_113.png) no-repeat;
+	background-size: 100% 100%;
+	width: 585rpx;
+	height: 699rpx;
+}
+
+
+.address-title {
+	text-align: center;
+	padding-top: 50rpx ;
+}
+
+.address-title image{
+	max-width: 315rpx;
+	max-height: 45rpx;
+}
+
+.address-from {
+	padding: 30rpx;
+}
+
+
+
+.from-item {
+	display: flex;
+	margin-bottom:20rpx ;
+}
+
+.item-key {
+	width: 15%;
+	padding: 15rpx 0;
+}
+
+.item-value {
+	width: 85%;
+}
+
+
+
+.item-value input,picker{
+	width: 95%;
+	padding: 15rpx 0 15rpx  15rpx ;
+
+	background:#fff;
+	border: 1rpx solid #FE8359;
+}
+
+.item-value picker {
+	margin-bottom: 20rpx;
+}
+
+
+.address-btn {
+	text-align: center;
+}
+
+
+.address-btn image {
+	max-width: 346rpx;
+	max-height: 138rpx;
+}

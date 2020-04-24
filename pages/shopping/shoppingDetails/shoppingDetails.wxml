@@ -2,11 +2,13 @@
 <view class="container">
   <!--头部图片-->
   <view class="img">
-    <swiper interval="{{3000}}" circular="{{true}}" autoplay="{{true}}">
+    <image src="{{goodsInfo.goodsImgs[0].picUrl}}"></image>
+    
+    <!-- <swiper interval="{{3000}}" circular="{{true}}" autoplay="{{true}}">
       <swiper-item wx:for="{{goodsInfo.goodsImgs}}" wx:key="xxx">
         <image src="{{item.picUrl}}"></image>
       </swiper-item>
-    </swiper>
+    </swiper> -->
   </view>
 
 
@@ -15,15 +17,20 @@
     <view class="title">{{goodsInfo.goodsName}}</view>
     <!--积分兑换、库存、兑换数量-->
     <view class="details">
-      <view class="integral">{{goodsInfo.goodsScore}} <span style="font-size:20rpx;">积分</span></view>
+      <view class="integral">{{goodsInfo.goodsScore}}<span >积分</span></view>
       <view class="inventory">库存：{{goodsInfo.goodsStock}}</view>
-      <view class="change">兑换数量</view>
-      <!--减少-->
+     
+
+      <view class="num">
+       <view class="change">兑换数量</view>
+            <!--减少-->
       <image class="minus"  bindtap="minus" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_46.png"></image>
       <!--兑换的数量-->
       <view class="number">{{num}}</view>
       <!--增加-->
       <image class="add" bindtap="add" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_45.png"></image>
+      </view>
+
     </view>
   </view>
 

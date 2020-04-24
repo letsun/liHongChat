@@ -1,60 +1,76 @@
 <!--pages/delicious/signIn/signIn.wxml-->
 
 <view class="container">
-  <!-- 头部背景 -->
-  <view class="header">
-    <image class="signin" wx:if="{{siginInfo.todaySign==0}}" bindtap="siginBtn" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_40.png"></image>
-    <image class="signin" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_43.png" wx:else></image>
-    <view class="header-text">您已连续签到{{siginInfo.continueDay}}天,请继续加油哦</view>
-  </view>
+	<!-- 头部背景 -->
+	<view class="header">
+		<image class="signin" wx:if="{{siginInfo.todaySign==0}}" bindtap="siginBtn" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_40.png"></image>
+		<image class="signin" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_43.png" wx:else></image>
+		<view class="header-text">您已连续签到{{siginInfo.continueDay}}天,请继续加油哦</view>
+	</view>
 
 
-  <view class="main">
-    <view class="main-item">
-      <view class="main-item-txet">{{siginInfo.totalScore}}</view>
-      <view class="main-item-txet1">
-        <image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_41.png"></image>积分</view>
-    </view>
+	<view class="main">
+		<view class="main-item">
+			<view class="main-item-txet">{{siginInfo.totalScore}}</view>
+			<view class="main-item-txet1">
+				<image style="width:38rpx;height:38rpx" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_41.png"></image>积分
+			</view>
+		</view>
 
-    <view class="main-item">
-      <view class="main-item-txet">{{siginInfo.totalDay}}</view>
+		<view class="main-spna"></view>
+		<view class="main-item">
+			<view class="main-item-txet">{{siginInfo.totalCoupon}}</view>
+			<view class="main-item-txet1">
+				<image style="width:36rpx;height:30rpx;margin-top:5rpx;" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_110.png"></image>奖券
+			</view>
+		</view>
+    
+		<view class="main-spnb"></view>
+		<view class="main-item">
+			<view class="main-item-txet">{{siginInfo.totalDay}}</view>
 
-      <view class="main-item-txet1">
-        <image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_42.png"></image>签到天数</view>
-    </view>
-  </view>
+			<view class="main-item-txet1">
+				<image style="width:38rpx;height:35rpx" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_42.png"></image>签到天数
+			</view>
+		</view>
+	</view>
 
-  <view class="calendar">
-    <view class="calendar-header">
-      <view class="calendar-back" bindtap="back">
-        <image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_95.png"></image>
-      </view>
+	<view class="calendar">
+		<view class="calendar-header">
+			<view class="calendar-back" bindtap="back">
+				<image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_95.png"></image>
+			</view>
 
-      <view>{{year}}年{{month}}月</view>
+			<view>{{year}}年{{month}}月</view>
 
-      <view class="calendar-Forward" bindtap="forward">
-        <image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_94.png"></image>
-      </view>
-    </view>
+			<view class="calendar-Forward" bindtap="forward">
+				<image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_94.png"></image>
+			</view>
+		</view>
 
-    <view class="calendar-con">
-      <view class="calendar-item {{item.sign=='Y' ?'active':''}}" wx:for="{{calendar}}" wx:key="">
-        {{item.day}}
-      </view>
-    </view>
+		<view class="calendar-con">
+			<view class="calendar-item {{item.sign=='Y' ?'active':''}}" wx:for="{{calendar}}" wx:key="">
+				{{item.day}}
+			</view>
+		</view>
 
-  </view>
+	</view>
 
 
-  <view class="mask" wx:if="{{mask}}">
-    <view class="mask-con">
-      <view class="mask-cona">
-        <view class="mask-title">恭喜您，签到成功!</view>
-        <view class="mask-num">+{{siginBtn}}积分</view>
-        <!-- <view class="mask-text">再签到5天即可获双倍积分</view> -->
-        <view class="mask-btn" bindtap="close">好的</view>
-      </view>
-    </view>
-  </view>
+	<view class="mask" wx:if="{{mask}}">
+		<view class="mask-con">
+			<view class="mask-cona">
+				<view class="mask-title">恭喜您，签到成功!</view>
+
+
+				<view class="mask-num" wx:if="{{signinCoupon!=0||signinScore!=0}}">
+					<view wx:if="{{signinScore!=0}}">+{{signinScore}}积分</view>		
+					<view wx:if="{{signinCoupon!=0}}">+{{signinCoupon}}奖券</view>
+				</view>
+				<!-- <view class="mask-text">再签到5天即可获双倍积分</view> -->
+				<view class="mask-btn" bindtap="close">好的</view>
+			</view>
+		</view>
+	</view>
 
 </view>
