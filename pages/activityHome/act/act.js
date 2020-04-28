@@ -11,7 +11,7 @@ Page({
   data: {
     // flag: true,
 
-    infomask:false,
+    infomask: false,
     latitude: '',
     longitude: '',
     isShakeShow: false,
@@ -21,7 +21,7 @@ Page({
     isqr: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
     //code: '',
-    address:["北京市","北京市","东城区"],
+    address: ["北京市", "北京市", "东城区"],
 
     code: '',
 
@@ -132,9 +132,21 @@ Page({
 
   // 打开规则弹窗
   openRule() {
-    this.setData({
-      isRuleShow: true,
+    let that = this;
+    common.requestGet(api.rule, {
+      ruleType: 1
+    }, res => {
+
+      var detail = res.data.data.content.replace(/\<section/gi, '<div');
+      var detail2 = detail.replace(/section\>/gi, 'div>');
+      var detail3 = detail2.replace(/\<u/gi, '<i');
+      var detail4 = detail3.replace(/u\>/gi, 'i>');
+      that.setData({
+        content: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
+        isRuleShow: true,
+      })
     })
+
   },
 
   // 关闭规则弹窗
@@ -312,12 +324,12 @@ Page({
           }, 500)
 
         })
-      } else if(lottery.type == 2){
+      } else if (lottery.type == 2) {
         that.setData({
-          lotteryId:lottery.lotteryId
+          lotteryId: lottery.lotteryId
         })
         wx.hideLoading();
-      }else {
+      } else {
         wx.hideLoading();
       }
       that.setData({
@@ -403,72 +415,77 @@ Page({
 
 
   //关闭中奖弹窗
-  resultwin () {
+  resultwin() {
     let that = this;
     that.setData({
       isResultShow: false,
       isShakeShow: false,
-      code:''
+      code: ''
     })
 
   },
 
   //填写信息弹窗
-  infomask () {
+  infomask() {
     let that = this;
     that.setData({
-      isResultShow:false,
-      infomask:true,
-      
+      isResultShow: false,
+      infomask: true,
     })
   },
 
   //选择地区
 
-  pickchange (e) {
+  pickchange(e) {
     let that = this;
     console.log(e.detail.value)
     that.setData({
       address: e.detail.value
     })
   },
- 
+
   //信息提交后关闭弹窗
   infobtn(e) {
     let that = this;
 
     let name = e.detail.value.name;
-    let phone  = e.detail.value.phone;
+    let phone = e.detail.value.phone;
     let receiveAddress = e.detail.value.receiveAddress;
     let receiveProvince = that.data.address[0];
     let receiveCity = that.data.address[1];
     let receiveArea = that.data.address[2];
 
-    if(name == '') {
-      common.showToast('姓名不能为空','none',res=>{});
+    if (name == '') {
+      common.showToast('姓名不能为空', 'none', res => { });
       return false;
-    }else if (phone == '') {
-      common.showToast('手机号码不能为空','none',res=>{});
+    } else if (phone == '') {
+      common.showToast('手机号码不能为空', 'none', res => { });
       return false;
-    }else if (receiveAddress == '') {
-      common.showToast('详细地址不能为空','none',res=>{});
+    } else if (receiveAddress == '') {
+      common.showToast('详细地址不能为空', 'none', res => { });
       return false;
     }
 
-    common.requestPosts(api.saveEntityObjRewardAddr,{
-      lotteryRecordId:that.data.lotteryId,
-      openid:app.globalData.idData.openid,
-      receiveProvince:receiveProvince,
-      receiveCity:receiveCity,
-      receiveArea:receiveArea,
-      receiveName:name,
-      receivePhone:phone,
-      receiveAddress:receiveAddress
-    },res=>{})
+    common.requestPosts(api.saveEntityObjRewardAddr, {
+      lotteryRecordId: that.data.lotteryId,
+      openid: app.globalData.idData.openid,
+      receiveProvince: receiveProvince,
+      receiveCity: receiveCity,
+      receiveArea: receiveArea,
+      receiveName: name,
+      receivePhone: phone,
+      receiveAddress: receiveAddress
+    }, res => {
 
-    that.setData({
-      infomask:false
+      common.showToast('信息提交成功', 'none', res => {
+
+      })
+      that.setData({
+        infomask: false
+      })
     })
+
+
   },
 
 
@@ -559,7 +576,7 @@ Page({
 
   onUnload: function () {
 
-    if(innerAudioContextEnd!=undefined || innerAudioContextStart!=undefined) {
+    if (innerAudioContextEnd != undefined || innerAudioContextStart != undefined) {
       innerAudioContextEnd.destroy();
       innerAudioContextStart.destroy();
     }

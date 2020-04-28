@@ -492,7 +492,15 @@ line-height:inherit;
 	color: #E27C5D;
 	padding: 0 30rpx;
 	height: 360rpx;
-	overflow-x: auto;
+	max-width: 540rpx;
+	overflow-x: hidden;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+rule-text {
+	max-width: 500rpx;
+	overflow: hidden;
 }
 
 

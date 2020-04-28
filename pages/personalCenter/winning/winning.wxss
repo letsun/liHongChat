@@ -29,6 +29,7 @@
 }
 
 .record {
+  position: relative;
   height: 120rpx;
   display: flex;
   margin: 0 30rpx 0 0;
@@ -64,10 +65,25 @@
 
 /* 活动 */
 .activity {
+  position: absolute;
+  right: 0;
+  top: 30rpx;
   font-size: 21rpx;
   line-height: 21rpx;
-  color: #f52f02;
-  margin: 52rpx 0 0 220rpx;
+  padding: 20rpx 40rpx;
+  border-radius: 15rpx;
+  color: #fff;
+  background-image: linear-gradient(to right, #f64904, #f99408);
+}
+
+.activitya {
+  position: absolute;
+  right: 0;
+  top: 30rpx;
+  font-size: 21rpx;
+  line-height: 21rpx;
+  padding: 20rpx 40rpx;
+
 }
 
 .bg {
@@ -118,3 +134,116 @@
   text-align: center;
   line-height: 100rpx;
 }
+
+
+.address {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.6);
+	z-index: 1000;
+}
+
+.address-con {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	background: url(https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_113.png) no-repeat;
+	background-size: 100% 100%;
+	width: 585rpx;
+	height: 699rpx;
+}
+
+
+.address-title {
+	text-align: center;
+	padding-top: 50rpx ;
+}
+
+.address-title image{
+	max-width: 315rpx;
+	max-height: 45rpx;
+}
+
+.address-from {
+	padding: 30rpx;
+}
+
+
+
+.from-item {
+	display: flex;
+	margin-bottom:20rpx ;
+}
+
+.item-key {
+	width: 15%;
+	padding: 15rpx 0;
+}
+
+.item-value {
+	width: 85%;
+}
+
+
+
+.item-value input,picker{
+	width: 95%;
+	padding: 15rpx 0 15rpx  15rpx ;
+
+	background:#fff;
+	border: 1rpx solid #FE8359;
+}
+
+.item-value picker {
+	margin-bottom: 20rpx;
+}
+
+
+.address-btn {
+	text-align: center;
+}
+
+
+.address-btn image {
+	max-width: 346rpx;
+	max-height: 138rpx;
+}
+
+.address-close {
+  text-align: center;
+  margin-top: 40rpx;
+}
+
+.address-close image{
+  width: 65rpx;
+  height: 65rpx;
+  margin: auto;
+}
+
+.button-hover {
+
+  background-color:transparent;
+  
+  }
+  
+  button::after {
+  
+  border: none;
+  
+  }
+  
+  button {
+  
+  background-color: transparent;
+  
+  padding-left: 0;
+  
+  padding-right: 0;
+  
+  line-height:inherit;
+  
+  }

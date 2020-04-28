@@ -549,7 +549,12 @@ page {
   margin: 170rpx 30rpx 0rpx 30rpx;
   height: 460rpx;
   overflow-y: auto;
+  overflow-x: hidden;
+  word-break: break-all;
+	word-wrap: break-word;
 }
+
+
 
 .mask-btn  {
   margin-top: 30rpx;

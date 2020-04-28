@@ -55,9 +55,9 @@
 		</view>
 	</view>
 
-
-	<block wx:if="{{objType == 1}}">
-		<!--用料-->
+	<!--用料调料-->
+	<!-- <block wx:if="{{objType == 1}}">
+		
 		<view class="content">
 			<view class="parameter">用料</view>
 			<view class="all">
@@ -68,7 +68,7 @@
 			</view>
 		</view>
 
-		<!-- 调料 -->
+		
 		<view class="contenta">
 			<view class="parameter">调料</view>
 			<view class="all">
@@ -78,7 +78,7 @@
 				</view>
 			</view>
 		</view>
-	</block>
+	</block> -->
 
 	<!-- 说明 -->
 	<view class="desc" style=" {{objType == 0 ?'padding-top:15rpx;':'' }}">

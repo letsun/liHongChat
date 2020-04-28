@@ -147,11 +147,13 @@ Page({
       hasNext: '',
       pageNum: 1,
     })
-    if (index == 0) {
-      that.deliciousList(2)
-    } else {
-      that.deliciousList(1)
-    }
+    // if (index == 0) {
+    //   that.deliciousList(2)
+    // } else {
+    //   that.deliciousList(1)
+    // }
+
+    that.deliciousList(1)
   },
 
   //轮播图
@@ -206,32 +208,32 @@ Page({
     let that = this;
     let indexa = that.data.indexa;
     common.requestPostf(api.categoryList, {}, res => {
-      let categoryList = res.data.data;
-      let obj = {}
-      obj.cateId = '';
-      obj.cateName = '美味菜谱';
-      categoryList.unshift(obj);
+      //let categoryList = res.data.data;
+      // let obj = {}
+      // obj.cateId = '';
+      // obj.cateName = '美味菜谱';
+      // categoryList.unshift(obj);
       that.setData({
-        categoryList: categoryList
+        categoryList:  res.data.data
       })
 
-      if (indexa == 0) {
-        var mwktType = 2;
-      } else {
-        var mwktType = 1;
-      }
-      that.deliciousList(mwktType);
+      // if (indexa == 0) {
+      //   var mwktType = 2;
+      // } else {
+      //   var mwktType = 1;
+      // }
+      that.deliciousList(1);
     }, reg => {
-      let categoryList = [];
-      let obj = {}
-      obj.cateId = '';
-      obj.cateName = '美味菜谱';
-      categoryList.unshift(obj);
+      // let categoryList = [];
+      // let obj = {}
+      // obj.cateId = '';
+      // obj.cateName = '美味菜谱';
+      // categoryList.unshift(obj);
 
-      that.setData({
-        categoryList: categoryList
-      })
-      that.deliciousList(2);
+      // that.setData({
+      //   categoryList: categoryList
+      // })
+      // that.deliciousList(2);
     })
   },
 
@@ -256,11 +258,11 @@ Page({
     var categoryList = that.data.categoryList;
     var orderType = that.data.orderType;
 
-    if (categoryList != '') {
+    // if (categoryList != '') {
       var cateId = categoryList[indexa].cateId;
-    } else {
-      var cateId = 0;
-    }
+    // } else {
+    //   var cateId = 0;
+    // }
 
     common.requestPosts(api.deliciousList, {
       cateId: cateId,
@@ -302,17 +304,19 @@ Page({
     let that = this;
 
     // common.showLoading()
-    if (that.data.indexa == 0) {
-      that.setData({
-        pageNum: that.data.pageNum + 1
-      })
-      that.deliciousList(2);
-    } else {
+    // if (that.data.indexa == 0) {
+    //   that.setData({
+    //     pageNum: that.data.pageNum + 1
+    //   })
+    //   that.deliciousList(2);
+    // } else {
       that.setData({
         pageNum: that.data.pageNum + 1
       })
       that.deliciousList(1);
-    }
+    // }
+
+    
   },
 
 
@@ -326,11 +330,12 @@ Page({
     let index = e.currentTarget.dataset.index;
     let indexa = that.data.indexa;
     let objId = that.data.mwktList[index].objId;
-    if (indexa == 0) {
-      var objType = 2
-    } else {
-      var objType = 1
-    }
+    var objType = 1;
+    // if (indexa == 0) {
+    //   var objType = 2
+    // } else {
+    //   var objType = 1
+    // }
     if (app.globalData.memberId > 0) {
       common.requestPost(api.dianz, {
         memberId: app.globalData.memberId,
@@ -365,11 +370,12 @@ Page({
       pageNum: 1,
       orderType: 0
     })
-    if (index == 0) {
-      that.deliciousList(2)
-    } else {
-      that.deliciousList(1)
-    }
+    // if (index == 0) {
+    //   that.deliciousList(2)
+    // } else {
+    //   that.deliciousList(1)
+    // }
+    that.deliciousList(1)
   },
 
 
@@ -423,11 +429,12 @@ Page({
     let indexa = that.data.indexa;
     let mwktList = that.data.mwktList;
     let objid = mwktList[index].objId;
-    if (indexa == 0) {
-      var objtype = 1
-    } else {
-      var objtype = 0
-    }
+    // if (indexa == 0) {
+    //   var objtype = 1
+    // } else {
+    //   var objtype = 0
+    // }
+    let  objtype=0;
     if (app.globalData.memberId > 0) {
       wx.navigateTo({
         url: '../deliciousDetail/deliciousDetail?objid=' + objid + '&objtype=' + objtype,

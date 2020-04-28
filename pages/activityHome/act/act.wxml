@@ -136,7 +136,7 @@
 			<image class ="rule-title" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_114.png"></image>
 
 			<view class="rule-text">
-				11111asffffffffffffffffff拉发链接发发所多付大奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊奥奥奥过所多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多爱的故事所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所打算跟过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过过
+				<rich-text nodes="{{content}}">	</rich-text>
 			</view>
 			<image class="rule-confirm" catchtap="confirmRule" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_1.png"></image>
 		</view>

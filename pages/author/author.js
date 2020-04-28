@@ -19,6 +19,20 @@ Page({
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1]; //当前页面
     let prevPage = pages[pages.length - 2]; //上个页面
+    
+    console.log(prevPage.route)
+    console.log(currPage)
+
+    if (prevPage.route ="pages/delicious/deliciousList/deliciousList") {
+      //登录后美味社区页面刷新
+      prevPage.setData({
+        mwktList:'',
+        indexa:'0'
+      })
+      prevPage.categoryList();
+      prevPage.siginInfo()
+    }
+    
     wx.navigateBack({
       delta: 1,
     });

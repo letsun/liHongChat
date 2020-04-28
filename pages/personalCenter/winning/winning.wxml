@@ -1,31 +1,84 @@
 <!--pages/winning/winning.wxml-->
 <!--顶部背景图片-->
-  <image class="bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_17.png"></image>
-  <view class="main">
-      <!-- 已登录 -->
-      <view class="new">
-        <!--头像-->
-        <image class="icon" src="{{userInfo.headImg}}"></image>
-        <!--昵称和积分-->
-        <view class="name">{{userInfo.nickName}}</view>
-      </view>
-    </view>
+<image class="bg" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_17.png"></image>
+<view class="main">
+	<!-- 已登录 -->
+	<view class="new">
+		<!--头像-->
+		<image class="icon" src="{{userInfo.headImg}}"></image>
+		<!--昵称和积分-->
+		<view class="name">{{userInfo.nickName}}</view>
+	</view>
+</view>
 
 
 <view class="integral">
-  <view class="integral-title">
-      <view class="title-border"></view>
-      <view class="title-text">中奖记录</view>
-  </view>
-  <view class="record" wx:for="{{lotteryList}}" wx:key=''>  
-    <image class="packet" src="{{item.prizePic}}"></image>
-    <view class="win">
-      <view class="get">获得{{item.prizeName}}</view>
-      <view class="day">{{item.lotteryTime}}</view>
-    </view>
-    <view class="activity">一物一码活动</view>
-  </view>
+	<view class="integral-title">
+		<view class="title-border"></view>
+		<view class="title-text">中奖记录</view>
+	</view>
+	<view class="record" wx:for="{{lotteryList}}" wx:key=''>
+		<image class="packet" src="{{item.prizePic}}"></image>
+		<view class="win">
+			<view class="get">获得{{item.prizeName}}</view>
+			<view class="day">{{item.lotteryTime}}</view>
+		</view>
+		<view class="activity" wx:if="{{item.status == 0 }}" bindtap="infomask" data-index="{{index}}">点击领取</view>
+		<view class="activitya" wx:if="{{item.status == 1 }}">已领取</view>
 
-  <view class="zwsj" wx:if="{{lotteryList==''}}">暂无数据</view>
+		<!-- <view class="activity">一物一码活动</view> -->
+	</view>
 
+	<view class="zwsj" wx:if="{{lotteryList==''}}">暂无数据</view>
+
+</view>
+
+
+<!-- 填写地址弹窗 -->
+<view class="address" wx:if="{{infomask}}">
+
+	<form bindsubmit="infobtn">
+		<view class="address-con">
+
+			<view class="address-header">
+
+				<view class="address-title">
+					<image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_112.png"></image>
+				</view>
+
+				<view class="address-from">
+					<view class="from-item">
+						<view class="item-key">姓名</view>
+						<view class="item-value"> <input name="name" placeholder="请输入您的姓名"></input> </view>
+					</view>
+
+					<view class="from-item">
+						<view class="item-key">电话</view>
+						<view class="item-value"> <input name="phone" placeholder="请输入您的手机号码"></input> </view>
+					</view>
+
+					<view class="from-item">
+						<view class="item-key">地址</view>
+						<view class="item-value">
+							<picker mode="region" bindchange="pickchange">
+								{{address}}
+							</picker>
+							<input name="receiveAddress" placeholder="请输入您的详细地址"></input>
+						</view>
+					</view>
+				</view>
+
+				<button class="address-btn" form-type="submit">
+					<image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_111.png"></image>
+				</button>
+
+			</view>
+
+			<view class="address-close" bindtap="infomaskcolse">
+				<image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_97.png"></image>
+			</view>
+		</view>
+
+
+	</form>
 </view>

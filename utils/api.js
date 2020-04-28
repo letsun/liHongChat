@@ -67,7 +67,7 @@ var api = {
   callback: ip + '/api/consumer/cash/callback/', //领取红包回调
   advlogin: ip + '/api/shop/adv/login', //首页弹窗
   categoryList: ip + '/api/mwkt/video/category/list', //社区分类
-  
+  rule: ip + '/qdwz/activity/rule', //获取最新活动规则内容接口
 }
 
 

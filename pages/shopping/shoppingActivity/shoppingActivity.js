@@ -323,8 +323,19 @@ Page({
 
   mask () {
     let that = this;
-    that.setData({
-      mask:true
+    common.requestGet(api.rule,{   
+      ruleType:0
+    },res=>{
+      
+      var detail = res.data.data.content.replace(/\<section/gi, '<div');
+      var detail2 = detail.replace(/section\>/gi, 'div>');
+      var detail3 = detail2.replace(/\<u/gi, '<i');
+      var detail4 = detail3.replace(/u\>/gi, 'i>');
+      that.setData({
+        content: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
+        mask: true,
+      })
+
     })
   },
 
