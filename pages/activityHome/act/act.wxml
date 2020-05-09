@@ -73,7 +73,7 @@
 			<view class="btn-wra btn-wra1" wx:if='{{lottery.type!=2}}'>
 				<image wx:if="{{lottery.type!=0}}" class="result-btn" mode="widthFix" catchtap="personal" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_7.png"></image>
 
-				<image wx:if="{{lottery.type==0}}" catchtap="hbbtn" class="result-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_71.png"></image>
+				<image wx:if="{{lottery.type==0}}" catchtap="userCash" class="result-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_71.png"></image>
 			</view>
 
 			<view class="btn-wra btn-wra2" wx:if='{{lottery.type==2}}'>

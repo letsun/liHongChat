@@ -10,7 +10,7 @@ Page({
     pageNum: 1,
     lotteryList: '',
     hasNext: 'false',
-    infomask:false,
+    infomask: false,
     address: ["北京市", "北京市", "东城区"],
   },
 
@@ -84,26 +84,89 @@ Page({
     let that = this;
     let index = e.currentTarget.dataset.index;
     let lotteryList = that.data.lotteryList;
-  
-    let lotteryId = lotteryList[index].lotteryId;
 
-    that.setData({
-      index:index,
-      lotteryId:lotteryId,
-      infomask: true,
-    })
+    let lotteryId = lotteryList[index].lotteryId;
+    let prizeType = lotteryList[index].prizeType;
+
+    let prizeAmount = lotteryList[index].prizeAmount;
+
+    let activityEncode = lotteryList[index].activityEncode
+    if (prizeType == 0) {
+      that.setData({
+        lotteryId: lotteryId,
+        prizeAmount: prizeAmount,
+        activityEncode: activityEncode,
+        index:index,
+      })
+
+      that.userCash()
+
+    } else {
+      that.setData({
+        index: index,
+        lotteryId: lotteryId,
+        infomask: true,
+
+   
+      })
+    }
+
+
   },
 
 
-    //选择地区
 
-    pickchange(e) {
-      let that = this;
-      console.log(e.detail.value)
+  /**
+   * 
+   * 红包提现
+   */
+  userCash() {
+    let that = this;
+    let lotteryId = that.data.lotteryId;
+    let activityEncode = that.data.activityEncode;
+    let prizeAmount = that.data.prizeAmount;
+
+    common.requestPostf(api.userCash, {
+      openid: app.globalData.idData.openid,
+      amount: prizeAmount,
+      cashType: 0, // 默认： 0
+      lotteryId: lotteryId, //  中奖记录ID
+      activityCode: activityEncode, //  活动二维码
+      transferType: 1,
+    }, res => {
+
+      wx.hideLoading({});
+      let lotteryList = that.data.lotteryList;
+      let index = that.data.index;
+      lotteryList[index].status = 1;
       that.setData({
-        address: e.detail.value
+        lotteryList:lotteryList
       })
-    },
+
+      setTimeout(res => {
+        common.showToast('领取成功，红包已发放到零钱', 'none', res => { })
+      }, 500)
+
+    }, reg => {
+      setTimeout(res => {
+        common.showToast(reg.data.msg, 'none', res => { })
+      }, 500)
+    })
+
+
+
+  },
+
+
+  //选择地区
+
+  pickchange(e) {
+    let that = this;
+    console.log(e.detail.value)
+    that.setData({
+      address: e.detail.value
+    })
+  },
 
   //信息提交后关闭弹窗
   infobtn(e) {
@@ -142,11 +205,11 @@ Page({
       lotteryList[index].status = 1;
 
       common.showToast('信息提交成功', 'none', res => {
-      
+
       })
       that.setData({
         infomask: false,
-        lotteryList:lotteryList
+        lotteryList: lotteryList
       })
     })
 

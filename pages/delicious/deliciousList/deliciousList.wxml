@@ -142,4 +142,13 @@
 			</view>
 		</view>
 	</view>
+
+
+	<view class="loginmask" wx:if="{{loginmask}}">
+		<view class="loginmask-con">
+			<image src="{{bannernav.picUrl}}" bindtap="bannernava"></image>
+
+			<image class="loginmask-close" bindtap="loginclose" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_97.png"></image>
+		</view>
+	</view>
 </view>

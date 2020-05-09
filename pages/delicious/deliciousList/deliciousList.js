@@ -15,7 +15,8 @@ Page({
     picklist: ['默认排序', '最新排序', '最热排序',],
     categoryList: '',
     maskclose: false,
-    mask: false
+    mask: false,
+    loginmask: false,
   },
 
 
@@ -27,7 +28,6 @@ Page({
     that.categoryList()//社区版块-社区分类接口
     if (app.globalData.memberId <= 0) {
       common.login(function () {
-
         setTimeout(res => {
           that.setData({
             mwktList: ''
@@ -40,10 +40,11 @@ Page({
     } else {
 
     }
-
-
     //that.deliciousList(2);
   },
+
+
+
 
 
   onShow() {
@@ -68,6 +69,8 @@ Page({
       }, 500)
     }
   },
+
+
 
 
 
@@ -97,10 +100,10 @@ Page({
       var signinScore = res.data.data.signinScore;
       var signinCoupon = res.data.data.signinCoupon;
       that.setData({
-        signinScore:signinScore,
-        signinCoupon:signinCoupon,
+        signinScore: signinScore,
+        signinCoupon: signinCoupon,
         maskclose: false,
-        mask:true
+        mask: true
       })
 
       // if (signinScore != 0 || signinCoupon != 0) {
@@ -214,7 +217,7 @@ Page({
       // obj.cateName = '美味菜谱';
       // categoryList.unshift(obj);
       that.setData({
-        categoryList:  res.data.data
+        categoryList: res.data.data
       })
 
       // if (indexa == 0) {
@@ -223,6 +226,8 @@ Page({
       //   var mwktType = 1;
       // }
       that.deliciousList(1);
+
+      that.advlogin()
     }, reg => {
       // let categoryList = [];
       // let obj = {}
@@ -234,6 +239,56 @@ Page({
       //   categoryList: categoryList
       // })
       // that.deliciousList(2);
+    })
+  },
+
+
+  //首页广告弹窗
+  advlogin() {
+    let that = this;
+    common.requestPostf(api.advlogin, {
+    }, res => {
+      //0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
+      let bannernav = res.data.data[0];
+      that.setData({
+        loginmask: true,
+        bannernav: bannernav
+      })
+    }, reg => { })
+  },
+
+
+  //轮播图跳转  0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
+  bannernava(e) {
+    let that = this;
+    let bannernav = that.data.bannernav;
+    let type = bannernav.type;
+    console.log(type)
+    if (type == 0) {
+      wx.navigateTo({
+        url: "../../shopping/shoppingActivity/shoppingActivity"
+      })
+    } else if (type == 1) {
+      app.globalData.goodsId = bannernav.objId;
+      wx.navigateTo({
+        url: "../../shopping/shoppingDetails/shoppingDetails"
+      })
+    } else if (type == 2) {
+      wx.navigateTo({
+        url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + bannernav.objId + '&objtype=' + 1,
+      })
+    } else if (type == 3) {
+      wx.navigateTo({
+        url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + bannernav.objId + '&objtype=' + 0,
+      })
+    }
+  },
+
+
+  loginclose() {
+    let that = this;
+    that.setData({
+      loginmask: false
     })
   },
 
@@ -259,7 +314,7 @@ Page({
     var orderType = that.data.orderType;
 
     // if (categoryList != '') {
-      var cateId = categoryList[indexa].cateId;
+    var cateId = categoryList[indexa].cateId;
     // } else {
     //   var cateId = 0;
     // }
@@ -310,13 +365,13 @@ Page({
     //   })
     //   that.deliciousList(2);
     // } else {
-      that.setData({
-        pageNum: that.data.pageNum + 1
-      })
-      that.deliciousList(1);
+    that.setData({
+      pageNum: that.data.pageNum + 1
+    })
+    that.deliciousList(1);
     // }
 
-    
+
   },
 
 
@@ -434,7 +489,7 @@ Page({
     // } else {
     //   var objtype = 0
     // }
-    let  objtype=0;
+    let objtype = 0;
     if (app.globalData.memberId > 0) {
       wx.navigateTo({
         url: '../deliciousDetail/deliciousDetail?objid=' + objid + '&objtype=' + objtype,

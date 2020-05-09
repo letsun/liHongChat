@@ -7,6 +7,7 @@ const utilMd5 = require("../../../utils/md5.js");
 var BMap;
 var innerAudioContextEnd;
 var innerAudioContextStart;
+
 Page({
   data: {
     // flag: true,
@@ -58,7 +59,7 @@ Page({
       common.login(function () {
         console.log(app.globalData.memberId, 76)
 
-        that.advlogin()
+        // that.advlogin()
         // that.siginInfo()
       })
     }
@@ -104,8 +105,7 @@ Page({
     //   })
     // }
     console.log(that.data.code)
-    var data = wx.getLaunchOptionsSync() //获取场景代码
-    console.log(data.scene, '场景值')
+
 
     common.getopenid(res => {
       app.globalData.idData.sessionKey = res.data.result.sessionKey
@@ -175,42 +175,42 @@ Page({
     if (that.data.code != '') {
 
       //判断场景值是否为1011
-      if (data.scene == '1011') {
-        if (res.detail.userInfo != null) {
-          app.globalData.headImg = res.detail.userInfo.avatarUrl;
-          app.globalData.nickName = res.detail.userInfo.nickName;
-          app.globalData.sex = res.detail.userInfo.gender;
-          var appId = 'wx92ddcbce04fc34b6';
-          var encryptedData = res.detail.encryptedData;
-          var iv = res.detail.iv;
-          var pc = new RdWXBizDataCrypt(appId, app.globalData.idData.sessionKey);
-          var data = pc.decryptData(encryptedData, iv);
-          // debugger
+      // if (data.scene == '1011') {
+      if (res.detail.userInfo != null) {
+        app.globalData.headImg = res.detail.userInfo.avatarUrl;
+        app.globalData.nickName = res.detail.userInfo.nickName;
+        app.globalData.sex = res.detail.userInfo.gender;
+        var appId = 'wx92ddcbce04fc34b6';
+        var encryptedData = res.detail.encryptedData;
+        var iv = res.detail.iv;
+        var pc = new RdWXBizDataCrypt(appId, app.globalData.idData.sessionKey);
+        var data = pc.decryptData(encryptedData, iv);
+        // debugger
 
-          console.log(data)
-          app.globalData.idData.unionId = data.unionId;
+        console.log(data)
+        app.globalData.idData.unionId = data.unionId;
 
-          this.setData({
-            isShakeShow: true,
-            isqr: true
-          })
+        this.setData({
+          isShakeShow: true,
+          isqr: true
+        })
 
 
 
-          that.shakeFunc()
+        that.shakeFunc()
 
-        } else {
-          wx.showToast({
-            title: '亲,我拿不到你的头像与昵称呢',
-            icon: 'none',
-          });
-        }
       } else {
         wx.showToast({
-          title: '扫码异常，请删除小程序重新扫码！',
+          title: '亲,我拿不到你的头像与昵称呢',
           icon: 'none',
         });
       }
+      // } else {
+      //   wx.showToast({
+      //     title: '扫码异常，请删除小程序重新扫码！',
+      //     icon: 'none',
+      //   });
+      // }
 
     } else {
       common.showToast('请扫描二维码参与活动', 'none', res => { })
@@ -262,6 +262,7 @@ Page({
   // 抽奖
   lottery() {
     common.showLoading();
+ 
     let that = this;
     let address = app.globalData.formatted_address; //详细地址
     let city = app.globalData.addressComponent.city; //市区
@@ -301,29 +302,7 @@ Page({
 
       if (lottery.type == 0) {
         // that.userCash() //红包提现
-        common.requestPostf(api.userCash, {
-          openid: openid,
-          amount: lottery.redPack.prizeAmount,
-          cashType: 0, // 默认： 0
-          lotteryId: lottery.lotteryId, //  中奖记录ID
-          activityCode: labelno, //  活动二维码
-        }, res => {
-          that.setData({
-            usercash: res.data.data,
-            isResultShow: true,
-          })
-          if (that.data.usercash != undefined || that.data.usercash != '') {
-            wx.hideLoading();
-          }
-          console.log(that.data.usercash, '284')
-        }, reg => {
-
-          wx.hideLoading();
-          setTimeout(res => {
-            common.showToast(reg.data.msg, 'none', res => { })
-          }, 500)
-
-        })
+        wx.hideLoading();
       } else if (lottery.type == 2) {
         that.setData({
           lotteryId: lottery.lotteryId
@@ -332,9 +311,7 @@ Page({
       } else {
         wx.hideLoading();
       }
-      that.setData({
-        code: ''
-      })
+
     }, reg => {
       wx.hideLoading();
       setTimeout(res => {
@@ -357,34 +334,64 @@ Page({
    * 
    * 红包提现
    */
-  // userCash() {
-  //   console.log('268')
-  //   wx.showLoading({
-  //     title: '红包发放中',
-  //     mask: true,
-  //   })
-  //   let that = this;
-  //   let openid = app.globalData.idData.openid; //小程序openid
-  //   let lottery = that.data.lottery;
-  //   let code = that.data.code;
+  userCash() {
+    let that = this;
+    let lottery = that.data.lottery;
+    let labelno = that.data.code;
 
-  // },
+    var data = wx.getLaunchOptionsSync() //获取场景代码
+    console.log(data.scene, '场景值')
+
+    common.showLoading();
+
+    if (data.scene == '1011') {
+      var transferType = 0;
+    } else {
+      var transferType = 1;
+    }
+    common.requestPostf(api.userCash, {
+      openid: app.globalData.idData.openid,
+      amount: lottery.redPack.prizeAmount,
+      cashType: 0, // 默认： 0
+      lotteryId: lottery.lotteryId, //  中奖记录ID
+      activityCode: labelno, //  活动二维码
+      transferType: transferType,
+    }, res => {
+      that.setData({
+        usercash: res.data.data,
+        isResultShow: false,
+        isShakeShow: false,
+        code: ''
+      })
+
+      
+      if (transferType == 0) {
+        wx.hideLoading({});
+        that.hbbtn()   
+      } else {
+        wx.hideLoading({});
+        setTimeout(res => {
+          common.showToast('领取成功，红包已发放到零钱', 'none', res => { })
+        }, 500)
+
+      }
+    }, reg => {
+      setTimeout(res => {
+        common.showToast(reg.data.msg, 'none', res => { })
+      }, 500)
+    })
+
+  },
 
 
 
 
-  //点击开红包
+  //开红包
   hbbtn() {
     let that = this;
     let usercash = that.data.usercash;
     let openid = app.globalData.idData.openid; //小程序openid
     let lottery = that.data.lottery;
-    console.log(usercash, '334')
-    that.setData({
-      isResultShow: false,
-      isShakeShow: false,
-    })
-
 
     // debugger
     wx.sendBizRedPacket({
@@ -395,6 +402,7 @@ Page({
       paySign: usercash.paySign, // 支付签名
       success: function (reg) {
         console.log('微信提现成功回调', reg)
+
       },
 
       fail: function (reg) {
@@ -481,7 +489,8 @@ Page({
 
       })
       that.setData({
-        infomask: false
+        infomask: false,
+        code:''
       })
     })
 
@@ -533,44 +542,44 @@ Page({
 
 
 
-  //首页广告弹窗
-  advlogin() {
-    let that = this;
-    common.requestPostf(api.advlogin, {
-    }, res => {
-      //0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
-      let bannernav = res.data.data[0];
-      that.setData({
-        bannernav: bannernav
-      })
-    }, reg => { })
-  },
+  // //首页广告弹窗
+  // advlogin() {
+  //   let that = this;
+  //   common.requestPostf(api.advlogin, {
+  //   }, res => {
+  //     //0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
+  //     let bannernav = res.data.data[0];
+  //     that.setData({
+  //       bannernav: bannernav
+  //     })
+  //   }, reg => { })
+  // },
 
   //轮播图跳转  0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
-  bannernav(e) {
-    let that = this;
-    let bannernav = that.data.bannernav;
-    let type = bannernav.type;
-    console.log(type)
-    if (type == 0) {
-      wx.navigateTo({
-        url: "../../shopping/shoppingActivity/shoppingActivity"
-      })
-    } else if (type == 1) {
-      app.globalData.goodsId = bannernav.objId;
-      wx.navigateTo({
-        url: "../../shopping/shoppingDetails/shoppingDetails"
-      })
-    } else if (type == 2) {
-      wx.navigateTo({
-        url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + bannernav.objId + '&objtype=' + 1,
-      })
-    } else if (type == 3) {
-      wx.navigateTo({
-        url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + bannernav.objId + '&objtype=' + 0,
-      })
-    }
-  },
+  // bannernav(e) {
+  //   let that = this;
+  //   let bannernav = that.data.bannernav;
+  //   let type = bannernav.type;
+  //   console.log(type)
+  //   if (type == 0) {
+  //     wx.navigateTo({
+  //       url: "../../shopping/shoppingActivity/shoppingActivity"
+  //     })
+  //   } else if (type == 1) {
+  //     app.globalData.goodsId = bannernav.objId;
+  //     wx.navigateTo({
+  //       url: "../../shopping/shoppingDetails/shoppingDetails"
+  //     })
+  //   } else if (type == 2) {
+  //     wx.navigateTo({
+  //       url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + bannernav.objId + '&objtype=' + 1,
+  //     })
+  //   } else if (type == 3) {
+  //     wx.navigateTo({
+  //       url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + bannernav.objId + '&objtype=' + 0,
+  //     })
+  //   }
+  // },
 
 
 
