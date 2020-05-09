@@ -316,8 +316,9 @@ Page({
       wx.hideLoading();
       setTimeout(res => {
         common.showToast(reg.data.msg, 'none', res => {
+          app.globalData.code =''
           that.setData({
-            code: ''
+            code: '',        
           })
           that.setData({
             isResultShow: false,
@@ -357,11 +358,13 @@ Page({
       activityCode: labelno, //  活动二维码
       transferType: transferType,
     }, res => {
+      app.globalData.code =''
       that.setData({
         usercash: res.data.data,
         isResultShow: false,
         isShakeShow: false,
-        code: ''
+        code: '',
+        
       })
 
       
@@ -425,6 +428,7 @@ Page({
   //关闭中奖弹窗
   resultwin() {
     let that = this;
+    app.globalData.code =''
     that.setData({
       isResultShow: false,
       isShakeShow: false,
@@ -438,6 +442,7 @@ Page({
     let that = this;
     that.setData({
       isResultShow: false,
+
       infomask: true,
     })
   },
@@ -488,12 +493,13 @@ Page({
       common.showToast('信息提交成功', 'none', res => {
 
       })
+      app.globalData.code =''
       that.setData({
+        isShakeShow: false,
         infomask: false,
         code:''
       })
     })
-
 
   },
 

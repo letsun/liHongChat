@@ -400,7 +400,7 @@ Page({
         var mwktList = that.data.mwktList;
         var isDianz = mwktList[index].isDianz;
         if (isDianz != 'true') {
-          mwktList[index].dianzNum = mwktList[index].dianzNum + 1;
+          mwktList[index].dianzNum = mwktList[index].dianzNum -0 + 1;
         }
         mwktList[index].isDianz = 'true';
         that.setData({
