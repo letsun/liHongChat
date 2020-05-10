@@ -257,7 +257,7 @@ Page({
 
         if (objType != 3) {
           deliciousDetail.isDianz = 'true';
-          deliciousDetail.dianzNum = deliciousDetail.dianzNum +1;
+          deliciousDetail.dianzNum = deliciousDetail.dianzNum-0 +1;
           that.setData({
             deliciousDetail: deliciousDetail,
           })
