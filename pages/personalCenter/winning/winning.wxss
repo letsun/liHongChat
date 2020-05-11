@@ -30,23 +30,30 @@
 
 .record {
   position: relative;
-  height: 120rpx;
   display: flex;
   margin: 0 30rpx 0 0;
+  padding: 20rpx 0;
   border-bottom: 1px solid #f1f1f1;
   /* border-radius: 10rpx; */
 }
 
 /* 图片 */
 .packet {
-  width: 50rpx;
-  height: 50rpx;
-  margin: 35rpx 0 0 29rpx;
+  width: 70rpx;
+
+  margin: auto;
+  /* margin: 35rpx 0 0 29rpx; */
+}
+
+.packet image {
+  max-width: 60rpx;
+  max-height: 60rpx;
+  display: block;
 }
 
 .win {
-  width: 230rpx;
-  margin: 32rpx 0 0 17rpx;
+  width: 600rpx;
+
 }
 
 /* 获得物品 */
@@ -67,7 +74,7 @@
 .activity {
   position: absolute;
   right: 0;
-  top: 30rpx;
+  top: 25rpx;
   font-size: 21rpx;
   line-height: 21rpx;
   padding: 20rpx 40rpx;
@@ -79,7 +86,7 @@
 .activitya {
   position: absolute;
   right: 0;
-  top: 30rpx;
+  top: 25rpx;
   font-size: 21rpx;
   line-height: 21rpx;
   padding: 20rpx 40rpx;

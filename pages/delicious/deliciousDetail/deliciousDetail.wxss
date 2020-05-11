@@ -53,19 +53,20 @@
 .active {
   width: 33.333%;
   display: flex;
-
+  align-items: center;
   color: #ccc;
 }
 
 .dianzan {
   display: flex;
+  align-items: center;
 }
 
 .love-img {
   width: 26rpx;
   height: 26rpx;
   margin-right: 10rpx;
-  margin-top: 3rpx;
+
 }
 
 .text {
@@ -76,7 +77,7 @@
   width: 30rpx;
   height: 26rpx;
   margin-right: 10rpx;
-  margin-top: 6rpx;
+
 }
 
 .browse {
@@ -87,7 +88,7 @@
   width: 37rpx;
   height: 24rpx;
   margin-right: 10rpx;
-  margin-top: 4rpx;
+
 }
 
 /* 说明 */

@@ -17,8 +17,10 @@
 		<view class="title-border"></view>
 		<view class="title-text">中奖记录</view>
 	</view>
-	<view class="record" wx:for="{{lotteryList}}" wx:key=''>
-		<image class="packet" src="{{item.prizePic}}"></image>
+	<view class="record" wx:for="{{lotteryList}}" wx:key='xxx'>
+
+		<view class="packet"><image src="{{item.prizePic}}"></image></view>
+		
 		<view class="win">
 			<view class="get">获得{{item.prizeName}}</view>
 			<view class="day">{{item.lotteryTime}}</view>

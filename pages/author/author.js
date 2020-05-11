@@ -14,7 +14,7 @@ Page({
     console.log(app)
   },
 
-  goHome() {
+  goHome(type) {
     const that = this;
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1]; //当前页面
@@ -23,16 +23,19 @@ Page({
     console.log(prevPage.route)
     console.log(currPage)
 
-    if (prevPage.route ="pages/delicious/deliciousList/deliciousList") {
-      //登录后美味社区页面刷新
-      prevPage.setData({
-        mwktList:'',
-        indexa:'0'
-      })
-      prevPage.categoryList();
-      prevPage.siginInfo()
+    if (type==1) {
+      if (prevPage.route ="pages/delicious/deliciousList/deliciousList") {
+        //登录后美味社区页面刷新
+        prevPage.setData({
+          mwktList:'',
+          indexa:'0'
+        })
+        prevPage.categoryList();
+        prevPage.siginInfo()
+      }
+      
     }
-    
+
     wx.navigateBack({
       delta: 1,
     });
@@ -120,7 +123,7 @@ Page({
 
         if (res.data.data.firstReg == 'N') {
             setTimeout(function () {
-                that.goHome();
+                that.goHome(1);
             },1500)
         } else {
 
