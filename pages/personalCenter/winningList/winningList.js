@@ -61,6 +61,12 @@ Page({
               lotteryList: lotteryLista,
               hasNext: res.data.data.hasNext
             })
+
+            if (res.data.data.hasNext =="false") {
+              that.setData({
+                loadingtext:'没有更多数据了'
+            })
+            }
           } else {
             if (hasNext == "true") {
               that.setData({
