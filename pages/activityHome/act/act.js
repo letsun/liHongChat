@@ -22,7 +22,7 @@ Page({
     //code: '',
     address: ["北京市", "北京市", "东城区"],
 
-    code: 'TrHtZ45H1K7B2BJ2pn5F6CF00',
+    code: '',
 
 
     // https://test-qr.cresz.com.cn/Gjups44WM6PXLW93pn33CED6A
