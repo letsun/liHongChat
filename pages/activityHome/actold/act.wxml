@@ -1,0 +1,148 @@
+<view class="container">
+	<view class="content">
+		<!-- <image class="logo" mode="widthFix" catchtap="scanFunc" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_13.png"></image> -->
+
+		<image class="logo" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_13.png"></image>
+		<image class="bg" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_15.png"></image>
+		<image class="effect" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_16.png"></image>
+		<image class="title" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_12.png"></image>
+		<image class="rule-btn" mode="widthFix" catchtap="openRule" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_2.png"></image>
+
+
+		<!-- <image class="open-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_14.png"></image> -->
+		<button class="open-btn" open-type="getUserInfo" bindgetuserinfo='openShake'>
+			<image mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_14.png"></image>
+		</button>
+
+		<view class="nav-list">
+			<view class="nav-item" catchtap="openRule">活动规则</view>
+			<view class="nav-item" catchtap="winning">中奖记录</view>
+		</view>
+	</view>
+
+	<!--<view style="position: absolute;z-index: 1000000000;color: #fff;font-size: 36rpx;left: 0;top: 0;">
+        <view>x:{{x}}</view>
+        <view>y:{{y}}</view>
+        <view>z:{{z}}</view>
+    </view>-->
+
+	<!--摇一摇弹窗 "-->
+	<view class="shake-win {{isShakeShow?'block':''}}">
+		<view class="shake-content">
+			<image class="shake-title" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_18.png"></image>
+			<image class="shake-rule" catchtap="openRule" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_2.png"></image>
+			<view class="shake-tip">
+
+				<view class="shake-tipa"></view>
+				<view class="shake-tipb"></view>
+				<image class="shake-hands shake" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_20.png"></image>
+				<image class="shake-num" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_19.png"></image>
+			</view>
+
+
+
+			<image class="shake-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_17.png"></image>
+		</view>
+	</view>
+
+	<!--中奖弹窗-->
+	<view class="result-win" wx:if="{{isResultShow}}">
+		<view class="result-content">
+			<!--<image style="display: none;" class="result-title result-title1" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_9.png"></image>
+            <image style="display: none;" class="result-title result-title2" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_10.png"></image>
+            <image class="result-title result-title3" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_11.png"></image>-->
+			<view class="result-title">恭喜您获得</view>
+
+			<view class="result-dec" wx:if="{{lottery.type==0}}">
+				<view class="result-amount">
+					<text>{{lottery.redPack.prizeAmount}}</text>元</view>
+				<view class="result-tip">现金红包</view>
+			</view>
+			<view class="result-dec" wx:if="{{lottery.type==2}}">
+				<view class="result-amount">
+					<image src="{{lottery.materialObj.prizePic}}"></image>
+				</view>
+				<view class="result-tip " style="margin-top: 10rpx;">{{lottery.materialObj.prizeName}}</view>
+			</view>
+
+			<view class="result-dec" wx:if="{{lottery.type==3}}">
+				<view class="result-amount">{{lottery.setPoint.point}}</view>
+				<view class="result-tip">积分</view>
+			</view>
+
+			<view class="btn-wra btn-wra1" wx:if='{{lottery.type!=2}}'>
+				<image wx:if="{{lottery.type!=0}}" class="result-btn" mode="widthFix" catchtap="personal" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_7.png"></image>
+
+				<image wx:if="{{lottery.type==0}}" catchtap="userCash" class="result-btn" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_71.png"></image>
+			</view>
+
+			<view class="btn-wra btn-wra2" wx:if='{{lottery.type==2}}'>
+
+				<image class="result-btn" mode="widthFix" catchtap="infomask" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_71.png"></image>
+
+				<image class="result-btn" mode="widthFix" catchtap="personal" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_7.png"></image>
+
+			</view>
+
+		</view>
+
+		<image class="result-bg" catchtap="resultwin" wx:if="{{lottery.type!=0}}" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200116/1_83.png" mode="widthFix"></image>
+	</view>
+
+
+
+	<!-- 填写地址弹窗 -->
+	<view class="address" wx:if="{{infomask}}">
+
+		<form bindsubmit="infobtn">
+			<view class="address-con">
+				<view class="address-title">
+					<image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_112.png"></image>
+				</view>
+
+				<view class="address-from">
+					<view class="from-item">
+						<view class="item-key">姓名</view>
+						<view class="item-value"> <input name="name" placeholder="请输入您的姓名"></input> </view>
+					</view>
+
+					<view class="from-item">
+						<view class="item-key">电话</view>
+						<view class="item-value"> <input name="phone" placeholder="请输入您的手机号码"></input> </view>
+					</view>
+
+					<view class="from-item">
+						<view class="item-key">地址</view>
+						<view class="item-value">
+							<picker mode="region" bindchange="pickchange">
+								{{address}}
+							</picker> 
+							<input name="receiveAddress" placeholder="请输入您的详细地址"></input>
+						</view>
+					</view>
+				</view>
+
+				<button class="address-btn" form-type="submit">
+					<image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_111.png"></image>
+				</button>
+			</view>
+		</form>
+	</view>
+
+
+	<!--活动弹窗-->
+	<view class="rule-win" wx:if="{{isRuleShow}}">
+		<view class="rule-content">
+			<image class ="rule-title" src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_114.png"></image>
+
+			<view class="rule-text">
+				<rich-text nodes="{{content}}">	</rich-text>
+			</view>
+			<image class="rule-confirm" catchtap="confirmRule" mode="widthFix" src="https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_1.png"></image>
+		</view>
+	</view>
+
+
+
+	<!-- <official-account bindload="load" binderror="error" wx:if="{{flag==true}}" style="position:absolute;bottom:0;right: 0;left: 0;height:168rpx;z-index:99;"></official-account> -->
+</view>

@@ -10,96 +10,40 @@ var innerAudioContextStart;
 
 Page({
   data: {
+    // flag: true,
 
-    imapath :app.globalData.imapath,
     infomask: false,
     latitude: '',
     longitude: '',
-
+    isShakeShow: false,
+    isResultShow: false,
+    isRuleShow: false,
     isShake: true,
     isqr: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
     //code: '',
     address: ["北京市", "北京市", "东城区"],
 
-    code: 'TrHtZ45H1K7B2BJ2pn5F6CF00',
-
+    code: 'Gjups44WM6PXLW93pn33CED6A',
 
     // https://test-qr.cresz.com.cn/Gjups44WM6PXLW93pn33CED6A
     // https://test-qr.cresz.com.cn/Gjups04WM6S7GB38pn6783CBE
     // https://test-qr.cresz.com.cn/Gjups64WM6T6GX38pn2875974
-
-
-    mask:false,//奖项弹窗
-    mask1:false,//积分红包弹窗
-    mask2:false,//实物奖弹窗
-    mask3:false,//实物奖填写信息弹窗
-    shakewin:false, //打开摇一摇页面
-
-    rules:false,//打开活动规则
   },
 
+  // isflag() {
+  //   this.setData({
+  //     flag: false
+  //   })
+  // },
 
-  //打开摇一摇弹窗
-  openShake() {
-    let that = this;
-    var data = wx.getLaunchOptionsSync() //获取场景代码
-    console.log(data.scene, '场景值')
-    // debugger
-    //判断码是否为空
-    if (that.data.code != '') {
-      // this.lottery()
-      // that.shakeFunc();
-      that.setData({
-        shakewin:true,
-        // isqr: true
-      })
-    } else {
-      common.showToast('请扫描二维码参与活动', 'none', res => { })
-    }
-
+  load(e) {
+    console.log(e, 33)
   },
 
-  clicklotter() {
-    let that = this;
-
-     
-    that.setData({
-      // shakewin:true,
-      isqr: true
-    })
-
-    that.shakeFunc();
+  error(e) {
+    console.log(e, 37)
   },
-
-
-  //打开活动规则
-  openrules() {
-    let that = this;
-
-    common.requestGet(api.rule, {
-      ruleType: 1
-    }, res => {
-      var detail = res.data.data.content.replace(/\<section/gi, '<div');
-      var detail2 = detail.replace(/section\>/gi, 'div>');
-      var detail3 = detail2.replace(/\<u/gi, '<i');
-      var detail4 = detail3.replace(/u\>/gi, 'i>');
-      that.setData({
-        content: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
-        rules:true,
-      })
-    })
-  },
-
-
-  //关闭活动规则
-  closerules(){
-    let that = this;
-    that.setData({
-      rules:false,
-    })
-  },
-
 
 
   onLoad(options) {
@@ -112,7 +56,12 @@ Page({
         code: code,
       });
     } else {
-      common.login(res=> {})
+      common.login(function () {
+        console.log(app.globalData.memberId, 76)
+
+        // that.advlogin()
+        // that.siginInfo()
+      })
     }
 
     BMap = new bmap.BMapWX({
@@ -139,16 +88,23 @@ Page({
 
   onShow(options) {
     let that = this;
-
+    console.log(app.globalData.qrtypes, '44')
+    console.log(app.globalData.idData.openid)
     //个人中心扫码进来
     if (app.globalData.qrtypes == 1) {
-
+      console.log('1111')
       that.setData({
         isqr: false,
         isShake: true,
         code: app.globalData.code
       })
     }
+    // if (app.globalData.code != '') {
+    //   this.setData({
+    //     code: app.globalData.code
+    //   })
+    // }
+    console.log(that.data.code)
 
 
     common.getopenid(res => {
@@ -174,12 +130,97 @@ Page({
     });
   },
 
+  // 打开规则弹窗
+  openRule() {
+    let that = this;
+    common.requestGet(api.rule, {
+      ruleType: 1
+    }, res => {
+
+      var detail = res.data.data.content.replace(/\<section/gi, '<div');
+      var detail2 = detail.replace(/section\>/gi, 'div>');
+      var detail3 = detail2.replace(/\<u/gi, '<i');
+      var detail4 = detail3.replace(/u\>/gi, 'i>');
+      that.setData({
+        content: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
+        isRuleShow: true,
+      })
+    })
+
+  },
+
+  // 关闭规则弹窗
+  confirmRule() {
+    this.setData({
+      isRuleShow: false,
+    })
+  },
+
+  // 打开摇一摇弹窗
+
+  // openShake() {
+  //   this.lottery()
+  //   // this.setData({
+  //   //   isShakeShow: true
+  //   // })
+  // },
+  openShake(res) {
+    // 
+    let that = this;
+    console.log(res)
+
+    var data = wx.getLaunchOptionsSync() //获取场景代码
+    console.log(data.scene, '场景值')
+    //判断码是否为空
+    if (that.data.code != '') {
+
+      //判断场景值是否为1011
+      // if (data.scene == '1011') {
+      if (res.detail.userInfo != null) {
+        app.globalData.headImg = res.detail.userInfo.avatarUrl;
+        app.globalData.nickName = res.detail.userInfo.nickName;
+        app.globalData.sex = res.detail.userInfo.gender;
+        var appId = 'wx92ddcbce04fc34b6';
+        var encryptedData = res.detail.encryptedData;
+        var iv = res.detail.iv;
+        var pc = new RdWXBizDataCrypt(appId, app.globalData.idData.sessionKey);
+        var data = pc.decryptData(encryptedData, iv);
+        // debugger
+
+        console.log(data)
+        app.globalData.idData.unionId = data.unionId;
+
+        this.setData({
+          isShakeShow: true,
+          isqr: true
+        })
 
 
+
+        that.shakeFunc()
+
+      } else {
+        wx.showToast({
+          title: '亲,我拿不到你的头像与昵称呢',
+          icon: 'none',
+        });
+      }
+      // } else {
+      //   wx.showToast({
+      //     title: '扫码异常，请删除小程序重新扫码！',
+      //     icon: 'none',
+      //   });
+      // }
+
+    } else {
+      common.showToast('请扫描二维码参与活动', 'none', res => { })
+    }
+
+  },
 
   // 摇一摇
   shakeFunc() {
-
+    console.log('摇一摇')
     let that = this;
 
     let lastTime = 0;
@@ -256,24 +297,15 @@ Page({
       let lottery = res.data.data
       that.setData({
         lottery: lottery,
-        mask: true,
+        isResultShow: true,
       })
 
       if (lottery.type == 0) {
-        that.userCash() //红包提现
-        that.setData({
-          mask1:true
-        })
+        // that.userCash() //红包提现
         wx.hideLoading();
       } else if (lottery.type == 2) {
         that.setData({
-          mask2:true,
           lotteryId: lottery.lotteryId
-        })
-        wx.hideLoading();
-      }else if(lottery.type ==3) {
-        that.setData({
-          mask1:true
         })
         wx.hideLoading();
       } else {
@@ -286,13 +318,11 @@ Page({
         common.showToast(reg.data.msg, 'none', res => {
           app.globalData.code =''
           that.setData({
-            mask: false,
-            infomask: false,
-            shakewin:false,
-            mask1:false,//积分红包弹窗
-            mask2:false,//实物奖弹窗
-            mask3:false,//实物奖填写信息弹窗
-            code:''
+            code: '',        
+          })
+          that.setData({
+            isResultShow: false,
+            isShakeShow: false,
           })
         })
       }, 500)
@@ -315,36 +345,39 @@ Page({
 
     common.showLoading();
 
-    // if (data.scene == '1011') {
-    //   var transferType = 0;
-    // } else {
-    //   var transferType = 1;
-    // }
+    if (data.scene == '1011') {
+      var transferType = 0;
+    } else {
+      var transferType = 1;
+    }
     common.requestPostf(api.userCash, {
       openid: app.globalData.idData.openid,
       amount: lottery.redPack.prizeAmount,
       cashType: 0, // 默认： 0
       lotteryId: lottery.lotteryId, //  中奖记录ID
       activityCode: labelno, //  活动二维码
-      transferType: 1,
+      transferType: transferType,
     }, res => {
       app.globalData.code =''
       that.setData({
         usercash: res.data.data,
+        isResultShow: false,
+        isShakeShow: false,
         code: '',
+        
       })
 
       
-      // if (transferType == 0) {
-      //   wx.hideLoading({});
-      //   that.hbbtn()   
-      // } else {
+      if (transferType == 0) {
         wx.hideLoading({});
-        // setTimeout(res => {
-        //   common.showToast('领取成功，红包已发放到零钱', 'none', res => { })
-        // }, 500)
+        that.hbbtn()   
+      } else {
+        wx.hideLoading({});
+        setTimeout(res => {
+          common.showToast('领取成功，红包已发放到零钱', 'none', res => { })
+        }, 500)
 
-      // }
+      }
     }, reg => {
       setTimeout(res => {
         common.showToast(reg.data.msg, 'none', res => { })
@@ -371,10 +404,13 @@ Page({
       signType: usercash.signType, // 签名方式，
       paySign: usercash.paySign, // 支付签名
       success: function (reg) {
-  
+        console.log('微信提现成功回调', reg)
+
       },
 
       fail: function (reg) {
+        console.log('微信提现失败回调', reg)
+        console.log('微信提现失败回调', reg.errMsg)
         //提交错误信息
         common.requestPost(api.msg, {
           wxerrmsg: reg.errMsg,
@@ -390,16 +426,12 @@ Page({
 
 
   //关闭中奖弹窗
-  colsemask() {
-
+  resultwin() {
     let that = this;
     app.globalData.code =''
     that.setData({
-      shakewin:false,
-      mask:false,//奖项弹窗
-      mask1:false,//积分红包弹窗
-      mask2:false,//实物奖弹窗
-      mask3:false,//实物奖填写信息弹窗
+      isResultShow: false,
+      isShakeShow: false,
       code: ''
     })
 
@@ -409,8 +441,9 @@ Page({
   infomask() {
     let that = this;
     that.setData({
-      mask2:false,
-      mask3: true,
+      isResultShow: false,
+
+      infomask: true,
     })
   },
 
@@ -457,29 +490,37 @@ Page({
       receiveAddress: receiveAddress
     }, res => {
 
+      common.showToast('信息提交成功', 'none', res => {
 
-
-
+      })
       app.globalData.code =''
       that.setData({
-        mask: false,
+        isShakeShow: false,
         infomask: false,
-        shakewin:false,
-        mask1:false,//积分红包弹窗
-        mask2:false,//实物奖弹窗
-        mask3:false,//实物奖填写信息弹窗
         code:''
       })
-
-      setTimeout(res=>{
-        common.showToast('信息提交成功', 'none', res => {})
-      },100)
     })
 
   },
 
 
-
+  // 扫一扫
+  scanFunc() {
+    // debugger
+    var that = this;
+    wx.scanCode({
+      onlyFromCamera: true,
+      success(res) {
+        if (res.result != 'undefined') {
+          var urlList = res.result.split('/');
+          var code = urlList[urlList.length - 1];
+          that.setData({
+            code: code,
+          });
+        }
+      }
+    })
+  },
   //跳转到个人中心
   personal() {
     wx.switchTab({
@@ -497,7 +538,7 @@ Page({
   winning() {
     if (app.globalData.memberId > 0) {
       wx.navigateTo({
-        url: '../../personalCenter/winningList/winningList',
+        url: '../../personalCenter/winning/winning',
       })
     } else {
       common.login()
@@ -507,6 +548,44 @@ Page({
 
 
 
+  // //首页广告弹窗
+  // advlogin() {
+  //   let that = this;
+  //   common.requestPostf(api.advlogin, {
+  //   }, res => {
+  //     //0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
+  //     let bannernav = res.data.data[0];
+  //     that.setData({
+  //       bannernav: bannernav
+  //     })
+  //   }, reg => { })
+  // },
+
+  //轮播图跳转  0：抽奖页面;1: 积分商品详情页；2：美味菜谱详情页；3：社区文章详情页
+  // bannernav(e) {
+  //   let that = this;
+  //   let bannernav = that.data.bannernav;
+  //   let type = bannernav.type;
+  //   console.log(type)
+  //   if (type == 0) {
+  //     wx.navigateTo({
+  //       url: "../../shopping/shoppingActivity/shoppingActivity"
+  //     })
+  //   } else if (type == 1) {
+  //     app.globalData.goodsId = bannernav.objId;
+  //     wx.navigateTo({
+  //       url: "../../shopping/shoppingDetails/shoppingDetails"
+  //     })
+  //   } else if (type == 2) {
+  //     wx.navigateTo({
+  //       url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + bannernav.objId + '&objtype=' + 1,
+  //     })
+  //   } else if (type == 3) {
+  //     wx.navigateTo({
+  //       url: '../../delicious/deliciousDetail/deliciousDetail?objid=' + bannernav.objId + '&objtype=' + 0,
+  //     })
+  //   }
+  // },
 
 
 

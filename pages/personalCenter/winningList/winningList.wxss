@@ -1,0 +1,76 @@
+/* pages/personalCenter/winningList/winningList.wxss */
+page {
+	height: 100%;
+	width: 750rpx;
+}
+
+.container {
+    background: url('https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/0604/1_20.jpg') no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+
+.content {
+    position: absolute;
+    top: 100rpx;
+    left: 60rpx;
+    right: 60rpx;
+    bottom: 50rpx;
+    border-radius: 30rpx;
+    background: #DC6060;
+}
+.content .con-title {
+    text-align: center;
+    margin-top: -40rpx;
+}
+.content .con-title image{
+    width: 299rpx;
+    height: 109rpx;
+}
+
+
+
+
+
+.content .scollowview {
+    position: absolute;
+    top: 90rpx;
+    left: 40rpx;
+    right: 45rpx;
+    bottom: 0;
+}
+.content .con-con {
+    
+    background: url('https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/0604/1_17.png') no-repeat;
+    background-size: 100% 100%;
+    height: 100rpx;
+    width: 490rpx;
+    padding:30rpx ;
+    margin-bottom: 30rpx;
+}
+
+.content .con-con .con-top {
+    font-size: 45rpx;
+    font-weight: bold;
+    color: #DA583F;
+}
+
+.content .con-con .con-bottom image{
+    height: 46rpx;
+    width: 199rpx;
+}
+
+.content .con-con .con-timer {
+    background: url('https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/0604/1_18.png') no-repeat;
+    background-size: 100% 100%;
+    height: 46rpx;
+    width: 199rpx;
+    text-align: center;
+    line-height: 46rpx;
+}
+
+.content .con-loading {
+    text-align: center;
+    padding-bottom: 30rpx;
+    padding-right: 45rpx;
+}

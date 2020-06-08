@@ -20,7 +20,9 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"bundle": false
+		"bundle": false,
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.0",
@@ -237,6 +239,19 @@
 					"pathName": "pages/activityHome/act/act",
 					"query": "",
 					"scene": 1011
+				},
+				{
+					"id": -1,
+					"name": "旧版红包",
+					"pathName": "pages/activityHome/actold/act",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新中奖纪录",
+					"pathName": "pages/personalCenter/winningList/winningList",
+					"scene": null
 				}
 			]
 		}

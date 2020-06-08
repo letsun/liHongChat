@@ -28,6 +28,8 @@ App({
       town: '',
     },
 
+    imapath:'https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/',
+
     formatted_address:''
   }
 })

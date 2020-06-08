@@ -1,11 +1,11 @@
 {
   "pages": [
-
+    "pages/activityHome/act/act",
     "pages/delicious/deliciousList/deliciousList",
 
-    "pages/activityHome/act/act",
-    "pages/personalCenter/personalData/personalData",
-    "pages/personalCenter/winning/winning",
+    "pages/activityHome/actold/act",
+
+
 
     "pages/shopping/shoppingOrder/shoppingOrder",
     "pages/delicious/deliciousDetail/deliciousDetail",
@@ -19,6 +19,9 @@
     "pages/shopping/shoppingPayment/shoppingPayment",
     "pages/shopping/shoppingActivity/shoppingActivity",
 
+    "pages/personalCenter/personalData/personalData",
+    "pages/personalCenter/winning/winning",
+    "pages/personalCenter/winningList/winningList",
     "pages/personalCenter/personal/personal",
     "pages/personalCenter/orders/orders",
     "pages/personalCenter/myaddress/myaddress",

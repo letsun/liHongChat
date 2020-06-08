@@ -1,0 +1,28 @@
+<!--pages/personalCenter/winningList/winningList.wxml-->
+<view class="container">
+
+    <view class="content">
+        <view class="con-title">
+            <image src="{{imapath}}0604/1_19.png"></image>
+        </view>
+
+
+        <scroll-view class="scollowview" scroll-y="true" bindscrolltolower="pullup">
+        
+            <view class="con-con" wx:for="{{lotteryList}}" wx:key="xxx">
+                <view class="con-top">
+                    {{item.prizeName}} 
+                </view>
+
+                <view class="con-bottom">
+                    <view class="con-timer"> {{item.lotteryTime}} </view>
+                </view>
+            </view>
+
+            <view class="con-loading">{{loadingtext}}</view>
+
+         </scroll-view>
+
+    </view>
+
+</view>

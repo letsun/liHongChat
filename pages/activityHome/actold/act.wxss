@@ -1,0 +1,734 @@
+page{
+  height: 100%;
+  width: 100%;
+}
+
+
+.container {
+	position: relative;
+
+	width: 100%;
+	height: 100%;
+
+	background: #ad0514;
+}
+
+.content {
+	position: relative;
+
+	width: 100%;
+	height: 100%;
+}
+
+.content .bg {
+	display: block;
+
+	width: 100%;
+	height: 100%;
+}
+
+.content .logo {
+	position: absolute;
+	left: 48rpx;
+	top: 0;
+	z-index: 2;
+
+	display: block;
+
+	width: 144rpx;
+}
+
+.content .effect {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 1;
+
+	width: 100%;
+	max-height: 100%;
+}
+
+.content .title {
+	position: absolute;
+	left: 40rpx;
+	top: 52rpx;
+	z-index: 3;
+
+	width: 670rpx;
+}
+
+.content .rule-btn {
+	position: absolute;
+	right: 0;
+	top: 182rpx;
+	z-index: 3;
+
+	width: 57rpx;
+}
+
+.content .open-btn {
+	position: absolute;
+	left: 0;
+  right: 0;
+  margin: auto;
+	bottom: 120rpx;
+	z-index: 3;
+
+	width: 452rpx;
+	/* margin-left: -226rpx; */
+}
+
+.content .open-btn image{
+  width: 452rpx;
+}
+
+.button-hover {
+
+background-color:transparent;
+
+}
+
+button::after {
+
+border: none;
+
+}
+
+button {
+
+background-color: transparent;
+
+padding-left: 0;
+
+padding-right: 0;
+
+line-height:inherit;
+
+}
+
+
+.nav-list {
+	position: absolute;
+	left: 50%;
+	bottom: 40rpx;
+	z-index: 2;
+
+	width: 300rpx;
+	margin-left: -150rpx;
+
+	color: #fff;
+
+	overflow: hidden;
+}
+
+.nav-list .nav-item {
+	position: relative;
+
+	float: left;
+
+	width: 140rpx;
+
+	padding: 0 0 12rpx 0;
+
+	font-size: 30rpx;
+	line-height: 30rpx;
+	text-align: center;
+
+	border-bottom: 1rpx solid #fff;
+
+	box-sizing: border-box;
+}
+
+.nav-list .nav-item:first-child::after {
+	position: absolute;
+	top: 0;
+	right: -11rpx;
+	z-index: 1;
+
+	content: '';
+	width: 0;
+	height: 32rpx;
+
+	border-right: 1rpx solid #fff;
+}
+
+.nav-list .nav-item:last-child {
+	float: right;
+}
+
+.result-win {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 99999;
+
+    display: block;
+	width: 100%;
+	height: 100%;
+
+	background: rgba(0,0,0,.7);
+}
+
+.result-win .result-content {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
+
+	width: 622rpx;
+	height: 852rpx;
+	margin-left: -311rpx;
+	margin-top: -426rpx;
+	padding-top: 94rpx;
+
+	background: url('https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_9.png') no-repeat;
+	background-size: 100% 100%;
+
+	box-sizing: border-box;
+}
+
+.result-win .result-bg {
+	height: 65rpx;
+	width: 65rpx;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 70rpx;
+	margin: auto;
+}
+
+.result-title {
+	display: block;
+
+	font-size: 60rpx;
+	color: #f84548;
+	font-weight: 500;
+	text-align: center;
+	line-height: 60rpx;
+}
+
+.result-title1 {
+	width: 209rpx;
+}
+
+.result-title2 {
+	width: 215rpx;
+}
+
+.result-title3 {
+	width: 230rpx;
+}
+
+.result-dec {
+	margin-top: 46rpx;
+}
+
+.result-amount {
+	color: #f84548;
+	font-size: 46rpx;
+	font-weight: bold;
+	text-align: center;
+	line-height: 60rpx;
+}
+
+.result-amount image {
+  max-width: 120rpx;
+  max-height: 120rpx;
+}
+
+
+
+.result-amount text {
+	font-size: 60rpx;
+}
+
+.result-tip {
+	margin-top: 54rpx;
+
+	color: #f84548;
+	font-size: 30rpx;
+	text-align: center;
+	line-height: 30rpx;
+}
+
+.btn-wra {
+	position: absolute;
+	left: 0;
+	bottom: 178rpx;
+	z-index: 1;
+
+	width: 100%;
+
+	box-sizing: border-box;
+}
+
+.btn-wra1 .result-btn {
+	display: block;
+
+	width: 420rpx;
+	margin: 0 auto;
+}
+
+.btn-wra2 {
+	text-align: center;
+	padding-top: 40rpx;
+	bottom: 125rpx;
+}
+
+.btn-wra2 .result-btn {
+	width:328rpx;
+}
+
+
+
+.shake-win {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 999;
+
+  display: none;
+	width: 100%;
+	height: 100%;
+  
+  animation: left 0.9s ease-in forwards;
+
+}
+
+.block {
+  display: block;
+}
+
+@keyframes left {
+    0% {
+        left: 750rpx;
+    }
+    100% {
+         left: 0;
+    }
+}
+
+.shake-content {
+	position: relative;
+
+	width: 100%;
+	height: 100%;
+
+	background: url('https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/20200115/1_22.jpg') no-repeat;
+	background-size: 100% 100%;
+}
+
+.shake-title {
+	position: absolute;
+	left: 50%;
+	top: 50rpx;
+	z-index: 1;
+
+	width: 562rpx;
+	margin-left: -281rpx;
+}
+
+.shake-rule {
+	position: absolute;
+	right: 0;
+	top: 182rpx;
+	z-index: 3;
+
+	width: 57rpx;
+}
+
+.shake-tip {
+	position: absolute;
+	left: 50%;
+	top: 320rpx;
+	z-index: 10;
+
+	width: 572rpx;
+	height: 572rpx;
+	margin-left: -286rpx;
+
+	background: url('https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_75.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+
+.shake-tipa{
+	position: absolute;
+	left: 0;
+	top:0rpx;
+	z-index: 0;
+
+	width: 572rpx;
+	height: 572rpx;
+
+  animation: dga 1.5s infinite  ease;
+	background: url('https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_76.png') no-repeat;
+	background-size: 100% 100%;
+  
+}
+
+
+
+
+.shake-tipb {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 0;
+
+	width: 572rpx;
+	height: 572rpx;
+
+
+  animation: dgb 1.5s infinite  ease;
+
+	background: url('https://wechat-1254182596.cos.ap-guangzhou.myqcloud.com/lihong/1_77.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+@keyframes dga{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@keyframes dgb{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.shake-hands {
+	position: absolute;
+	left: 50%;
+	bottom: 40rpx;
+	z-index: 1;
+
+	width: 198rpx;
+	margin-left: -99rpx;
+}
+
+.shake {
+	animation: shakeAni 2s linear infinite;
+	-webkit-animation: shakeAni 2s linear infinite;
+}
+
+@keyframes shakeAni {
+	0% {
+		transform: rotate(4deg);
+	}
+
+	50% {
+		transform: rotate(-4deg);
+	}
+
+	100% {
+		transform: rotate(4deg);
+	}
+}
+
+.shake-num {
+	position: absolute;
+	left: 50%;
+	bottom: -68rpx;
+	z-index: 2;
+
+	width: 532rpx;
+	margin-left: -266rpx;
+}
+
+.shake-btn {
+	position: absolute;
+	left: 50%;
+	bottom: 30rpx;
+	z-index: 2;
+
+	width: 362rpx;
+	margin-left: -181rpx;
+}
+
+.rule-win {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9999999;
+
+	width: 100%;
+	height: 100%;
+
+	background: rgba(0,0,0,.7);
+}
+
+.rule-content {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
+
+	transform: translate(-50%,-50%);
+	
+	width: 585rpx;
+	height: 700rpx;
+	background:url(https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_113.png) no-repeat;
+	background-size: 100% 100%;
+
+}
+
+.rule-title {
+	height: 62rpx;
+	width: 457rpx;
+	display: block;
+	margin: 30rpx auto;
+		
+}
+
+.rule-text {
+	color: #E27C5D;
+	padding: 0 30rpx;
+	height: 360rpx;
+	max-width: 540rpx;
+	overflow-x: hidden;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+rule-text {
+	max-width: 500rpx;
+	overflow: hidden;
+}
+
+
+
+.rule-content .rule-confirm {
+	width: 346rpx;
+	display: block;
+	margin: auto;
+	margin-top: 25px;
+}
+
+
+.mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 50;
+	background: rgba(0,0,0,.7);
+}
+
+
+
+.mask-con {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	text-align: center;
+}
+
+
+.mask-img {
+	/* position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%); */
+	width: 590rpx;
+	height: 747rpx;
+}
+
+.mask-middel {
+	position: absolute;
+	top: 260rpx;
+	left: 0;
+	right: 0;
+	margin: 0;
+}
+
+.mask-middel-bg {
+
+	width: 427rpx;
+	height: 152rpx;
+}
+
+.mask-middel-img {
+	position: absolute;
+	width: 102rpx;
+	height: 122rpx;
+	font-size: 20rpx;
+	color:#f4f4f4;
+}
+
+
+.img1 {
+	top:-60rpx;
+	left: 140rpx;
+}
+
+.img2 {
+	top:-60rpx;
+	left:240rpx;
+}
+
+.img3 {
+	top:-60rpx;
+	left: 340rpx;
+}
+
+.img4 {
+	top:90rpx;
+	left: 100rpx;
+}
+
+.img5 {
+	top:90rpx;
+	left: 190rpx;
+}
+
+.img6 {
+	top:90rpx;
+	left: 285rpx;
+}
+
+.img7 {
+	top:90rpx;
+	left: 380rpx;
+}
+
+
+.text1 {
+	top:-30rpx;
+	left: 145rpx;
+}
+
+.text2 {
+	top:-30rpx;
+	left:245rpx;
+}
+
+.text3 {
+	top:-30rpx;
+	left: 345rpx;
+}
+
+.text4 {
+	top:120rpx;
+	left: 103rpx;
+}
+
+.text5 {
+	top:120rpx;
+	left: 192rpx;
+}
+
+.text6 {
+	top:120rpx;
+	left: 287rpx;
+}
+
+.text7 {
+	top:120rpx;
+	left: 382rpx;
+}
+
+
+
+
+
+.mask-middel-btn {
+	margin-top: 160rpx;
+	width: 462rpx;
+	height: 75rpx;
+}
+
+.mask-close {
+	width: 65rpx;
+	height: 65rpx;
+	
+	margin: auto;
+	margin-top: 50rpx;
+}
+
+
+.address {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.6);
+	z-index: 1000;
+}
+
+.address-con {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	background: url(https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_113.png) no-repeat;
+	background-size: 100% 100%;
+	width: 585rpx;
+	height: 699rpx;
+}
+
+
+.address-title {
+	text-align: center;
+	padding-top: 50rpx ;
+}
+
+.address-title image{
+	max-width: 315rpx;
+	max-height: 45rpx;
+}
+
+.address-from {
+	padding: 30rpx;
+}
+
+
+
+.from-item {
+	display: flex;
+	margin-bottom:20rpx ;
+}
+
+.item-key {
+	width: 15%;
+	padding: 15rpx 0;
+}
+
+.item-value {
+	width: 85%;
+}
+
+
+
+.item-value input,picker{
+	width: 95%;
+	padding: 15rpx 0 15rpx  15rpx ;
+
+	background:#fff;
+	border: 1rpx solid #FE8359;
+}
+
+.item-value picker {
+	margin-bottom: 20rpx;
+}
+
+
+.address-btn {
+	text-align: center;
+}
+
+
+.address-btn image {
+	max-width: 346rpx;
+	max-height: 138rpx;
+}

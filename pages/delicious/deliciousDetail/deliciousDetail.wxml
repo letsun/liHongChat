@@ -82,7 +82,7 @@
 
 	<!-- 说明 -->
 	<view class="desc" style=" {{objType == 0 ?'padding-top:15rpx;':'' }}">
-		<view class="parametera">菜谱描述</view>
+		<view class="parametera" wx:if="{{mwktDesc!=unidentified}}">菜谱描述</view>
 		<rich-text class="rich-text" nodes="{{mwktDesc}}"></rich-text>
 	</view>
 
