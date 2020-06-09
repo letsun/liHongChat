@@ -43,10 +43,13 @@ Page({
   //打开摇一摇弹窗
   openShake() {
     let that = this;
-    var data = wx.getLaunchOptionsSync() //获取场景代码
-    console.log(data.scene, '场景值')
+    //var data = wx.getLaunchOptionsSync() //获取场景代码
+    // console.log(data.scene, '场景值')
     // debugger
     //判断码是否为空
+
+    console.log(that.data.code,'511111111111111111111111111')
+
     if (that.data.code != '') {
       // this.lottery()
       // that.shakeFunc();
@@ -62,8 +65,6 @@ Page({
 
   clicklotter() {
     let that = this;
-
-     
     that.setData({
       // shakewin:true,
       isqr: true
@@ -103,6 +104,7 @@ Page({
 
 
   onLoad(options) {
+
     let that = this;
     let q = decodeURIComponent(options.q);
     if (q != 'undefined') {
@@ -137,7 +139,8 @@ Page({
 
 
 
-  onShow(options) {
+  onShow() {
+ 
     let that = this;
 
     //个人中心扫码进来
@@ -166,7 +169,7 @@ Page({
       success: function (res) {
         app.globalData.addressComponent = res.originalData.result.addressComponent;
         app.globalData.formatted_address = res.originalData.result.formatted_address;
-        console.log(res.originalData.result.addressComponent);
+        // console.log(res.originalData.result.addressComponent);
       },
       fail: function (res) {
         common.showToast('请检查位置服务是否开启', 'none', res => { })
@@ -199,7 +202,7 @@ Page({
               that.setData({
                 isShake: false
               })
-              console.log(e.x, e.y, e.z, '138');
+              // console.log(e.x, e.y, e.z, '138');
               innerAudioContextStart.play();
               innerAudioContextStart.onEnded(function () {
                 innerAudioContextEnd.stop();
@@ -284,7 +287,8 @@ Page({
       wx.hideLoading();
       setTimeout(res => {
         common.showToast(reg.data.msg, 'none', res => {
-          app.globalData.code =''
+          app.globalData.code ='' ;
+          app.globalData.qrtypes = '';
           that.setData({
             mask: false,
             infomask: false,
@@ -292,7 +296,8 @@ Page({
             mask1:false,//积分红包弹窗
             mask2:false,//实物奖弹窗
             mask3:false,//实物奖填写信息弹窗
-            code:''
+            code:'',
+            
           })
         })
       }, 500)
@@ -311,7 +316,7 @@ Page({
     let labelno = that.data.code;
 
     var data = wx.getLaunchOptionsSync() //获取场景代码
-    console.log(data.scene, '场景值')
+    // console.log(data.scene, '场景值')
 
     common.showLoading();
 
@@ -329,6 +334,7 @@ Page({
       transferType: 1,
     }, res => {
       app.globalData.code =''
+      app.globalData.qrtypes = '';
       that.setData({
         usercash: res.data.data,
         code: '',
@@ -393,7 +399,8 @@ Page({
   colsemask() {
 
     let that = this;
-    app.globalData.code =''
+    app.globalData.code ='',
+    app.globalData.qrtypes = '';
     that.setData({
       shakewin:false,
       mask:false,//奖项弹窗
@@ -418,7 +425,7 @@ Page({
 
   pickchange(e) {
     let that = this;
-    console.log(e.detail.value)
+    // console.log(e.detail.value)
     that.setData({
       address: e.detail.value
     })
@@ -457,10 +464,8 @@ Page({
       receiveAddress: receiveAddress
     }, res => {
 
-
-
-
-      app.globalData.code =''
+      app.globalData.code ='',
+      app.globalData.qrtypes = '';
       that.setData({
         mask: false,
         infomask: false,

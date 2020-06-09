@@ -15,7 +15,7 @@ Page({
   },
 
   goHome(type) {
-    const that = this;
+    var that = this;
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1]; //当前页面
     let prevPage = pages[pages.length - 2]; //上个页面
@@ -24,7 +24,7 @@ Page({
     console.log(currPage)
 
     if (type==1) {
-      if (prevPage.route ="pages/delicious/deliciousList/deliciousList") {
+      
         //登录后美味社区页面刷新
         prevPage.setData({
           mwktList:'',
@@ -32,8 +32,8 @@ Page({
         })
         prevPage.categoryList();
         prevPage.siginInfo()
-      }
       
+ 
     }
 
     wx.navigateBack({
@@ -79,12 +79,7 @@ Page({
   //获取手机号码
   getPhoneNumber(e) {
     let that = this;
-    console.log(e)
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
 
-    // app.globalData.sex = res.detail.userInfo.gender;
 
     if (e.detail.errMsg != 'getPhoneNumber:fail user deny') {
 
@@ -123,7 +118,20 @@ Page({
 
         if (res.data.data.firstReg == 'N') {
             setTimeout(function () {
+              let pages = getCurrentPages();
+            
+              let currPage = pages[pages.length - 1]; //上个页面
+              console.log(currPage.route)
+              // debugger
+              if (currPage.route =="pages/delicious/deliciousList/deliciousList") { 
+                console.log(1)
+
                 that.goHome(1);
+              }else{
+                console.log(2)
+                that.goHome();
+              }
+                
             },1500)
         } else {
 
