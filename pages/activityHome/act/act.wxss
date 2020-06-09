@@ -98,7 +98,7 @@ page {
 	background: url('https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/0604/1_20.png') no-repeat;
 	background-size: 100% 100%;
 
-	animation: left 0.9s ease-in forwards;
+	animation: left 0.3s ease-in forwards;
 }
 
 
@@ -440,12 +440,12 @@ button {
 
 .blockAnmiton {
 	display: block;
-	animation: left 0.9s ease-in forwards;
+	animation: left 0.3s ease-in forwards;
 }
 
 .noneAnmiton {
 	
-	animation: right 0.9s ease-in forwards;
+	animation: right 0.3s ease-in forwards;
 	display: none;
 }
 

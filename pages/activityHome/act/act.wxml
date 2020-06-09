@@ -23,7 +23,7 @@
 		<image class="logo" src="{{imapath}}0604/1_1.png"></image>
 		<image class="openrules" src="{{imapath}}0604/1_2.png" bindtap="openrules"></image>
 		<image class="bg" src="{{imapath}}0604/1_6.png"></image>
-		<image class="phone {{isqr?'shake':''}}" src="{{imapath}}0604/1_8.png"></image>
+		<image class="phone shake" src="{{imapath}}0604/1_8.png"></image>
 
 		<image class="openshake" src="{{imapath}}0604/1_7.png" bindtap="clicklotter"></image>
 	</view>

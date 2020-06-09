@@ -11,7 +11,7 @@ var innerAudioContextStart;
 Page({
   data: {
 
-    imapath :app.globalData.imapath,
+    imapath: app.globalData.imapath,
     infomask: false,
     latitude: '',
     longitude: '',
@@ -24,19 +24,19 @@ Page({
 
     code: '',
 
-
     // https://test-qr.cresz.com.cn/Gjups44WM6PXLW93pn33CED6A
     // https://test-qr.cresz.com.cn/Gjups04WM6S7GB38pn6783CBE
     // https://test-qr.cresz.com.cn/Gjups64WM6T6GX38pn2875974
 
 
-    mask:false,//奖项弹窗
-    mask1:false,//积分红包弹窗
-    mask2:false,//实物奖弹窗
-    mask3:false,//实物奖填写信息弹窗
-    shakewin:false, //打开摇一摇页面
+    mask: false, //奖项弹窗
+    mask1: false, //积分红包弹窗
+    mask2: false, //实物奖弹窗
+    mask3: false, //实物奖填写信息弹窗
+    shakewin: false, //打开摇一摇页面
 
-    rules:false,//打开活动规则
+    rules: false, //打开活动规则
+    isFlag:true
   },
 
 
@@ -48,36 +48,34 @@ Page({
     // debugger
     //判断码是否为空
 
-    console.log(that.data.code,'511111111111111111111111111')
-
     if (that.data.code != '') {
-      // this.lottery()
-      // that.shakeFunc();
       that.setData({
-        shakewin:true,
-        // isqr: true
+        shakewin: true,
+        isqr: true,
       })
+      that.shakeFunc();
     } else {
-      common.showToast('请扫描二维码参与活动', 'none', res => { })
+      common.showToast('请扫描二维码参与活动', 'none', res => {})
     }
-
   },
 
   clicklotter() {
     let that = this;
     that.setData({
-      // shakewin:true,
-      isqr: true
+      isqr: false
     })
+    console.log(that.data.code)
 
-    that.shakeFunc();
+    if (that.data.isShake) {
+      that.lottery();
+    }
+
   },
 
 
   //打开活动规则
   openrules() {
     let that = this;
-
     common.requestGet(api.rule, {
       ruleType: 1
     }, res => {
@@ -87,17 +85,17 @@ Page({
       var detail4 = detail3.replace(/u\>/gi, 'i>');
       that.setData({
         content: detail4.replace(/\<img/gi, '<img style="display:block;max-width:100%;margin:0 auto;height:auto" '),
-        rules:true,
+        rules: true,
       })
     })
   },
 
 
   //关闭活动规则
-  closerules(){
+  closerules() {
     let that = this;
     that.setData({
-      rules:false,
+      rules: false,
     })
   },
 
@@ -114,7 +112,7 @@ Page({
         code: code,
       });
     } else {
-      common.login(res=> {})
+      common.login(res => {})
     }
 
     BMap = new bmap.BMapWX({
@@ -140,7 +138,7 @@ Page({
 
 
   onShow() {
- 
+
     let that = this;
 
     //个人中心扫码进来
@@ -172,7 +170,7 @@ Page({
         // console.log(res.originalData.result.addressComponent);
       },
       fail: function (res) {
-        common.showToast('请检查位置服务是否开启', 'none', res => { })
+        common.showToast('请检查位置服务是否开启', 'none', res => {})
       },
     });
   },
@@ -216,15 +214,14 @@ Page({
         }
       }
     })
-
-
   },
 
 
   // 抽奖
   lottery() {
+
     common.showLoading();
- 
+
     let that = this;
     let address = app.globalData.formatted_address; //详细地址
     let city = app.globalData.addressComponent.city; //市区
@@ -265,18 +262,18 @@ Page({
       if (lottery.type == 0) {
         that.userCash() //红包提现
         that.setData({
-          mask1:true
+          mask1: true
         })
         wx.hideLoading();
       } else if (lottery.type == 2) {
         that.setData({
-          mask2:true,
+          mask2: true,
           lotteryId: lottery.lotteryId
         })
         wx.hideLoading();
-      }else if(lottery.type ==3) {
+      } else if (lottery.type == 3) {
         that.setData({
-          mask1:true
+          mask1: true
         })
         wx.hideLoading();
       } else {
@@ -287,17 +284,17 @@ Page({
       wx.hideLoading();
       setTimeout(res => {
         common.showToast(reg.data.msg, 'none', res => {
-          app.globalData.code ='' ;
+          app.globalData.code = '';
           app.globalData.qrtypes = '';
           that.setData({
             mask: false,
             infomask: false,
-            shakewin:false,
-            mask1:false,//积分红包弹窗
-            mask2:false,//实物奖弹窗
-            mask3:false,//实物奖填写信息弹窗
-            code:'',
-            
+            shakewin: false,
+            mask1: false, //积分红包弹窗
+            mask2: false, //实物奖弹窗
+            mask3: false, //实物奖填写信息弹窗
+            code: '',
+
           })
         })
       }, 500)
@@ -333,27 +330,27 @@ Page({
       activityCode: labelno, //  活动二维码
       transferType: 1,
     }, res => {
-      app.globalData.code =''
+      app.globalData.code = ''
       app.globalData.qrtypes = '';
       that.setData({
         usercash: res.data.data,
         code: '',
       })
 
-      
+
       // if (transferType == 0) {
       //   wx.hideLoading({});
       //   that.hbbtn()   
       // } else {
-        wx.hideLoading({});
-        // setTimeout(res => {
-        //   common.showToast('领取成功，红包已发放到零钱', 'none', res => { })
-        // }, 500)
+      wx.hideLoading({});
+      // setTimeout(res => {
+      //   common.showToast('领取成功，红包已发放到零钱', 'none', res => { })
+      // }, 500)
 
       // }
     }, reg => {
       setTimeout(res => {
-        common.showToast(reg.data.msg, 'none', res => { })
+        common.showToast(reg.data.msg, 'none', res => {})
       }, 500)
     })
 
@@ -377,7 +374,7 @@ Page({
       signType: usercash.signType, // 签名方式，
       paySign: usercash.paySign, // 支付签名
       success: function (reg) {
-  
+
       },
 
       fail: function (reg) {
@@ -390,7 +387,7 @@ Page({
 
         })
       },
-      complete: function (res) { }
+      complete: function (res) {}
     })
   },
 
@@ -399,14 +396,14 @@ Page({
   colsemask() {
 
     let that = this;
-    app.globalData.code ='',
-    app.globalData.qrtypes = '';
+    app.globalData.code = '',
+      app.globalData.qrtypes = '';
     that.setData({
-      shakewin:false,
-      mask:false,//奖项弹窗
-      mask1:false,//积分红包弹窗
-      mask2:false,//实物奖弹窗
-      mask3:false,//实物奖填写信息弹窗
+      shakewin: false,
+      mask: false, //奖项弹窗
+      mask1: false, //积分红包弹窗
+      mask2: false, //实物奖弹窗
+      mask3: false, //实物奖填写信息弹窗
       code: ''
     })
 
@@ -416,7 +413,7 @@ Page({
   infomask() {
     let that = this;
     that.setData({
-      mask2:false,
+      mask2: false,
       mask3: true,
     })
   },
@@ -443,13 +440,13 @@ Page({
     let receiveArea = that.data.address[2];
 
     if (name == '') {
-      common.showToast('姓名不能为空', 'none', res => { });
+      common.showToast('姓名不能为空', 'none', res => {});
       return false;
     } else if (phone == '') {
-      common.showToast('手机号码不能为空', 'none', res => { });
+      common.showToast('手机号码不能为空', 'none', res => {});
       return false;
     } else if (receiveAddress == '') {
-      common.showToast('详细地址不能为空', 'none', res => { });
+      common.showToast('详细地址不能为空', 'none', res => {});
       return false;
     }
 
@@ -464,21 +461,21 @@ Page({
       receiveAddress: receiveAddress
     }, res => {
 
-      app.globalData.code ='',
-      app.globalData.qrtypes = '';
+      app.globalData.code = '',
+        app.globalData.qrtypes = '';
       that.setData({
         mask: false,
         infomask: false,
-        shakewin:false,
-        mask1:false,//积分红包弹窗
-        mask2:false,//实物奖弹窗
-        mask3:false,//实物奖填写信息弹窗
-        code:''
+        shakewin: false,
+        mask1: false, //积分红包弹窗
+        mask2: false, //实物奖弹窗
+        mask3: false, //实物奖填写信息弹窗
+        code: ''
       })
 
-      setTimeout(res=>{
+      setTimeout(res => {
         common.showToast('信息提交成功', 'none', res => {})
-      },100)
+      }, 100)
     })
 
   },
