@@ -5,7 +5,9 @@
         <view class="con-title">
             <image src="{{imapath}}0604/1_19.png"></image>
         </view>
-
+        <view class="con-text">
+            <image src="{{imapath}}0604/1_25.png"></image> 未填写收货信息,请前往"中奖记录"填写。<view bindtap="winning">前往</view>
+        </view>
 
         <scroll-view class="scollowview" scroll-y="true" bindscrolltolower="pullup">
         

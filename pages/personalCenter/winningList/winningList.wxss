@@ -29,23 +29,49 @@ page {
 }
 
 
+.content .con-text {
+    justify-content: center;
+    margin: 0 40rpx;
+    border-radius: 10rpx;
+    padding: 10rpx 0;
+    background: #E9C370;
+    color: #A31E1F;
+}
 
+
+.content .con-text {
+    text-align: center;
+    display: flex;
+    font-size: 22rpx;
+    font-weight: bold;
+}
+.content .con-text image {
+    height: 32rpx;
+    width: 32rpx;
+}
+
+.content .con-text view {
+    border-radius: 10rpx;
+    padding: 0 10rpx;
+    color: #E9C370;
+    background: #A31E1F;
+}
 
 
 .content .scollowview {
     position: absolute;
-    top: 90rpx;
-    left: 40rpx;
-    right: 45rpx;
+    top: 140rpx;
+    left: 0;
+    right: 0;
     bottom: 0;
 }
 .content .con-con {
-    
     background: url('https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/0604/1_17.png') no-repeat;
     background-size: 100% 100%;
     height: 100rpx;
     width: 490rpx;
     padding:30rpx ;
+    margin: auto;
     margin-bottom: 30rpx;
 }
 
@@ -72,5 +98,5 @@ page {
 .content .con-loading {
     text-align: center;
     padding-bottom: 30rpx;
-    padding-right: 45rpx;
+
 }
