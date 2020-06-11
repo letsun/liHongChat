@@ -106,13 +106,18 @@ swiper image {
 .text {
 
   padding-left: 10rpx;
+
   margin-top: 16rpx;
   position: relative;
 }
 
 /* 商品标题 */
 .title {
-
+  height: 76rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .integral {
