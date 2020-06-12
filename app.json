@@ -1,11 +1,9 @@
 {
   "pages": [
-    "pages/activityHome/act/act",
+    
     "pages/delicious/deliciousList/deliciousList",
-
+    "pages/activityHome/act/act",
     "pages/activityHome/actold/act",
-
-
 
     "pages/shopping/shoppingOrder/shoppingOrder",
     "pages/delicious/deliciousDetail/deliciousDetail",
