@@ -2,9 +2,9 @@
 
 <view class="container">
   <!-- 头部背景 -->
-  <view class="header">
+  <!-- <view class="header">
     温馨提示：红色字体代表您已经签到过，每日签到可获得10积分
-  </view>
+  </view> -->
 
   <view class="calendar">
     <view class="calendar-header">
