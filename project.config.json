@@ -12,9 +12,11 @@
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
@@ -252,6 +254,13 @@
 					"id": -1,
 					"name": "新中奖纪录",
 					"pathName": "pages/personalCenter/winningList/winningList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "活动主页",
+					"pathName": "pages/activityHome/act/act",
 					"scene": null
 				}
 			]

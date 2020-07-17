@@ -57,7 +57,6 @@
 	<!-- {{mask3?'block':'none'}} -->
 		<view class="mask-con3 {{mask3?'block':'none'}}">
 			<form bindsubmit="infobtn">
-
 				<view class="address-from">
 					<view class="from-item">
 						<view class="item-key">姓名</view>
@@ -81,7 +80,7 @@
 				</view>
 
 				<button class="address-btn" form-type="submit">
-					<image src="https://qdwzvue-1254182596.cos.ap-guangzhou.myqcloud.com/qdwzAct/liHongChat/1_111.png"></image>
+					<image src="{{imapath}}/1_111.png"></image>
 				</button>
 			</form>
 		</view>
