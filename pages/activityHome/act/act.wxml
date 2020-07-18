@@ -43,7 +43,7 @@
 			</view>
 			<image class="mask-colse" src="{{imapath}}0604/1_9.png" bindtap="colsemask"></image>
 		</view>
-
+		
 		<view class="mask-con2 {{mask2?'block':'none'}}">
 			<view class="mask-text">
 				{{lottery.materialObj.prizeName}}
@@ -51,6 +51,15 @@
 			</view>
 
 			<image class="mask-btn" src="{{imapath}}0604/1_11.png" bindtap="infomask"></image>
+			<image class="mask-colse" src="{{imapath}}0604/1_9.png" bindtap="colsemask"></image>
+		</view>
+
+		<view class="mask-con2 {{mask4?'block':'none'}}">
+			<view class="mask-text">
+				{{lottery.advOrigin.prizeName}}
+			</view>
+
+			<image class="mask-btn" src="{{imapath}}0604/1_26.png" bindtap="receive"> </image>
 			<image class="mask-colse" src="{{imapath}}0604/1_9.png" bindtap="colsemask"></image>
 		</view>
 

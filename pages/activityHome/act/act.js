@@ -19,20 +19,19 @@ Page({
     isShake: true,
     isqr: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
-    //code: '',
     address: ["北京市", "北京市", "东城区"],
-
-    code: '',
+    //code: '',
+    code: 'pnHxA04MDK5WUG21pn7942580',
 
     // https://test-qr.cresz.com.cn/Gjups44WM6PXLW93pn33CED6A
     // https://test-qr.cresz.com.cn/Gjups04WM6S7GB38pn6783CBE
     // https://test-qr.cresz.com.cn/Gjups64WM6T6GX38pn2875974
 
-
     mask: false, //奖项弹窗
     mask1: false, //积分红包弹窗
     mask2: false, //实物奖弹窗
     mask3: false, //实物奖填写信息弹窗
+    mask4:false,//权益卷
     shakewin: false, //打开摇一摇页面
 
     rules: false, //打开活动规则
@@ -69,9 +68,7 @@ Page({
     if (that.data.isShake) {
       that.lottery();
     }
-
   },
-
 
   //打开活动规则
   openrules() {
@@ -90,7 +87,6 @@ Page({
     })
   },
 
-
   //关闭活动规则
   closerules() {
     let that = this;
@@ -99,10 +95,7 @@ Page({
     })
   },
 
-
-
   onLoad(options) {
-
     let that = this;
     let q = decodeURIComponent(options.q);
     if (q != 'undefined') {
@@ -276,6 +269,11 @@ Page({
           mask1: true
         })
         wx.hideLoading();
+      } else if(lottery.type == 4){
+        that.setData({
+          mask4: true
+        })
+        wx.hideLoading();
       } else {
         wx.hideLoading();
       }
@@ -356,6 +354,24 @@ Page({
 
   },
 
+  //跳转小程序
+  receive() {
+    let {appId,miniProgramPath} = this.data.lottery.advOrigin;
+    wx.navigateToMiniProgram({
+      appId: appId,
+      path:miniProgramPath,
+      extraData: {
+        foo: 'bar'
+      },
+
+      //develop（开发版），trial（体验版），release（正式版）
+      envVersion: 'release',
+      success(res) {
+        // 打开成功
+      }
+    })
+  },
+
 
 
 
@@ -366,7 +382,6 @@ Page({
     let openid = app.globalData.idData.openid; //小程序openid
     let lottery = that.data.lottery;
 
-    // debugger
     wx.sendBizRedPacket({
       timeStamp: usercash.timeStamp, // 支付签名时间戳，
       nonceStr: usercash.nonceStr, // 支付签名随机串，不长于 32 位
@@ -505,12 +520,6 @@ Page({
       common.login()
     }
   },
-
-
-
-
-
-
 
   onUnload: function () {
 

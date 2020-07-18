@@ -21,7 +21,7 @@
                 </view>
             </view>
 
-            <view class="con-loading">{{loadingtext}}</view>
+            <!-- <view class="con-loading">{{loadingtext}}</view> -->
 
          </scroll-view>
 
