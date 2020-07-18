@@ -20,8 +20,8 @@ Page({
     isqr: false,
     ak: 'T8bHwH42XGSNXOkaByf3b9EnTFPiSS4X',
     address: ["北京市", "北京市", "东城区"],
-    //code: '',
-    code: 'pnHxA04MDK5WUG21pn7942580',
+    code: '',
+    //code: 'pnHxA94MDK8BW4N8pn09DEF4C',
 
     // https://test-qr.cresz.com.cn/Gjups44WM6PXLW93pn33CED6A
     // https://test-qr.cresz.com.cn/Gjups04WM6S7GB38pn6783CBE
