@@ -1,4 +1,5 @@
 const RdWXBizDataCrypt = require('utils/WXBizDataCrypt.js');
+
 App({
 
   // onShow: function (options) {
